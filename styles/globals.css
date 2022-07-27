@@ -1,26 +1,71 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 400;
+    src: url("/assets/fonts/en/helvetica-en-medium.ttf");
   }
-  body {
-    color: white;
-    background: black;
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 500;
+    src: url("/assets/fonts/en/helvetica-en-bold.ttf");
   }
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 400;
+    font-style: italic;
+    src: url("/assets/fonts/en/helvetica-en-medium-it.ttf");
+  }
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 500;
+    font-style: italic;
+    src: url("/assets/fonts/en/helvetica-en-bold-it.ttf");
+  }
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 100;
+    src: url("/assets/fonts/ge/helvetica-ge-100.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 200;
+    src: url("/assets/fonts/ge/helvetica-ge-200.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 300;
+    src: url("/assets/fonts/ge/helvetica-ge-300.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 400;
+    src: url("/assets/fonts/ge/helvetica-ge-400.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 500;
+    src: url("/assets/fonts/ge/helvetica-ge-500.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 600;
+    src: url("/assets/fonts/ge/helvetica-ge-600.ttf");
+  }
+
+  @font-face {
+    font-family: "HelveticaGe";
+    font-weight: 700;
+    src: url("/assets/fonts/ge/helvetica-ge-700.ttf");
+  }
+ 
 }
