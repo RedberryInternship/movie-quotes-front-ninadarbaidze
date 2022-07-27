@@ -6,6 +6,11 @@
 @layer base {
   @font-face {
     font-family: "HelveticaEn";
+    font-weight: 200;
+    src: url("/assets/fonts/en/helvetica-en-ultraLight.ttf");
+  }
+  @font-face {
+    font-family: "HelveticaEn";
     font-weight: 400;
     src: url("/assets/fonts/en/helvetica-en-medium.ttf");
   }

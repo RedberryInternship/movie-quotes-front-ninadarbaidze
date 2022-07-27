@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           </li>
         ))}
       </nav>
-      <h1 className=''>{t('home:welcome_msg')}</h1>
+      <h1>{t('home:welcome_msg')}</h1>
     </div>
   );
 };
