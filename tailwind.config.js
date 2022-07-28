@@ -5,6 +5,14 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      xs: '350px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       fontFamily: {
         helvetica_en: 'HelveticaEn',
@@ -14,14 +22,15 @@ module.exports = {
       colors: {
         mainDark: '#11101A',
         beidge: '#DDCCAA',
+        darkWhite: '#D9D9D9',
         red: '#E31221',
         redHover: '#b0101b',
       },
       backgroundImage: {
-        homeGradient:
-          'linear-gradient(180deg, #11101A 0%, #08080D 70.52%, rgba(0, 0, 0, 0) 100%)',
-        quotesGradient:
-          'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 55.21%, rgba(0, 0, 0, 0) 100%)',
+        gradient:
+          'linear-gradient(180deg, #11101A 0%, #08080D 2%, rgba(0, 0, 0, 0) 30%)',
+        gradient90deg:
+          'linear-gradient(90deg, #11101A 0%, #08080D 4%, rgba(0, 0, 0, 0) 80%)',
       },
     },
   },

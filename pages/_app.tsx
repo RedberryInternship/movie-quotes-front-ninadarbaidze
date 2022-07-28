@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div
       className={locale === 'en' ? 'font-helvetica_en' : 'font-helvetica_ge'}
     >
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </div>
   );
 }
