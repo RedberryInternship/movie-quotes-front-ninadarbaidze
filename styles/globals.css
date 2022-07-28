@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,11 +16,13 @@
     font-weight: 400;
     src: url("/assets/fonts/en/helvetica-en-medium.ttf");
   }
+
   @font-face {
     font-family: "HelveticaEn";
     font-weight: 500;
-    src: url("/assets/fonts/en/helvetica-en-bold.ttf");
+    src: url("/assets/fonts/en/helvetica-en-large.ttf");
   }
+
   @font-face {
     font-family: "HelveticaEn";
     font-weight: 400;
