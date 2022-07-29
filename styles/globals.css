@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,14 +8,21 @@
 @layer base {
   @font-face {
     font-family: "HelveticaEn";
-    font-weight: 400;
-    src: url("/assets/fonts/en/helvetica-en-medium.ttf");
+    font-weight: 200;
+    src: url("/assets/fonts/en/helvetica-en-ultraLight.ttf");
   }
   @font-face {
     font-family: "HelveticaEn";
-    font-weight: 500;
-    src: url("/assets/fonts/en/helvetica-en-bold.ttf");
+    font-weight: 400;
+    src: url("/assets/fonts/en/helvetica-en-medium.ttf");
   }
+
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 500;
+    src: url("/assets/fonts/en/helvetica-en-large.ttf");
+  }
+
   @font-face {
     font-family: "HelveticaEn";
     font-weight: 400;
@@ -29,25 +38,25 @@
   @font-face {
     font-family: "HelveticaGe";
     font-weight: 100;
-    src: url("/assets/fonts/ge/helvetica-ge-100.ttf");
+    src: url("/assets/fonts/ge/helvetica-ge-50.ttf");
   }
 
   @font-face {
     font-family: "HelveticaGe";
     font-weight: 200;
-    src: url("/assets/fonts/ge/helvetica-ge-200.ttf");
+    src: url("/assets/fonts/ge/helvetica-ge-100.ttf");
   }
 
   @font-face {
     font-family: "HelveticaGe";
     font-weight: 300;
-    src: url("/assets/fonts/ge/helvetica-ge-300.ttf");
+    src: url("/assets/fonts/ge/helvetica-ge-200.ttf");
   }
 
   @font-face {
     font-family: "HelveticaGe";
     font-weight: 400;
-    src: url("/assets/fonts/ge/helvetica-ge-400.ttf");
+    src: url("/assets/fonts/ge/helvetica-ge-300.ttf");
   }
 
   @font-face {
@@ -68,4 +77,19 @@
     src: url("/assets/fonts/ge/helvetica-ge-700.ttf");
   }
  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #11101a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(65, 76, 112);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
 }
