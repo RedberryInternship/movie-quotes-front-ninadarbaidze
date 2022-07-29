@@ -1,3 +1,3 @@
 export * from './Header';
 export * from './Button';
-export * from './LanguageSwitcher';
+export * from './LanguageSwitchBtn';
