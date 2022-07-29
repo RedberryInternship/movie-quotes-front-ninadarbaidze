@@ -1,12 +1,13 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
-import { Header, Footer, ParallaxQuote, Button } from 'components';
+import { Header, Footer, ParallaxQuote, Button, Signup } from 'components';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
   return (
     <>
+      <Signup />
       <Header />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

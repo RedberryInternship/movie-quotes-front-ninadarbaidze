@@ -21,10 +21,15 @@ module.exports = {
       },
       colors: {
         mainDark: '#11101A',
+        mainDark2: '#222030',
+        gray: '#6C757D',
+        gray10: '#CED4DA',
+        gray20: '#6C757D',
         beidge: '#DDCCAA',
         darkWhite: '#D9D9D9',
         red: '#E31221',
         redHover: '#b0101b',
+        link: '#0D6EFD',
       },
       backgroundImage: {
         gradient:

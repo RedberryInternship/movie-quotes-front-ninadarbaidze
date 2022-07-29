@@ -22,6 +22,11 @@
     font-weight: 500;
     src: url("/assets/fonts/en/helvetica-en-large.ttf");
   }
+  @font-face {
+    font-family: "HelveticaEn";
+    font-weight: 600;
+    src: url("/assets/fonts/en/helvetica-en-rounded.otf");
+  }
 
   @font-face {
     font-family: "HelveticaEn";
