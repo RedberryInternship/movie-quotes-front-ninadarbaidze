@@ -7,4 +7,5 @@ export type InputTypes = {
   placeholder: string;
   onChange: any;
   value: string;
+  showHidePassword?: boolean;
 };

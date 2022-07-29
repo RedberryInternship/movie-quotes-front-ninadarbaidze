@@ -3,10 +3,12 @@ import { Modal, Backdrop, Input, Button } from 'components';
 import { MovieQuotesContext } from 'store';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { RegistrationSchema } from 'schema';
 
 const SignUp = () => {
   const ctx = useContext(MovieQuotesContext);
   const { t } = useTranslation();
+  const onSubmit = () => {};
 
   const formik = useFormik({
     initialValues: {
@@ -15,8 +17,8 @@ const SignUp = () => {
       password: '',
       repeatPassword: '',
     },
-    // onSubmit,
-    // validationSchema,
+    onSubmit,
+    validationSchema: RegistrationSchema,
   });
   return (
     <>
@@ -62,6 +64,7 @@ const SignUp = () => {
                 placeholder={t('home:passwordPlaceholder')}
                 onChange={formik.handleChange}
                 value={formik.values.username}
+                showHidePassword={true}
               />
               <Input
                 id='password'
@@ -71,6 +74,7 @@ const SignUp = () => {
                 placeholder={t('home:confirmPassPlaceholder')}
                 onChange={formik.handleChange}
                 value={formik.values.username}
+                showHidePassword={true}
               />
               <Button
                 text={t('home:start')}
