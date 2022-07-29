@@ -77,5 +77,19 @@
     src: url("/assets/fonts/ge/helvetica-ge-700.ttf");
   }
  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #11101a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(65, 76, 112);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
 }
-
