@@ -1,1 +1,2 @@
-export { default as ShowHidePassword } from './showHidePassword';
+export { default as HidePassword } from './HidePassword';
+export { default as ShowPassword } from './ShowPassword';

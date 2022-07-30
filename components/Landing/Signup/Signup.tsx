@@ -20,6 +20,7 @@ const SignUp = () => {
     onSubmit,
     validationSchema: RegistrationSchema,
   });
+  console.log(formik.errors.username);
   return (
     <>
       {ctx.authModalState && (
@@ -46,6 +47,7 @@ const SignUp = () => {
                 placeholder={t('home:namePlaceholder')}
                 onChange={formik.handleChange}
                 value={formik.values.username}
+                errorMessage={formik.errors.username!}
               />
               <Input
                 id='email'
@@ -54,27 +56,30 @@ const SignUp = () => {
                 label={t('home:inputEmail')}
                 placeholder={t('home:emailPlaceholder')}
                 onChange={formik.handleChange}
-                value={formik.values.username}
+                value={formik.values.email}
+                errorMessage={formik.errors.email!}
               />
               <Input
                 id='password'
                 name='password'
-                type='text'
+                type='password'
                 label={t('home:inputPassword')}
                 placeholder={t('home:passwordPlaceholder')}
                 onChange={formik.handleChange}
-                value={formik.values.username}
+                value={formik.values.password}
                 showHidePassword={true}
+                errorMessage={formik.errors.password!}
               />
               <Input
-                id='password'
-                name='password'
-                type='text'
+                id='repPassword'
+                name='repeatPassword'
+                type='password'
                 label={t('home:inputConfirmPass')}
                 placeholder={t('home:confirmPassPlaceholder')}
                 onChange={formik.handleChange}
-                value={formik.values.username}
+                value={formik.values.repeatPassword}
                 showHidePassword={true}
+                errorMessage={formik.errors.repeatPassword!}
               />
               <Button
                 text={t('home:start')}

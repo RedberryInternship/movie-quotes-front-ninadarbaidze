@@ -8,4 +8,5 @@ export type InputTypes = {
   onChange: any;
   value: string;
   showHidePassword?: boolean;
+  errorMessage: string;
 };

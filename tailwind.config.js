@@ -30,6 +30,7 @@ module.exports = {
         red: '#E31221',
         redHover: '#b0101b',
         link: '#0D6EFD',
+        green: '#198754',
       },
       backgroundImage: {
         gradient:

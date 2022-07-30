@@ -1,8 +1,11 @@
 import React from 'react';
 import { InputTypes } from './types';
-import { ShowHidePassword } from 'public/assets/svgs';
+import { HidePassword, ShowPassword } from 'public/assets/svgs';
+import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
+  const { showPassword, showHidePassHandler } = useInput();
+
   const {
     name,
     label,
@@ -13,9 +16,18 @@ const Input: React.FC<InputTypes> = (props) => {
     onChange,
     value,
     showHidePassword,
+    errorMessage,
   } = props;
+
+  const passwordField = type === 'password';
+  const inputType = passwordField
+    ? !showPassword
+      ? 'password'
+      : 'text'
+    : type;
+
   return (
-    <>
+    <div className='h-[6rem]'>
       <div className='flex gap-2 mb-2 mt-4'>
         <label htmlFor='username' className='text-white'>
           {label}
@@ -26,17 +38,30 @@ const Input: React.FC<InputTypes> = (props) => {
         <input
           id={id}
           name={name}
-          type={type}
+          type={inputType}
           placeholder={placeholder}
           onChange={onChange}
           value={value}
           className={`${className} py-2 text-black placeholder:text-gray20 pl-3 w-[100%] bg-gray10 rounded-[4px]`}
         />
-        {showHidePassword && (
-          <ShowHidePassword className='absolute ml-[90%]  cursor-pointer' />
+        {showHidePassword ? (
+          showPassword ? (
+            <ShowPassword
+              onClick={showHidePassHandler}
+              className={'absolute ml-[90%] cursor-pointer'}
+            />
+          ) : (
+            <HidePassword
+              onClick={showHidePassHandler}
+              className={'absolute ml-[90%] cursor-pointer'}
+            />
+          )
+        ) : (
+          ''
         )}
       </div>
-    </>
+      <p className='text-red text-xs mt-1'>{errorMessage}</p>
+    </div>
   );
 };
 
