@@ -4,11 +4,22 @@ import { MovieQuotesContext } from 'store';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { RegistrationSchema } from 'schema';
+import { signup } from 'services';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
   const ctx = useContext(MovieQuotesContext);
+  const router = useRouter();
   const { t } = useTranslation();
-  const onSubmit = () => {};
+  const onSubmit = async (values: any) => {
+    try {
+      await signup(values);
+      router.push('/?modal=email-sent');
+      ctx.changeRegistrationModalState(false);
+    } catch (error) {
+      throw new Error('Request failed!');
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -17,10 +28,9 @@ const SignUp = () => {
       password: '',
       repeatPassword: '',
     },
-    onSubmit,
+    onSubmit: onSubmit,
     validationSchema: RegistrationSchema,
   });
-  console.log(formik.errors.username);
   return (
     <>
       {ctx.authModalState && (
@@ -46,6 +56,8 @@ const SignUp = () => {
                 label={t('home:inputName')}
                 placeholder={t('home:namePlaceholder')}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                isTouched={formik.touched.username}
                 value={formik.values.username}
                 errorMessage={formik.errors.username!}
               />
@@ -56,6 +68,8 @@ const SignUp = () => {
                 label={t('home:inputEmail')}
                 placeholder={t('home:emailPlaceholder')}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                isTouched={formik.touched.email}
                 value={formik.values.email}
                 errorMessage={formik.errors.email!}
               />
@@ -66,8 +80,9 @@ const SignUp = () => {
                 label={t('home:inputPassword')}
                 placeholder={t('home:passwordPlaceholder')}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                isTouched={formik.touched.password}
                 value={formik.values.password}
-                showHidePassword={true}
                 errorMessage={formik.errors.password!}
               />
               <Input
@@ -77,13 +92,14 @@ const SignUp = () => {
                 label={t('home:inputConfirmPass')}
                 placeholder={t('home:confirmPassPlaceholder')}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                isTouched={formik.touched.repeatPassword}
                 value={formik.values.repeatPassword}
-                showHidePassword={true}
                 errorMessage={formik.errors.repeatPassword!}
               />
               <Button
                 text={t('home:start')}
-                className='bg-red hover:bg-redHover w-[100%] mt-4 h-12 text-base'
+                className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
               />
             </form>
             <div className='flex justify-center mt-4 gap-3'>

@@ -5,7 +5,7 @@ const Modal: React.FC<ModalTypes> = (props) => {
   return (
     <>
       <div
-        className={`${props.className} fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-mainDark2 rounded-[10px] w-[35rem] h-[45rem] z-40 `}
+        className={`${props.className} fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-mainDark2 rounded-[10px] w-[35rem]  z-40 `}
       >
         {props.children}
       </div>

@@ -6,7 +6,8 @@ export type InputTypes = {
   id: string;
   placeholder: string;
   onChange: any;
+  onBlur: any;
+  isTouched: boolean | undefined;
   value: string;
-  showHidePassword?: boolean;
   errorMessage: string;
 };

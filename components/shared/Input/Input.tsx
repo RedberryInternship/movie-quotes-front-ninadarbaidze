@@ -15,8 +15,9 @@ const Input: React.FC<InputTypes> = (props) => {
     placeholder,
     onChange,
     value,
-    showHidePassword,
     errorMessage,
+    onBlur,
+    isTouched,
   } = props;
 
   const passwordField = type === 'password';
@@ -41,10 +42,11 @@ const Input: React.FC<InputTypes> = (props) => {
           type={inputType}
           placeholder={placeholder}
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           className={`${className} py-2 text-black placeholder:text-gray20 pl-3 w-[100%] bg-gray10 rounded-[4px]`}
         />
-        {showHidePassword ? (
+        {passwordField ? (
           showPassword ? (
             <ShowPassword
               onClick={showHidePassHandler}
@@ -60,7 +62,11 @@ const Input: React.FC<InputTypes> = (props) => {
           ''
         )}
       </div>
-      <p className='text-red text-xs mt-1'>{errorMessage}</p>
+      {isTouched && errorMessage ? (
+        <p className='text-red text-xs mt-1'>{errorMessage}</p>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
