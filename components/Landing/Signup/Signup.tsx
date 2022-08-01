@@ -1,36 +1,14 @@
 import React, { useContext } from 'react';
 import { Modal, Backdrop, Input, Button } from 'components';
 import { MovieQuotesContext } from 'store';
-import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { RegistrationSchema } from 'schema';
-import { signup } from 'services';
-import { useRouter } from 'next/router';
+import { useSignup } from 'components';
 
 const SignUp = () => {
   const ctx = useContext(MovieQuotesContext);
-  const router = useRouter();
+  const { formik } = useSignup();
   const { t } = useTranslation();
-  const onSubmit = async (values: any) => {
-    try {
-      await signup(values);
-      router.push('/?modal=email-sent');
-      ctx.changeRegistrationModalState(false);
-    } catch (error) {
-      throw new Error('Request failed!');
-    }
-  };
 
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      email: '',
-      password: '',
-      repeatPassword: '',
-    },
-    onSubmit: onSubmit,
-    validationSchema: RegistrationSchema,
-  });
   return (
     <>
       {ctx.authModalState && (
