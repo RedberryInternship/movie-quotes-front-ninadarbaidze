@@ -8,3 +8,8 @@ export type RegistrationTypes = {
 export type VerifyAccountTypes = {
   token: string | string[] | undefined;
 };
+
+export type authGoogleTypes = {
+  email: string | unknown;
+  username: string | unknown;
+};

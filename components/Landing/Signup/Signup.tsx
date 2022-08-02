@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Modal, Backdrop, Input, Button } from 'components';
 import { MovieQuotesContext } from 'store';
 import { useTranslation } from 'react-i18next';
-import { useSignup } from 'components';
+import { useSignup, GoogleBtn } from 'components';
 
 const SignUp = () => {
   const ctx = useContext(MovieQuotesContext);
@@ -79,8 +79,10 @@ const SignUp = () => {
                 text={t('home:start')}
                 className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
               />
+              <GoogleBtn />
             </form>
-            <div className='flex justify-center mt-4 gap-3'>
+
+            <div className='flex justify-center mt-4 mb-4 gap-3'>
               <p className='text-gray font-normal text-base'>
                 Already have an account?
               </p>
