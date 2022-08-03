@@ -1,17 +1,12 @@
-import React, { useContext } from 'react';
 import { Modal, Backdrop, Input, Button } from 'components';
-import { MovieQuotesContext } from 'store';
-import { useTranslation } from 'react-i18next';
 import { useSignup, GoogleBtn } from 'components';
 
 const SignUp = () => {
-  const ctx = useContext(MovieQuotesContext);
-  const { formik } = useSignup();
-  const { t } = useTranslation();
+  const { formik, t, authModalState } = useSignup();
 
   return (
     <>
-      {ctx.authModalState && (
+      {authModalState && (
         <div>
           <Backdrop />
           <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
