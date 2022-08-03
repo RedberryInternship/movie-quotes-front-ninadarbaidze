@@ -1,13 +1,26 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
-import { Header, Footer, ParallaxQuote, Button } from 'components';
+import {
+  Header,
+  Footer,
+  ParallaxQuote,
+  Button,
+  SignUp,
+  PopupComponent,
+} from 'components';
+import { useContext } from 'react';
+import { AuthContext } from 'store';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
+  const ctx = useContext(AuthContext);
+
   return (
     <>
       <Header />
+      {ctx.authModalState && <SignUp />}
+      <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>
         <h1 className='text-beidge pt-[40%] sm:pt-[20%] lg:pt-[10%] text-2xl sm:text-3xl lg:text-5xl 2xl:text-6xl font-bold font-Montserrat max-w-[70%] lg:max-w-[40%]'>
@@ -39,7 +52,6 @@ const Home: NextPage = () => {
           film={'The Royal Tenenbaums,2001 '}
         />
       </div>
-
       <Footer />
     </>
   );

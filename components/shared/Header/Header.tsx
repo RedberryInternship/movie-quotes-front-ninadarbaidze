@@ -1,10 +1,7 @@
-import React from 'react';
-import { Button } from 'components';
-import { LanguageSwitchBtn } from 'components';
-import { useTranslation } from 'react-i18next';
+import { Button, LanguageSwitchBtn, useHeader } from 'components';
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, changeRegistrationModalState } = useHeader();
 
   return (
     <>
@@ -17,6 +14,7 @@ const Header = () => {
           <Button
             text={t('home:signup')}
             className='xs:hidden sm:block bg-red hover:bg-redHover'
+            onClick={() => changeRegistrationModalState(true)}
           />
           <Button text={t('home:login')} className='bg-none border' />
         </div>
