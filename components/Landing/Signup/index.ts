@@ -1,2 +1,2 @@
-export { default as Signup } from './Signup';
-export * from './useSignup';
+export { default as SignUp } from './SignUp';
+export * from './useSignUp';

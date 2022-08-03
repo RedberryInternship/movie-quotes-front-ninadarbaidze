@@ -1,8 +1,8 @@
 import { Modal, Backdrop, Input, Button } from 'components';
-import { useSignup, GoogleBtn } from 'components';
+import { useSignUp, GoogleBtn } from 'components';
 
 const SignUp = () => {
-  const { formik, t, authModalState } = useSignup();
+  const { formik, t, authModalState } = useSignUp();
 
   return (
     <>

@@ -6,7 +6,7 @@ import {
   Footer,
   ParallaxQuote,
   Button,
-  Signup,
+  SignUp,
   PopupComponent,
 } from 'components';
 import { useContext } from 'react';
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      {ctx.authModalState && <Signup />}
+      {ctx.authModalState && <SignUp />}
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

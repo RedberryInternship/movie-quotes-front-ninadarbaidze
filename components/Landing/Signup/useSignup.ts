@@ -6,7 +6,7 @@ import { signup } from 'services';
 import { useRouter } from 'next/router';
 import { MovieQuotesContext } from 'store';
 
-export const useSignup = () => {
+export const useSignUp = () => {
   const ctx = useContext(MovieQuotesContext);
   const authModalState = ctx.authModalState;
   const { t } = useTranslation();
