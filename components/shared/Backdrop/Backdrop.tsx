@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { MovieQuotesContext } from 'store';
+import { AuthContext } from 'store';
 
 const Backdrop = () => {
-  const ctx = useContext(MovieQuotesContext);
+  const ctx = useContext(AuthContext);
 
   return (
     <>

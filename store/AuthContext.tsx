@@ -1,14 +1,14 @@
 import React, { createContext, useState } from 'react';
 import { Children, ContextData } from 'types';
 
-export const MovieQuotesContext = createContext({
+export const AuthContext = createContext({
   authModalState: false,
   changeRegistrationModalState: () => {},
   loginModalState: false,
   changeLoginModalState: () => {},
 });
 
-export const MovieQuotesContextProvider: React.FC<Children> = (props) => {
+export const AuthContextProvider: React.FC<Children> = (props) => {
   const [registrationModalState, setRegistrationModalState] = useState(false);
   const [loginModalState, setloginModalState] = useState(false);
 
@@ -27,8 +27,8 @@ export const MovieQuotesContextProvider: React.FC<Children> = (props) => {
   };
 
   return (
-    <MovieQuotesContext.Provider value={contextValue}>
+    <AuthContext.Provider value={contextValue}>
       {props.children}
-    </MovieQuotesContext.Provider>
+    </AuthContext.Provider>
   );
 };

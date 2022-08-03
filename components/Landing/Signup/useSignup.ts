@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { useFormik } from 'formik';
-import { RegistrationSchema } from 'schema';
+import { registrationSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { signup } from 'services';
 import { useRouter } from 'next/router';
-import { MovieQuotesContext } from 'store';
+import { AuthContext } from 'store';
 
 export const useSignUp = () => {
-  const ctx = useContext(MovieQuotesContext);
+  const ctx = useContext(AuthContext);
   const authModalState = ctx.authModalState;
   const { t } = useTranslation();
 
@@ -31,7 +31,7 @@ export const useSignUp = () => {
       repeatPassword: '',
     },
     onSubmit: onSubmit,
-    validationSchema: RegistrationSchema,
+    validationSchema: registrationSchema,
   });
 
   return { formik, authModalState, t };

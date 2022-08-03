@@ -10,11 +10,11 @@ import {
   PopupComponent,
 } from 'components';
 import { useContext } from 'react';
-import { MovieQuotesContext } from 'store';
+import { AuthContext } from 'store';
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
-  const ctx = useContext(MovieQuotesContext);
+  const ctx = useContext(AuthContext);
 
   return (
     <>

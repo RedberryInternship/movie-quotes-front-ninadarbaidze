@@ -1,1 +1,1 @@
-export * from './MovieQuotesContext';
+export * from './AuthContext';
