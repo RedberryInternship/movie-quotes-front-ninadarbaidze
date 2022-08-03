@@ -19,13 +19,13 @@ const LanguageSwitchBtn = () => {
           className='flex items-center gap-2 cursor-pointer '
           onClick={openLanChangeHandler}
         >
-          <p className='text-white'>
+          <p className='text-white font-helvetica_ge font-thin'>
             {currentLanguage === 'en' ? 'Eng' : 'ქარ'}
           </p>
           <ChevronDownIcon className='text-white w-6' />
         </div>
         {languageModal && (
-          <div className='flex flex-col justify-start rounded-[4px]  px-4 py-1  border absolute top-8'>
+          <div className='flex flex-col justify-start rounded-[4px]  px-4 py-1  border border-white absolute top-8'>
             <ul className='flex flex-col gap-2 mr-6'>
               <li>
                 <Link href={'/'} locale={'en'}>
@@ -33,7 +33,9 @@ const LanguageSwitchBtn = () => {
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('en')}
                   >
-                    <a className='text-white'>Eng</a>
+                    <a className='text-white font-helvetica_ge font-thin'>
+                      Eng
+                    </a>
                     {currentLanguage === 'en' && (
                       <CheckIcon className='text-white w-4 mr-[-3rem]' />
                     )}
@@ -46,7 +48,7 @@ const LanguageSwitchBtn = () => {
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('ge')}
                   >
-                    <a className='text-white'>ქარ</a>
+                    <a className='text-white font-thin'>ქარ</a>
                     {currentLanguage === 'ge' && (
                       <CheckIcon className='text-white w-4 mr-[-3rem]' />
                     )}

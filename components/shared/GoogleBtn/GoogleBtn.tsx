@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleIcon } from 'public/assets/svgs';
+import { GoogleIcon } from 'components';
 import { signIn } from 'next-auth/react';
 
 const GoogleBtn = () => {

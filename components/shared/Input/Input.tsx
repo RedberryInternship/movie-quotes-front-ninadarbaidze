@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword } from 'public/assets/svgs';
+import { HidePassword, ShowPassword } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
