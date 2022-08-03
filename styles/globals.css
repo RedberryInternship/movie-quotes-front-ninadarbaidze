@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 
+@layer components {
+  .link {
+    @apply cursor-pointer text-link underline
+  }
+}
+
 @layer base {
   @font-face {
     font-family: "HelveticaEn";

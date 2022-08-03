@@ -14,6 +14,7 @@ export const useLogin = () => {
 
   const onSubmit = async (values: any) => {
     try {
+      console.log(values);
       router.push(`/`);
       ctx.changeRegistrationModalState(false);
     } catch (error) {
@@ -25,6 +26,7 @@ export const useLogin = () => {
     initialValues: {
       email: '',
       password: '',
+      remember: false,
     },
     onSubmit: onSubmit,
     validationSchema: loginSchema,

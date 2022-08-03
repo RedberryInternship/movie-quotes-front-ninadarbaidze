@@ -5,7 +5,9 @@ import {
   Button,
   GoogleBtn,
   useLogin,
+  Checkbox,
 } from 'components';
+import { Field } from 'formik';
 import Link from 'next/link';
 
 const Login = () => {
@@ -48,9 +50,17 @@ const Login = () => {
             value={formik.values.password}
             errorMessage={formik.errors.password!}
           />
-          <Link href={'/'}>
-            <a>Forgot password</a>
-          </Link>
+          <div className='flex justify-between items-center mt-4'>
+            <Checkbox
+              name={'remember'}
+              checked={formik.values.remember as any}
+              onChange={formik.handleChange}
+              text={'Remember me'}
+            />
+            <Link href={'/'}>
+              <a className='link'>Forgot password</a>
+            </Link>
+          </div>
 
           <Button
             text='Sign in'
@@ -62,7 +72,7 @@ const Login = () => {
           <p className='text-gray font-normal text-base'>
             Already have an account?
           </p>
-          <p className=' cursor-pointer text-link underline'>Sign up</p>
+          <p className='link'>Sign up</p>
         </div>
       </Modal>
     </>

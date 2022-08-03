@@ -87,7 +87,7 @@ const SignUp = () => {
               <p className='text-gray font-normal text-base'>
                 Already have an account?
               </p>
-              <p className=' cursor-pointer text-link underline'>Log in</p>
+              <p className='link'>Log in</p>
             </div>
           </Modal>
         </div>
