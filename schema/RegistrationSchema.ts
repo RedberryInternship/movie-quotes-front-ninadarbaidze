@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const RegistrationSchema = Yup.object({
+const registrationSchema = Yup.object({
   username: Yup.string()
     .min(3, 'min 3 characters')
     .max(15, 'max 15 characters')
@@ -20,4 +20,4 @@ const RegistrationSchema = Yup.object({
     .required('Password field is required'),
 });
 
-export default RegistrationSchema;
+export default registrationSchema;
