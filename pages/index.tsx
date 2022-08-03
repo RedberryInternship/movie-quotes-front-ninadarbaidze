@@ -8,6 +8,7 @@ import {
   Button,
   SignUp,
   PopupComponent,
+  Login,
 } from 'components';
 import { useContext } from 'react';
 import { AuthContext } from 'store';
@@ -19,7 +20,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      {ctx.authModalState && <SignUp />}
+      {ctx.registrationModalState && <SignUp />}
+      <Login />
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

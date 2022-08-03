@@ -1,7 +1,10 @@
 import React from 'react';
-import { GoogleIcon, submitHandler } from 'components';
+import { GoogleIcon } from 'components';
+import { submitHandler } from './helpers';
+import { GoogleBtnTypes } from './types';
 
-const GoogleBtn = () => {
+const GoogleBtn: React.FC<GoogleBtnTypes> = (props) => {
+  const { text } = props;
   return (
     <>
       <div>
@@ -9,7 +12,7 @@ const GoogleBtn = () => {
           onClick={submitHandler}
           className='relative w-[100%] mt-6 h-12 text-base text-white border rounded-[4px]'
         >
-          Sign up with Google
+          {text}
           <GoogleIcon className='absolute top-[30%] left-[22%]' />
         </button>
       </div>

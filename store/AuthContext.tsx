@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import { Children, ContextData } from 'types';
 
 export const AuthContext = createContext({
-  authModalState: false,
+  registrationModalState: false,
   changeRegistrationModalState: () => {},
   loginModalState: false,
   changeLoginModalState: () => {},
@@ -20,7 +20,7 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   };
 
   const contextValue: ContextData = {
-    authModalState: registrationModalState,
+    registrationModalState: registrationModalState,
     changeRegistrationModalState: changeRegistrationModalState,
     loginModalState: loginModalState,
     changeLoginModalState: changeLoginModalState,

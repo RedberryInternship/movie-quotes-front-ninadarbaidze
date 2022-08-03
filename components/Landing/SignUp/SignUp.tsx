@@ -1,12 +1,18 @@
-import { Modal, Backdrop, Input, Button } from 'components';
-import { useSignUp, GoogleBtn } from 'components';
+import {
+  Modal,
+  Backdrop,
+  Input,
+  Button,
+  GoogleBtn,
+  useSignUp,
+} from 'components';
 
 const SignUp = () => {
-  const { formik, t, authModalState } = useSignUp();
+  const { formik, t, registrationModalState } = useSignUp();
 
   return (
     <>
-      {authModalState && (
+      {registrationModalState && (
         <div>
           <Backdrop />
           <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
@@ -74,7 +80,7 @@ const SignUp = () => {
                 text={t('home:start')}
                 className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
               />
-              <GoogleBtn />
+              <GoogleBtn text='Sign in with Google' />
             </form>
 
             <div className='flex justify-center mt-4 mb-4 gap-3'>
