@@ -14,7 +14,7 @@ const SignUp = () => {
       {ctx.authModalState && (
         <div>
           <Backdrop />
-          <Modal>
+          <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
             <div className='flex flex-col items-center mt-12'>
               <h1 className='text-white text-3xl font-bold mb-3'>
                 {t('home:createAccount')}

@@ -1,10 +1,8 @@
 import React from 'react';
 import { GoogleIcon } from 'public/assets/svgs';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 const GoogleBtn = () => {
-  const session = useSession();
-  console.log(session);
   const submitHandler = () => {
     signIn('google');
   };
