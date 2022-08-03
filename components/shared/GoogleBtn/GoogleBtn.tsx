@@ -1,12 +1,7 @@
 import React from 'react';
-import { GoogleIcon } from 'components';
-import { signIn } from 'next-auth/react';
+import { GoogleIcon, submitHandler } from 'components';
 
 const GoogleBtn = () => {
-  const submitHandler = () => {
-    signIn('google');
-  };
-
   return (
     <>
       <div>
