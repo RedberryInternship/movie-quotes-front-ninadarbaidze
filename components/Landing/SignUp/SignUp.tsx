@@ -8,7 +8,18 @@ import {
 } from 'components';
 
 const SignUp = () => {
-  const { formik, t, registrationModalState } = useSignUp();
+  const {
+    formik,
+    t,
+    registrationModalState,
+    changeLoginState,
+    changeSignUpState,
+  } = useSignUp();
+
+  const handlePopupState = () => {
+    changeLoginState(true);
+    changeSignUpState(false);
+  };
 
   return (
     <>
@@ -87,7 +98,9 @@ const SignUp = () => {
               <p className='text-gray font-normal text-base'>
                 Already have an account?
               </p>
-              <p className='link'>Log in</p>
+              <p className='link cursor-pointer' onClick={handlePopupState}>
+                Log in
+              </p>
             </div>
           </Modal>
         </div>

@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     <>
       <Header />
       {ctx.registrationModalState && <SignUp />}
-      <Login />
+      {ctx.loginModalState && <Login />}
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

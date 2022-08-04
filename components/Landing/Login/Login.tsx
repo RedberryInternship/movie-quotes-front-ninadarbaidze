@@ -7,12 +7,15 @@ import {
   useLogin,
   Checkbox,
 } from 'components';
-import { Field } from 'formik';
 import Link from 'next/link';
 
 const Login = () => {
-  const { formik, t, authModalState } = useLogin();
+  const { formik, t, changeLoginState, changeSignUpState } = useLogin();
 
+  const handlePopupState = () => {
+    changeLoginState(false);
+    changeSignUpState(true);
+  };
   return (
     <>
       <Backdrop />
@@ -72,7 +75,9 @@ const Login = () => {
           <p className='text-gray font-normal text-base'>
             Already have an account?
           </p>
-          <p className='link'>Sign up</p>
+          <p className='link cursor-pointer' onClick={handlePopupState}>
+            Sign up
+          </p>
         </div>
       </Modal>
     </>
