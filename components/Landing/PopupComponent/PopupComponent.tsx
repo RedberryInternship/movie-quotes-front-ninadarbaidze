@@ -49,6 +49,7 @@ const PopupComponent = () => {
           heading={t('home:forgotPopH1')}
           paragraph={t('home:forgotPopH2')}
           buttonTxt={t('home:forgotPopBtn')}
+          optionalParagraph={t('home:forgotPopBack')}
           url={'/'}
         />
       )}

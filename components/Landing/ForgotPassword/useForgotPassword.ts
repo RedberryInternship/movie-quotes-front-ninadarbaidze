@@ -9,6 +9,8 @@ import { passwordRecovery } from 'services';
 export const useForgotPassword = () => {
   const ctx = useContext(AuthContext);
   const { t } = useTranslation();
+  const loginState = ctx.changeLoginModalState;
+  const forgotPassState = ctx.changePasswordRecoveryState;
 
   const router = useRouter();
 
@@ -30,5 +32,5 @@ export const useForgotPassword = () => {
     validationSchema: forgotPasswordSchema,
   });
 
-  return { formik, t };
+  return { formik, t, loginState, forgotPassState };
 };

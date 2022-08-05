@@ -1,7 +1,20 @@
-import { Backdrop, Modal, Input, Button, useForgotPassword } from 'components';
+import {
+  Backdrop,
+  Modal,
+  Input,
+  Button,
+  useForgotPassword,
+  BackIcon,
+} from 'components';
 
 const ForgotPassword = () => {
-  const { formik, t } = useForgotPassword();
+  const { formik, t, loginState, forgotPassState } = useForgotPassword();
+
+  const backToLoginHandler = () => {
+    loginState(true);
+    forgotPassState(false);
+  };
+
   return (
     <>
       <Backdrop />
@@ -33,7 +46,15 @@ const ForgotPassword = () => {
             className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
           />
         </form>
-        <div className='flex justify-center mt-4 mb-4 gap-3' />
+        <div
+          className='flex justify-center items-center my-8 gap-3'
+          onClick={backToLoginHandler}
+        >
+          <BackIcon />
+          <p className='text-base text-gray cursor-pointer'>
+            {t('home:forgotBack')}
+          </p>
+        </div>
       </Modal>
     </>
   );
