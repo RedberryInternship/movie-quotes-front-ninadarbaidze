@@ -8,10 +8,10 @@ const UpdatePassword = () => {
       <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
         <div className='flex flex-col items-center mt-12'>
           <h1 className='text-white text-3xl font-bold mb-3'>
-            Create new password
+            {t('home:newPassH1')}
           </h1>
-          <h2 className='text-gray font-normal text-base px-[17%]'>
-            Your new password must be different from previous used passwords
+          <h2 className='text-gray font-normal text-base text-center px-[17%]'>
+            {t('home:newPassH2')}
           </h2>
         </div>
         <form onSubmit={formik.handleSubmit} className='flex flex-col px-[17%]'>
@@ -41,7 +41,7 @@ const UpdatePassword = () => {
           />
 
           <Button
-            text='Reset password'
+            text={t('home:newPassBtn')}
             className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
           />
         </form>

@@ -91,15 +91,15 @@ const SignUp = () => {
                 text={t('home:start')}
                 className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
               />
-              <GoogleBtn text='Sign in with Google' />
+              <GoogleBtn text='Sign up with Google' />
             </form>
 
             <div className='flex justify-center mt-4 mb-4 gap-3'>
               <p className='text-gray font-normal text-base'>
-                Already have an account?
+                {t('home:signupFooter')}
               </p>
               <p className='link cursor-pointer' onClick={handlePopupState}>
-                Log in
+                {t('home:logIn')}
               </p>
             </div>
           </Modal>

@@ -34,10 +34,10 @@ const Login = () => {
       <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
         <div className='flex flex-col items-center mt-12'>
           <h1 className='text-white text-3xl font-bold mb-3'>
-            Log in to your account
+            {t('home:loginH1')}
           </h1>
-          <h2 className='text-gray font-normal text-base'>
-            Welcome back! Please enter your details.
+          <h2 className='text-gray font-sm text-center text-base px-[17%]'>
+            {t('home:loginH2')}
           </h2>
         </div>
         <form onSubmit={formik.handleSubmit} className='flex flex-col px-[17%]'>
@@ -70,30 +70,30 @@ const Login = () => {
               name={'remember'}
               checked={formik.values.remember as any}
               onChange={formik.handleChange}
-              text={'Remember me'}
+              text={t('home:remember')}
             />
             <Link href={'/'}>
               <a
                 className='link cursor-pointer'
                 onClick={handlePasswordPopupState}
               >
-                Forgot password
+                {t('home:forgotPass')}
               </a>
             </Link>
           </div>
 
           <Button
-            text='Sign in'
+            text={t('home:loginBtn')}
             className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
           />
           <GoogleBtn text='Sign in with Google' />
         </form>
         <div className='flex justify-center mt-4 mb-4 gap-3'>
           <p className='text-gray font-normal text-base'>
-            Already have an account?
+            {t('home:loginFooter')}
           </p>
           <p className='link cursor-pointer' onClick={handlePopupState}>
-            Sign up
+            {t('home:loginFooter1')}
           </p>
         </div>
       </Modal>

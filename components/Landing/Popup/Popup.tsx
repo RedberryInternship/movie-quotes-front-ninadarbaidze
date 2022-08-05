@@ -16,7 +16,9 @@ const Popup: React.FC<PopupTypes> = (props) => {
             <Image src={icon} alt='popup-icon' width={70} height={70} />
           </div>
           <div className='flex flex-col items-center gap-8 w-[65%]'>
-            <h1 className='text-3xl font-bold text-white'>{heading}</h1>
+            <h1 className='text-3xl font-bold text-white text-center'>
+              {heading}
+            </h1>
             <h3 className='text-xl text-center text-white'>{paragraph}</h3>
             <Link href={url}>
               <a>

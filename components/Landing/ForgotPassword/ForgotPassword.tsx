@@ -8,10 +8,10 @@ const ForgotPassword = () => {
       <Modal className='w-full h-full sm:w-[35rem] sm:h-auto'>
         <div className='flex flex-col items-center mt-12'>
           <h1 className='text-white text-3xl font-bold mb-3'>
-            Log in to your account
+            {t('home:forgotH1')}
           </h1>
-          <h2 className='text-gray font-normal text-base'>
-            Welcome back! Please enter your details.
+          <h2 className='text-gray font-normal text-sm text-center px-[17%]'>
+            {t('home:fotgotH2')}
           </h2>
         </div>
         <form onSubmit={formik.handleSubmit} className='flex flex-col px-[17%]'>
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
           />
 
           <Button
-            text='Sign in'
+            text={t('home:forgotBtn')}
             className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
           />
         </form>

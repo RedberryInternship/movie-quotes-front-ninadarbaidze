@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       {ctx.registrationModalState && <SignUp />}
       {ctx.loginModalState && <Login />}
       {ctx.passwordRecoveryState && <ForgotPassword />}
-      <UpdatePassword />
+      {ctx.passwordUpdateState && <UpdatePassword />}
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

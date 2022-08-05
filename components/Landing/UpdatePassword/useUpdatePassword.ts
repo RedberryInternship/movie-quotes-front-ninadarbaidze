@@ -9,15 +9,16 @@ import { passwordRecovery } from 'services';
 export const useUpdatePassword = () => {
   const ctx = useContext(AuthContext);
   const { t } = useTranslation();
-
   const router = useRouter();
+  const token = router.query.token;
 
   const onSubmit = async (values: any) => {
     try {
-      await passwordRecovery(values);
-      router.push(`/?modal=password-recovery-email-sent`);
+      await passwordRecovery({ ...values, token });
+      router.push(`/?modal=password-updated-successfully`);
       ctx.changePasswordRecoveryState(false);
     } catch (error) {
+      router.push(`/?modal=password-update-failed`);
       throw new Error('Request failed!');
     }
   };
