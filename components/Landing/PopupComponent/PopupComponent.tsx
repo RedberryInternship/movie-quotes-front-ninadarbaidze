@@ -10,7 +10,6 @@ const PopupComponent = () => {
   const ctx = useContext(AuthContext);
   const modalState = router.query.modal;
   const passwordModalState = router.query.token;
-  console.log(router.query);
 
   return (
     <>
