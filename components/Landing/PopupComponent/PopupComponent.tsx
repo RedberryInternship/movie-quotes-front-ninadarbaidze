@@ -37,6 +37,17 @@ const PopupComponent = () => {
           url={'/'}
         />
       )}
+
+      {modalState === 'password-recovery-email-sent' && (
+        <Popup
+          icon={'/assets/images/email-sent-icon.png'}
+          heading='Check your email'
+          paragraph='We have sent a password recover instructions 
+          to your email'
+          buttonTxt='Go to my email'
+          url={'/'}
+        />
+      )}
     </>
   );
 };

@@ -10,11 +10,23 @@ import {
 import Link from 'next/link';
 
 const Login = () => {
-  const { formik, t, changeLoginState, changeSignUpState } = useLogin();
+  const {
+    formik,
+    t,
+    changeLoginState,
+    changeSignUpState,
+    changePasswordRecoveryState,
+  } = useLogin();
 
   const handlePopupState = () => {
     changeLoginState(false);
     changeSignUpState(true);
+  };
+
+  const handlePasswordPopupState = () => {
+    changeLoginState(false);
+    changeSignUpState(false);
+    changePasswordRecoveryState(true);
   };
   return (
     <>
@@ -61,7 +73,12 @@ const Login = () => {
               text={'Remember me'}
             />
             <Link href={'/'}>
-              <a className='link'>Forgot password</a>
+              <a
+                className='link cursor-pointer'
+                onClick={handlePasswordPopupState}
+              >
+                Forgot password
+              </a>
             </Link>
           </div>
 

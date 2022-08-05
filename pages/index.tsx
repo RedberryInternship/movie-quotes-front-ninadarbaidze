@@ -9,6 +9,8 @@ import {
   SignUp,
   PopupComponent,
   Login,
+  ForgotPassword,
+  UpdatePassword,
 } from 'components';
 import { useContext } from 'react';
 import { AuthContext } from 'store';
@@ -22,6 +24,8 @@ const Home: NextPage = () => {
       <Header />
       {ctx.registrationModalState && <SignUp />}
       {ctx.loginModalState && <Login />}
+      {ctx.passwordRecoveryState && <ForgotPassword />}
+      <UpdatePassword />
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>

@@ -1,24 +1,22 @@
 import { useContext } from 'react';
 import { useFormik } from 'formik';
-import { loginSchema } from 'schema';
+import { updatePasswordSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
+import { passwordRecovery } from 'services';
 
-export const useLogin = () => {
+export const useUpdatePassword = () => {
   const ctx = useContext(AuthContext);
-  const changeLoginState = ctx.changeLoginModalState;
-  const changeSignUpState = ctx.changeRegistrationModalState;
-  const changePasswordRecoveryState = ctx.changePasswordRecoveryState;
   const { t } = useTranslation();
 
   const router = useRouter();
 
   const onSubmit = async (values: any) => {
     try {
-      console.log(values);
-      router.push(`/`);
-      ctx.changeRegistrationModalState(false);
+      await passwordRecovery(values);
+      router.push(`/?modal=password-recovery-email-sent`);
+      ctx.changePasswordRecoveryState(false);
     } catch (error) {
       throw new Error('Request failed!');
     }
@@ -26,19 +24,12 @@ export const useLogin = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
       password: '',
-      remember: false,
+      repeatPassword: '',
     },
     onSubmit: onSubmit,
-    validationSchema: loginSchema,
+    validationSchema: updatePasswordSchema,
   });
 
-  return {
-    formik,
-    t,
-    changeLoginState,
-    changeSignUpState,
-    changePasswordRecoveryState,
-  };
+  return { formik, t };
 };

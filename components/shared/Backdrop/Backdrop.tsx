@@ -7,6 +7,7 @@ const Backdrop = () => {
   const closeModalHandler = () => {
     ctx.changeRegistrationModalState(false);
     ctx.changeLoginModalState(false);
+    ctx.changePasswordRecoveryState(false);
   };
 
   return (
