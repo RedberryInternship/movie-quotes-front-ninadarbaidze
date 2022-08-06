@@ -32,5 +32,10 @@ export const useForgotPassword = () => {
     validationSchema: forgotPasswordSchema,
   });
 
-  return { formik, t, loginState, forgotPassState };
+  const backToLoginHandler = () => {
+    loginState(true);
+    forgotPassState(false);
+  };
+
+  return { formik, t, loginState, forgotPassState, backToLoginHandler };
 };

@@ -1,19 +1,8 @@
-import {
-  Backdrop,
-  Modal,
-  Input,
-  Button,
-  useForgotPassword,
-  BackIcon,
-} from 'components';
+import { Backdrop, Modal, Input, Button, BackIcon } from 'components';
+import { useForgotPassword } from './useForgotPassword';
 
 const ForgotPassword = () => {
-  const { formik, t, loginState, forgotPassState } = useForgotPassword();
-
-  const backToLoginHandler = () => {
-    loginState(true);
-    forgotPassState(false);
-  };
+  const { formik, t, backToLoginHandler } = useForgotPassword();
 
   return (
     <>
