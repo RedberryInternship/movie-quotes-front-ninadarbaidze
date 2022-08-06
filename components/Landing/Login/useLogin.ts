@@ -4,6 +4,7 @@ import { loginSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
+import { login } from 'services';
 
 export const useLogin = () => {
   const ctx = useContext(AuthContext);
@@ -16,6 +17,7 @@ export const useLogin = () => {
 
   const onSubmit = async (values: any) => {
     try {
+      await login(values);
       router.push(`/`);
       ctx.changeRegistrationModalState(false);
     } catch (error) {
@@ -25,7 +27,7 @@ export const useLogin = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      user: '',
       password: '',
       remember: false,
     },
