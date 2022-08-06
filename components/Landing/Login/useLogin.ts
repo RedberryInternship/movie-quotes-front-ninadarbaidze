@@ -33,11 +33,21 @@ export const useLogin = () => {
     validationSchema: loginSchema,
   });
 
+  const handlePopupState = () => {
+    changeLoginState(false);
+    changeSignUpState(true);
+  };
+
+  const handlePasswordPopupState = () => {
+    changeLoginState(false);
+    changeSignUpState(false);
+    changePasswordRecoveryState(true);
+  };
+
   return {
     formik,
     t,
-    changeLoginState,
-    changeSignUpState,
-    changePasswordRecoveryState,
+    handlePopupState,
+    handlePasswordPopupState,
   };
 };

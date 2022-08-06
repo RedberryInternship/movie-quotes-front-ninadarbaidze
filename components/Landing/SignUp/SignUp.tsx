@@ -1,25 +1,8 @@
-import {
-  Modal,
-  Backdrop,
-  Input,
-  Button,
-  GoogleBtn,
-  useSignUp,
-} from 'components';
+import { Modal, Backdrop, Input, Button, GoogleBtn } from 'components';
+import { useSignUp } from './useSignUp';
 
 const SignUp = () => {
-  const {
-    formik,
-    t,
-    registrationModalState,
-    changeLoginState,
-    changeSignUpState,
-  } = useSignUp();
-
-  const handlePopupState = () => {
-    changeLoginState(true);
-    changeSignUpState(false);
-  };
+  const { formik, t, registrationModalState, handlePopupState } = useSignUp();
 
   return (
     <>

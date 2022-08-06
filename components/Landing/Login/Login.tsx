@@ -10,24 +10,8 @@ import {
 import Link from 'next/link';
 
 const Login = () => {
-  const {
-    formik,
-    t,
-    changeLoginState,
-    changeSignUpState,
-    changePasswordRecoveryState,
-  } = useLogin();
+  const { formik, t, handlePopupState, handlePasswordPopupState } = useLogin();
 
-  const handlePopupState = () => {
-    changeLoginState(false);
-    changeSignUpState(true);
-  };
-
-  const handlePasswordPopupState = () => {
-    changeLoginState(false);
-    changeSignUpState(false);
-    changePasswordRecoveryState(true);
-  };
   return (
     <>
       <Backdrop />

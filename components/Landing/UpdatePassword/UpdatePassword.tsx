@@ -1,4 +1,5 @@
-import { Backdrop, Modal, Input, Button, useUpdatePassword } from 'components';
+import { Backdrop, Modal, Input, Button } from 'components';
+import { useUpdatePassword } from './useUpdatePassword';
 
 const UpdatePassword = () => {
   const { formik, t } = useUpdatePassword();

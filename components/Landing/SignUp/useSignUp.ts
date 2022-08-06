@@ -36,11 +36,15 @@ export const useSignUp = () => {
     validationSchema: registrationSchema,
   });
 
+  const handlePopupState = () => {
+    changeLoginState(true);
+    changeSignUpState(false);
+  };
+
   return {
     formik,
     registrationModalState,
     t,
-    changeLoginState,
-    changeSignUpState,
+    handlePopupState,
   };
 };
