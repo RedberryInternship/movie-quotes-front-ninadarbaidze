@@ -1,4 +1,4 @@
-import { MainHeader } from 'components';
+import { MainHeader, SideBar } from 'components';
 import type { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -6,7 +6,10 @@ const Profile = () => {
   return (
     <>
       <MainHeader />
-      <div className='w-screen h-screen bg-background'></div>
+
+      <div className='w-screen h-screen bg-background'>
+        <SideBar />
+      </div>
     </>
   );
 };
