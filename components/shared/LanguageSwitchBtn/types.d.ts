@@ -1,0 +1,3 @@
+type LanguageSwitchBtnTypes = {
+  page?: string;
+};

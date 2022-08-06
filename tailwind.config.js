@@ -28,6 +28,7 @@ module.exports = {
         beidge: '#DDCCAA',
         darkWhite: '#D9D9D9',
         red: '#E31221',
+        red2: '#E33812',
         redHover: '#b0101b',
         link: '#0D6EFD',
         green: '#198754',
@@ -37,6 +38,8 @@ module.exports = {
           'linear-gradient(180deg, #11101A 0%, #08080D 2%, rgba(0, 0, 0, 0) 30%)',
         gradient90deg:
           'linear-gradient(90deg, #11101A 0%, #08080D 4%, rgba(0, 0, 0, 0) 80%)',
+        background:
+          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
       },
     },
   },

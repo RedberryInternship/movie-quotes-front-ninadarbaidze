@@ -1,7 +1,8 @@
 import { Button, LanguageSwitchBtn, useHeader } from 'components';
 
 const Header = () => {
-  const { t, changeRegistrationModalState } = useHeader();
+  const { t, changeRegistrationModalState, changeLoginModalState } =
+    useHeader();
 
   return (
     <>
@@ -16,7 +17,11 @@ const Header = () => {
             className='xs:hidden sm:block bg-red hover:bg-redHover'
             onClick={() => changeRegistrationModalState(true)}
           />
-          <Button text={t('home:login')} className='bg-none border' />
+          <Button
+            text={t('home:login')}
+            className='bg-none border'
+            onClick={() => changeLoginModalState(true)}
+          />
         </div>
       </nav>
     </>
