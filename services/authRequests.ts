@@ -1,9 +1,10 @@
 import axios from './axios';
 import {
   RegistrationTypes,
-  VerifyAccountTypes,
+  ResponseToken,
   AuthGoogleTypes,
   PasswordRecoveryTypes,
+  loginTypes,
 } from 'types';
 import { AxiosResponse } from 'axios';
 
@@ -14,16 +15,23 @@ export const signup = async (
   return response;
 };
 
+export const login = async (
+  data: loginTypes
+): Promise<AxiosResponse<ResponseToken>> => {
+  const response = await axios.post(`login`, data);
+  return response;
+};
+
 export const authGoogle = async (
   data: AuthGoogleTypes
-): Promise<AxiosResponse<VerifyAccountTypes>> => {
+): Promise<AxiosResponse<ResponseToken>> => {
   const response = await axios.post(`auth-google`, data);
   return response;
 };
 
 export const verifyAccount = async (
-  data: VerifyAccountTypes
-): Promise<AxiosResponse<VerifyAccountTypes>> => {
+  data: ResponseToken
+): Promise<AxiosResponse<ResponseToken>> => {
   const response = await axios.post(`verify-account`, data);
   return response;
 };

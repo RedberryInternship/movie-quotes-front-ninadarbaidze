@@ -5,7 +5,7 @@ export type RegistrationTypes = {
   repeatPassword: string;
 };
 
-export type VerifyAccountTypes = {
+export type ResponseToken = {
   token: string | string[] | undefined;
 };
 
@@ -16,4 +16,10 @@ export type AuthGoogleTypes = {
 
 export type PasswordRecoveryTypes = {
   email: string;
+};
+
+export type loginTypes = {
+  user: string;
+  password: string;
+  remember?: boolean;
 };

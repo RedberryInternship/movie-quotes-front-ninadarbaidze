@@ -50,5 +50,7 @@
   "thanksBtn1": "Go to my email",
   "thanksBtn2": "Go to my news feed",
   "thanksText1": "Please check your email and follow the instructions to\nactivate your account.",
-  "thanksText2": "Your account has been activated."
+  "thanksText2": "Your account has been activated.",
+  "user": "User",
+  "userPlaceholder": "Enter your email/username"
 }

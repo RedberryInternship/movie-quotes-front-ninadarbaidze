@@ -4,10 +4,10 @@ import {
   Input,
   Button,
   GoogleBtn,
-  useLogin,
   Checkbox,
 } from 'components';
 import Link from 'next/link';
+import { useLogin } from './useLogin';
 
 const Login = () => {
   const { formik, t, handlePopupState, handlePasswordPopupState } = useLogin();
@@ -26,16 +26,16 @@ const Login = () => {
         </div>
         <form onSubmit={formik.handleSubmit} className='flex flex-col px-[17%]'>
           <Input
-            id='email'
-            name='email'
-            type='email'
-            label={t('home:inputEmail')}
-            placeholder={t('home:emailPlaceholder')}
+            id='user'
+            name='user'
+            type='text'
+            label={t('home:user')}
+            placeholder={t('home:userPlaceholder')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isTouched={formik.touched.email}
-            value={formik.values.email}
-            errorMessage={formik.errors.email!}
+            isTouched={formik.touched.user}
+            value={formik.values.user}
+            errorMessage={formik.errors.user!}
           />
           <Input
             id='password'

@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
 
 const loginSchema = Yup.object({
-  email: Yup.string()
-    .required('Email field is required')
-    .email('Invalid email format'),
+  user: Yup.string().required('User field is required'),
   password: Yup.string()
     .lowercase()
     .required('Password field is required')
