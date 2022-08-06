@@ -24,10 +24,17 @@ const calculateRemainingTime = (expirationTime: string | null) => {
 };
 
 const retrieveStoredToken = () => {
-  const storedToken = localStorage.getItem('token');
-  const storedExpirationTime = localStorage.getItem('expirationTime');
+  let getToken;
+  let getExpiration;
+  if (typeof window !== 'undefined') {
+    getToken = localStorage.getItem('token');
+    getExpiration = localStorage.getItem('token');
+  }
 
-  const remainingTime = calculateRemainingTime(storedExpirationTime);
+  const storedToken = getToken;
+  const storedExpirationTime = getExpiration;
+
+  const remainingTime = calculateRemainingTime(storedExpirationTime!);
   if (remainingTime <= 60000) {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationTime');
