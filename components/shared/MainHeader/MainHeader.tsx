@@ -12,7 +12,7 @@ const MainHeader = () => {
         <div className='flex items-center gap-4'>
           <NotificationBadge />
           <LanguageSwitchBtn page={'profile'} />
-          <Button text='Log Out' className='bg-none border' />
+          <Button text={t('profile:logout')} className='bg-none border' />
         </div>
       </nav>
     </>

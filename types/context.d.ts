@@ -1,4 +1,8 @@
 export type ContextData = {
+  token: string;
+  isLoggedIn: boolean;
+  loginHandler: any;
+  logoutHandler: any;
   registrationModalState: boolean;
   changeRegistrationModalState: any;
   loginModalState: boolean;

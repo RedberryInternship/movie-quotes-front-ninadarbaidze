@@ -17,7 +17,8 @@ export const useLogin = () => {
 
   const onSubmit = async (values: any) => {
     try {
-      await login(values);
+      const response = await login(values);
+      ctx.loginHandler(response.data.token as string);
       router.push(`/`);
       ctx.changeRegistrationModalState(false);
     } catch (error) {
