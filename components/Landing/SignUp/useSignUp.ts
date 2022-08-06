@@ -8,7 +8,9 @@ import { AuthContext } from 'store';
 
 export const useSignUp = () => {
   const ctx = useContext(AuthContext);
-  const authModalState = ctx.authModalState;
+  const registrationModalState = ctx.registrationModalState;
+  const changeLoginState = ctx.changeLoginModalState;
+  const changeSignUpState = ctx.changeRegistrationModalState;
   const { t } = useTranslation();
 
   const router = useRouter();
@@ -34,5 +36,15 @@ export const useSignUp = () => {
     validationSchema: registrationSchema,
   });
 
-  return { formik, authModalState, t };
+  const handlePopupState = () => {
+    changeLoginState(true);
+    changeSignUpState(false);
+  };
+
+  return {
+    formik,
+    registrationModalState,
+    t,
+    handlePopupState,
+  };
 };

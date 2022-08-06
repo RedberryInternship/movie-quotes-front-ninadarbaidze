@@ -1,5 +1,10 @@
 import axios from './axios';
-import { RegistrationTypes, VerifyAccountTypes, authGoogleTypes } from 'types';
+import {
+  RegistrationTypes,
+  VerifyAccountTypes,
+  AuthGoogleTypes,
+  PasswordRecoveryTypes,
+} from 'types';
 import { AxiosResponse } from 'axios';
 
 export const signup = async (
@@ -10,7 +15,7 @@ export const signup = async (
 };
 
 export const authGoogle = async (
-  data: authGoogleTypes
+  data: AuthGoogleTypes
 ): Promise<AxiosResponse<VerifyAccountTypes>> => {
   const response = await axios.post(`auth-google`, data);
   return response;
@@ -20,5 +25,12 @@ export const verifyAccount = async (
   data: VerifyAccountTypes
 ): Promise<AxiosResponse<VerifyAccountTypes>> => {
   const response = await axios.post(`verify-account`, data);
+  return response;
+};
+
+export const passwordRecovery = async (
+  data: PasswordRecoveryTypes
+): Promise<any> => {
+  const response = await axios.post(`password-recovery`, data);
   return response;
 };

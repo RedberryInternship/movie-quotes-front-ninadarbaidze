@@ -9,7 +9,11 @@ export type VerifyAccountTypes = {
   token: string | string[] | undefined;
 };
 
-export type authGoogleTypes = {
+export type AuthGoogleTypes = {
   email: string | unknown;
   username: string | unknown;
+};
+
+export type PasswordRecoveryTypes = {
+  email: string;
 };

@@ -1,6 +1,10 @@
 export type ContextData = {
-  authModalState: boolean;
+  registrationModalState: boolean;
   changeRegistrationModalState: any;
   loginModalState: boolean;
   changeLoginModalState: any;
+  passwordRecoveryState: boolean;
+  changePasswordRecoveryState: any;
+  passwordUpdateState: boolean;
+  changePasswordUpdateState: any;
 };

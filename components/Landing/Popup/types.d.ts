@@ -4,4 +4,5 @@ export type PopupTypes = {
   paragraph: string;
   buttonTxt: string;
   url: string;
+  optionalParagraph?: string;
 };
