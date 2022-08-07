@@ -14,7 +14,7 @@ const Profile = () => {
         className='flex w-screen h-[160vh] bg-background pt-10 '
         onClick={() => setMobMenu(false)}
       >
-        <div className='lg:w-[20%]'>
+        <div className='lg:w-[22%]'>
           <SideBar />
         </div>
         <div className='w-full md:px-[10%] lg:w-[60%] lg:pl-[10%] lg:px-0 '>

@@ -10,13 +10,13 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   return (
     <>
       <form onSubmit={formik.handleSubmit} className=''>
-        <div className='pt-24 xs:px-[10%] md:px-[20%] pb-12 w-full'>
+        <div className='pt-6 xs:px-[10%] md:px-[20%] pb-12 w-full'>
           <Input
             name={'username'}
-            label={'Username'}
+            label={t('profile:username')}
             type={'text'}
             id={'username'}
-            placeholder={'Username'}
+            placeholder={t('profile:usernamePlaceholder')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             isTouched={formik.touched.username}
@@ -27,8 +27,8 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             id='email'
             name='email'
             type='email'
-            label='Email'
-            placeholder='email'
+            label={t('home:loginInp1')}
+            placeholder={t('home:emailPlaceholder')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             isTouched={formik.touched.email}
@@ -74,7 +74,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
         </div>
         <div className='absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]'>
           <Button
-            text='save changes'
+            text={t('profile:saveBtn')}
             className='bg-red hover:bg-redHover w-[10rem] mt-12 h-12 text-base'
           />
         </div>

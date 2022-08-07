@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HomeIcon, MovieIcon } from 'components';
+import { useSideBar } from './useSideBar';
 
 const SideBar = () => {
+  const { t } = useSideBar();
   return (
     <>
       <div className='xs:hidden lg:flex flex-col gap-8  h-full '>
@@ -20,7 +22,7 @@ const SideBar = () => {
           <div>
             <p className='text-white'>Nina Darbaidze</p>
             <Link href=''>
-              <a className='text-gray10 text-xs'>Edit your profile</a>
+              <a className='text-gray10 text-xs'>{t('profile:editProfile')}</a>
             </Link>
           </div>
         </div>
@@ -30,7 +32,7 @@ const SideBar = () => {
               <HomeIcon />
             </div>
             <Link href=''>
-              <a className='text-white'>News Feed</a>
+              <a className='text-white'>{t('profile:feed')}</a>
             </Link>
           </div>
           <div className='flex items-center'>
@@ -38,7 +40,7 @@ const SideBar = () => {
               <MovieIcon />
             </div>
             <Link href=''>
-              <a className='text-white'>List of movies</a>
+              <a className='text-white'>{t('profile:movieList')}</a>
             </Link>
           </div>
         </div>
