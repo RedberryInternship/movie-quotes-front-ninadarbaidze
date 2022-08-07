@@ -6,9 +6,11 @@ const EditProfile = () => {
   const { t, updatePassword, setUpdatePassword } = useEditProfile();
   return (
     <>
-      <div className='h-full'>
-        <h1 className='text-white text-2xl pb-[10%]'>My profile</h1>
-        <div className='bg-mainDark relative w-[95%]'>
+      <div className='h-full xs:mt-24 lg:mt-0'>
+        <h1 className='xs:hidden lg:block text-white text-2xl pb-[10%]'>
+          My profile
+        </h1>
+        <div className='bg-mainDark relative lg:w-[95%] rounded-[12px]'>
           <div className='absolute top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-darkWhite rounded-full overflow-clip border-2 border-black'>
             <div>
               <div className='object-fit'>

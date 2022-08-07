@@ -5,7 +5,7 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import { LanguageSwitchBtnTypes } from './types';
 
 const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
-  const { page } = props;
+  const { page, className } = props;
   const { locale } = useRouter();
   const [languageModal, setLanguageModal] = useState<boolean>(false);
   const [currentLanguage, setCurrentLanguage] = useState(locale);
@@ -16,7 +16,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
 
   return (
     <>
-      <nav className='flex flex-col items-center relative mr-8'>
+      <nav className={`${className} flex flex-col items-center relative mr-8`}>
         <div
           className='flex items-center gap-2 cursor-pointer '
           onClick={openLanChangeHandler}

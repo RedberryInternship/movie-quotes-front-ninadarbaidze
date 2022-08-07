@@ -1,3 +1,4 @@
-type LanguageSwitchBtnTypes = {
+export type LanguageSwitchBtnTypes = {
   page?: string;
+  className?: string;
 };

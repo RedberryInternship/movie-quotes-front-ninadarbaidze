@@ -8,10 +8,10 @@ const Profile = () => {
       <MainHeader />
 
       <div className='flex w-screen h-[160vh] bg-background pt-10 '>
-        <div className='w-[20%]'>
+        <div className='lg:w-[20%]'>
           <SideBar />
         </div>
-        <div className='w-[60%] pl-[10%] '>
+        <div className='w-full md:px-[10%] lg:w-[60%] lg:pl-[10%] lg:px-0 '>
           <EditProfile />
         </div>
       </div>

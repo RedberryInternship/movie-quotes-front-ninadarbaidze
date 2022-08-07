@@ -44,7 +44,7 @@ const Input: React.FC<InputTypes> = (props) => {
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          className={`${className} py-2 text-black placeholder:text-gray20 pl-3 w-[100%] bg-gray10 rounded-[4px]`}
+          className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
         />
         {passwordField ? (
           showPassword ? (
