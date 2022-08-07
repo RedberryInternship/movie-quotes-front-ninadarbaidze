@@ -5,28 +5,35 @@ import {
   HamMenu,
 } from 'components';
 import useMainHeader from './useMainHeader';
+import { MobMenuTypes } from 'types';
+import { MobMenu } from 'components';
 
-const MainHeader = () => {
+const MainHeader: React.FC<MobMenuTypes> = (props) => {
+  const { mobMenu, setMobMenu } = props;
   const { t } = useMainHeader();
+
+  const handleMobMenu = () => {
+    setMobMenu(true);
+  };
+
   return (
     <>
-      <nav className='xs:hidden lg:flex justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
-        <h1 className='font-helvetica_en hidden sm:block text-beidge text-xs lg:text-xl'>
+      {mobMenu && <MobMenu />}
+
+      <nav className='flex justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
+        <h1 className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl'>
           MOVIE QUOTES
         </h1>
-        <div className='sm:flex sm:gap-4 xs:hidden'>
+        <HamMenu onClick={handleMobMenu} className='lg:hidden' />
+        <div className='flex gap-4 '>
           <NotificationBadge />
-          <LanguageSwitchBtn page={'profile'} className='xs:hidden sm:block' />
+          <LanguageSwitchBtn page={'profile'} className='mr-0' />
           <Button
             text={t('profile:logout')}
             className='bg-none border xs:hidden sm:block'
           />
         </div>
       </nav>
-      <div className='lg:hidden flex items-center justify-between px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
-        <HamMenu className='' />
-        <NotificationBadge />
-      </div>
     </>
   );
 };

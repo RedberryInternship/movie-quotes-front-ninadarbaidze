@@ -27,7 +27,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
           <ChevronDownIcon className='text-white w-6' />
         </div>
         {languageModal && (
-          <div className='flex flex-col justify-start rounded-[4px]  px-4 py-1  border border-white absolute top-8'>
+          <div className='flex flex-col justify-start rounded-[4px]  z-50 bg-mainDark px-4 py-1  border border-white absolute top-8'>
             <ul className='flex flex-col gap-2 mr-6'>
               <li>
                 <Link href={`/${page ? page : ''}`} locale={'en'}>

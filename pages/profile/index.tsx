@@ -1,13 +1,19 @@
-import { MainHeader, SideBar, EditProfile } from 'components';
+import { useState } from 'react';
 import type { GetStaticProps } from 'next';
+import { MainHeader, SideBar, EditProfile } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Profile = () => {
+  const [mobMenu, setMobMenu] = useState(false);
+
   return (
     <>
-      <MainHeader />
+      <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
 
-      <div className='flex w-screen h-[160vh] bg-background pt-10 '>
+      <div
+        className='flex w-screen h-[160vh] bg-background pt-10 '
+        onClick={() => setMobMenu(false)}
+      >
         <div className='lg:w-[20%]'>
           <SideBar />
         </div>
