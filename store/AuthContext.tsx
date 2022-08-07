@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import { Children, ContextData } from 'types';
 
 export const AuthContext = createContext({
@@ -16,35 +16,12 @@ export const AuthContext = createContext({
   changePasswordUpdateState: () => {},
 });
 
-const calculateRemainingTime = (expirationTime: string | null) => {
-  const currentTime = new Date().getTime();
-  const adjExpirationTime = new Date(expirationTime!).getTime();
-  const remainingTime = adjExpirationTime - currentTime;
-  return remainingTime;
-};
-
 const retrieveStoredToken = () => {
-  let getToken;
-  let getExpiration;
+  let storedToken;
   if (typeof window !== 'undefined') {
-    getToken = localStorage.getItem('token');
-    getExpiration = localStorage.getItem('token');
+    storedToken = localStorage.getItem('token');
   }
-
-  const storedToken = getToken;
-  const storedExpirationTime = getExpiration;
-
-  const remainingTime = calculateRemainingTime(storedExpirationTime!);
-  if (remainingTime <= 60000) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationTime');
-    return null;
-  }
-
-  return {
-    token: storedToken,
-    duration: remainingTime,
-  };
+  return storedToken;
 };
 
 export const AuthContextProvider: React.FC<Children> = (props) => {
@@ -55,8 +32,6 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   const [passwordUpdateState, setPasswordUpdateState] = useState(false);
 
   let initialToken;
-  let logoutTimer: any;
-
   if (tokenData) {
     initialToken = tokenData;
   }
@@ -65,30 +40,15 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
 
   const userIsLoggedIn = !!token;
 
-  const logoutHandler = useCallback(() => {
+  const logoutHandler = () => {
     setToken(null);
     localStorage.clear();
-
-    if (logoutTimer) {
-      clearTimeout(logoutTimer);
-    }
-  }, []);
-
-  const loginHandler = (token: string, expirationTime: string) => {
-    setToken(token);
-    localStorage.setItem('token', token);
-    localStorage.setItem('expirationTime', expirationTime);
-
-    const remainingTime = calculateRemainingTime(expirationTime);
-    logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
-  useEffect(() => {
-    if (tokenData) {
-      console.log(tokenData.duration);
-      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
-    }
-  }, [tokenData, logoutHandler]);
+  const loginHandler = (token: string) => {
+    setToken(token);
+    localStorage.setItem('token', token);
+  };
 
   const changeRegistrationModalState = (value: boolean) => {
     setRegistrationModalState(value);

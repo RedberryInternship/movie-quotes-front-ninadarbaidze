@@ -5,8 +5,8 @@ import { HomeIcon, MovieIcon } from 'components';
 const SideBar = () => {
   return (
     <>
-      <div className='flex flex-col gap-8  w-[20%] h-full '>
-        <div className='flex items-center px-[20%] mt-10 gap-3'>
+      <div className='flex flex-col gap-8  h-full '>
+        <div className='flex items-center px-[20%] gap-3'>
           <div className='w-12 h-12 rounded-full overflow-clip border-2 border-red'>
             <div className='object-cover'>
               <Image
