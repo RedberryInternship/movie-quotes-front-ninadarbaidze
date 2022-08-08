@@ -6,11 +6,12 @@ import { useRouter } from 'next/router';
 export const useProfileForm = () => {
   const { t } = useTranslation();
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const onSubmit = async (values: any) => {
     try {
-      router.push(`/`);
+      console.log(values);
+      // router.push(`/`);
     } catch (error) {
       throw new Error('Request failed!');
     }
@@ -18,6 +19,7 @@ export const useProfileForm = () => {
 
   const formik = useFormik({
     initialValues: {
+      photo: '',
       username: '',
       email: '',
       password: '',

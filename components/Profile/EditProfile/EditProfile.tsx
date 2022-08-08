@@ -1,9 +1,24 @@
 import Image from 'next/image';
 import { ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
+import { useState } from 'react';
 
 const EditProfile = () => {
   const { t, updatePassword, setUpdatePassword } = useEditProfile();
+  const [imagePreview, setImagePreview] = useState('');
+
+  const imageChangeHandler = (imageUrl: string) => {
+    setImagePreview(imageUrl);
+  };
+
+  const imagePreviewHandler = () => {
+    const defaultProfileImg = '/assets/images/profile.png';
+    if (!imagePreview) {
+      return defaultProfileImg;
+    } else {
+      return imagePreview;
+    }
+  };
   return (
     <>
       <div className='h-full xs:mt-24 lg:mt-0'>
@@ -11,23 +26,21 @@ const EditProfile = () => {
           {t('profile:profile')}
         </h1>
         <div className='bg-mainDark relative lg:w-[95%] rounded-[12px]'>
-          <div className='absolute top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg- rounded-full overflow-clip border-2 border-black'>
+          <div className='absolute top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black'>
             <div>
-              <div className='object-fit'>
+              <div className=''>
                 <Image
-                  src={'/assets/images/image-1.png'}
+                  src={imagePreviewHandler()}
                   alt='profile-icon'
-                  width={300}
-                  height={300}
+                  width={350}
+                  height={350}
                 />
               </div>
             </div>
           </div>
           <div>
-            <p className='text-white text-center text-md z-50 pt-28'>
-              {t('profile:upload')}
-            </p>
             <ProfileForm
+              imageChangeHandler={imageChangeHandler}
               updatePassword={updatePassword}
               setUpdatePassword={setUpdatePassword}
             />

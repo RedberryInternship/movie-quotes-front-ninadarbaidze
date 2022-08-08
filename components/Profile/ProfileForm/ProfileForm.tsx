@@ -1,16 +1,41 @@
-import React from 'react';
+import { useRef } from 'react';
 import { useProfileForm } from './useProfileForm';
 import { UpdatePassTypes } from './types';
 import { Input, Button } from 'components';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
-  const { updatePassword, setUpdatePassword } = props;
+  const { updatePassword, setUpdatePassword, imageChangeHandler } = props;
   const { t, formik } = useProfileForm();
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const changeHandler = (e: any) => {
+    formik.setFieldValue('photo', e.currentTarget.files![0]);
+    const imageSrc = URL.createObjectURL(e.target.files[0]);
+    imageChangeHandler(imageSrc);
+  };
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className=''>
+      <form
+        onSubmit={formik.handleSubmit}
+        encType='multipart/form-data'
+        className=''
+      >
+        <p
+          className='text-white text-center text-md z-50 pt-28 cursor-pointer'
+          onClick={() => fileRef.current!.click()}
+        >
+          {t('profile:upload')}
+        </p>
         <div className='pt-6 xs:px-[10%] md:px-[20%] pb-12 w-full'>
+          <input
+            type='file'
+            name='photo'
+            ref={fileRef}
+            accept='image/*'
+            hidden
+            onChange={changeHandler}
+          />
           <Input
             name={'username'}
             label={t('profile:username')}

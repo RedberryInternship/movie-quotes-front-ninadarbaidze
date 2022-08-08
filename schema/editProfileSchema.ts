@@ -5,13 +5,13 @@ const editProfileSchema = Yup.object({
   email: Yup.string().email('Invalid email format'),
   password: Yup.string()
     .lowercase()
-    .required('Password field is required')
     .min(8, 'min 8 characters')
     .matches(/^[a-z0-9]+$/g, 'Enter valid password')
     .max(15, 'max 15 characters'),
-  repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], "Password don't match")
-    .required('Password field is required'),
+  repeatPassword: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    "Password don't match"
+  ),
 });
 
 export default editProfileSchema;
