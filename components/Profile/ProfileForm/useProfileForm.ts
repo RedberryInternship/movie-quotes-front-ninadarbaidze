@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { editProfileSchema } from 'schema';
 // import { useRouter } from 'next/router';
 import { updateProfile } from 'services';
-import { UserContext } from 'store';
+import { AuthContext, UserContext } from 'store';
 import { useContext } from 'react';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
-  const ctx = useContext(UserContext);
+  const ctx = useContext(AuthContext);
+  const userCtx = useContext(UserContext);
 
   // const router = useRouter();
 
@@ -18,6 +19,7 @@ export const useProfileForm = () => {
     formData.append('username', values.username);
     formData.append('email', values.email);
     formData.append('password', values.password);
+    formData.append('userId', ctx.userId);
 
     try {
       await updateProfile(formData);
@@ -30,8 +32,8 @@ export const useProfileForm = () => {
   const formik = useFormik({
     initialValues: {
       image: '',
-      username: ctx.userState.username || '',
-      email: ctx.userState.email || '',
+      username: userCtx.userState.username || '',
+      email: userCtx.userState.email || '',
       password: '',
       repeatPassword: '',
     },

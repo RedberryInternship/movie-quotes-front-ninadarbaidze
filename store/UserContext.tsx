@@ -4,7 +4,7 @@ import { Children, UserContextData } from 'types';
 const initialState = {
   username: '',
   email: '',
-  image: '',
+  profileImage: '',
 };
 const reducer = (state: any, action: { type: any; payload: any }) => {
   switch (action.type) {
