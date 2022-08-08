@@ -3,9 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { editProfileSchema } from 'schema';
 // import { useRouter } from 'next/router';
 import { updateProfile } from 'services';
+import { UserContext } from 'store';
+import { useContext } from 'react';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
+  const ctx = useContext(UserContext);
 
   // const router = useRouter();
 
@@ -27,11 +30,12 @@ export const useProfileForm = () => {
   const formik = useFormik({
     initialValues: {
       image: '',
-      username: '',
-      email: '',
+      username: ctx.userState.username || '',
+      email: ctx.userState.email || '',
       password: '',
       repeatPassword: '',
     },
+    enableReinitialize: true,
     onSubmit: onSubmit,
     validationSchema: editProfileSchema,
   });

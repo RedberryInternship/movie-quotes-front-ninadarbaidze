@@ -1,5 +1,6 @@
 export type ContextData = {
   token: string;
+  userId: string;
   isLoggedIn: boolean;
   loginHandler: any;
   logoutHandler: any;
@@ -11,4 +12,9 @@ export type ContextData = {
   changePasswordRecoveryState: any;
   passwordUpdateState: boolean;
   changePasswordUpdateState: any;
+};
+
+export type UserContextData = {
+  userState: any;
+  getUser: (data: any) => void;
 };

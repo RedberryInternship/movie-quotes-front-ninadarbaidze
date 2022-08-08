@@ -20,3 +20,9 @@ export type ClickAndClass = {
 export type Click = {
   onClick: any;
 };
+
+export type kkk = {
+  _id: string;
+  email: string;
+  username: string;
+};

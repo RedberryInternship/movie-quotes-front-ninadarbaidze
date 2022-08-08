@@ -3,6 +3,7 @@ import { Children, ContextData } from 'types';
 
 export const AuthContext = createContext({
   token: '',
+  userId: '',
   isLoggedIn: false,
   loginHandler: () => {},
   logoutHandler: () => {},
@@ -16,27 +17,30 @@ export const AuthContext = createContext({
   changePasswordUpdateState: () => {},
 });
 
-const retrieveStoredToken = () => {
+const retrieveStoredValues = () => {
   let storedToken;
+  let storedUser;
   if (typeof window !== 'undefined') {
     storedToken = localStorage.getItem('token');
+    storedUser = localStorage.getItem('userId');
   }
-  return storedToken;
+  return { storedToken, storedUser };
 };
 
 export const AuthContextProvider: React.FC<Children> = (props) => {
-  const tokenData = retrieveStoredToken();
+  const storedData = retrieveStoredValues();
   const [registrationModalState, setRegistrationModalState] = useState(false);
   const [loginModalState, setloginModalState] = useState(false);
   const [passwordRecoveryState, setPasswordRecoveryState] = useState(false);
   const [passwordUpdateState, setPasswordUpdateState] = useState(false);
 
   let initialToken;
-  if (tokenData) {
-    initialToken = tokenData;
+  if (storedData) {
+    initialToken = storedData.storedToken;
   }
 
   const [token, setToken] = useState(initialToken) as any;
+  const [user, setUser] = useState(storedData.storedUser) as any;
 
   const userIsLoggedIn = !!token;
 
@@ -45,9 +49,11 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
     localStorage.clear();
   };
 
-  const loginHandler = (token: string) => {
+  const loginHandler = (token: string, userId: string) => {
     setToken(token);
+    setUser(userId);
     localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId);
   };
 
   const changeRegistrationModalState = (value: boolean) => {
@@ -68,6 +74,7 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
 
   const contextValue: ContextData = {
     token: token!,
+    userId: user,
     isLoggedIn: userIsLoggedIn,
     loginHandler: loginHandler,
     logoutHandler: logoutHandler,
