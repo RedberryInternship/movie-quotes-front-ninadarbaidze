@@ -19,7 +19,7 @@ export const useLogin = () => {
     try {
       const response = await login(values);
       ctx.loginHandler(response.data.token as string);
-      router.push(`/`);
+      router.push(`/profile?user=${response.data.userId}`);
       ctx.changeRegistrationModalState(false);
     } catch (error) {
       throw new Error('Request failed!');

@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { GetStaticProps } from 'next';
 import { MainHeader, SideBar, EditProfile } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getUserInfo } from 'services';
+import { useRouter } from 'next/router';
 
 const Profile = () => {
   const [mobMenu, setMobMenu] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const userId = router.query.user;
+    const getData = async () => {
+      try {
+        const response = await getUserInfo(userId);
+        console.log(response.data.user);
+        return response.data;
+      } catch (err: any) {
+        console.log(err);
+      }
+    };
+
+    getData();
+  }, [router.query.user]);
 
   return (
     <>

@@ -36,7 +36,7 @@ export default NextAuth({
         };
         const response = await authGoogle(data);
         account.access_Token = response.data.token;
-
+        //maybe add login handler from context
         return true;
       } catch (err: any) {
         return false;
