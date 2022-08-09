@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import { ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from 'store';
 
 const EditProfile = () => {
   const { t, updatePassword, setUpdatePassword } = useEditProfile();
   const [imagePreview, setImagePreview] = useState('');
+  const userCtx = useContext(UserContext);
 
   const imageChangeHandler = (imageUrl: string) => {
     setImagePreview(imageUrl);
@@ -13,11 +15,14 @@ const EditProfile = () => {
 
   const imagePreviewHandler = () => {
     const defaultProfileImg = '/assets/images/profile.png';
-    if (!imagePreview) {
+    if (!userCtx.userState.profileImage && !imagePreview) {
       return defaultProfileImg;
-    } else {
+    } else if (imagePreview) {
       return imagePreview;
-    }
+    } else return `http://localhost:3001/${userCtx.userState.profileImage}`;
+  };
+  const myLoader = () => {
+    return `http://localhost:3001/${userCtx.userState.profileImage}`;
   };
   return (
     <>
@@ -30,6 +35,7 @@ const EditProfile = () => {
             <div>
               <div className=''>
                 <Image
+                  loader={myLoader}
                   src={imagePreviewHandler()}
                   alt='profile-icon'
                   width={350}
