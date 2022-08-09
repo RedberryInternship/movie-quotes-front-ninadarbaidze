@@ -5,26 +5,36 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getUserInfo } from 'services';
 import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
+import { useSession } from 'next-auth/react';
 
 const Profile = () => {
   const [mobMenu, setMobMenu] = useState(false);
-  // const [userData, setUserData] = useState<kkk>();
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
+  const session = useSession();
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await getUserInfo(ctx.userId);
-        userCtx.getUser(response.data.user);
+        let response;
+        let userId: any;
+
+        if (session.data) {
+          userId = session.data.userId;
+          response = await getUserInfo(userId);
+          userCtx.getUser(response.data.user);
+        } else {
+          response = await getUserInfo(ctx.userId);
+          userCtx.getUser(response.data.user);
+        }
       } catch (err: any) {
         console.log(err);
       }
     };
 
     getData();
-  }, [ctx.userId]);
+  }, [ctx.userId, session.data]);
 
   return (
     <>

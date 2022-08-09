@@ -45,8 +45,10 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   const userIsLoggedIn = !!token;
 
   const logoutHandler = () => {
-    setToken(null);
-    localStorage.clear();
+    if (typeof window !== 'undefined') {
+      setToken(null);
+      localStorage.clear();
+    }
   };
 
   const loginHandler = (token: string, userId: string) => {

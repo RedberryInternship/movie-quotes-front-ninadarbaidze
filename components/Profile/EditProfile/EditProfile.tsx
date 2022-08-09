@@ -19,10 +19,11 @@ const EditProfile = () => {
       return defaultProfileImg;
     } else if (imagePreview) {
       return imagePreview;
-    } else return `http://localhost:3001/${userCtx.userState.profileImage}`;
+    } else
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
   };
   const myLoader = () => {
-    return `http://localhost:3001/${userCtx.userState.profileImage}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
   };
   return (
     <>

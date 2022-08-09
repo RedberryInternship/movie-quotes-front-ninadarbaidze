@@ -10,7 +10,7 @@ import { MobMenu } from 'components';
 
 const MainHeader: React.FC<MobMenuTypes> = (props) => {
   const { mobMenu, setMobMenu } = props;
-  const { t } = useMainHeader();
+  const { t, logoutHandler } = useMainHeader();
 
   const handleMobMenu = () => {
     setMobMenu(true);
@@ -31,6 +31,7 @@ const MainHeader: React.FC<MobMenuTypes> = (props) => {
           <Button
             text={t('profile:logout')}
             className='bg-none border xs:hidden sm:block'
+            onClick={() => logoutHandler()}
           />
         </div>
       </nav>

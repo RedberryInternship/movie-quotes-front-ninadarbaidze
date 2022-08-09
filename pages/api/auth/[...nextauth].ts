@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+import { getToken } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
 import { authGoogle } from 'services';
 
@@ -18,14 +19,21 @@ export default NextAuth({
       if (account?.access_Token) {
         token.accessToken = account.access_Token;
       }
+      if (account?.userId) {
+        token.userId = account.userId;
+      }
 
       return token;
     },
 
     async session({ session, token }) {
       session.accessToken = token.accessToken;
-
+      session.userId = token.userId;
       return session;
+    },
+
+    async redirect({ url }) {
+      return `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/profile`;
     },
 
     async signIn({ account, profile }) {
@@ -36,7 +44,7 @@ export default NextAuth({
         };
         const response = await authGoogle(data);
         account.access_Token = response.data.token;
-        //maybe add login handler from context
+        account.userId = response.data.userId as string;
         return true;
       } catch (err: any) {
         return false;
