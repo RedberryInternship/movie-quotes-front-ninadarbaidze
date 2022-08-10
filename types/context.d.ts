@@ -1,6 +1,6 @@
 export type ContextData = {
-  token: string;
-  userId: string;
+  token: string | null | undefined;
+  userId: string | null | undefined;
   isLoggedIn: boolean;
   loginHandler: (userId: string, token: string) => void;
   logoutHandler: any;

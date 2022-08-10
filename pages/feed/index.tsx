@@ -15,7 +15,6 @@ const Feed = () => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    console.log(ctx.isLoggedIn);
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
       router.push('/');
     }
@@ -36,9 +35,7 @@ const Feed = () => {
           response = await getUserInfo(ctx.userId, ctx.token);
           userCtx.getUser(response.data.user);
         }
-      } catch (err: any) {
-        console.log(err);
-      }
+      } catch (err: any) {}
     };
 
     getData();

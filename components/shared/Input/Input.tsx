@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { InputTypes } from './types';
 import { HidePassword, ShowPassword, DeleteIcon } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
   const { showPassword, showHidePassHandler } = useInput();
-  const [emptyInput, setEmptyInput] = useState(false);
 
   let {
     name,

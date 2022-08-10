@@ -6,6 +6,7 @@ import { updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
 import { useContext } from 'react';
 import { useSession } from 'next-auth/react';
+import { ProfileInfoTypes } from './types';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
@@ -14,14 +15,16 @@ export const useProfileForm = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: ProfileInfoTypes) => {
+    console.log(values);
     const userId: any = session ? session.userId : ctx.userId;
     const token: any = session ? session.accessToken : ctx.token;
     const formData = new FormData();
-    formData.append('image', values.image);
-    formData.append('username', values.username);
-    formData.append('email', values.email);
-    formData.append('password', values.password);
+    const keys = Object.keys(values);
+
+    keys.forEach((key: string) => {
+      formData.append(`${key}`, values[key]);
+    });
     formData.append('userId', userId);
 
     try {

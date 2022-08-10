@@ -40,8 +40,8 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
     initialToken = storedData.storedToken;
   }
 
-  const [token, setToken] = useState(initialToken) as any;
-  const [user, setUser] = useState(storedData.storedUser) as any;
+  const [token, setToken] = useState(initialToken);
+  const [user, setUser] = useState(storedData.storedUser);
 
   const userIsLoggedIn = !!token;
 
@@ -55,8 +55,8 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   const loginHandler = (token: string, userId: string) => {
     setToken(token);
     setUser(userId);
-    localStorage.setItem('token', token);
-    localStorage.setItem('userId', userId);
+    localStorage.setItem('token', token) as string | null | undefined;
+    localStorage.setItem('userId', userId) as string | null | undefined;
   };
 
   const changeRegistrationModalState = (value: boolean) => {

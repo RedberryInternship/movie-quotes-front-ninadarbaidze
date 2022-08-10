@@ -1,39 +1,24 @@
 import Image from 'next/image';
 import { ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from 'store';
 import { useSession } from 'next-auth/react';
+import { imagePreviewHandler } from './helper';
 
 const EditProfile = () => {
-  const { t, updatePassword, setUpdatePassword } = useEditProfile();
-  const [imagePreview, setImagePreview] = useState('');
+  const {
+    t,
+    updatePassword,
+    setUpdatePassword,
+    imagePreview,
+    imageChangeHandler,
+  } = useEditProfile();
   const userCtx = useContext(UserContext);
   const { data: session } = useSession();
 
-  const imageChangeHandler = (imageUrl: string) => {
-    setImagePreview(imageUrl);
-  };
-
-  const imagePreviewHandler = () => {
-    const defaultProfileImg = `/assets/images/profile.png`;
-    if (imagePreview) {
-      return imagePreview;
-    } else if (
-      !userCtx.userState.profileImage &&
-      !imagePreview &&
-      !session?.user
-    ) {
-      return defaultProfileImg;
-    } else if (session?.user && !userCtx.userState.profileImage) {
-      return session!.user.image as any;
-    } else {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-    }
-  };
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
-
     if (session?.user && !userCtx.userState.profileImage) {
       return session!.user.image as any;
     } else if (userCtx.userState.profileImage) {
@@ -55,7 +40,7 @@ const EditProfile = () => {
               <div className='object-fit'>
                 <Image
                   loader={myLoader}
-                  src={imagePreviewHandler()}
+                  src={imagePreviewHandler(imagePreview, userCtx, session)}
                   alt='profile-icon'
                   width={350}
                   objectFit='cover'

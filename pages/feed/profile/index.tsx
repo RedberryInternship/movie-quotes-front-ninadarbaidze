@@ -15,7 +15,6 @@ const Profile = () => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    console.log(ctx.isLoggedIn);
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
       router.push('/');
     }
@@ -42,7 +41,7 @@ const Profile = () => {
     };
 
     getData();
-  }, [ctx.userId, session]);
+  }, [ctx.token, ctx.userId, session]);
 
   return (
     <>

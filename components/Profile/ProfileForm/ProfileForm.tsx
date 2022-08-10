@@ -8,9 +8,9 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { t, formik } = useProfileForm();
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const changeHandler = (e: any) => {
-    formik.setFieldValue('image', e.currentTarget.files![0]);
-    const imageSrc = URL.createObjectURL(e.target.files[0]);
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    formik.setFieldValue('image', event.currentTarget.files![0]);
+    const imageSrc = URL.createObjectURL(event.target.files[0]);
     imageChangeHandler(imageSrc);
   };
 
