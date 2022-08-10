@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import type { GetStaticProps } from 'next';
-import { MainHeader, SideBar, EditProfile } from 'components';
+import { MainHeader, SideBar } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getUserInfo } from 'services';
 import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
 import { useSession } from 'next-auth/react';
 
-const Profile = () => {
+const Feed = () => {
   const [mobMenu, setMobMenu] = useState(false);
   const router = useRouter();
   const ctx = useContext(AuthContext);
@@ -55,15 +55,12 @@ const Profile = () => {
         <div className='lg:w-[22%]'>
           <SideBar />
         </div>
-        <div className='w-full md:px-[10%] lg:w-[60%] lg:pl-[10%] lg:px-0 '>
-          <EditProfile />
-        </div>
       </div>
     </>
   );
 };
 
-export default Profile;
+export default Feed;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

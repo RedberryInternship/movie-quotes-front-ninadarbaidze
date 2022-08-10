@@ -22,10 +22,10 @@ const EditProfile = () => {
     } else if (
       !userCtx.userState.profileImage &&
       !imagePreview &&
-      session?.user
+      !session?.user
     ) {
       return defaultProfileImg;
-    } else if (session?.user) {
+    } else if (session?.user && !userCtx.userState.profileImage) {
       return session!.user.image as any;
     } else {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
@@ -42,6 +42,7 @@ const EditProfile = () => {
       return defaultProfileImg;
     }
   };
+
   return (
     <>
       <div className='h-full xs:mt-24 lg:mt-0'>
@@ -51,13 +52,13 @@ const EditProfile = () => {
         <div className='bg-mainDark relative lg:w-[95%] rounded-[12px]'>
           <div className='absolute top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black'>
             <div>
-              <div className=''>
+              <div className='object-fit'>
                 <Image
                   loader={myLoader}
                   src={imagePreviewHandler()}
-                  // src={defaultProfileImg}
                   alt='profile-icon'
                   width={350}
+                  objectFit='cover'
                   height={350}
                 />
               </div>

@@ -2,9 +2,37 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HomeIcon, MovieIcon } from 'components';
 import { useSideBar } from './useSideBar';
+import { useContext } from 'react';
+import { UserContext } from 'store';
+import { useSession } from 'next-auth/react';
 
 const SideBar = () => {
   const { t } = useSideBar();
+  const userCtx = useContext(UserContext);
+  const { data: session } = useSession();
+
+  const imagePreviewHandler = () => {
+    const defaultProfileImg = `/assets/images/profile.png`;
+
+    if (!userCtx.userState.profileImage && session?.user) {
+      return defaultProfileImg;
+    } else if (session?.user) {
+      return session!.user.image as any;
+    } else {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    }
+  };
+  const myLoader = () => {
+    const defaultProfileImg = `/assets/images/profile.png`;
+
+    if (session?.user && !userCtx.userState.profileImage) {
+      return session!.user.image as any;
+    } else if (userCtx.userState.profileImage) {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    } else {
+      return defaultProfileImg;
+    }
+  };
   return (
     <>
       <div className='xs:hidden lg:flex flex-col gap-8  h-full '>
@@ -12,7 +40,8 @@ const SideBar = () => {
           <div className='w-12 h-12 rounded-full overflow-clip border-2 border-red'>
             <div className='object-cover'>
               <Image
-                src={'/assets/images/image-1.png'}
+                loader={myLoader}
+                src={imagePreviewHandler()}
                 alt='profile-icon'
                 width={50}
                 height={50}
@@ -20,8 +49,8 @@ const SideBar = () => {
             </div>
           </div>
           <div>
-            <p className='text-white'>Nina Darbaidze</p>
-            <Link href=''>
+            <p className='text-white'>{userCtx.userState.username}</p>
+            <Link href='/feed/profile'>
               <a className='text-gray10 text-xs'>{t('profile:editProfile')}</a>
             </Link>
           </div>

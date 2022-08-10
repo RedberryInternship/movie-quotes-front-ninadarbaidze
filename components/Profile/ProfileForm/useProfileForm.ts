@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { editProfileSchema } from 'schema';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
 import { useContext } from 'react';
@@ -12,8 +12,7 @@ export const useProfileForm = () => {
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
   const { data: session } = useSession();
-
-  // const router = useRouter();
+  const router = useRouter();
 
   const onSubmit = async (values: any) => {
     const userId: any = session ? session.userId : ctx.userId;
@@ -27,7 +26,7 @@ export const useProfileForm = () => {
 
     try {
       await updateProfile(formData, token);
-      // router.push(`/`);
+      router.push(`/feed`);
     } catch (error) {
       throw new Error('Request failed!');
     }
