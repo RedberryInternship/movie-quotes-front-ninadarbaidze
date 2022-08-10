@@ -1,12 +1,13 @@
-import React from 'react';
+import { useState } from 'react';
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword } from 'components';
+import { HidePassword, ShowPassword, DeleteIcon } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
   const { showPassword, showHidePassHandler } = useInput();
+  const [emptyInput, setEmptyInput] = useState(false);
 
-  const {
+  let {
     name,
     label,
     className,
@@ -20,6 +21,7 @@ const Input: React.FC<InputTypes> = (props) => {
     isTouched,
     error,
     errorMsg,
+    deleteInput,
   } = props;
 
   const passwordField = type === 'password';
@@ -28,6 +30,10 @@ const Input: React.FC<InputTypes> = (props) => {
       ? 'password'
       : 'text'
     : type;
+
+  const deleteInputHandler = () => {
+    setEmptyInput(true);
+  };
 
   return (
     <div className='h-[6rem]'>
@@ -45,7 +51,7 @@ const Input: React.FC<InputTypes> = (props) => {
           placeholder={placeholder}
           onChange={onChange}
           onBlur={onBlur}
-          value={value}
+          value={emptyInput ? '' : value}
           className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
         />
         {passwordField ? (
@@ -63,6 +69,7 @@ const Input: React.FC<InputTypes> = (props) => {
         ) : (
           ''
         )}
+        {deleteInput && <DeleteIcon onClick={deleteInputHandler} />}
       </div>
 
       <div className='flex gap-3'>

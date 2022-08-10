@@ -43,6 +43,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             isTouched={formik.touched.username}
             value={formik.values.username}
             errorMessage={formik.errors.username!}
+            deleteInput={true}
           />
           <Input
             id='email'
@@ -55,7 +56,9 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             isTouched={formik.touched.email}
             value={formik.values.email}
             errorMessage={formik.errors.email!}
+            deleteInput={true}
           />
+
           {!updatePassword && (
             <a
               className='link cursor-pointer'

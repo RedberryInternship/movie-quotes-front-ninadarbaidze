@@ -12,4 +12,5 @@ export type InputTypes = {
   errorMessage: string;
   error?: boolean;
   errorMsg?: string;
+  deleteInput?: boolean;
 };

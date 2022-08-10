@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 
 const Profile = () => {
   const [mobMenu, setMobMenu] = useState(false);
-  // const [editProfile];
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
