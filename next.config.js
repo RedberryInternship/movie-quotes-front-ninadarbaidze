@@ -5,7 +5,7 @@ const nextConfig = {
   swcMinify: true,
   i18n,
   images: {
-    domains: ['http://localhost:3001/'],
+    domains: ['http://localhost:3001/', 'lh3.googleusercontent.com'],
   },
 };
 

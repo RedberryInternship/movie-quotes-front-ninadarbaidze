@@ -5,21 +5,24 @@ import { editProfileSchema } from 'schema';
 import { updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
 import { useContext } from 'react';
+import { useSession } from 'next-auth/react';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
+  const session = useSession();
 
   // const router = useRouter();
 
   const onSubmit = async (values: any) => {
+    const userId: any = session.data ? session.data.userId : ctx.userId;
     const formData = new FormData();
     formData.append('image', values.image);
     formData.append('username', values.username);
     formData.append('email', values.email);
     formData.append('password', values.password);
-    formData.append('userId', ctx.userId);
+    formData.append('userId', userId);
 
     try {
       await updateProfile(formData);

@@ -32,6 +32,7 @@ const Profile = () => {
         console.log(err);
       }
     };
+    console.log(userCtx);
 
     getData();
   }, [ctx.userId, session.data]);

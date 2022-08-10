@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth';
-import { getToken } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
 import { authGoogle } from 'services';
 
@@ -32,7 +31,7 @@ export default NextAuth({
       return session;
     },
 
-    async redirect({ url }) {
+    async redirect() {
       return `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/profile`;
     },
 

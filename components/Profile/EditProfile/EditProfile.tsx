@@ -3,27 +3,44 @@ import { ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
 import { useState, useContext } from 'react';
 import { UserContext } from 'store';
+import { useSession } from 'next-auth/react';
 
 const EditProfile = () => {
   const { t, updatePassword, setUpdatePassword } = useEditProfile();
   const [imagePreview, setImagePreview] = useState('');
   const userCtx = useContext(UserContext);
+  const session = useSession();
 
   const imageChangeHandler = (imageUrl: string) => {
     setImagePreview(imageUrl);
   };
 
   const imagePreviewHandler = () => {
-    const defaultProfileImg = '/assets/images/profile.png';
-    if (!userCtx.userState.profileImage && !imagePreview) {
-      return defaultProfileImg;
-    } else if (imagePreview) {
+    const defaultProfileImg = `/assets/images/profile.png`;
+    if (imagePreview) {
       return imagePreview;
-    } else
+    } else if (
+      !userCtx.userState.profileImage &&
+      !imagePreview &&
+      session.data?.user
+    ) {
+      return defaultProfileImg;
+    } else if (session.data?.user) {
+      return session.data!.user.image as any;
+    } else {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    }
   };
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    const defaultProfileImg = `/assets/images/profile.png`;
+
+    if (session.data?.user && !userCtx.userState.profileImage) {
+      return session.data!.user.image as any;
+    } else if (userCtx.userState.profileImage) {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    } else {
+      return defaultProfileImg;
+    }
   };
   return (
     <>
@@ -38,6 +55,7 @@ const EditProfile = () => {
                 <Image
                   loader={myLoader}
                   src={imagePreviewHandler()}
+                  // src={defaultProfileImg}
                   alt='profile-icon'
                   width={350}
                   height={350}
