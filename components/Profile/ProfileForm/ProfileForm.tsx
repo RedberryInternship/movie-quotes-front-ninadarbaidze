@@ -1,18 +1,10 @@
-import { useRef } from 'react';
 import { useProfileForm } from './useProfileForm';
 import { UpdatePassTypes } from './types';
 import { Input, Button } from 'components';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { updatePassword, setUpdatePassword, imageChangeHandler } = props;
-  const { t, formik } = useProfileForm();
-  const fileRef = useRef<HTMLInputElement>(null);
-
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    formik.setFieldValue('image', event.currentTarget.files![0]);
-    const imageSrc = URL.createObjectURL(event.target.files[0]);
-    imageChangeHandler(imageSrc);
-  };
+  const { t, formik, fileRef, changeHandler } = useProfileForm();
 
   return (
     <>
@@ -30,7 +22,9 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             ref={fileRef}
             accept='image/*'
             hidden
-            onChange={changeHandler}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              changeHandler(e, imageChangeHandler)
+            }
           />
           <Input
             name={'username'}

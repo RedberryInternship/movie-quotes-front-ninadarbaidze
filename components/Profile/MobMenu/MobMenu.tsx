@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HomeIcon, MovieIcon } from 'components';
+import { useMobMenu } from './useMobMenu';
+import { imagePreviewHandler } from './helper';
 
 const MobMenu = () => {
+  const { t, session, myLoader, userCtx } = useMobMenu();
   return (
     <div className='lg:hidden bg-mainDark w-[80%] h-[70%] rounded-[12px] absolute top-0 left-0 z-50'>
       <div className='flex flex-col gap-8  h-full '>
@@ -10,7 +13,8 @@ const MobMenu = () => {
           <div className='w-12 h-12 rounded-full overflow-clip border-2 border-red'>
             <div className='object-cover'>
               <Image
-                src={'/assets/images/image-1.png'}
+                loader={myLoader}
+                src={imagePreviewHandler(userCtx, session)}
                 alt='profile-icon'
                 width={50}
                 height={50}
@@ -18,9 +22,9 @@ const MobMenu = () => {
             </div>
           </div>
           <div>
-            <p className='text-white'>Nina Darbaidze</p>
-            <Link href=''>
-              <a className='text-gray10 text-xs'>Edit your profile</a>
+            <p className='text-white'>{userCtx.userState.username}</p>
+            <Link href='/feed/profile'>
+              <a className='text-gray10 text-xs'>{t('profile:editProfile')}</a>
             </Link>
           </div>
         </div>
@@ -30,7 +34,7 @@ const MobMenu = () => {
               <HomeIcon />
             </div>
             <Link href=''>
-              <a className='text-white'>News Feed</a>
+              <a className='text-white'>{t('profile:feed')}</a>
             </Link>
           </div>
           <div className='flex items-center'>
@@ -38,7 +42,7 @@ const MobMenu = () => {
               <MovieIcon />
             </div>
             <Link href=''>
-              <a className='text-white'>List of movies</a>
+              <a className='text-white'>{t('profile:movieList')}</a>
             </Link>
           </div>
         </div>

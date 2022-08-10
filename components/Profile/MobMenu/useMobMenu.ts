@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useContext } from 'react';
 import { UserContext } from 'store';
 
-export const useSideBar = () => {
+export const useMobMenu = () => {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const userCtx = useContext(UserContext);

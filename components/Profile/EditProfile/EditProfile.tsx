@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import { ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
-import { useContext } from 'react';
-import { UserContext } from 'store';
-import { useSession } from 'next-auth/react';
 import { imagePreviewHandler } from './helper';
 
 const EditProfile = () => {
@@ -13,20 +10,10 @@ const EditProfile = () => {
     setUpdatePassword,
     imagePreview,
     imageChangeHandler,
+    session,
+    myLoader,
+    userCtx,
   } = useEditProfile();
-  const userCtx = useContext(UserContext);
-  const { data: session } = useSession();
-
-  const myLoader = () => {
-    const defaultProfileImg = `/assets/images/profile.png`;
-    if (session?.user && !userCtx.userState.profileImage) {
-      return session!.user.image as any;
-    } else if (userCtx.userState.profileImage) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-    } else {
-      return defaultProfileImg;
-    }
-  };
 
   return (
     <>

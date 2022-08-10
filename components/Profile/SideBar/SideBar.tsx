@@ -2,26 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HomeIcon, MovieIcon } from 'components';
 import { useSideBar } from './useSideBar';
-import { useContext } from 'react';
-import { UserContext } from 'store';
-import { useSession } from 'next-auth/react';
 import { imagePreviewHandler } from './helper';
 
 const SideBar = () => {
-  const { t } = useSideBar();
-  const userCtx = useContext(UserContext);
-  const { data: session } = useSession();
+  const { t, session, myLoader, userCtx } = useSideBar();
 
-  const myLoader = () => {
-    const defaultProfileImg = `/assets/images/profile.png`;
-    if (session?.user && !userCtx.userState.profileImage) {
-      return session!.user.image as string;
-    } else if (userCtx.userState.profileImage) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-    } else {
-      return defaultProfileImg;
-    }
-  };
   return (
     <>
       <div className='xs:hidden lg:flex flex-col gap-8  h-full '>

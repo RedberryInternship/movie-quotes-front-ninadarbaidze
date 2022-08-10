@@ -27,7 +27,7 @@ const MainHeader: React.FC<MobMenuTypes> = (props) => {
         <HamMenu onClick={handleMobMenu} className='lg:hidden' />
         <div className='flex gap-4 '>
           <NotificationBadge />
-          <LanguageSwitchBtn page={'profile'} className='mr-0' />
+          <LanguageSwitchBtn page={'feed/profile'} className='mr-0' />
           <Button
             text={t('profile:logout')}
             className='bg-none border xs:hidden sm:block'
