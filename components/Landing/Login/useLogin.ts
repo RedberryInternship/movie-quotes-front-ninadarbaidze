@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { loginSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ export const useLogin = () => {
   const changeLoginState = ctx.changeLoginModalState;
   const changeSignUpState = ctx.changeRegistrationModalState;
   const changePasswordRecoveryState = ctx.changePasswordRecoveryState;
+  const [error, setError] = useState(false);
   const { t } = useTranslation();
 
   const router = useRouter();
@@ -22,7 +23,8 @@ export const useLogin = () => {
       router.push(`/feed/profile`);
       ctx.changeRegistrationModalState(false);
       ctx.changeLoginModalState(false);
-    } catch (error) {
+    } catch (error: any) {
+      setError(error.response.status);
       throw new Error('Request failed!');
     }
   };
@@ -51,6 +53,7 @@ export const useLogin = () => {
   return {
     formik,
     t,
+    error,
     handlePopupState,
     handlePasswordPopupState,
   };

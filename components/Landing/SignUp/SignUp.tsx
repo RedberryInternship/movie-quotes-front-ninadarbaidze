@@ -2,7 +2,8 @@ import { Modal, Backdrop, Input, Button, GoogleBtn } from 'components';
 import { useSignUp } from './useSignUp';
 
 const SignUp = () => {
-  const { formik, t, registrationModalState, handlePopupState } = useSignUp();
+  const { formik, t, registrationModalState, handlePopupState, error } =
+    useSignUp();
 
   return (
     <>
@@ -33,6 +34,8 @@ const SignUp = () => {
                 isTouched={formik.touched.username}
                 value={formik.values.username}
                 errorMessage={formik.errors.username!}
+                error={error}
+                errorMsg={'user already exists'}
               />
               <Input
                 id='email'
@@ -45,6 +48,8 @@ const SignUp = () => {
                 isTouched={formik.touched.email}
                 value={formik.values.email}
                 errorMessage={formik.errors.email!}
+                error={error}
+                errorMsg={'user already exists'}
               />
               <Input
                 id='password'

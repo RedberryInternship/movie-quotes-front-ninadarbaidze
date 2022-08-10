@@ -10,7 +10,8 @@ import Link from 'next/link';
 import { useLogin } from './useLogin';
 
 const Login = () => {
-  const { formik, t, handlePopupState, handlePasswordPopupState } = useLogin();
+  const { formik, t, error, handlePopupState, handlePasswordPopupState } =
+    useLogin();
 
   return (
     <>
@@ -36,6 +37,8 @@ const Login = () => {
             isTouched={formik.touched.user}
             value={formik.values.user}
             errorMessage={formik.errors.user!}
+            error={error}
+            errorMsg={'invalid credentials'}
           />
           <Input
             id='password'
@@ -48,8 +51,10 @@ const Login = () => {
             isTouched={formik.touched.password}
             value={formik.values.password}
             errorMessage={formik.errors.password!}
+            error={error}
+            errorMsg={'invalid credentials'}
           />
-          <div className='flex justify-between items-center mt-4'>
+          <div className='flex justify-between items-center mt-8'>
             <Checkbox
               name={'remember'}
               checked={formik.values.remember as any}

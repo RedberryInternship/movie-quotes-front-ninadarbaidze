@@ -18,6 +18,8 @@ const Input: React.FC<InputTypes> = (props) => {
     errorMessage,
     onBlur,
     isTouched,
+    error,
+    errorMsg,
   } = props;
 
   const passwordField = type === 'password';
@@ -29,7 +31,7 @@ const Input: React.FC<InputTypes> = (props) => {
 
   return (
     <div className='h-[6rem]'>
-      <div className='flex gap-2 mb-2 mt-4'>
+      <div className='flex gap-2 mb-2 mt-8'>
         <label htmlFor='username' className='text-white'>
           {label}
         </label>
@@ -62,11 +64,20 @@ const Input: React.FC<InputTypes> = (props) => {
           ''
         )}
       </div>
-      {isTouched && errorMessage ? (
-        <p className='text-red text-xs mt-1'>{errorMessage}</p>
-      ) : (
-        ''
-      )}
+
+      <div className='flex gap-3'>
+        {isTouched && errorMessage ? (
+          <p className='text-red text-xs mt-1'>{errorMessage}</p>
+        ) : (
+          ''
+        )}
+        {error && errorMessage ? (
+          <p className='text-red text-xs mt-1'> | </p>
+        ) : (
+          ''
+        )}
+        {error ? <p className='text-red text-xs mt-1'>{errorMsg}</p> : ''}
+      </div>
     </div>
   );
 };
