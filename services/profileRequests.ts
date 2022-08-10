@@ -2,9 +2,12 @@ import axios from './axios';
 import { AxiosResponse } from 'axios';
 
 export const updateProfile = async (
-  data: FormData
+  data: FormData,
+  token: string
 ): Promise<AxiosResponse<any>> => {
-  const response = await axios.post(`update-profile`, data);
+  const response = await axios.post(`update-profile`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response;
 };
 

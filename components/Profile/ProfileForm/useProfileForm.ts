@@ -11,12 +11,13 @@ export const useProfileForm = () => {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
-  const session = useSession();
+  const { data: session } = useSession();
 
   // const router = useRouter();
 
   const onSubmit = async (values: any) => {
-    const userId: any = session.data ? session.data.userId : ctx.userId;
+    const userId: any = session ? session.userId : ctx.userId;
+    const token: any = session ? session.accessToken : ctx.token;
     const formData = new FormData();
     formData.append('image', values.image);
     formData.append('username', values.username);
@@ -25,7 +26,7 @@ export const useProfileForm = () => {
     formData.append('userId', userId);
 
     try {
-      await updateProfile(formData);
+      await updateProfile(formData, token);
       // router.push(`/`);
     } catch (error) {
       throw new Error('Request failed!');
