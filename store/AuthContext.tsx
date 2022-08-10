@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useState } from 'react';
 import { Children, ContextData } from 'types';
 
@@ -5,16 +6,16 @@ export const AuthContext = createContext({
   token: '',
   userId: '',
   isLoggedIn: false,
-  loginHandler: () => {},
+  loginHandler: (_token: string, _userId: string) => {},
   logoutHandler: () => {},
   registrationModalState: false,
-  changeRegistrationModalState: () => {},
+  changeRegistrationModalState: (_value: boolean) => {},
   loginModalState: false,
-  changeLoginModalState: () => {},
+  changeLoginModalState: (_value: boolean) => {},
   passwordRecoveryState: false,
-  changePasswordRecoveryState: () => {},
+  changePasswordRecoveryState: (_value: boolean) => {},
   passwordUpdateState: false,
-  changePasswordUpdateState: () => {},
+  changePasswordUpdateState: (_value: boolean) => {},
 });
 
 const retrieveStoredValues = () => {

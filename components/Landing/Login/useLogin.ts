@@ -19,7 +19,10 @@ export const useLogin = () => {
   const onSubmit = async (values: any) => {
     try {
       const response = await login(values);
-      ctx.loginHandler(response.data.token as string, response.data.userId);
+      ctx.loginHandler(
+        response.data.token as string,
+        response.data.userId as string
+      );
       router.push(`/feed/profile`);
       ctx.changeRegistrationModalState(false);
       ctx.changeLoginModalState(false);

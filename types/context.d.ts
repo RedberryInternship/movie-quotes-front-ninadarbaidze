@@ -2,16 +2,16 @@ export type ContextData = {
   token: string;
   userId: string;
   isLoggedIn: boolean;
-  loginHandler: any;
+  loginHandler: (userId: string, token: string) => void;
   logoutHandler: any;
   registrationModalState: boolean;
-  changeRegistrationModalState: any;
+  changeRegistrationModalState: (_value: boolean) => void;
   loginModalState: boolean;
-  changeLoginModalState: any;
+  changeLoginModalState: (_value: boolean) => void;
   passwordRecoveryState: boolean;
-  changePasswordRecoveryState: any;
+  changePasswordRecoveryState: (_value: boolean) => void;
   passwordUpdateState: boolean;
-  changePasswordUpdateState: any;
+  changePasswordUpdateState: (_value: boolean) => void;
 };
 
 export type UserContextData = {
