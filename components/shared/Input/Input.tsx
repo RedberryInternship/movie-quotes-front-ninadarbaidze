@@ -32,7 +32,7 @@ const Input: React.FC<InputTypes> = (props) => {
     : type;
 
   const deleteInputHandler = () => {
-    setEmptyInput(true);
+    document.getElementById(`${id}`)!.value = '';
   };
 
   return (
@@ -51,7 +51,7 @@ const Input: React.FC<InputTypes> = (props) => {
           placeholder={placeholder}
           onChange={onChange}
           onBlur={onBlur}
-          value={emptyInput ? '' : value}
+          value={value}
           className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
         />
         {passwordField ? (
