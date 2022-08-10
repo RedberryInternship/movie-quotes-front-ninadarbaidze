@@ -9,7 +9,7 @@ const EditProfile = () => {
   const { t, updatePassword, setUpdatePassword } = useEditProfile();
   const [imagePreview, setImagePreview] = useState('');
   const userCtx = useContext(UserContext);
-  const session = useSession();
+  const { data: session } = useSession();
 
   const imageChangeHandler = (imageUrl: string) => {
     setImagePreview(imageUrl);
@@ -22,11 +22,11 @@ const EditProfile = () => {
     } else if (
       !userCtx.userState.profileImage &&
       !imagePreview &&
-      session.data?.user
+      session?.user
     ) {
       return defaultProfileImg;
-    } else if (session.data?.user) {
-      return session.data!.user.image as any;
+    } else if (session?.user) {
+      return session!.user.image as any;
     } else {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
     }
@@ -34,8 +34,8 @@ const EditProfile = () => {
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
 
-    if (session.data?.user && !userCtx.userState.profileImage) {
-      return session.data!.user.image as any;
+    if (session?.user && !userCtx.userState.profileImage) {
+      return session!.user.image as any;
     } else if (userCtx.userState.profileImage) {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
     } else {

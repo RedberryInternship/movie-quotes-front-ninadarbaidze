@@ -9,8 +9,11 @@ export const updateProfile = async (
 };
 
 export const getUserInfo = async (
-  userId: string | undefined | string[]
+  userId: string | undefined | string[],
+  token: string
 ): Promise<AxiosResponse<any>> => {
-  const response = await axios.get(`profile/${userId}`);
+  const response = await axios.get(`profile/${userId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response;
 };

@@ -12,7 +12,13 @@ const Profile = () => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
-  const session = useSession();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === 'unauthenticated' || !ctx.isLoggedIn) {
+      router.push('/');
+    }
+  }, [ctx.isLoggedIn, router, status]);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,22 +26,22 @@ const Profile = () => {
         let response;
         let userId: any;
 
-        if (session.data) {
-          userId = session.data.userId;
-          response = await getUserInfo(userId);
+        if (session) {
+          const token = session.accessToken;
+          userId = session.userId;
+          response = await getUserInfo(userId, token as string);
           userCtx.getUser(response.data.user);
         } else {
-          response = await getUserInfo(ctx.userId);
+          response = await getUserInfo(ctx.userId, ctx.token);
           userCtx.getUser(response.data.user);
         }
       } catch (err: any) {
         console.log(err);
       }
     };
-    console.log(userCtx);
 
     getData();
-  }, [ctx.userId, session.data]);
+  }, [ctx.userId, session]);
 
   return (
     <>
