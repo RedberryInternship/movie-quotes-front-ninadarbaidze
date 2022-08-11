@@ -1,7 +1,9 @@
+import { Session } from 'next-auth';
+
 export const imagePreviewHandler = (
   imagePreview: string,
   userCtx: { userState: { profileImage: string } },
-  session: any
+  session: Session | null
 ) => {
   const defaultProfileImg = `/assets/images/profile.png`;
   if (imagePreview) {

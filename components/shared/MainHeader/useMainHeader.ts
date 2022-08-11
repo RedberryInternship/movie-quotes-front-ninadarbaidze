@@ -10,6 +10,7 @@ const useMainHeader = () => {
   const ctx = useContext(AuthContext);
   const { data: session } = useSession();
   const router = useRouter();
+
   const logoutHandler = () => {
     if (session) {
       signOut();
