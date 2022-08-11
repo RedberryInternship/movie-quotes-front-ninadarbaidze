@@ -7,8 +7,9 @@ const useHeader = () => {
   const ctx = useContext(AuthContext);
 
   const changeRegistrationModalState = ctx.changeRegistrationModalState;
+  const changeLoginModalState = ctx.changeLoginModalState;
 
-  return { t, changeRegistrationModalState };
+  return { t, changeRegistrationModalState, changeLoginModalState };
 };
 
 export default useHeader;

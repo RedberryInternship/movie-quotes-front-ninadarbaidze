@@ -7,6 +7,7 @@ export type RegistrationTypes = {
 
 export type ResponseToken = {
   token: string | string[] | undefined;
+  userId?: string;
 };
 
 export type AuthGoogleTypes = {

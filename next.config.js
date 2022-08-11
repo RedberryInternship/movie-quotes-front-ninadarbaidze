@@ -4,6 +4,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   i18n,
+  images: {
+    domains: ['http://localhost:3001/', 'lh3.googleusercontent.com'],
+  },
 };
 
 module.exports = nextConfig;

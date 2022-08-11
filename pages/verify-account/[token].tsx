@@ -10,7 +10,9 @@ export const getServerSideProps = async (context: {
   const token = context.query.token;
 
   try {
-    await verifyAccount({ token });
+    await verifyAccount({
+      token,
+    });
     return {
       redirect: {
         destination: `/?modal=account-verified`,

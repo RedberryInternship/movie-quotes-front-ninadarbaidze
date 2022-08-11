@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { registrationSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ export const useSignUp = () => {
   const registrationModalState = ctx.registrationModalState;
   const changeLoginState = ctx.changeLoginModalState;
   const changeSignUpState = ctx.changeRegistrationModalState;
+  const [error, setError] = useState(false);
   const { t } = useTranslation();
 
   const router = useRouter();
@@ -20,7 +21,8 @@ export const useSignUp = () => {
       await signup(values);
       router.push(`/?modal=email-sent`);
       ctx.changeRegistrationModalState(false);
-    } catch (error) {
+    } catch (error: any) {
+      setError(error.response.status);
       throw new Error('Request failed!');
     }
   };
@@ -44,6 +46,7 @@ export const useSignUp = () => {
   return {
     formik,
     registrationModalState,
+    error,
     t,
     handlePopupState,
   };

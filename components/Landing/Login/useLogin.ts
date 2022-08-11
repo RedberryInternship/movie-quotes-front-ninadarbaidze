@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { loginSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
@@ -11,16 +11,23 @@ export const useLogin = () => {
   const changeLoginState = ctx.changeLoginModalState;
   const changeSignUpState = ctx.changeRegistrationModalState;
   const changePasswordRecoveryState = ctx.changePasswordRecoveryState;
+  const [error, setError] = useState(false);
   const { t } = useTranslation();
 
   const router = useRouter();
 
   const onSubmit = async (values: any) => {
     try {
-      await login(values);
-      router.push(`/`);
+      const response = await login(values);
+      ctx.loginHandler(
+        response.data.token as string,
+        response.data.userId as string
+      );
+      router.push(`/feed/profile`);
       ctx.changeRegistrationModalState(false);
-    } catch (error) {
+      ctx.changeLoginModalState(false);
+    } catch (error: any) {
+      setError(error.response.status);
       throw new Error('Request failed!');
     }
   };
@@ -49,6 +56,7 @@ export const useLogin = () => {
   return {
     formik,
     t,
+    error,
     handlePopupState,
     handlePasswordPopupState,
   };
