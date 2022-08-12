@@ -1,13 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FieldProps } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import { UploadImgIcon } from 'components';
+import Image from 'next/image';
 
 const ImageInput = ({ form }: any & FieldProps) => {
+  const [imagePreview, setImagePreview] = useState();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       console.log(acceptedFiles[0]);
       form.setFieldValue('image', acceptedFiles[0]);
+      setImagePreview(acceptedFiles[0] as any);
+      Object.assign(acceptedFiles[0], {
+        preview: URL.createObjectURL(acceptedFiles[0]),
+      });
     },
     [form]
   );
@@ -28,6 +34,14 @@ const ImageInput = ({ form }: any & FieldProps) => {
         <button className='bg-purple text-white text-base px-3 py-1'>
           Choose file
         </button>
+        <div className='flex items-center border-2 border-red overflow-clip rounded-full ml-8 object-cover'>
+          <Image
+            src={imagePreview?.preview}
+            alt='imagePreview'
+            width={'50px'}
+            height={'50px'}
+          />
+        </div>
       </div>
     </>
   );
