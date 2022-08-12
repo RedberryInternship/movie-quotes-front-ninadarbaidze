@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Field, Form, Formik } from 'formik';
-import { SelectInput, MovieInput, MovieTextArea, Button } from 'components';
+import {
+  SelectInput,
+  MovieInput,
+  MovieTextArea,
+  Button,
+  ImageInput,
+} from 'components';
 import { useMovieForm } from './useMovieForm';
 
 const MovieForm = () => {
   const { genres, onSubmit, defaultValues } = useMovieForm();
 
+  // const fileRef = useRef<HTMLInputElement>(null);
+
   const renderForm = () => (
     <Form>
+      {/* <input
+        type='file'
+        name='image'
+        ref={fileRef}
+        accept='image/*'
+        hidden
+        onChange={(event) => {
+          setFieldValue('file', event.target.files[0]);
+        }} */}
+      {/* /> */}
+
+      <Field type='file' name='photo' accept='image/*' component={ImageInput} />
+
       <Field
         name='movieNameEN'
         options={genres}

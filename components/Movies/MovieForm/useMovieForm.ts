@@ -58,6 +58,7 @@ export const useMovieForm = () => {
     directorGE: '',
     descriptionEN: '',
     descriptionGE: '',
+    photo: '',
   };
 
   const changeHandler = (
