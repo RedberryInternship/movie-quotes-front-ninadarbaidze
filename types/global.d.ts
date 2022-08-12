@@ -10,7 +10,7 @@ export type ClassName = {
 
 export type ChildrenAndClass = {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 };
 export type ClickAndClass = {
   onClick: any;

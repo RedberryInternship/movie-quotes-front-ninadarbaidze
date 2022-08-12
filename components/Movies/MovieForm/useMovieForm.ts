@@ -1,0 +1,67 @@
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import { movieFormSchema } from 'schema';
+import { useRouter } from 'next/router';
+import { AuthContext, UserContext } from 'store';
+import { useContext, useRef } from 'react';
+import { useSession } from 'next-auth/react';
+
+export const useMovieForm = () => {
+  const { t } = useTranslation();
+  const ctx = useContext(AuthContext);
+  const userCtx = useContext(UserContext);
+  const { data: session } = useSession();
+  const router = useRouter();
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const genres = [
+    {
+      label: 'Chinese',
+      value: 'zh-CN',
+    },
+    {
+      label: 'English (US)',
+      value: 'en-US',
+    },
+    {
+      label: 'English (GB)',
+      value: 'en-GB',
+    },
+    {
+      label: 'French',
+      value: 'fr-FR',
+    },
+    {
+      label: 'Spanish',
+      value: 'es-ES',
+    },
+  ];
+
+  const changeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    imageChangeHandler: (imageSrc: string) => void
+  ) => {
+    formik.setFieldValue('image', event.currentTarget.files![0]);
+    const imageSrc = URL.createObjectURL(event.target.files[0]);
+    imageChangeHandler(imageSrc);
+  };
+
+  const onSubmit = async (values: any) => {
+    try {
+      console.log(values);
+    } catch (error) {
+      throw new Error('Request failed!');
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      genre: [],
+    },
+    enableReinitialize: true,
+    onSubmit: onSubmit,
+    validationSchema: movieFormSchema,
+  });
+
+  return { formik, t, fileRef, changeHandler, genres, onSubmit };
+};

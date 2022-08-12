@@ -24,6 +24,7 @@ module.exports = {
         mainDark2: '#222030',
         gray: '#6C757D',
         gray10: '#CED4DA',
+        gray15: '#EFEFEF',
         gray20: '#6C757D',
         gray30: '#24222E',
         beidge: '#DDCCAA',
@@ -41,6 +42,8 @@ module.exports = {
           'linear-gradient(90deg, #11101A 0%, #08080D 4%, rgba(0, 0, 0, 0) 80%)',
         background:
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
+        feedBackground:
+          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);',
       },
     },
   },

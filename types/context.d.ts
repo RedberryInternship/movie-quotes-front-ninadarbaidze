@@ -18,3 +18,8 @@ export type UserContextData = {
   userState: any;
   getUser: (data: any) => void;
 };
+
+export type MovieContextTypes = {
+  movieCreationModal: boolean;
+  MovieCreationStateHandler: (_value: boolean) => void;
+};

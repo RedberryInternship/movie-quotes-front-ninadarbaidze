@@ -6,6 +6,9 @@ import { getUserInfo } from 'services';
 import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
 import { useSession } from 'next-auth/react';
+import { FeedBackdrop, FeedModal } from 'components';
+
+import { MovieForm } from 'components';
 
 const Feed = () => {
   const [mobMenu, setMobMenu] = useState(false);
@@ -44,6 +47,13 @@ const Feed = () => {
   return (
     <>
       <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
+      <FeedBackdrop />
+      <FeedModal className=''>
+        <div className='flex items-center justify-center h-16 border-b-[1px] border-gray15 border-opacity-20'>
+          <h1 className='text-xl text-white'>Add Movie</h1>
+        </div>
+        <MovieForm />
+      </FeedModal>
 
       <div
         className='flex w-screen h-[160vh] bg-background pt-10 '
