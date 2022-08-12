@@ -34,6 +34,7 @@ module.exports = {
         redHover: '#b0101b',
         link: '#0D6EFD',
         green: '#198754',
+        purple: '#422772',
       },
       backgroundImage: {
         gradient:

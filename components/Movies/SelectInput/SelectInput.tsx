@@ -23,7 +23,7 @@ const SelectInput = ({
   };
 
   return (
-    <div className='mt-[6%] mb-[-2%]'>
+    <div className=''>
       <Select
         styles={customStyles}
         className={className}

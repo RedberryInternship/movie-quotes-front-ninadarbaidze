@@ -15,20 +15,7 @@ const MovieForm = () => {
   // const fileRef = useRef<HTMLInputElement>(null);
 
   const renderForm = () => (
-    <Form>
-      {/* <input
-        type='file'
-        name='image'
-        ref={fileRef}
-        accept='image/*'
-        hidden
-        onChange={(event) => {
-          setFieldValue('file', event.target.files[0]);
-        }} */}
-      {/* /> */}
-
-      <Field type='file' name='photo' accept='image/*' component={ImageInput} />
-
+    <Form className='flex flex-col gap-6'>
       <Field
         name='movieNameEN'
         options={genres}
@@ -88,6 +75,8 @@ const MovieForm = () => {
         type='text'
         lang={'ქარ'}
       />
+      <Field type='file' name='image' accept='image/*' component={ImageInput} />
+
       <Button text={'Add movie'} className='bg-red mt-4 mb-10 w-[100%]' />
     </Form>
   );
@@ -102,3 +91,6 @@ const MovieForm = () => {
 };
 
 export default MovieForm;
+function useDropzone(): { getRootProps: any; getInputProps: any } {
+  throw new Error('Function not implemented.');
+}

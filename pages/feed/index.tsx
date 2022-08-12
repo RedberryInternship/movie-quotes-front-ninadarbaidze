@@ -49,7 +49,7 @@ const Feed = () => {
       <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
       <FeedBackdrop />
       <FeedModal className='px-[2%] w-[50%]'>
-        <div className='flex items-center justify-center h-16 border-b-[1px] border-gray15 border-opacity-20'>
+        <div className='flex items-center justify-center h-16 mb-8 border-b-[1px] border-gray15 border-opacity-20'>
           <h1 className='text-xl text-white'>Add Movie</h1>
         </div>
         <MovieForm />

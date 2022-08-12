@@ -6,5 +6,5 @@ export interface FormValues {
   directorGE: string;
   descriptionEN: string;
   descriptionGE: string;
-  photo: string;
+  image: string;
 }

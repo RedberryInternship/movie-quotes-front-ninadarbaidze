@@ -7,3 +7,5 @@ export { default as DeleteIcon } from './DeleteIcon';
 export { default as HomeIcon } from './HomeIcon';
 export { default as MovieIcon } from './MovieIcon';
 export { default as HamMenu } from './HamMenu';
+export { default as UploadImgIcon } from './UploadImgIcon';
+export { default as CloseBtn } from './CloseBtn';

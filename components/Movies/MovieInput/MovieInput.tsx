@@ -5,7 +5,7 @@ const MovieInput: React.FC<FormValues & FieldProps> = ({ field, ...props }) => {
   const { className, lang } = props;
   return (
     <div className='h-[1.5rem]'>
-      <div className='flex gap-2 mb-2 mt-8'></div>
+      <div className='flex '></div>
       <div className='flex items-center relative'>
         <input
           {...props}
