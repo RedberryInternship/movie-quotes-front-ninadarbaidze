@@ -16,24 +16,36 @@ export const useMovieForm = () => {
 
   const genres = [
     {
-      label: 'Chinese',
-      value: 'zh-CN',
+      label: `${t('genres:Drama')}`,
+      value: 'Drama',
     },
     {
-      label: 'English (US)',
-      value: 'en-US',
+      label: `${t('genres:Western')}`,
+      value: 'Western',
     },
     {
-      label: 'English (GB)',
-      value: 'en-GB',
+      label: `${t('genres:Romance')}`,
+      value: 'Romance',
     },
     {
-      label: 'French',
-      value: 'fr-FR',
+      label: `${t('genres:Horror')}`,
+      value: 'Horror',
     },
     {
-      label: 'Spanish',
-      value: 'es-ES',
+      label: `${t('genres:Fantasy')}`,
+      value: 'Fantasy',
+    },
+    {
+      label: `${t('genres:Action')}`,
+      value: 'Action',
+    },
+    {
+      label: `${t('genres:Comedy')}`,
+      value: 'Comedy',
+    },
+    {
+      label: `${t('genres:Thriller')}`,
+      value: 'Thriller',
     },
   ];
 

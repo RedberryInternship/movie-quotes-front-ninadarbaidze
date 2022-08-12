@@ -18,13 +18,6 @@ const MovieForm = () => {
   const renderForm = () => (
     <Form>
       <Field
-        name='genre'
-        options={genres}
-        component={SelectInput}
-        placeholder='Genre'
-        isMulti={true}
-      />
-      <Field
         name='movieNameEN'
         options={genres}
         component={MovieInput}
@@ -40,6 +33,13 @@ const MovieForm = () => {
         placeholder='ფილმის სახელი'
         isMulti={true}
         type='text'
+      />
+      <Field
+        name='genre'
+        options={genres}
+        component={SelectInput}
+        placeholder='Genre'
+        isMulti={true}
       />
       <Field
         name='directorEN'
