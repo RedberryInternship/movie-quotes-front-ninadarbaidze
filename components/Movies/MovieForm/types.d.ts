@@ -4,4 +4,6 @@ export interface FormValues {
   movieNameGE: string;
   directorEN: string;
   directorGE: string;
+  descriptionEN: string;
+  descriptionGE: string;
 }

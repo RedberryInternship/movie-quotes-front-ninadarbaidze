@@ -4,6 +4,7 @@ import { movieFormSchema } from 'schema';
 import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
 import { useContext, useRef } from 'react';
+import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
 
 export const useMovieForm = () => {
@@ -49,6 +50,16 @@ export const useMovieForm = () => {
     },
   ];
 
+  const defaultValues: FormValues = {
+    genre: [],
+    movieNameEN: '',
+    movieNameGE: '',
+    directorEN: '',
+    directorGE: '',
+    descriptionEN: '',
+    descriptionGE: '',
+  };
+
   const changeHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
     imageChangeHandler: (imageSrc: string) => void
@@ -75,5 +86,5 @@ export const useMovieForm = () => {
     validationSchema: movieFormSchema,
   });
 
-  return { formik, t, fileRef, changeHandler, genres, onSubmit };
+  return { formik, t, fileRef, changeHandler, genres, onSubmit, defaultValues };
 };

@@ -1,19 +1,10 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import { SelectInput, MovieInput } from 'components';
-import { FormValues } from './types';
+import { SelectInput, MovieInput, MovieTextArea, Button } from 'components';
 import { useMovieForm } from './useMovieForm';
 
-const defaultValues: FormValues = {
-  genre: [],
-  movieNameEN: '',
-  movieNameGE: '',
-  directorEN: '',
-  directorGE: '',
-};
-
 const MovieForm = () => {
-  const { genres, onSubmit } = useMovieForm();
+  const { genres, onSubmit, defaultValues } = useMovieForm();
 
   const renderForm = () => (
     <Form>
@@ -58,9 +49,25 @@ const MovieForm = () => {
         isMulti={true}
         type='text'
       />
-      <button type='submit' className='text-white'>
-        Submit Form
-      </button>
+      <Field
+        name='descriptionEN'
+        options={genres}
+        component={MovieTextArea}
+        placeholder='Movie discription'
+        isMulti={true}
+        type='text'
+        lang={'Eng'}
+      />
+      <Field
+        name='descriptionGE'
+        options={genres}
+        component={MovieTextArea}
+        placeholder='ფილმის აღწერა'
+        isMulti={true}
+        type='text'
+        lang={'ქარ'}
+      />
+      <Button text={'Add movie'} className='bg-red mt-4 mb-10 w-[100%]' />
     </Form>
   );
 
