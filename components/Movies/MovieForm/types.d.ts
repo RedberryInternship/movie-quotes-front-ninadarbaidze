@@ -7,4 +7,5 @@ export interface FormValues {
   descriptionEN: string;
   descriptionGE: string;
   image: string;
+  budget: number | null;
 }

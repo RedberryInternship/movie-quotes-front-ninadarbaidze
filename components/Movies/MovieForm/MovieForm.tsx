@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 import {
   SelectInput,
@@ -12,17 +11,14 @@ import { useMovieForm } from './useMovieForm';
 const MovieForm = () => {
   const { genres, onSubmit, defaultValues } = useMovieForm();
 
-  // const fileRef = useRef<HTMLInputElement>(null);
-
   const renderForm = () => (
-    <Form className='flex flex-col gap-6'>
+    <Form className='flex flex-col gap-5'>
       <Field
         name='movieNameEN'
         options={genres}
         component={MovieInput}
         placeholder='Movie name'
         isMulti={true}
-        type='text'
         lang={'Eng'}
       />
       <Field
@@ -31,7 +27,6 @@ const MovieForm = () => {
         component={MovieInput}
         placeholder='ფილმის სახელი'
         isMulti={true}
-        type='text'
       />
       <Field
         name='genre'
@@ -46,7 +41,6 @@ const MovieForm = () => {
         component={MovieInput}
         placeholder='Director'
         isMulti={true}
-        type='text'
         lang={'Eng'}
       />
       <Field
@@ -55,7 +49,15 @@ const MovieForm = () => {
         component={MovieInput}
         placeholder='რეჟისორი'
         isMulti={true}
-        type='text'
+      />
+      <Field
+        name='budget'
+        options={genres}
+        component={MovieInput}
+        placeholder='Budget'
+        type='number'
+        isMulti={true}
+        className='appearance-none'
       />
       <Field
         name='descriptionEN'
@@ -63,7 +65,6 @@ const MovieForm = () => {
         component={MovieTextArea}
         placeholder='Movie discription'
         isMulti={true}
-        type='text'
         lang={'Eng'}
       />
       <Field
@@ -72,12 +73,11 @@ const MovieForm = () => {
         component={MovieTextArea}
         placeholder='ფილმის აღწერა'
         isMulti={true}
-        type='text'
         lang={'ქარ'}
       />
       <Field type='file' name='image' accept='image/*' component={ImageInput} />
 
-      <Button text={'Add movie'} className='bg-red mt-4 mb-10 w-[100%]' />
+      <Button text={'Add movie'} className='bg-red mt-2 mb-10 w-[100%]' />
     </Form>
   );
 
@@ -91,6 +91,3 @@ const MovieForm = () => {
 };
 
 export default MovieForm;
-function useDropzone(): { getRootProps: any; getInputProps: any } {
-  throw new Error('Function not implemented.');
-}

@@ -10,3 +10,4 @@ export * from './MainHeader';
 export * from './NotificationBadge';
 export * from './FeedModal';
 export * from './FeedBackdrop';
+export * from './UserInfo';

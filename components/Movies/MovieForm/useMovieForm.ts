@@ -59,6 +59,7 @@ export const useMovieForm = () => {
     descriptionEN: '',
     descriptionGE: '',
     image: '',
+    budget: null,
   };
 
   const changeHandler = (

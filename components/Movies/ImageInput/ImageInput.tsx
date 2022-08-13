@@ -5,7 +5,7 @@ import { UploadImgIcon } from 'components';
 import Image from 'next/image';
 
 const ImageInput = ({ form }: any & FieldProps) => {
-  const [imagePreview, setImagePreview] = useState();
+  const [imagePreview, setImagePreview] = useState<string | any>();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       console.log(acceptedFiles[0]);
@@ -25,23 +25,27 @@ const ImageInput = ({ form }: any & FieldProps) => {
   return (
     <>
       <div
-        className='flex items-center gap-2 w-full h-16 mt-4  pl-3 border-gray20 border-[1px] rounded-[4px]'
+        className='flex items-center gap-2 w-full h-16 mt-2 pl-3 border-gray20 border-[1px] rounded-[4px]'
         {...getRootProps()}
       >
         <input type='file' accept='image/*' {...getInputProps()} />
         <UploadImgIcon />
-        <p className='text-white text-base'>Drag & drop your image here or</p>
+        <p className='text-white text-base truncate'>
+          Drag & drop your image here or
+        </p>
         <button className='bg-purple text-white text-base px-3 py-1'>
           Choose file
         </button>
-        <div className='flex items-center border-2 border-red overflow-clip rounded-full ml-8 object-cover'>
-          <Image
-            src={imagePreview?.preview}
-            alt='imagePreview'
-            width={'50px'}
-            height={'50px'}
-          />
-        </div>
+        {imagePreview && (
+          <div className='flex items-center border-2 border-red overflow-clip rounded-[10px] ml-8 object-cover'>
+            <Image
+              src={imagePreview?.preview}
+              alt='imagePreview'
+              width={'50px'}
+              height={'50px'}
+            />
+          </div>
+        )}
       </div>
     </>
   );
