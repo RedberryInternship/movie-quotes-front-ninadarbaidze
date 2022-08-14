@@ -27,7 +27,7 @@ const Movies = () => {
     <>
       {movieCtx.movieCreationModal && (
         <>
-          <FeedBackdrop onClick={() => movieCtx.MovieCreationStateHandler()} />
+          <FeedBackdrop onClick={() => movieCtx.movieCreationStateHandler()} />
           <AddMovieModal />
         </>
       )}

@@ -4,19 +4,28 @@ import { Children, ContextData, MovieContextTypes } from 'types';
 
 export const MovieContext = createContext({
   movieCreationModal: false,
-  MovieCreationStateHandler: () => {},
+  movieCreationStateHandler: () => {},
+  movieAdded: false,
+  getMoviesRefresh: () => {},
 });
 
 export const MovieContextProvider: React.FC<Children> = (props) => {
   const [movieCreationModal, setMovieCreationModal] = useState(false);
+  const [movieAdded, setMovieAdded] = useState<boolean>(false);
 
-  const MovieCreationStateHandler = () => {
+  const movieCreationStateHandler = () => {
     setMovieCreationModal(!movieCreationModal);
+  };
+
+  const getMoviesRefresh = () => {
+    setMovieAdded(!movieAdded);
   };
 
   const contextValue: MovieContextTypes = {
     movieCreationModal: movieCreationModal,
-    MovieCreationStateHandler: MovieCreationStateHandler,
+    movieCreationStateHandler: movieCreationStateHandler,
+    movieAdded: movieAdded,
+    getMoviesRefresh: getMoviesRefresh,
   };
 
   return (

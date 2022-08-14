@@ -21,5 +21,7 @@ export type UserContextData = {
 
 export type MovieContextTypes = {
   movieCreationModal: boolean;
-  MovieCreationStateHandler: () => void;
+  movieCreationStateHandler: () => void;
+  movieAdded: boolean;
+  getMoviesRefresh: () => void;
 };

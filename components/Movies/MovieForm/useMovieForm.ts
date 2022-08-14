@@ -76,7 +76,8 @@ export const useMovieForm = () => {
     try {
       await addMovie(formData, token);
       router.replace('/feed/movies');
-      movieCtx.MovieCreationStateHandler();
+      movieCtx.movieCreationStateHandler();
+      movieCtx.getMoviesRefresh();
     } catch (error: any) {
       throw new Error('Request failed!');
     }

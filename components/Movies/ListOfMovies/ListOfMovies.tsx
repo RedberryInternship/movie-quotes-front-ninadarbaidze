@@ -14,7 +14,7 @@ const ListOfMovies = () => {
   const { data: session } = useSession();
 
   const openMovieForm = () => {
-    movieCtx.MovieCreationStateHandler();
+    movieCtx.movieCreationStateHandler();
   };
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const ListOfMovies = () => {
     };
     const currentLan = router.locale;
     getData(currentLan);
-  }, [ctx.token, ctx.userId, router.locale, session]);
+  }, [ctx.token, ctx.userId, router.locale, session, movieCtx.movieAdded]);
 
   console.log(movieSum);
 
