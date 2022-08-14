@@ -38,7 +38,7 @@ const FeedWrapper: React.FC<Children> = (props) => {
       <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
 
       <div
-        className='flex w-screen h-[160vh] bg-background pt-10 '
+        className='flex w-screen py-[200px] bg-background pt-10 '
         onClick={() => setMobMenu(false)}
       >
         <div className='lg:w-[22%] z-0'>

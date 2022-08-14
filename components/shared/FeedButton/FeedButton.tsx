@@ -7,7 +7,7 @@ const FeedButton: React.FC<ButtonTypes> = (props) => {
   return (
     <>
       <button
-        className={`${className} flex items-center gap-2 bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-3 py-1`}
+        className={`${className} flex items-center gap-2 bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-sm sm:text-base rounded-[4px] px-3 py-1`}
         onClick={onClick}
       >
         <AddBtn />
