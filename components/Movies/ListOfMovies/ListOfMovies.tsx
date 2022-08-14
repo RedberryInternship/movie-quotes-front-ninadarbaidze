@@ -4,9 +4,11 @@ import { MovieContext, AuthContext } from 'store';
 import { getMovies } from 'services';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const ListOfMovies = () => {
   const movieCtx = useContext(MovieContext);
+  const {t} = useTranslation()
   const ctx = useContext(AuthContext);
   const [data, setData] = useState<any>([]);
   const [movieSum, setMovieSum] = useState<number>(0);
@@ -39,15 +41,13 @@ const ListOfMovies = () => {
     getData(currentLan);
   }, [ctx.token, ctx.userId, router.locale, session, movieCtx.movieAdded]);
 
-  console.log(movieSum);
-
   return (
     <>
       <header className='flex justify-between'>
-        <h1 className='text-white text-2xl'>
-          My list of movies (Total {movieSum})
+        <h1 className='text-white text-2xl font-helvetica_ge font-thin'>
+         {t('movies:heading')} ({t('movies:total')} {movieSum})
         </h1>
-        <FeedButton text={'Add movie'} onClick={openMovieForm} />
+        <FeedButton text={t('movies:addbtn')} onClick={openMovieForm} />
       </header>
       <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto mt-12'>
         {data.map((movie) => (

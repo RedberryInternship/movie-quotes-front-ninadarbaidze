@@ -1,18 +1,28 @@
 import React from 'react';
 import Image from 'next/image';
 import { QuoteIcon } from 'components';
+import { useRouter } from 'next/router';
 
 const SingleImage: React.FC<any> = (props) => {
   const { movieName, year, id, image } = props;
 
+  const router = useRouter();
+
+  const myLoader = () => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${image}`
+  }
+
   return (
     <>
       <div className='flex flex-col gap-3 text-xl text-white'>
-        <div>
+        <div
+          className='cursor-pointer'
+          onClick={() => router.push(`/feed/movies/${id}`)}
+        >
           <div className=' w-full '>
             <Image
-              // loader={myLoader}
-              src={'/assets/images/opana.png'}
+              loader={myLoader}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`}
               alt='profile-icon'
               width={350}
               height={350}

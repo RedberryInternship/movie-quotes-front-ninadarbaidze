@@ -8,9 +8,11 @@ import {
 } from 'components';
 import { movieSchema } from 'schema';
 import { useMovieForm } from './useMovieForm';
+import { useTranslation } from 'next-i18next';
 
 const MovieForm = () => {
   const { genres, onSubmit, defaultValues } = useMovieForm();
+  const {t} = useTranslation()
 
   const renderForm = ({ errors }) => (
     <Form className='flex flex-col gap-5'>
@@ -24,7 +26,7 @@ const MovieForm = () => {
       errors.descriptionGE ||
       errors.image ? (
         <div className='text-red text-sm absolute top-[12%] right-[5%] '>
-          * Please fill all fields
+          {t('movies:required')}
         </div>
       ) : null}
       <Field
@@ -47,7 +49,7 @@ const MovieForm = () => {
         name='genre'
         options={genres}
         component={SelectInput}
-        placeholder='Genre'
+        placeholder={t('movies:genre')}
         isMulti={true}
       />
       <Field
@@ -69,7 +71,7 @@ const MovieForm = () => {
         name='budget'
         options={genres}
         component={MovieInput}
-        placeholder='Budget'
+        placeholder={t('movies:budget')}
         type='number'
         isMulti={true}
         className='appearance-none'
@@ -78,7 +80,7 @@ const MovieForm = () => {
         name='year'
         options={genres}
         component={MovieInput}
-        placeholder='Release Year'
+        placeholder={t('movies:year')}
         type='number'
         isMulti={true}
         className='appearance-none'

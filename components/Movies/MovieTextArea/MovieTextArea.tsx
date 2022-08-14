@@ -8,7 +8,7 @@ const MovieTextArea: React.FC<FormValues & FieldProps> = ({
   let { className, lang } = props;
 
   return (
-    <div className='h-[1.5rem] mb-6'>
+    <div className='h-[1rem] mb-6'>
       <div className='flex'></div>
       <div className='flex items-center relative'>
         <textarea
