@@ -5,13 +5,17 @@ import { imagePreviewHandler } from './helper';
 import { UserInfoTypes } from './types';
 
 const UserInfo: React.FC<UserInfoTypes> = (props) => {
-  const { useLink, className } = props;
+  const { useLink, className, color } = props;
   const { t, session, myLoader, userCtx } = useUserInfo();
 
   return (
     <>
       <div className={`${className} flex items-center px-[20%] mt-10 gap-3`}>
-        <div className='w-12 h-12 rounded-full overflow-clip border-2 border-red'>
+        <div
+          className={`w-12 h-12 rounded-full overflow-clip border-2 border-${
+            color ? color : 'mainDark2'
+          }`}
+        >
           <div className='object-cover'>
             <Image
               loader={myLoader}

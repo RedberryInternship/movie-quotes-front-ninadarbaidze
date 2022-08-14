@@ -1,14 +1,15 @@
 import { useContext, useEffect } from 'react';
 import type { GetStaticProps } from 'next';
-import { FeedWrapper } from 'components';
+import { FeedWrapper, AddMovieModal, FeedBackdrop } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { AuthContext } from 'store';
+import { AuthContext, MovieContext } from 'store';
 import { useSession } from 'next-auth/react';
 
-const Feed = () => {
+const Movies = () => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
+  const movieCtx = useContext(MovieContext);
   const { status } = useSession();
 
   useEffect(() => {
@@ -20,13 +21,18 @@ const Feed = () => {
   return (
     <>
       <FeedWrapper>
-        <div></div>
+        {movieCtx.movieCreationModal && (
+          <>
+            <FeedBackdrop onClick={movieCtx.MovieCreationStateHandler(false)} />
+            <AddMovieModal />
+          </>
+        )}{' '}
       </FeedWrapper>
     </>
   );
 };
 
-export default Feed;
+export default Movies;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

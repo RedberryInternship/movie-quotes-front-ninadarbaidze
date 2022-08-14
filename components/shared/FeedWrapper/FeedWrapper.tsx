@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { MainHeader, SideBar } from 'components';
 import { getUserInfo } from 'services';
-import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
 import { useSession } from 'next-auth/react';
 import { Children } from 'types';
@@ -9,16 +8,9 @@ import { Children } from 'types';
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
   const [mobMenu, setMobMenu] = useState(false);
-  const router = useRouter();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    if (status === 'unauthenticated' && !ctx.isLoggedIn) {
-      router.push('/');
-    }
-  }, [ctx.isLoggedIn, router, status]);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const getData = async () => {

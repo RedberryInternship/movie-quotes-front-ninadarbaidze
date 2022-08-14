@@ -13,6 +13,7 @@ export const MovieContextProvider: React.FC<Children> = (props) => {
   const MovieCreationStateHandler = (value: boolean) => {
     setMovieCreationModal(value);
   };
+
   const contextValue: MovieContextTypes = {
     movieCreationModal: movieCreationModal,
     MovieCreationStateHandler: MovieCreationStateHandler,
