@@ -75,10 +75,10 @@ const MovieForm = () => {
         className='appearance-none'
       />
       <Field
-        name='date'
+        name='year'
         options={genres}
         component={MovieInput}
-        placeholder='Release Date'
+        placeholder='Release Year'
         type='number'
         isMulti={true}
         className='appearance-none'

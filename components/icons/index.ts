@@ -10,3 +10,4 @@ export { default as HamMenu } from './HamMenu';
 export { default as UploadImgIcon } from './UploadImgIcon';
 export { default as CloseBtn } from './CloseBtn';
 export { default as AddBtn } from './AddBtn';
+export { default as QuoteIcon } from './QuoteIcon';

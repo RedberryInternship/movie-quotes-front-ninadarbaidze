@@ -1,15 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
-import { AuthContext, UserContext } from 'store';
-import { useContext, useState } from 'react';
+import { AuthContext, MovieContext } from 'store';
+import { useContext } from 'react';
 import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
 import { addMovie } from 'services';
+import { replace } from 'formik';
+import { movieSchema } from 'schema';
 
 export const useMovieForm = () => {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
-  const userCtx = useContext(UserContext);
+  const movieCtx = useContext(MovieContext);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -58,7 +60,7 @@ export const useMovieForm = () => {
     descriptionGE: '',
     image: '',
     budget: null,
-    date: null,
+    date: '',
   };
 
   const onSubmit = async (values: any) => {
@@ -73,7 +75,8 @@ export const useMovieForm = () => {
     formData.append('userId', userId);
     try {
       await addMovie(formData, token);
-      console.log(values);
+      router.replace('/feed/movies');
+      movieCtx.MovieCreationStateHandler();
     } catch (error: any) {
       throw new Error('Request failed!');
     }
