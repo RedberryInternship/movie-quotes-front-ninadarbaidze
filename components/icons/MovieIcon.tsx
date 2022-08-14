@@ -6,7 +6,7 @@ const MovieIcon: React.FC<ClassName> = (props) => {
   return (
     <svg
       viewBox='0 0 32 32'
-      fill={`${className}`}
+      fill={`${className ? className : 'white'}`}
       xmlns='http://www.w3.org/2000/svg'
       className={`w-6`}
     >

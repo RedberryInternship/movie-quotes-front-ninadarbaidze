@@ -75,6 +75,15 @@ const MovieForm = () => {
         className='appearance-none'
       />
       <Field
+        name='date'
+        options={genres}
+        component={MovieInput}
+        placeholder='Release Date'
+        type='number'
+        isMulti={true}
+        className='appearance-none'
+      />
+      <Field
         name='descriptionEN'
         options={genres}
         component={MovieTextArea}

@@ -8,4 +8,5 @@ export interface FormValues {
   descriptionGE: string;
   image: string;
   budget: number | null;
+  date: number | null;
 }

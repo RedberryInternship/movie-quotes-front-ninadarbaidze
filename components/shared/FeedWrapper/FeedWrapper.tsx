@@ -41,12 +41,10 @@ const FeedWrapper: React.FC<Children> = (props) => {
         className='flex w-screen h-[160vh] bg-background pt-10 '
         onClick={() => setMobMenu(false)}
       >
-        <div className='lg:w-[22%]'>
+        <div className='lg:w-[22%] z-0'>
           <SideBar />
         </div>
-        <div className='w-full md:px-[10%] lg:w-[60%] lg:pl-[10%] lg:px-0 '>
-          {children}
-        </div>
+        <div className='w-full md:px-[10%] lg:w-[70%] lg:px-0 '>{children}</div>
       </div>
     </>
   );

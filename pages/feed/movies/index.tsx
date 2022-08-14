@@ -1,6 +1,11 @@
 import { useContext, useEffect } from 'react';
 import type { GetStaticProps } from 'next';
-import { FeedWrapper, AddMovieModal, FeedBackdrop } from 'components';
+import {
+  FeedWrapper,
+  AddMovieModal,
+  FeedBackdrop,
+  ListOfMovies,
+} from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { AuthContext, MovieContext } from 'store';
@@ -20,13 +25,14 @@ const Movies = () => {
 
   return (
     <>
+      {movieCtx.movieCreationModal && (
+        <>
+          <FeedBackdrop onClick={() => movieCtx.MovieCreationStateHandler()} />
+          <AddMovieModal />
+        </>
+      )}
       <FeedWrapper>
-        {movieCtx.movieCreationModal && (
-          <>
-            <FeedBackdrop onClick={movieCtx.MovieCreationStateHandler(false)} />
-            <AddMovieModal />
-          </>
-        )}{' '}
+        <ListOfMovies />
       </FeedWrapper>
     </>
   );

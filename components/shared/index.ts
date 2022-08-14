@@ -12,3 +12,4 @@ export * from './FeedModal';
 export * from './FeedBackdrop';
 export * from './UserInfo';
 export * from './FeedWrapper';
+export * from './FeedButton';

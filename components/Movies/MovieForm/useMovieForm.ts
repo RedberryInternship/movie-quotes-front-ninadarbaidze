@@ -58,6 +58,7 @@ export const useMovieForm = () => {
     descriptionGE: '',
     image: '',
     budget: null,
+    date: null,
   };
 
   const onSubmit = async (values: any) => {
