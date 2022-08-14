@@ -39,7 +39,7 @@ export const useProfileForm = () => {
     try {
       await updateProfile(formData, token);
       router.push(`/feed`);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error('Request failed!');
     }
   };

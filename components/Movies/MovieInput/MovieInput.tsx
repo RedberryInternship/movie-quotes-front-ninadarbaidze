@@ -6,12 +6,12 @@ const MovieInput: React.FC<FormValues & FieldProps> = ({ field, ...props }) => {
   return (
     <div className='h-[1.5rem]'>
       <div className='flex '></div>
-      <div className='flex items-center relative'>
+      <div className='flex items-center relative '>
         <input
           {...props}
           {...field}
           type={type ? type : 'text'}
-          className={`${className} py-1 outline-none appearance-none placeholder:text-white  text-white pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate`}
+          className={`${className} py-1 appearance-none placeholder:text-white  text-white pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate`}
         />
         {type === 'number' ? (
           ''

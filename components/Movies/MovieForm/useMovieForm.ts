@@ -1,11 +1,10 @@
-import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { movieFormSchema } from 'schema';
 import { useRouter } from 'next/router';
 import { AuthContext, UserContext } from 'store';
-import { useContext, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
+import { addMovie } from 'services';
 
 export const useMovieForm = () => {
   const { t } = useTranslation();
@@ -13,7 +12,6 @@ export const useMovieForm = () => {
   const userCtx = useContext(UserContext);
   const { data: session } = useSession();
   const router = useRouter();
-  const fileRef = useRef<HTMLInputElement>(null);
 
   const genres = [
     {
@@ -62,31 +60,23 @@ export const useMovieForm = () => {
     budget: null,
   };
 
-  const changeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    imageChangeHandler: (imageSrc: string) => void
-  ) => {
-    formik.setFieldValue('image', event.currentTarget.files![0]);
-    const imageSrc = URL.createObjectURL(event.target.files[0]);
-    imageChangeHandler(imageSrc);
-  };
-
   const onSubmit = async (values: any) => {
+    const userId: any = session ? session.userId : ctx.userId;
+    const token: any = session ? session.accessToken : ctx.token;
+    const formData = new FormData();
+    const keys = Object.keys(values);
+
+    keys.forEach((key: string) => {
+      formData.append(`${key}`, values[key as keyof typeof values]);
+    });
+    formData.append('userId', userId);
     try {
+      await addMovie(formData, token);
       console.log(values);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error('Request failed!');
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      genre: [],
-    },
-    enableReinitialize: true,
-    onSubmit: onSubmit,
-    validationSchema: movieFormSchema,
-  });
-
-  return { formik, t, fileRef, changeHandler, genres, onSubmit, defaultValues };
+  return { t, genres, onSubmit, defaultValues };
 };

@@ -17,12 +17,6 @@ export type ClickAndClass = {
   className?: string;
 };
 
-export type Click = {
+export type OnClick = {
   onClick: any;
-};
-
-export type kkk = {
-  _id: string;
-  email: string;
-  username: string;
 };

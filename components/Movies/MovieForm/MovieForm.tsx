@@ -6,13 +6,27 @@ import {
   Button,
   ImageInput,
 } from 'components';
+import { movieSchema } from 'schema';
 import { useMovieForm } from './useMovieForm';
 
 const MovieForm = () => {
   const { genres, onSubmit, defaultValues } = useMovieForm();
 
-  const renderForm = () => (
+  const renderForm = ({ errors }) => (
     <Form className='flex flex-col gap-5'>
+      {errors.movieNameEN ||
+      errors.movieNameGE ||
+      errors.genre ||
+      errors.directorEN ||
+      errors.directorGE ||
+      errors.budget ||
+      errors.descriptionEN ||
+      errors.descriptionGE ||
+      errors.image ? (
+        <div className='text-red text-sm absolute top-[12%] right-[5%] '>
+          * Please fill all fields
+        </div>
+      ) : null}
       <Field
         name='movieNameEN'
         options={genres}
@@ -21,6 +35,7 @@ const MovieForm = () => {
         isMulti={true}
         lang={'Eng'}
       />
+
       <Field
         name='movieNameGE'
         options={genres}
@@ -76,7 +91,6 @@ const MovieForm = () => {
         lang={'ქარ'}
       />
       <Field type='file' name='image' accept='image/*' component={ImageInput} />
-
       <Button text={'Add movie'} className='bg-red mt-2 mb-10 w-[100%]' />
     </Form>
   );
@@ -86,6 +100,7 @@ const MovieForm = () => {
       initialValues={defaultValues}
       render={renderForm}
       onSubmit={onSubmit}
+      validationSchema={movieSchema}
     />
   );
 };

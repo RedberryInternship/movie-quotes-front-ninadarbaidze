@@ -8,7 +8,6 @@ const ImageInput = ({ form }: any & FieldProps) => {
   const [imagePreview, setImagePreview] = useState<string | any>();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      console.log(acceptedFiles[0]);
       form.setFieldValue('image', acceptedFiles[0]);
       setImagePreview(acceptedFiles[0] as any);
       Object.assign(acceptedFiles[0], {
