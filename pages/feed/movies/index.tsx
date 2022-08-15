@@ -32,7 +32,9 @@ const Movies = () => {
         </>
       )}
       <FeedWrapper>
-        <ListOfMovies />
+        <div className='relative'>
+          <ListOfMovies />
+        </div>
       </FeedWrapper>
     </>
   );

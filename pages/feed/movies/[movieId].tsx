@@ -1,4 +1,5 @@
 import { FeedWrapper, MovieDetails } from 'components';
+import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
@@ -10,6 +11,7 @@ const MovieId = ({ data }: any) => {
   const ctx = useContext(AuthContext);
   const movieCtx = useContext(MovieContext);
   const { status } = useSession();
+  console.log(data);
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -20,7 +22,7 @@ const MovieId = ({ data }: any) => {
   return (
     <>
       <FeedWrapper>
-        <MovieDetails />
+        <MovieDetails data={data} />
       </FeedWrapper>
     </>
   );
@@ -28,15 +30,28 @@ const MovieId = ({ data }: any) => {
 
 export default MovieId;
 
-export async function getStaticProps(context) {
-  const movieId = context.params.movieId;
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  params,
+}) => {
+  const movieId = params!.movieId;
+  const currLan = locale!;
 
   const response = await fetch(`http://localhost:3001/movies/${movieId}`);
   const res = await response.json();
+  const data = {
+    budget: res.movie.budget,
+    year: res.movie.year,
+    name: res.movie[currLan].movieName,
+    director: res.movie[currLan].director,
+    description: res.movie[currLan].director,
+    genres: res.movie.genres,
+    image: res.movie.image,
+  };
   return {
     props: {
-      data: res,
-      ...(await serverSideTranslations(context.locale!, [
+      data: data,
+      ...(await serverSideTranslations(locale!, [
         'profile',
         'home',
         'genres',
@@ -44,19 +59,4 @@ export async function getStaticProps(context) {
       ])),
     },
   };
-}
-
-export async function getStaticPaths() {
-  const response = await fetch(`http://localhost:3001/movies`);
-  const res = await response.json();
-  console.log(res);
-
-  const paths = res.map((response: { _id: any }) => ({
-    params: { movieId: response._id },
-  }));
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
+};

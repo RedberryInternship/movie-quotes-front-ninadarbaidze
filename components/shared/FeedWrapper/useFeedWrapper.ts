@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { getUserInfo } from 'services';
 import { AuthContext, UserContext } from 'store';
 
@@ -26,6 +26,5 @@ export const useFeedWrapper = () => {
     } catch (err: any) {}
   };
 
-
-  return {getData, mobMenu, setMobMenu, ctx, session };
+  return { getData, mobMenu, setMobMenu, ctx, session };
 };

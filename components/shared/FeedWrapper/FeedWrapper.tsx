@@ -9,7 +9,7 @@ const FeedWrapper: React.FC<Children> = (props) => {
 
   useEffect(() => {
     getData();
-  }, [ctx.token, ctx.userId, getData, session]);
+  }, [ctx.token, ctx.userId, session]);
 
   return (
     <>

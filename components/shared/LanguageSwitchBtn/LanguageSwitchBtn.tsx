@@ -10,9 +10,8 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
     currentLanguage,
     openLanChangeHandler,
     setCurrentLanguage,
-    route,
+    asPath,
   } = useLanguageSwitchBtn();
-
   return (
     <>
       <nav className={`${className} flex flex-col items-center relative mr-8`}>
@@ -29,7 +28,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
           <div className='flex flex-col justify-start rounded-[4px]  z-50 bg-mainDark px-4 py-1  border border-white absolute top-8'>
             <ul className='flex flex-col gap-2 mr-6'>
               <li>
-                <Link href={`${route}`} locale={'en'}>
+                <Link href={`${asPath}`} locale={'en'}>
                   <div
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('en')}
@@ -44,7 +43,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
                 </Link>
               </li>
               <li>
-                <Link href={`${route}`} locale={'ge'}>
+                <Link href={`${asPath}`} locale={'ge'}>
                   <div
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('ge')}

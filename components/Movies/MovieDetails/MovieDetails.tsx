@@ -1,12 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import { EditBtn, Trash } from 'components';
+import { useTranslation } from 'next-i18next';
 
-const MovieDetails = () => {
+const MovieDetails: React.FC<any> = ({ data }) => {
+  const { t } = useTranslation();
+  let genresArray = data.genres[0].split(',');
+
   return (
     <div className=''>
       <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
-        Movie Description
+        {t('movies:descriptionH1')}
       </h1>
       <div className='flex gap-4 mt-12'>
         <div className='w-3/5 h-[23rem] rounded-xl overflow-clip'>
@@ -26,26 +30,25 @@ const MovieDetails = () => {
             <div className='bg-gray w-[1px] h-4' />
             <Trash />
           </div>
-          <h2 className='text-beidge text-2xl'>name (year)</h2>
+          <h2 className='text-beidge text-2xl'>
+            {data.name} ({data.year})
+          </h2>
           <ul className='flex gap-1 text-lg text-white'>
-            <li className='bg-gray20 px-2 rounded-[4px]'>Drama</li>
-            <li className='bg-gray20 px-2 rounded-[4px]'>Comedy</li>
+            {genresArray.map((genre: string) => (
+              <li key={genre} className='bg-gray20 px-2 rounded-[4px]'>
+                {t(`${genre}`)}
+              </li>
+            ))}
           </ul>
           <div className='flex gap-2'>
-            <h3 className='text-gray10 text-lg'>director:</h3>
-            <span className='text-white text-lg'>nickoloza</span>
+            <h3 className='text-gray10 text-lg'>{t('movies:director')}:</h3>
+            <span className='text-white text-lg'>{data.director}</span>
           </div>
           <div className='flex gap-2'>
-            <h3 className='text-gray10 text-lg'>budget:</h3>
-            <span className='text-white text-lg'>2000</span>
+            <h3 className='text-gray10 text-lg'>{t('movies:budget')}:</h3>
+            <span className='text-white text-lg'>{data.budget}</span>
           </div>
-          <p className='text-gray10 text-lg'>
-            In a nursing home, resident Duke reads a romance story to an old
-            woman who has senile dementia with memory loss. In the late 1930s,
-            wealthy seventeen year-old Allie Hamilton is spending summer
-            vacation in Seabrook. Local worker Noah Calhoun meets Allie at a
-            carnival{' '}
-          </p>
+          <p className='text-gray10 text-lg'>{data.description}</p>
         </div>
       </div>
     </div>
