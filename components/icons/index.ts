@@ -11,3 +11,5 @@ export { default as UploadImgIcon } from './UploadImgIcon';
 export { default as CloseBtn } from './CloseBtn';
 export { default as AddBtn } from './AddBtn';
 export { default as QuoteIcon } from './QuoteIcon';
+export { default as EditBtn } from './EditBtn';
+export { default as Trash } from './Trash';

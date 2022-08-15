@@ -1,6 +1,6 @@
 export type SingleImageType = {
-  movieName: string;
-  year: number;
-  id: string;
-  image: string;
+  movieName?: string;
+  year?: number;
+  id?: string;
+  image?: string;
 };

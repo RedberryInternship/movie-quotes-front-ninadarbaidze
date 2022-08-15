@@ -1,22 +1,22 @@
-import {  useEffect } from 'react';
+import { useEffect } from 'react';
 import { MainHeader, SideBar } from 'components';
 import { Children } from 'types';
 import { useFeedWrapper } from './useFeedWrapper';
 
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
-  const {getData, ctx, session, mobMenu, setMobMenu} = useFeedWrapper()
+  const { getData, ctx, session, mobMenu, setMobMenu } = useFeedWrapper();
 
   useEffect(() => {
     getData();
-  }, [ctx.token, ctx.userId, session]);
+  }, [ctx.token, ctx.userId, getData, session]);
 
   return (
     <>
       <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
 
       <div
-        className='flex w-screen py-[200px] bg-background pt-10 '
+        className='flex w-screen h-[100%] py-[100vh] bg-background pt-10 '
         onClick={() => setMobMenu(false)}
       >
         <div className='lg:w-[22%] z-0'>
@@ -27,6 +27,5 @@ const FeedWrapper: React.FC<Children> = (props) => {
     </>
   );
 };
-
 
 export default FeedWrapper;

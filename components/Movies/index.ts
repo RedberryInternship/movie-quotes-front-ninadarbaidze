@@ -6,3 +6,4 @@ export * from './ImageInput';
 export * from './AddMovieModal';
 export * from './ListOfMovies';
 export * from './SingleImage';
+export * from './MovieDetails';
