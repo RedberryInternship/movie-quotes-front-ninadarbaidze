@@ -1,7 +1,6 @@
-import { useTranslation } from "next-i18next"
-
+import { useTranslation } from 'next-i18next';
 
 export const useAddMovieModal = () => {
-    const {t} = useTranslation()
-    return {t}
-}
+  const { t } = useTranslation();
+  return { t };
+};

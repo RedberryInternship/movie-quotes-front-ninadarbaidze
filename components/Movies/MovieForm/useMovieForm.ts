@@ -5,8 +5,6 @@ import { useContext } from 'react';
 import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
 import { addMovie } from 'services';
-import { replace } from 'formik';
-import { movieSchema } from 'schema';
 
 export const useMovieForm = () => {
   const { t } = useTranslation();
@@ -60,17 +58,19 @@ export const useMovieForm = () => {
     descriptionGE: '',
     image: '',
     budget: null,
-    date: '',
+    year: null,
   };
 
-  const onSubmit = async (values: any) => {
-    const userId: any = session ? session.userId : ctx.userId;
-    const token: any = session ? session.accessToken : ctx.token;
+  const onSubmit = async (values: FormValues) => {
+    const userId: string | Blob | any = session ? session.userId : ctx.userId;
+    const token: string | Blob | any = session
+      ? session.accessToken
+      : ctx.token;
     const formData = new FormData();
     const keys = Object.keys(values);
 
     keys.forEach((key: string) => {
-      formData.append(`${key}`, values[key as keyof typeof values]);
+      formData.append(`${key}`, values[key]);
     });
     formData.append('userId', userId);
     try {

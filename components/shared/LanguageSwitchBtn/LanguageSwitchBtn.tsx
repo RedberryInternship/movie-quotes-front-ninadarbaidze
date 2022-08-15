@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import { LanguageSwitchBtnTypes } from './types';
 import { useLanguageSwitchBtn } from './useLanguageSwitchBtn';
 
 const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
-  const {className } = props;
+  const { className } = props;
   const {
-    locale,
     languageModal,
     currentLanguage,
     openLanChangeHandler,
     setCurrentLanguage,
     route,
   } = useLanguageSwitchBtn();
-  console.log(route)
 
   return (
     <>
@@ -48,7 +44,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
                 </Link>
               </li>
               <li>
-                <Link href={`${route}`}  locale={'ge'}>
+                <Link href={`${route}`} locale={'ge'}>
                   <div
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('ge')}

@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next';
 
 const ImageInput = ({ form }: any & FieldProps) => {
   const [imagePreview, setImagePreview] = useState<string | any>();
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       form.setFieldValue('image', acceptedFiles[0]);
@@ -31,11 +31,9 @@ const ImageInput = ({ form }: any & FieldProps) => {
       >
         <input type='file' accept='image/*' {...getInputProps()} />
         <UploadImgIcon />
-        <p className='text-white text-base truncate'>
-          {t('movies:drag')}
-        </p>
+        <p className='text-white text-base truncate'>{t('movies:drag')}</p>
         <button className='bg-purple text-white text-base px-3 py-1'>
-        {t('movies:chooseFile')}
+          {t('movies:chooseFile')}
         </button>
         {imagePreview && (
           <div className='flex items-center border-2 border-red overflow-clip rounded-[10px] ml-8 object-cover'>

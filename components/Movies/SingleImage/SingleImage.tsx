@@ -1,16 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import { QuoteIcon } from 'components';
-import { useRouter } from 'next/router';
+import { useSingleImage } from './useSingleImage';
+import { SingleImageType } from './types';
 
-const SingleImage: React.FC<any> = (props) => {
+const SingleImage: React.FC<SingleImageType> = (props) => {
   const { movieName, year, id, image } = props;
-
-  const router = useRouter();
+  const { router } = useSingleImage();
 
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${image}`
-  }
+    return `${process.env.NEXT_PUBLIC_API_URL}/${image}`;
+  };
 
   return (
     <>

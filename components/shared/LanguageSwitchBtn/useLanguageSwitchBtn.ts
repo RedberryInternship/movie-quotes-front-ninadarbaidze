@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export const useLanguageSwitchBtn = () => {
-  const { locale, route  } = useRouter();
+  const { locale, route } = useRouter();
   const [languageModal, setLanguageModal] = useState<boolean>(false);
   const [currentLanguage, setCurrentLanguage] = useState(locale);
 
@@ -10,5 +10,12 @@ export const useLanguageSwitchBtn = () => {
     setLanguageModal((prevState) => !prevState);
   };
 
-  return { locale, languageModal, currentLanguage, openLanChangeHandler, setCurrentLanguage, route };
+  return {
+    locale,
+    languageModal,
+    currentLanguage,
+    openLanChangeHandler,
+    setCurrentLanguage,
+    route,
+  };
 };

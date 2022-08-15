@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikProps } from 'formik';
 import {
   SelectInput,
   MovieInput,
@@ -8,13 +8,12 @@ import {
 } from 'components';
 import { movieSchema } from 'schema';
 import { useMovieForm } from './useMovieForm';
-import { useTranslation } from 'next-i18next';
+import { FormValues } from './types';
 
 const MovieForm = () => {
-  const { genres, onSubmit, defaultValues } = useMovieForm();
-  const {t} = useTranslation()
+  const { genres, onSubmit, defaultValues, t } = useMovieForm();
 
-  const renderForm = ({ errors }) => (
+  const renderForm = ({ errors }: FormikProps<FormValues>) => (
     <Form className='flex flex-col gap-5'>
       {errors.movieNameEN ||
       errors.movieNameGE ||
