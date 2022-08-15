@@ -9,11 +9,11 @@ const MovieDetails: React.FC<any> = ({ data }) => {
 
   return (
     <div className=''>
-      <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
+      <h1 className='text-white text-xl px-[5%] md:px-0 sm:text-2xl hidden sm:block font-helvetica_ge font-thin'>
         {t('movies:descriptionH1')}
       </h1>
-      <div className='flex gap-4 mt-12'>
-        <div className='w-3/5 h-[23rem] rounded-xl overflow-clip'>
+      <div className='flex flex-col md:flex-row px-[5%] md:px-0 gap-4 mt-12'>
+        <div className='w-full md:w-3/5 h-[23rem] rounded-xl overflow-clip'>
           <Image
             src='/assets/images/image-1.png'
             className=''
@@ -24,13 +24,13 @@ const MovieDetails: React.FC<any> = ({ data }) => {
             alt='movie'
           />
         </div>
-        <div className='w-2/5 flex flex-col relative gap-4'>
-          <div className='flex absolute right-0 justify-around w-32 py-2 px-4 rounded-[10px] bg-gray50'>
+        <div className='w-full md:w-2/5 flex flex-col relative gap-4'>
+          <div className='flex absolute right-0 justify-around  w-1/3 md:w-32 py-2 px-4 rounded-[10px] bg-gray50'>
             <EditBtn />
             <div className='bg-gray w-[1px] h-4' />
             <Trash />
           </div>
-          <h2 className='text-beidge text-2xl'>
+          <h2 className='text-beidge text-2xl w-2/3 md:w-none'>
             {data.name} ({data.year})
           </h2>
           <ul className='flex gap-1 text-lg text-white'>
