@@ -19,6 +19,7 @@ const ListOfMovies = () => {
     movieCtx.movieCreationStateHandler();
   };
 
+
   useEffect(() => {
     const getData = async (lan: any) => {
       let token = session ? session.accessToken : ctx.token;

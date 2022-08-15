@@ -3,16 +3,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import { LanguageSwitchBtnTypes } from './types';
+import { useLanguageSwitchBtn } from './useLanguageSwitchBtn';
 
 const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
-  const { page, className } = props;
-  const { locale } = useRouter();
-  const [languageModal, setLanguageModal] = useState<boolean>(false);
-  const [currentLanguage, setCurrentLanguage] = useState(locale);
-
-  const openLanChangeHandler = () => {
-    setLanguageModal((prevState) => !prevState);
-  };
+  const {className } = props;
+  const {
+    locale,
+    languageModal,
+    currentLanguage,
+    openLanChangeHandler,
+    setCurrentLanguage,
+    route,
+  } = useLanguageSwitchBtn();
+  console.log(route)
 
   return (
     <>
@@ -30,7 +33,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
           <div className='flex flex-col justify-start rounded-[4px]  z-50 bg-mainDark px-4 py-1  border border-white absolute top-8'>
             <ul className='flex flex-col gap-2 mr-6'>
               <li>
-                <Link href={`/${page ? page : ''}`} locale={'en'}>
+                <Link href={`${route}`} locale={'en'}>
                   <div
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('en')}
@@ -45,7 +48,7 @@ const LanguageSwitchBtn: React.FC<LanguageSwitchBtnTypes> = (props) => {
                 </Link>
               </li>
               <li>
-                <Link href={`/${page ? page : ''}`} locale={'ge'}>
+                <Link href={`${route}`}  locale={'ge'}>
                   <div
                     className='flex items-center gap-2 cursor-pointer '
                     onClick={() => setCurrentLanguage('ge')}

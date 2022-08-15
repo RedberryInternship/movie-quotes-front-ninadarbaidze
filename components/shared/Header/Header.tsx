@@ -1,8 +1,10 @@
 import { Button, LanguageSwitchBtn, useHeader } from 'components';
+import { useRouter } from 'next/router';
 
 const Header = () => {
   const { t, changeRegistrationModalState, changeLoginModalState } =
     useHeader();
+    
 
   return (
     <>

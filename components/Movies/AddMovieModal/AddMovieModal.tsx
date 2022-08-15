@@ -1,9 +1,10 @@
 import React from 'react';
 import { FeedModal, UserInfo, MovieForm } from 'components';
 import { useTranslation } from 'next-i18next';
+import {useAddMovieModal} from './useAddMovieModal'
 
 const AddMovieModal = () => {
-  const {t} = useTranslation()
+  const {t} = useAddMovieModal()
   return (
     <>
       <FeedModal className='px-[2%] w-[90%] md:w-[50%]'>

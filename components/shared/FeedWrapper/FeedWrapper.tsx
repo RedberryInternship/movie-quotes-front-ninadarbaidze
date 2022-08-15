@@ -1,35 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import {  useEffect } from 'react';
 import { MainHeader, SideBar } from 'components';
-import { getUserInfo } from 'services';
-import { AuthContext, UserContext } from 'store';
-import { useSession } from 'next-auth/react';
 import { Children } from 'types';
+import { useFeedWrapper } from './useFeedWrapper';
 
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
-  const [mobMenu, setMobMenu] = useState(false);
-  const ctx = useContext(AuthContext);
-  const userCtx = useContext(UserContext);
-  const { data: session } = useSession();
+  const {getData, ctx, session, mobMenu, setMobMenu} = useFeedWrapper()
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        let response;
-        let userId: any;
-
-        if (session) {
-          const token = session.accessToken;
-          userId = session.userId;
-          response = await getUserInfo(userId, token as string);
-          userCtx.getUser(response.data.user);
-        } else {
-          response = await getUserInfo(ctx.userId, ctx.token);
-          userCtx.getUser(response.data.user);
-        }
-      } catch (err: any) {}
-    };
-
     getData();
   }, [ctx.token, ctx.userId, session]);
 
@@ -49,4 +27,6 @@ const FeedWrapper: React.FC<Children> = (props) => {
     </>
   );
 };
+
+
 export default FeedWrapper;
