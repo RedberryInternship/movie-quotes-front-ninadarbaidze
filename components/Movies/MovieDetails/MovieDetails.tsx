@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { DeleteMovieModal, Trash } from 'components';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import { AuthContext, MovieContext } from 'store';
+import { AuthContext } from 'store';
 import { deleteMovie } from 'services';
 import { useRouter } from 'next/router';
 
