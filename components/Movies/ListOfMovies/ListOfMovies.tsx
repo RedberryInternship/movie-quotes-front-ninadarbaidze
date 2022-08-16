@@ -35,9 +35,7 @@ const ListOfMovies = () => {
         });
         setMovieSum(movieNumber);
         setData(newData);
-      } catch (err: any) {
-        console.log(err);
-      }
+      } catch (err: any) {}
     };
     getData();
   }, [

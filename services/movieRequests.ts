@@ -18,3 +18,15 @@ export const getMovies = async (token: string): Promise<AxiosResponse<any>> => {
   });
   return response;
 };
+
+//change response
+export const deleteMovie = async (
+  token: string,
+  data: any
+): Promise<AxiosResponse<any>> => {
+  const response = await axios.delete(`delete-movie`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data,
+  });
+  return response;
+};

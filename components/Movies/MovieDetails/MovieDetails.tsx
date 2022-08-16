@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { EditBtn, Trash } from 'components';
 import { useTranslation } from 'next-i18next';
+import { useSession } from 'next-auth/react';
+import { AuthContext } from 'store';
+import { deleteMovie } from 'services';
+import { useRouter } from 'next/router';
 
 const MovieDetails: React.FC<any> = ({ data }) => {
   const { t } = useTranslation();
+  const { data: session } = useSession();
+  const ctx = useContext(AuthContext);
+  const router = useRouter();
   let genresArray = data.genres[0].split(',');
+
+  const deleteMovieHandler = async () => {
+    const token: string | unknown = session ? session.accessToken : ctx.token;
+
+    try {
+      const movieId = { movieId: router.query.movieId };
+      await deleteMovie(token as string, movieId);
+      router.replace(`/feed/movies`);
+    } catch (err: any) {}
+  };
 
   return (
     <div className=''>
@@ -26,9 +43,9 @@ const MovieDetails: React.FC<any> = ({ data }) => {
         </div>
         <div className='w-full md:w-2/5 flex flex-col relative gap-4'>
           <div className='flex absolute right-0 justify-around  w-1/3 md:w-32 py-2 px-4 rounded-[10px] bg-gray50'>
-            <EditBtn />
+            {/* <EditBtn onClick={deleteMovieHandler} /> */}
             <div className='bg-gray w-[1px] h-4' />
-            <Trash />
+            <Trash onClick={deleteMovieHandler} />
           </div>
           <h2 className='text-beidge text-2xl w-2/3 md:w-none'>
             {data.name} ({data.year})
