@@ -81,11 +81,12 @@ export const useMovieForm = () => {
       if (!movieCtx.isMovieEdited) {
         await addMovie(formData, token);
         movieCtx.movieCreationStateHandler();
+        router.replace(`/feed/movies/${movieId}`);
       } else {
         await editMovie(formData, token, movieId);
         movieCtx.movieEditingStateHandler(false);
+        router.replace('/feed/movies');
       }
-      router.replace('/feed/movies');
       movieCtx.getMoviesRefresh();
     } catch (error: any) {
       throw new Error('Request failed!');
