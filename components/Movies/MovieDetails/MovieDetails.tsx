@@ -14,6 +14,7 @@ import { deleteMovie, getMovieById } from 'services';
 import { useRouter } from 'next/router';
 
 const MovieDetails: React.FC<any> = ({ data }) => {
+  console.log(data);
   const { t } = useTranslation();
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);

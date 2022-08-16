@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     year: res.movie.year,
     name: res.movie[currLan].movieName,
     director: res.movie[currLan].director,
-    description: res.movie[currLan].director,
+    description: res.movie[currLan].description,
     genres: res.movie.genres,
     image: res.movie.image,
   };

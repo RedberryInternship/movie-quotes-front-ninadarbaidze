@@ -110,7 +110,9 @@ const MovieForm = () => {
       />
 
       <Button
-        text={movieCtx.isMovieEdited ? 'Update movie' : 'Add movie'}
+        text={
+          movieCtx.isMovieEdited ? t('movies:updateMovie') : t('movies:addbtn')
+        }
         className='bg-red mt-2 mb-10 w-[100%]'
       />
     </Form>
