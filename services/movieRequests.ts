@@ -12,10 +12,7 @@ export const addMovie = async (
 };
 
 //change response
-export const getMovies = async (
-  // data: FormData,
-  token: string
-): Promise<AxiosResponse<any>> => {
+export const getMovies = async (token: string): Promise<AxiosResponse<any>> => {
   const response = await axios.get(`movies`, {
     headers: { Authorization: `Bearer ${token}` },
   });

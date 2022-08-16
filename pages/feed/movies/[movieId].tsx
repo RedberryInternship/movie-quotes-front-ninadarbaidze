@@ -37,7 +37,9 @@ export const getServerSideProps: GetServerSideProps = async ({
   const movieId = params!.movieId;
   const currLan = locale!;
 
-  const response = await fetch(`http://localhost:3001/movies/${movieId}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/movies/${movieId}`
+  );
   const res = await response.json();
   const data = {
     budget: res.movie.budget,
