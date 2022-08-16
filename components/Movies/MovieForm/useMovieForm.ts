@@ -4,7 +4,7 @@ import { AuthContext, MovieContext } from 'store';
 import { useContext } from 'react';
 import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
-import { addMovie } from 'services';
+import { addMovie, editMovie } from 'services';
 
 export const useMovieForm = () => {
   const { t } = useTranslation();
@@ -48,24 +48,29 @@ export const useMovieForm = () => {
     },
   ];
 
+  const isMovieEdited = movieCtx.isMovieEdited;
+  const movieState = movieCtx.movieState;
+
   const defaultValues: FormValues = {
-    genre: [],
-    movieNameEN: '',
-    movieNameGE: '',
-    directorEN: '',
-    directorGE: '',
-    descriptionEN: '',
-    descriptionGE: '',
-    image: '',
-    budget: null,
-    year: null,
+    genre: isMovieEdited ? movieState.genres[0].split(',') : [],
+    movieNameEN: isMovieEdited ? movieState.en.movieName : '',
+    movieNameGE: isMovieEdited ? movieState.ge.movieName : '',
+    directorEN: isMovieEdited ? movieState.en.director : '',
+    directorGE: isMovieEdited ? movieState.ge.director : '',
+    descriptionEN: isMovieEdited ? movieState.en.description : '',
+    descriptionGE: isMovieEdited ? movieState.ge.description : '',
+    image: isMovieEdited ? movieState.image : '',
+    budget: isMovieEdited ? movieState.budget : '',
+    year: isMovieEdited ? movieState.budget : '',
   };
 
   const onSubmit = async (values: FormValues) => {
+    console.log(values);
     const userId: string | Blob | any = session ? session.userId : ctx.userId;
     const token: string | Blob | any = session
       ? session.accessToken
       : ctx.token;
+    const movieId = router.query.movieId;
     const formData = new FormData();
     const keys = Object.keys(values);
 
@@ -74,14 +79,19 @@ export const useMovieForm = () => {
     });
     formData.append('userId', userId);
     try {
-      await addMovie(formData, token);
+      if (!movieCtx.isMovieEdited) {
+        await addMovie(formData, token);
+        movieCtx.movieCreationStateHandler();
+      } else {
+        await editMovie(formData, token, movieId);
+        movieCtx.movieEditingStateHandler(false);
+      }
       router.replace('/feed/movies');
-      movieCtx.movieCreationStateHandler();
       movieCtx.getMoviesRefresh();
     } catch (error: any) {
       throw new Error('Request failed!');
     }
   };
 
-  return { t, genres, onSubmit, defaultValues };
+  return { t, genres, onSubmit, defaultValues, movieCtx };
 };

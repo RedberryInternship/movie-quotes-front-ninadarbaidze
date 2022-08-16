@@ -10,7 +10,7 @@ const DeleteMovieModal: React.FC<DeleteModalTypes> = (props) => {
   return (
     <>
       <FeedBackdrop onClick={() => closeModal(false)} />
-      <FeedModal className='px-[8%] py-[3%]'>
+      <FeedModal className='px-[6%] py-[3%]'>
         <div className='flex flex-col items-center font-thin justify-around gap-6'>
           <h1 className='text-lg md:text-2xl text-white text-center'>
             {t('movies:sure')}

@@ -19,6 +19,24 @@ export const getMovies = async (token: string): Promise<AxiosResponse<any>> => {
   return response;
 };
 
+export const getMovieById = async (
+  movieId: string
+): Promise<AxiosResponse<any>> => {
+  const response = await axios.get(`movies/${movieId}`);
+  return response;
+};
+
+export const editMovie = async (
+  data: any,
+  token: string,
+  movieId: string | undefined | string[]
+): Promise<AxiosResponse<any>> => {
+  const response = await axios.patch(`edit-movie/${movieId}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
 //change response
 export const deleteMovie = async (
   token: string,

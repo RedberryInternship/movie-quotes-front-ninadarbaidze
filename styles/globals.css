@@ -16,6 +16,9 @@
   .link {
     @apply cursor-pointer text-link underline
   }
+  .absoluteStyle {
+    @apply absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]
+  }
 }
 
 @layer base {

@@ -14,6 +14,8 @@ export type ContextData = {
   changePasswordUpdateState: (_value: boolean) => void;
 };
 
+//change any
+
 export type UserContextData = {
   userState: any;
   getUser: (data: any) => void;
@@ -24,4 +26,8 @@ export type MovieContextTypes = {
   movieCreationStateHandler: () => void;
   movieAdded: boolean;
   getMoviesRefresh: () => void;
+  isMovieEdited: boolean;
+  movieEditingStateHandler: (value: boolean) => void;
+  movieState: any;
+  getMovie: (data: any) => void;
 };

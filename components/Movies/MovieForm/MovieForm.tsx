@@ -5,16 +5,17 @@ import {
   MovieTextArea,
   Button,
   ImageInput,
+  ImageEditInput,
 } from 'components';
 import { movieSchema } from 'schema';
 import { useMovieForm } from './useMovieForm';
 import { FormValues } from './types';
 
 const MovieForm = () => {
-  const { genres, onSubmit, defaultValues, t } = useMovieForm();
+  const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
   const renderForm = ({ errors }: FormikProps<FormValues>) => (
-    <Form className='flex flex-col gap-5'>
+    <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
       {errors.movieNameEN ||
       errors.movieNameGE ||
       errors.genre ||
@@ -24,7 +25,7 @@ const MovieForm = () => {
       errors.descriptionEN ||
       errors.descriptionGE ||
       errors.image ? (
-        <div className='text-red text-sm absolute top-[12%] right-[5%] '>
+        <div className='text-red text-sm absolute top-[11%] right-[5%] '>
           {t('movies:required')}
         </div>
       ) : null}
@@ -100,8 +101,18 @@ const MovieForm = () => {
         isMulti={true}
         lang={'ქარ'}
       />
-      <Field type='file' name='image' accept='image/*' component={ImageInput} />
-      <Button text={'Add movie'} className='bg-red mt-2 mb-10 w-[100%]' />
+
+      <Field
+        type='file'
+        name='image'
+        accept='image/*'
+        component={movieCtx.isMovieEdited ? ImageEditInput : ImageInput}
+      />
+
+      <Button
+        text={movieCtx.isMovieEdited ? 'Update movie' : 'Add movie'}
+        className='bg-red mt-2 mb-10 w-[100%]'
+      />
     </Form>
   );
 

@@ -8,3 +8,4 @@ export * from './ListOfMovies';
 export * from './SingleImage';
 export * from './MovieDetails';
 export * from './DeleteMovieModal';
+export * from './ImageEditInput';

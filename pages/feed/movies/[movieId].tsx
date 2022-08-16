@@ -10,7 +10,6 @@ const MovieId = ({ data }: any) => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const { status } = useSession();
-  console.log(data);
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {

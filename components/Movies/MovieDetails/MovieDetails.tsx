@@ -1,19 +1,37 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { DeleteMovieModal, Trash } from 'components';
+import {
+  DeleteMovieModal,
+  Trash,
+  EditBtn,
+  AddMovieModal,
+  FeedBackdrop,
+} from 'components';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import { AuthContext } from 'store';
-import { deleteMovie } from 'services';
+import { AuthContext, MovieContext } from 'store';
+import { deleteMovie, getMovieById } from 'services';
 import { useRouter } from 'next/router';
 
 const MovieDetails: React.FC<any> = ({ data }) => {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
+  const movieCtx = useContext(MovieContext);
   const router = useRouter();
   let genresArray = data.genres[0].split(',');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  useEffect(() => {
+    const getData = async () => {
+      const movieId = router.query.movieId;
+      try {
+        const response = await getMovieById(movieId);
+        movieCtx.getMovie(response.data.movie);
+      } catch (err: any) {}
+    };
+    getData();
+  }, [router.query.movieId]);
 
   const deleteMovieHandler = async () => {
     const token: string | unknown = session ? session.accessToken : ctx.token;
@@ -29,6 +47,15 @@ const MovieDetails: React.FC<any> = ({ data }) => {
   const cancelDeleteHandler = () => {
     setOpenDeleteModal(false);
   };
+
+  const editMovieHandler = () => {
+    movieCtx.movieEditingStateHandler(true);
+  };
+
+  const myLoader = () => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${data.image}`;
+  };
+
   return (
     <>
       {openDeleteModal && (
@@ -38,6 +65,14 @@ const MovieDetails: React.FC<any> = ({ data }) => {
           closeModal={setOpenDeleteModal}
         />
       )}
+      {movieCtx.isMovieEdited && (
+        <>
+          <FeedBackdrop
+            onClick={() => movieCtx.movieEditingStateHandler(false)}
+          />
+          <AddMovieModal />
+        </>
+      )}
 
       <div className=''>
         <h1 className='text-white text-xl px-[5%] md:px-0 sm:text-2xl hidden sm:block font-helvetica_ge font-thin'>
@@ -46,8 +81,8 @@ const MovieDetails: React.FC<any> = ({ data }) => {
         <div className='flex flex-col md:flex-row px-[5%] md:px-0 gap-4 mt-12'>
           <div className='w-full md:w-3/5 h-[23rem] rounded-xl overflow-clip'>
             <Image
-              src='/assets/images/image-1.png'
-              className=''
+              loader={myLoader}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${data.image}`}
               objectFit='cover'
               layout='responsive'
               width={600}
@@ -57,7 +92,7 @@ const MovieDetails: React.FC<any> = ({ data }) => {
           </div>
           <div className='w-full md:w-2/5 flex flex-col relative gap-4'>
             <div className='flex absolute right-0 justify-around  w-1/3 md:w-32 py-2 px-4 rounded-[10px] bg-gray50'>
-              {/* <EditBtn onClick={deleteMovieHandler} /> */}
+              <EditBtn onClick={editMovieHandler} />
               <div className='bg-gray w-[1px] h-4' />
               <Trash onClick={() => setOpenDeleteModal(true)} />
             </div>
