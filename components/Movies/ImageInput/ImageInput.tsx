@@ -1,26 +1,11 @@
-import React, { useCallback, useState } from 'react';
 import { FieldProps } from 'formik';
-import { useDropzone } from 'react-dropzone';
 import { UploadImgIcon } from 'components';
 import Image from 'next/image';
-import { useTranslation } from 'next-i18next';
+import { useImageInput } from './useImageInput';
 
 const ImageInput = ({ form }: any & FieldProps) => {
-  const [imagePreview, setImagePreview] = useState<string | any>();
-  const { t } = useTranslation();
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      form.setFieldValue('image', acceptedFiles[0]);
-      setImagePreview(acceptedFiles[0] as any);
-      Object.assign(acceptedFiles[0], {
-        preview: URL.createObjectURL(acceptedFiles[0]),
-      });
-    },
-    [form]
-  );
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
+  const { imagePreview, getRootProps, getInputProps, t } = useImageInput({
+    form,
   });
 
   return (

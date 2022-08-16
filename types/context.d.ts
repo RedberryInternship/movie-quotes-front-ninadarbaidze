@@ -14,11 +14,15 @@ export type ContextData = {
   changePasswordUpdateState: (_value: boolean) => void;
 };
 
-//change any
-
 export type UserContextData = {
-  userState: any;
-  getUser: (data: any) => void;
+  userState: UserStateTypes;
+  getUser: (data: UserStateTypes) => void;
+};
+
+export type UserStateTypes = {
+  username: string;
+  email: string;
+  profileImage: string;
 };
 
 export type MovieContextTypes = {
@@ -28,6 +32,35 @@ export type MovieContextTypes = {
   getMoviesRefresh: () => void;
   isMovieEdited: boolean;
   movieEditingStateHandler: (value: boolean) => void;
-  movieState: any;
-  getMovie: (data: any) => void;
+  movieState: MovieStateTypes;
+  getMovie: (data: MovieStateTypes) => void;
+};
+
+export type MovieStateTypes = {
+  en: MovieInfo;
+  ge: MovieInfo;
+  budget: number;
+  year: number;
+  genres: string[];
+  userId: string;
+  image: string;
+};
+
+export type MovieInfo = {
+  movieName: string;
+  director: string;
+  description: string;
+};
+
+export type Data = {
+  data: DataTypes;
+};
+
+export type DataTypes = {
+  name: string;
+  director: string;
+  description: string;
+  year: number;
+  budget: number;
+  image: string;
 };

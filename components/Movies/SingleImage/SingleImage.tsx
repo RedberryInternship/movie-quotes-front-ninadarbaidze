@@ -6,11 +6,7 @@ import { SingleImageType } from './types';
 
 const SingleImage: React.FC<SingleImageType> = (props) => {
   const { movieName, year, id, image } = props;
-  const { router } = useSingleImage();
-
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${image}`;
-  };
+  const { router, myLoader } = useSingleImage({ image } as string | any);
 
   return (
     <>

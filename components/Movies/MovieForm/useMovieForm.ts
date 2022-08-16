@@ -65,7 +65,6 @@ export const useMovieForm = () => {
   };
 
   const onSubmit = async (values: FormValues) => {
-    console.log(values);
     const userId: string | Blob | any = session ? session.userId : ctx.userId;
     const token: string | Blob | any = session
       ? session.accessToken

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import {
   DeleteMovieModal,
@@ -7,55 +7,35 @@ import {
   AddMovieModal,
   FeedBackdrop,
 } from 'components';
-import { useTranslation } from 'next-i18next';
-import { useSession } from 'next-auth/react';
-import { AuthContext, MovieContext } from 'store';
-import { deleteMovie, getMovieById } from 'services';
-import { useRouter } from 'next/router';
+import { getMovieById } from 'services';
 
-const MovieDetails: React.FC<any> = ({ data }) => {
-  console.log(data);
-  const { t } = useTranslation();
-  const { data: session } = useSession();
-  const ctx = useContext(AuthContext);
-  const movieCtx = useContext(MovieContext);
-  const router = useRouter();
-  let genresArray = data.genres[0].split(',');
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+import { useMovieDetails } from './useMovieDetails';
+import { Data } from 'types';
+
+const MovieDetails: React.FC<Data> = ({ data }) => {
+  const {
+    t,
+    router,
+    genresArray,
+    openDeleteModal,
+    myLoader,
+    cancelDeleteHandler,
+    editMovieHandler,
+    movieCtx,
+    deleteMovieHandler,
+    setOpenDeleteModal,
+  } = useMovieDetails({ data } as any);
 
   useEffect(() => {
     const getData = async () => {
       const movieId = router.query.movieId;
       try {
-        const response = await getMovieById(movieId);
+        const response = await getMovieById(movieId as string);
         movieCtx.getMovie(response.data.movie);
       } catch (err: any) {}
     };
     getData();
   }, [router.query.movieId]);
-
-  const deleteMovieHandler = async () => {
-    const token: string | unknown = session ? session.accessToken : ctx.token;
-
-    try {
-      const movieId = { movieId: router.query.movieId };
-      setOpenDeleteModal(false);
-      await deleteMovie(token as string, movieId);
-      router.replace(`/feed/movies`);
-    } catch (err: any) {}
-  };
-
-  const cancelDeleteHandler = () => {
-    setOpenDeleteModal(false);
-  };
-
-  const editMovieHandler = () => {
-    movieCtx.movieEditingStateHandler(true);
-  };
-
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${data.image}`;
-  };
 
   return (
     <>

@@ -1,11 +1,8 @@
 import { FeedModal, UserInfo, MovieForm } from 'components';
-import { useContext } from 'react';
-import { MovieContext } from 'store';
 import { useAddMovieModal } from './useAddMovieModal';
 
 const AddMovieModal = () => {
-  const { t } = useAddMovieModal();
-  const movieCtx = useContext(MovieContext);
+  const { t, movieCtx } = useAddMovieModal();
 
   return (
     <>

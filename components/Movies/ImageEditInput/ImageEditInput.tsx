@@ -1,41 +1,12 @@
-import React, { useCallback, useContext, useState } from 'react';
 import { FieldProps } from 'formik';
-import { useDropzone } from 'react-dropzone';
 import { UploadImgIcon } from 'components';
 import Image from 'next/image';
-import { useTranslation } from 'next-i18next';
-import { MovieContext } from 'store';
 
-const ImageEditInput = ({ form }: any & FieldProps) => {
-  const [imagePreview, setImagePreview] = useState<string | any>();
-  const { t } = useTranslation();
-  const movieCtx = useContext(MovieContext);
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      form.setFieldValue('image', acceptedFiles[0]);
-      setImagePreview(acceptedFiles[0] as any);
-      Object.assign(acceptedFiles[0], {
-        preview: URL.createObjectURL(acceptedFiles[0]),
-      });
-    },
-    [form]
-  );
+import { useImageEditInput } from './useImageEditInput';
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-  });
-
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${movieCtx.movieState.image}`;
-  };
-
-  const imageStateHandler = () => {
-    if (imagePreview) {
-      return imagePreview.preview;
-    } else {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${movieCtx.movieState.image}`;
-    }
-  };
+const ImageEditInput = ({ form }: FieldProps) => {
+  const { getRootProps, getInputProps, imageStateHandler, t, myLoader } =
+    useImageEditInput({ form });
 
   return (
     <>
@@ -57,7 +28,7 @@ const ImageEditInput = ({ form }: any & FieldProps) => {
             <div className='bg-background w-36 h-24 mt-4 rounded-xl opacity-80 absoluteStyle'></div>
             <UploadImgIcon className=' absoluteStyle' />
             <h3 className='absoluteStyle mt-9 font-helvetica_ge font-thin text-base text-white'>
-              Change photo
+              {t('movies:changeImg')}
             </h3>
           </div>
         </div>

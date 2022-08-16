@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useReducer, useState } from 'react';
-import { Children, ContextData, MovieContextTypes } from 'types';
+import { Children, MovieContextTypes, MovieStateTypes } from 'types';
 
 const initialState = {
   en: {
@@ -19,7 +19,10 @@ const initialState = {
   userId: '',
   image: '',
 };
-const reducer = (state: any, action: { type: any; payload: any }) => {
+const reducer = (
+  state: any,
+  action: { type: string; payload: MovieStateTypes }
+) => {
   switch (action.type) {
     case 'ADD':
       return {
@@ -37,7 +40,7 @@ export const MovieContext = createContext({
   isMovieEdited: false,
   movieEditingStateHandler: (value: boolean) => {},
   movieState: initialState,
-  getMovie: (data: any) => {},
+  getMovie: (data: MovieStateTypes) => {},
 });
 
 export const MovieContextProvider: React.FC<Children> = (props) => {
@@ -47,7 +50,7 @@ export const MovieContextProvider: React.FC<Children> = (props) => {
 
   const [movieState, dispatchMovieAction] = useReducer(reducer, initialState);
 
-  const getMovie = (data: any) => {
+  const getMovie = (data: MovieStateTypes) => {
     dispatchMovieAction({
       type: 'ADD',
       payload: data,

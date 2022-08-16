@@ -1,7 +1,12 @@
 import { useRouter } from 'next/router';
 
-export const useSingleImage = () => {
+export const useSingleImage = (props: string | any) => {
+  const { image } = props;
   const router = useRouter();
 
-  return { router };
+  const myLoader = () => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${image}`;
+  };
+
+  return { router, myLoader };
 };

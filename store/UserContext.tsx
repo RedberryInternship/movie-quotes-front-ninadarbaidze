@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useReducer } from 'react';
-import { Children, UserContextData } from 'types';
+import { Children, UserContextData, UserStateTypes } from 'types';
 
 const initialState = {
   username: '',
@@ -18,7 +19,7 @@ const reducer = (state: any, action: { type: any; payload: any }) => {
 
 export const UserContext = createContext({
   userState: initialState,
-  getUser: (data: any) => {},
+  getUser: (_data: UserStateTypes) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
