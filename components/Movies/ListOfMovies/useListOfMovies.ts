@@ -12,8 +12,13 @@ export const useListOfMovies = () => {
   const ctx = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [movieSum, setMovieSum] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { data: session } = useSession();
+
+  const onChange = (event: { target: { value: string } }) => {
+    setSearchQuery(event.target.value);
+  };
 
   const getData = async () => {
     let currentLan = router.locale;
@@ -50,5 +55,7 @@ export const useListOfMovies = () => {
     setMovieSum,
     setData,
     getData,
+    searchQuery,
+    onChange,
   };
 };
