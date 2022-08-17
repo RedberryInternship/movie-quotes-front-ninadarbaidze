@@ -10,7 +10,11 @@ const SideBar = () => {
   return (
     <>
       <div className='xs:hidden lg:flex flex-col gap-8  h-full '>
-        <UserInfo useLink={true} color={profileState ? 'red' : ''} className='px-[20%] mt-10' />
+        <UserInfo
+          useLink={true}
+          color={profileState ? 'red' : ''}
+          className='px-[20%] mt-10'
+        />
         <div className='flex flex-col gap-8 pl-[23%] justify-start'>
           <div className='flex items-center '>
             <div className='w-12'>

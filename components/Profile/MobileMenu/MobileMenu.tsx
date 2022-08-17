@@ -4,7 +4,7 @@ import { useMobileMenu } from './useMobileMenu';
 import { UserInfo } from 'components';
 
 const MobileMenu = () => {
-  const { t } = useMobileMenu();
+  const { t, movieIconState, homeIconState } = useMobileMenu();
   return (
     <div className='lg:hidden bg-mainDark w-[80%] h-[70%] rounded-[12px] absolute top-0 left-0 z-50'>
       <div className='flex flex-col gap-8  h-full '>
@@ -12,17 +12,17 @@ const MobileMenu = () => {
         <div className='flex flex-col gap-8 pl-[13%] justify-start'>
           <div className='flex items-center '>
             <div className='w-12'>
-              <HomeIcon />
+              <HomeIcon className={homeIconState ? 'red' : 'white'} />{' '}
             </div>
-            <Link href=''>
+            <Link href='/feed'>
               <a className='text-white'>{t('profile:feed')}</a>
             </Link>
           </div>
           <div className='flex items-center'>
             <div className='w-12'>
-              <MovieIcon />
+              <MovieIcon className={movieIconState ? 'red' : 'white'} />
             </div>
-            <Link href=''>
+            <Link href='/feed/movies'>
               <a className='text-white'>{t('profile:movieList')}</a>
             </Link>
           </div>
