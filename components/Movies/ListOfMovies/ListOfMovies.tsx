@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { FeedButton, SingleImage } from 'components';
 import { useListOfMovies } from './useListOfMovies';
-import { getMovies } from 'services';
-import { MovieTypes } from './types';
 
 const ListOfMovies = () => {
   const {
@@ -16,27 +14,10 @@ const ListOfMovies = () => {
     setData,
     setMovieSum,
     session,
+    getData,
   } = useListOfMovies();
 
   useEffect(() => {
-    let currentLan = router.locale;
-    const getData = async () => {
-      let token = session ? session.accessToken : ctx.token;
-      try {
-        const response = await getMovies(token as string);
-        const movieNumber = response.data.length;
-        const newData = response.data.map((movies: MovieTypes) => {
-          return {
-            id: movies._id,
-            movieName: movies[currentLan!].movieName,
-            year: movies.year,
-            image: movies.image,
-          };
-        });
-        setMovieSum(movieNumber);
-        setData(newData);
-      } catch (err: any) {}
-    };
     getData();
   }, [
     ctx.token,
