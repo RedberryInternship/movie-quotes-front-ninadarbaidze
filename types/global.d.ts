@@ -13,10 +13,10 @@ export type ChildrenAndClass = {
   className?: string;
 };
 export type ClickAndClass = {
-  onClick: any;
+  onClick: () => void;
   className?: string;
 };
 
 export type OnClick = {
-  onClick: any;
+  onClick: () => void;
 };

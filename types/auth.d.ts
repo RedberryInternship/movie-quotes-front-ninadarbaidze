@@ -16,7 +16,10 @@ export type AuthGoogleTypes = {
 };
 
 export type PasswordRecoveryTypes = {
-  email: string;
+  email?: string;
+  token?: setFieldValue;
+  password: string;
+  repeatPassword: string;
 };
 
 export type loginTypes = {

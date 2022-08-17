@@ -9,7 +9,7 @@ export const imagePreviewHandler = (
   if (!userCtx.userState.profileImage && session?.user) {
     return defaultProfileImg;
   } else if (session?.user) {
-    return session!.user.image as any;
+    return session!.user.image as string;
   } else {
     return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
   }

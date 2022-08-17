@@ -26,18 +26,18 @@ export const useProfileForm = () => {
   };
 
   const onSubmit = async (values: ProfileInfoTypes) => {
-    const userId: any = session ? session.userId : ctx.userId;
-    const token: any = session ? session.accessToken : ctx.token;
+    const userId: string | unknown = session ? session.userId : ctx.userId;
+    const token: string | unknown = session ? session.accessToken : ctx.token;
     const formData = new FormData();
     const keys = Object.keys(values);
 
     keys.forEach((key: string) => {
       formData.append(`${key}`, values[key as keyof typeof values]);
     });
-    formData.append('userId', userId);
+    formData.append('userId', userId as string);
 
     try {
-      await updateProfile(formData, token);
+      await updateProfile(formData, token as string);
       router.push(`/feed`);
     } catch (error: any) {
       throw new Error('Request failed!');

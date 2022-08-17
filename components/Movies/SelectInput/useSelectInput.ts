@@ -36,7 +36,7 @@ export const useSelectInput = () => {
       borderWidth: '1px',
     }),
 
-    singleValue: (provided: any, state: { isDisabled: any }) => {
+    singleValue: (provided: any, state: { isDisabled: boolean }) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = 'opacity 300ms';
 

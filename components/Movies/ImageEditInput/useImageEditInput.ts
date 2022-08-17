@@ -2,8 +2,9 @@ import { useCallback, useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'next-i18next';
 import { MovieContext } from 'store';
+import { FieldProps } from 'formik';
 
-export const useImageEditInput = (props: { form: any }) => {
+export const useImageEditInput = (props: { form: FieldProps }) => {
   const { form } = props;
   const [imagePreview, setImagePreview] = useState<string | File | any>();
   const { t } = useTranslation();

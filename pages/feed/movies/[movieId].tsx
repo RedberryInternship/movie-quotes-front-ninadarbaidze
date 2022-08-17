@@ -5,8 +5,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from 'store';
+import { Data } from 'types';
 
-const MovieId = ({ data }: any) => {
+const MovieId = ({ data }: Data) => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const { status } = useSession();

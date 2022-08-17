@@ -12,7 +12,7 @@ import { getMovieById } from 'services';
 import { useMovieDetails } from './useMovieDetails';
 import { Data } from 'types';
 
-const MovieDetails: React.FC<Data> = ({ data }) => {
+const MovieDetails: React.FC<Data> = ({ data }: Data) => {
   const {
     t,
     router,
@@ -24,7 +24,7 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
     movieCtx,
     deleteMovieHandler,
     setOpenDeleteModal,
-  } = useMovieDetails({ data } as any);
+  } = useMovieDetails({ data });
 
   useEffect(() => {
     const getData = async () => {

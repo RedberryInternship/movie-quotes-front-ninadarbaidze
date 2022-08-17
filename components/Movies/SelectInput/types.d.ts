@@ -4,7 +4,7 @@ export interface Option {
 }
 
 export interface CustomSelectProps {
-  options: any;
+  options: Option[];
   isMulti?: boolean;
   className?: string;
   placeholder?: string;

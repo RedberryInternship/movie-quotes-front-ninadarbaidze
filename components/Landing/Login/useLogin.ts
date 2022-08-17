@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
 import { login } from 'services';
+import { loginTypes } from 'types';
 
 export const useLogin = () => {
   const ctx = useContext(AuthContext);
@@ -16,7 +17,7 @@ export const useLogin = () => {
 
   const router = useRouter();
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: loginTypes) => {
     try {
       const response = await login(values);
       ctx.loginHandler(

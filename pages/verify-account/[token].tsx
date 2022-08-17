@@ -5,7 +5,7 @@ const VerifyAccount = () => {
 };
 
 export const getServerSideProps = async (context: {
-  query: { token: any };
+  query: { token: string };
 }) => {
   const token = context.query.token;
 

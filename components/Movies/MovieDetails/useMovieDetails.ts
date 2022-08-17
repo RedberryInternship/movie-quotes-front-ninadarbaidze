@@ -22,7 +22,7 @@ export const useMovieDetails = (props: { data: MovieStateTypes }) => {
     try {
       const movieId = { movieId: router.query.movieId };
       setOpenDeleteModal(false);
-      await deleteMovie(token as string, movieId);
+      await deleteMovie(token as string, movieId as unknown as string);
       router.replace(`/feed/movies`);
     } catch (err: any) {}
   };

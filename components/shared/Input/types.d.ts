@@ -5,8 +5,8 @@ export type InputTypes = {
   type: string;
   id: string;
   placeholder: string;
-  onChange: any;
-  onBlur: any;
+  onChange: () => void;
+  onBlur: () => void;
   isTouched: boolean | undefined;
   value: string;
   errorMessage: string;

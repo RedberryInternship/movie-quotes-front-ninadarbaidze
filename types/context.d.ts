@@ -3,7 +3,7 @@ export type ContextData = {
   userId: string | null | undefined;
   isLoggedIn: boolean;
   loginHandler: (userId: string, token: string) => void;
-  logoutHandler: any;
+  logoutHandler: () => void;
   registrationModalState: boolean;
   changeRegistrationModalState: (_value: boolean) => void;
   loginModalState: boolean;
@@ -16,7 +16,7 @@ export type ContextData = {
 
 export type UserContextData = {
   userState: UserStateTypes;
-  getUser: (data: UserStateTypes) => void;
+  getUser: (data: MovieStateTypes) => void;
 };
 
 export type UserStateTypes = {
