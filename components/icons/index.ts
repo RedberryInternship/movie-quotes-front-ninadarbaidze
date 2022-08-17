@@ -13,3 +13,4 @@ export { default as AddBtn } from './AddBtn';
 export { default as QuoteIcon } from './QuoteIcon';
 export { default as EditBtn } from './EditBtn';
 export { default as Trash } from './Trash';
+export { default as Search } from './Search';
