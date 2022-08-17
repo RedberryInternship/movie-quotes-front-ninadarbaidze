@@ -2,8 +2,7 @@ import { FieldProps } from 'formik';
 import React from 'react';
 import Select from 'react-select';
 import { CustomSelectProps, Option } from './types';
-import { getValue } from './helper';
-import { useSelectInput } from './useSelectInput';
+import { getValue, customStyles } from './helper';
 
 const SelectInput = ({
   className,
@@ -13,8 +12,6 @@ const SelectInput = ({
   options,
   isMulti = false,
 }: CustomSelectProps & FieldProps) => {
-  const { customStyles } = useSelectInput();
-
   const onChange = (option: Option[]) => {
     form.setFieldValue(
       field.name,

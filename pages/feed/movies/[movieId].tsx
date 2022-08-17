@@ -1,16 +1,12 @@
 import { FeedWrapper, MovieDetails } from 'components';
+import { useMovieDetail } from 'hooks';
 import { GetServerSideProps } from 'next';
-import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
-import { AuthContext } from 'store';
+import React, { useEffect } from 'react';
 import { Data } from 'types';
 
 const MovieId = ({ data }: Data) => {
-  const router = useRouter();
-  const ctx = useContext(AuthContext);
-  const { status } = useSession();
+  const { router, ctx, status } = useMovieDetail();
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {

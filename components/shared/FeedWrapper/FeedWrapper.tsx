@@ -2,29 +2,12 @@ import { useEffect } from 'react';
 import { MainHeader, SideBar } from 'components';
 import { Children } from 'types';
 import { useFeedWrapper } from './useFeedWrapper';
-import { getUserInfo } from 'services';
 
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
-  const { userCtx, ctx, session, mobileMenu, setMobileMenu } = useFeedWrapper();
+  const { ctx, session, mobileMenu, setMobileMenu, getData } = useFeedWrapper();
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        let response;
-        let userId: any;
-
-        if (session) {
-          const token = session.accessToken;
-          userId = session.userId;
-          response = await getUserInfo(userId, token as string);
-          userCtx.getUser(response.data.user);
-        } else {
-          response = await getUserInfo(ctx.userId, ctx.token);
-          userCtx.getUser(response.data.user);
-        }
-      } catch (err: any) {}
-    };
     getData();
   }, [ctx.token, ctx.userId, session]);
 

@@ -1,15 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import type { GetStaticProps } from 'next';
 import { EditProfile, FeedWrapper } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { AuthContext } from 'store';
-import { useSession } from 'next-auth/react';
+
+import { useProfile } from 'hooks';
 
 const Profile = () => {
-  const router = useRouter();
-  const ctx = useContext(AuthContext);
-  const { status } = useSession();
+  const { router, ctx, status } = useProfile();
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
