@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { HomeIcon, MovieIcon } from 'components';
-import { useMobMenu } from './useMobMenu';
+import { useMobileMenu } from './useMobileMenu';
 import { UserInfo } from 'components';
 
-const MobMenu = () => {
-  const { t } = useMobMenu();
+const MobileMenu = () => {
+  const { t } = useMobileMenu();
   return (
     <div className='lg:hidden bg-mainDark w-[80%] h-[70%] rounded-[12px] absolute top-0 left-0 z-50'>
       <div className='flex flex-col gap-8  h-full '>
@@ -32,4 +32,4 @@ const MobMenu = () => {
   );
 };
 
-export default MobMenu;
+export default MobileMenu;

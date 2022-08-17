@@ -6,7 +6,7 @@ import { getUserInfo } from 'services';
 
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
-  const { userCtx, ctx, session, mobMenu, setMobMenu } = useFeedWrapper();
+  const { userCtx, ctx, session, mobileMenu, setMobileMenu } = useFeedWrapper();
 
   useEffect(() => {
     const getData = async () => {
@@ -30,11 +30,11 @@ const FeedWrapper: React.FC<Children> = (props) => {
 
   return (
     <>
-      <MainHeader setMobMenu={setMobMenu} mobMenu={mobMenu} />
+      <MainHeader setMobileMenu={setMobileMenu} mobileMenu={mobileMenu} />
 
       <div
         className='flex w-screen h-[100%] py-[100vh] bg-background pt-10 '
-        onClick={() => setMobMenu(false)}
+        onClick={() => setMobileMenu(false)}
       >
         <div className='lg:w-[22%] z-0'>
           <SideBar />

@@ -1,7 +1,7 @@
 import { FormValues } from './types';
-import { FieldProps } from 'formik';
+import { FormikProps } from 'formik';
 
-const MovieTextArea: React.FC<FormValues & FieldProps> = ({
+const MovieTextArea: React.FC<FormikProps<FormValues>> = ({
   field,
   ...props
 }) => {

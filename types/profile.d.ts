@@ -1,6 +1,6 @@
-export type MobMenuTypes = {
-  mobMenu?: boolean;
-  setMobMenu: (boolean) => void;
+export type MobileMenuTypes = {
+  mobileMenu?: boolean;
+  setMobileMenu: (boolean) => void;
 };
 
 export type ProfileResponse = {
