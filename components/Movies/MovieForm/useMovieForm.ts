@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext, MovieContext } from 'store';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FormValues } from './types';
 import { useSession } from 'next-auth/react';
-import { addMovie, editMovie } from 'services';
+import { addMovie, editMovie, getGenres } from 'services';
 
 export const useMovieForm = () => {
   const { t } = useTranslation();
@@ -12,41 +12,24 @@ export const useMovieForm = () => {
   const movieCtx = useContext(MovieContext);
   const { data: session } = useSession();
   const router = useRouter();
+  const [genres, setGenres] = useState();
 
-  const genres = [
-    {
-      label: `${t('genres:Drama')}`,
-      value: 'genres:Drama',
-    },
-    {
-      label: `${t('genres:Western')}`,
-      value: 'genres:Western',
-    },
-    {
-      label: `${t('genres:Romance')}`,
-      value: 'genres:Romance',
-    },
-    {
-      label: `${t('genres:Horror')}`,
-      value: 'genres:Horror',
-    },
-    {
-      label: `${t('genres:Fantasy')}`,
-      value: 'genres:Fantasy',
-    },
-    {
-      label: `${t('genres:Action')}`,
-      value: 'genres:Action',
-    },
-    {
-      label: `${t('genres:Comedy')}`,
-      value: 'genres:Comedy',
-    },
-    {
-      label: `${t('genres:Thriller')}`,
-      value: 'genres:Thriller',
-    },
-  ];
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getGenres();
+        const updatedGenres = response.data.map(
+          (genre: { label: string; value: string }) => ({
+            label: `${t(`genres:${genre.label}`)}`,
+            value: genre.value,
+          })
+        );
+        setGenres(updatedGenres);
+      } catch (err) {}
+    };
+
+    getData();
+  }, [t]);
 
   const isMovieEdited = movieCtx.isMovieEdited;
   const movieState = movieCtx.movieState;
@@ -81,11 +64,11 @@ export const useMovieForm = () => {
       if (!movieCtx.isMovieEdited) {
         await addMovie(formData, token);
         movieCtx.movieCreationStateHandler();
-        router.replace(`/feed/movies/${movieId}`);
+        router.replace('/feed/movies');
       } else {
         await editMovie(formData, token, movieId);
         movieCtx.movieEditingStateHandler(false);
-        router.replace('/feed/movies');
+        router.replace(`/feed/movies/${movieId}`);
       }
       movieCtx.getMoviesRefresh();
     } catch (error: any) {

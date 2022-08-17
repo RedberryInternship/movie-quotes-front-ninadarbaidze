@@ -11,11 +11,14 @@ export const addMovie = async (
   return response;
 };
 
-//change response
 export const getMovies = async (token: string): Promise<AxiosResponse<any>> => {
   const response = await axios.get(`movies`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+  return response;
+};
+export const getGenres = async (): Promise<AxiosResponse<any>> => {
+  const response = await axios.get(`genres`);
   return response;
 };
 
@@ -37,7 +40,6 @@ export const editMovie = async (
   return response;
 };
 
-//change response
 export const deleteMovie = async (
   token: string,
   data: any
