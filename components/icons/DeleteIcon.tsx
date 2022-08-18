@@ -1,6 +1,6 @@
-import { Click } from 'types';
+import { OnClick } from 'types';
 
-const DeleteIcon: React.FC<Click> = (props) => {
+const DeleteIcon: React.FC<OnClick> = (props) => {
   const { onClick } = props;
   return (
     <svg

@@ -1,6 +1,6 @@
-import { Click } from 'types';
+import { OnClick } from 'types';
 
-const BellIcon: React.FC<Click> = (props) => {
+const BellIcon: React.FC<OnClick> = (props) => {
   const { onClick } = props;
   return (
     <svg
