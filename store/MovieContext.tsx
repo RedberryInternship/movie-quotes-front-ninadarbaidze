@@ -20,7 +20,7 @@ const initialState = {
   image: '',
 };
 const reducer = (
-  state: any,
+  state: MovieStateTypes | any,
   action: { type: string; payload: MovieStateTypes }
 ) => {
   switch (action.type) {

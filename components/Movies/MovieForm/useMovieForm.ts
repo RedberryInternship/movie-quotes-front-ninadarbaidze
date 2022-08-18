@@ -48,8 +48,10 @@ export const useMovieForm = () => {
   };
 
   const onSubmit = async (values: FormValues) => {
-    const userId: string | Blob | any = session ? session.userId : ctx.userId;
-    const token: string | Blob | any = session
+    const userId: string | Blob | unknown = session
+      ? session.userId
+      : ctx.userId;
+    const token: string | Blob | unknown = session
       ? session.accessToken
       : ctx.token;
     const movieId = router.query.movieId;
@@ -59,14 +61,14 @@ export const useMovieForm = () => {
     keys.forEach((key: string) => {
       formData.append(`${key}`, values[key]);
     });
-    formData.append('userId', userId);
+    formData.append('userId', userId as string);
     try {
       if (!movieCtx.isMovieEdited) {
-        await addMovie(formData, token);
+        await addMovie(formData, token as string);
         movieCtx.movieCreationStateHandler();
         router.replace('/feed/movies');
       } else {
-        await editMovie(formData, token, movieId);
+        await editMovie(formData, token as string, movieId);
         movieCtx.movieEditingStateHandler(false);
         router.replace(`/feed/movies/${movieId}`);
       }

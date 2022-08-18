@@ -1,35 +1,9 @@
-import React, { useEffect } from 'react';
 import { FeedButton, SingleImage, Search } from 'components';
 import { useListOfMovies } from './useListOfMovies';
 
 const ListOfMovies = () => {
-  const {
-    movieCtx,
-    t,
-    ctx,
-    data,
-    movieSum,
-    router,
-    openMovieForm,
-    setData,
-    setMovieSum,
-    session,
-    getData,
-    searchQuery,
-    onChange,
-  } = useListOfMovies();
-
-  useEffect(() => {
-    getData();
-  }, [
-    ctx.token,
-    ctx.userId,
-    router.locale,
-    movieCtx.movieAdded,
-    setMovieSum,
-    setData,
-    session,
-  ]);
+  const { t, data, movieSum, openMovieForm, searchQuery, onChange } =
+    useListOfMovies();
 
   return (
     <>

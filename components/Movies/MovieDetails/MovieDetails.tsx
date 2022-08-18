@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Image from 'next/image';
 import {
   DeleteMovieModal,
@@ -7,15 +6,13 @@ import {
   AddMovieModal,
   FeedBackdrop,
 } from 'components';
-import { getMovieById } from 'services';
 
 import { useMovieDetails } from './useMovieDetails';
 import { Data } from 'types';
 
-const MovieDetails: React.FC<Data> = ({ data }: Data) => {
+const MovieDetails: React.FC<Data> = ({ data }) => {
   const {
     t,
-    router,
     genresArray,
     openDeleteModal,
     myLoader,
@@ -25,17 +22,6 @@ const MovieDetails: React.FC<Data> = ({ data }: Data) => {
     deleteMovieHandler,
     setOpenDeleteModal,
   } = useMovieDetails({ data });
-
-  useEffect(() => {
-    const getData = async () => {
-      const movieId = router.query.movieId;
-      try {
-        const response = await getMovieById(movieId as string);
-        movieCtx.getMovie(response.data.movie);
-      } catch (err: any) {}
-    };
-    getData();
-  }, [router.query.movieId]);
 
   return (
     <>

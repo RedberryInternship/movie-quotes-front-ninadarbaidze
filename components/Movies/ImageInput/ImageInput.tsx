@@ -3,7 +3,7 @@ import { UploadImgIcon } from 'components';
 import Image from 'next/image';
 import { useImageInput } from './useImageInput';
 
-const ImageInput = ({ form }: FieldProps) => {
+const ImageInput: React.FC<FieldProps> = ({ form }) => {
   const { imagePreview, getRootProps, getInputProps, t } = useImageInput({
     form,
   });

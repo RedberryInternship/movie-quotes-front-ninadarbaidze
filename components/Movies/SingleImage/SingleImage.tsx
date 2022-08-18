@@ -6,7 +6,7 @@ import { SingleImageType } from './types';
 
 const SingleImage: React.FC<SingleImageType> = (props) => {
   const { movieName, year, id, image } = props;
-  const { router, myLoader } = useSingleImage({ image } as string | any);
+  const { router, myLoader } = useSingleImage({ image } as unknown as string);
 
   return (
     <>

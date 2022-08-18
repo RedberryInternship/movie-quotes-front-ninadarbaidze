@@ -2,17 +2,10 @@ import { FeedWrapper, MovieDetails } from 'components';
 import { useMovieDetail } from 'hooks';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { useEffect } from 'react';
 import { Data } from 'types';
 
 const MovieId = ({ data }: Data) => {
-  const { router, ctx, status } = useMovieDetail();
-
-  useEffect(() => {
-    if (status === 'unauthenticated' && !ctx.isLoggedIn) {
-      router.push('/');
-    }
-  }, [ctx.isLoggedIn, router, status]);
+  useMovieDetail();
 
   return (
     <>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import type { GetStaticProps } from 'next';
 import {
   FeedWrapper,
@@ -11,13 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMovies } from 'hooks';
 
 const Movies = () => {
-  const { router, ctx, movieCtx, status } = useMovies();
-
-  useEffect(() => {
-    if (status === 'unauthenticated' && !ctx.isLoggedIn) {
-      router.push('/');
-    }
-  }, [ctx.isLoggedIn, router, status]);
+  const { movieCtx } = useMovies();
 
   return (
     <>

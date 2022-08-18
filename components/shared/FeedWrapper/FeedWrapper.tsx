@@ -1,15 +1,10 @@
-import { useEffect } from 'react';
 import { MainHeader, SideBar } from 'components';
 import { Children } from 'types';
 import { useFeedWrapper } from './useFeedWrapper';
 
 const FeedWrapper: React.FC<Children> = (props) => {
   const { children } = props;
-  const { ctx, session, mobileMenu, setMobileMenu, getData } = useFeedWrapper();
-
-  useEffect(() => {
-    getData();
-  }, [ctx.token, ctx.userId, session]);
+  const { mobileMenu, setMobileMenu } = useFeedWrapper();
 
   return (
     <>

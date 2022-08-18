@@ -35,7 +35,7 @@ export const getMovieById = async (
 };
 
 export const editMovie = async (
-  data: any,
+  data: unknown,
   token: string,
   movieId: string | undefined | string[]
 ): Promise<AxiosResponse<any, string>> => {

@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext, MovieContext } from 'store';
 
 export const useMovies = () => {
@@ -8,6 +8,12 @@ export const useMovies = () => {
   const ctx = useContext(AuthContext);
   const movieCtx = useContext(MovieContext);
   const { status } = useSession();
+
+  useEffect(() => {
+    if (status === 'unauthenticated' && !ctx.isLoggedIn) {
+      router.push('/');
+    }
+  }, [ctx.isLoggedIn, router, status]);
 
   return { router, ctx, movieCtx, status };
 };

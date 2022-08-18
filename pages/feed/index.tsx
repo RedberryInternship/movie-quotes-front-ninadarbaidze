@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import type { GetStaticProps } from 'next';
 import { FeedWrapper } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -6,13 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useFeed } from 'hooks';
 
 const Feed = () => {
-  const { router, ctx, status } = useFeed();
-
-  useEffect(() => {
-    if (status === 'unauthenticated' && !ctx.isLoggedIn) {
-      router.push('/');
-    }
-  }, [ctx.isLoggedIn, router, status]);
+  useFeed();
 
   return (
     <>

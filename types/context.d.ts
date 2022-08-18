@@ -63,4 +63,8 @@ export type DataTypes = {
   year: number;
   budget: number;
   image: string;
+  en: MovieInfo | undefined;
+  ge: MovieInfo | undefined;
+  genres?: string[];
+  userId?: string;
 };

@@ -1,3 +1,5 @@
+import { StylesConfig } from 'react-select';
+
 export const getValue = (options: any[], field: { value: string }) => {
   if (options) {
     return options.filter(
@@ -8,44 +10,44 @@ export const getValue = (options: any[], field: { value: string }) => {
   }
 };
 
-export const customStyles = {
-  option: (provided: any) => ({
+export const customStyles: StylesConfig<typeof Option> = {
+  option: (provided) => ({
     ...provided,
     borderBottom: '1px dotted gray',
     color: '#6C757D',
     padding: 8,
   }),
-  control: (provided: any) => ({
+  control: (provided) => ({
     ...provided,
     background: 'none',
     borderRadius: '4px',
     borderColor: '#6C757D',
   }),
-  placeholder: (provided: any) => ({
+  placeholder: (provided) => ({
     ...provided,
     color: 'white',
   }),
-  multiValue: (provided: any) => ({
+  multiValue: (provided) => ({
     ...provided,
     backgroundColor: '#6C757D',
     color: 'white',
   }),
-  multiValueLabel: (provided: any) => ({
+  multiValueLabel: (provided) => ({
     ...provided,
     color: 'white',
   }),
-  menuList: (provided: any) => ({
+  menuList: (provided) => ({
     ...provided,
     color: 'white',
   }),
-  menu: (provided: any) => ({
+  menu: (provided) => ({
     ...provided,
     background: '#11101A',
     borderColor: '#6C757D',
     borderWidth: '1px',
   }),
 
-  singleValue: (provided: any, state: { isDisabled: boolean }) => {
+  singleValue: (provided, state: { isDisabled: boolean }) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
 

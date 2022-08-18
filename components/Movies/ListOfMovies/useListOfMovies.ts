@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { MovieContext, AuthContext } from 'store';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -20,24 +20,35 @@ export const useListOfMovies = () => {
     setSearchQuery(event.target.value);
   };
 
-  const getData = async () => {
-    let currentLan = router.locale;
-    let token = session ? session.accessToken : ctx.token;
-    try {
-      const response = await getMovies(token as string);
-      const movieNumber = response.data.length;
-      const newData = response.data.map((movies: MovieTypes) => {
-        return {
-          id: movies._id,
-          movieName: movies[currentLan!].movieName,
-          year: movies.year,
-          image: movies.image,
-        };
-      });
-      setMovieSum(movieNumber);
-      setData(newData);
-    } catch (err: any) {}
-  };
+  useEffect(() => {
+    const getData = async () => {
+      let currentLan = router.locale;
+      let token = session ? session.accessToken : ctx.token;
+      try {
+        const response = await getMovies(token as string);
+        const movieNumber = response.data.length;
+        const newData = response.data.map((movies: MovieTypes) => {
+          return {
+            id: movies._id,
+            movieName: movies[currentLan!].movieName,
+            year: movies.year,
+            image: movies.image,
+          };
+        });
+        setMovieSum(movieNumber);
+        setData(newData);
+      } catch (err: any) {}
+    };
+    getData();
+  }, [
+    ctx.token,
+    ctx.userId,
+    router.locale,
+    movieCtx.movieAdded,
+    setMovieSum,
+    setData,
+    session,
+  ]);
 
   const openMovieForm = () => {
     movieCtx.movieCreationStateHandler();
@@ -54,7 +65,6 @@ export const useListOfMovies = () => {
     openMovieForm,
     setMovieSum,
     setData,
-    getData,
     searchQuery,
     onChange,
   };

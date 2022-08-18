@@ -14,7 +14,7 @@ import { FormValues } from './types';
 const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
-  const renderForm = ({ errors }: FormikProps<FormValues>) => (
+  const renderForm: React.FC<FormikProps<FormValues>> = ({ errors }) => (
     <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
       {errors.movieNameEN ||
       errors.movieNameGE ||
