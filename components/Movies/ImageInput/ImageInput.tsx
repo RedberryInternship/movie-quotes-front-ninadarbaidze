@@ -6,7 +6,7 @@ import { useImageInput } from './useImageInput';
 const ImageInput: React.FC<FieldProps> = ({ form }) => {
   const { imagePreview, getRootProps, getInputProps, t } = useImageInput({
     form,
-  });
+  } as FieldProps | any);
 
   return (
     <>
