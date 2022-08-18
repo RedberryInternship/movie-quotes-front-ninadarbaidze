@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'next-i18next';
 import { FieldProps } from 'formik';
 
-export const useImageInput = (props: { form: FieldProps }) => {
+export const useImageInput = (props: { form: FieldProps | any }) => {
   const { form } = props;
   const [imagePreview, setImagePreview] = useState<any>();
   const { t } = useTranslation();
