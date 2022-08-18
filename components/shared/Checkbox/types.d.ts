@@ -1,6 +1,6 @@
 export type CheckboxTypes = {
   name: string;
   checked: boolean;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<any>) => void;
   text: string;
 };
