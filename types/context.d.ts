@@ -16,7 +16,7 @@ export type ContextData = {
 
 export type UserContextData = {
   userState: UserStateTypes;
-  getUser: (data: MovieStateTypes) => void;
+  getUser: (data: UserStateTypes) => void;
 };
 
 export type UserStateTypes = {
