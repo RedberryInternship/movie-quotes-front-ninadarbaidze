@@ -35,7 +35,7 @@ export const useMovieForm = () => {
   const movieState = movieCtx.movieState;
 
   const defaultValues: FormValues = {
-    genre: isMovieEdited ? movieState.genres[0].split(',') : [],
+    genre: isMovieEdited ? movieState.genres![0].split(',') : [],
     movieNameEN: isMovieEdited ? movieState.en.movieName : '',
     movieNameGE: isMovieEdited ? movieState.ge.movieName : '',
     directorEN: isMovieEdited ? movieState.en.director : '',
