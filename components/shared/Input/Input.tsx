@@ -30,7 +30,7 @@ const Input: React.FC<InputTypes> = (props) => {
     : type;
 
   const deleteInputHandler = () => {
-    document.getElementById(`${id}`)!.value = '';
+    (document.getElementById(`${id}`) as HTMLInputElement)!.value = '';
   };
 
   return (

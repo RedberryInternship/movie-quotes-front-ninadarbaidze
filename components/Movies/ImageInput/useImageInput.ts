@@ -6,7 +6,7 @@ import { FieldProps } from 'formik';
 
 export const useImageInput = (props: { form: FieldProps }) => {
   const { form } = props;
-  const [imagePreview, setImagePreview] = useState<string | Blob>();
+  const [imagePreview, setImagePreview] = useState<any>();
   const { t } = useTranslation();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {

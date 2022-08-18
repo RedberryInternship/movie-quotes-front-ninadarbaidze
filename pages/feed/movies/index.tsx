@@ -6,8 +6,7 @@ import {
   ListOfMovies,
 } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
-import { useMovies } from 'hooks';
+import { useMovies } from 'hooks/useMovies';
 
 const Movies = () => {
   const { movieCtx } = useMovies();

@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 import { EditProfile, FeedWrapper } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { useProfile } from 'hooks';
+import { useProfile } from 'hooks/useProfile';
 
 const Profile = () => {
   useProfile();

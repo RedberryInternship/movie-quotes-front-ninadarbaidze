@@ -15,7 +15,7 @@ const initialState = {
   },
   budget: null,
   year: null,
-  genres: [],
+  genres: '',
   userId: '',
   image: '',
 };

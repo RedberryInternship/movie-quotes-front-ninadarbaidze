@@ -59,7 +59,7 @@ export const useMovieForm = () => {
     const keys = Object.keys(values);
 
     keys.forEach((key: string) => {
-      formData.append(`${key}`, values[key]);
+      formData.append(`${key}`, values[key as keyof FormValues]);
     });
     formData.append('userId', userId as string);
     try {
