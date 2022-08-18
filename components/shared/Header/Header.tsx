@@ -1,11 +1,7 @@
 import { Button, LanguageSwitchBtn, useHeader } from 'components';
-import { useRouter } from 'next/router';
-
 const Header = () => {
   const { t, changeRegistrationModalState, changeLoginModalState } =
     useHeader();
-    
-
   return (
     <>
       <nav className='flex justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-mainDark'>
