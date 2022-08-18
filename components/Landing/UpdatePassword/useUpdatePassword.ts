@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
 import { passwordRecovery } from 'services';
+import { PasswordRecoveryTypes } from 'types';
 
 export const useUpdatePassword = () => {
   const ctx = useContext(AuthContext);
@@ -12,7 +13,7 @@ export const useUpdatePassword = () => {
   const router = useRouter();
   const token = router.query.token;
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: PasswordRecoveryTypes) => {
     try {
       await passwordRecovery({ ...values, token });
       router.push(`/?modal=password-updated-successfully`);

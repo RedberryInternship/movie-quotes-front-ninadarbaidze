@@ -13,7 +13,7 @@ const Backdrop = () => {
   return (
     <>
       <div
-        className='w-full h-full top-0 fixed bg-black opacity-80 backdrop-filter backdrop-blur-lg z-20'
+        className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-30 backdrop-filter backdrop-blur-sm z-20'
         onClick={closeModalHandler}
       ></div>
     </>

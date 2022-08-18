@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
 import { passwordRecovery } from 'services';
+import { PasswordRecoveryTypes } from 'types';
 
 export const useForgotPassword = () => {
   const ctx = useContext(AuthContext);
@@ -14,7 +15,7 @@ export const useForgotPassword = () => {
 
   const router = useRouter();
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: PasswordRecoveryTypes) => {
     try {
       await passwordRecovery(values);
       router.push(`/?modal=password-recovery-email-sent`);

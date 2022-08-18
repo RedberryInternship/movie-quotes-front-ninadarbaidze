@@ -1,12 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useReducer } from 'react';
-import { Children, UserContextData } from 'types';
+import {
+  Children,
+  Data,
+  MovieStateTypes,
+  UserContextData,
+  UserStateTypes,
+} from 'types';
 
 const initialState = {
   username: '',
   email: '',
   profileImage: '',
 };
-const reducer = (state: any, action: { type: any; payload: any }) => {
+const reducer = (
+  state: any,
+  action: { type: string; payload: MovieStateTypes }
+) => {
   switch (action.type) {
     case 'ADD':
       return {
@@ -18,13 +28,13 @@ const reducer = (state: any, action: { type: any; payload: any }) => {
 
 export const UserContext = createContext({
   userState: initialState,
-  getUser: (data: any) => {},
+  getUser: (_data: UserStateTypes) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
   const [userState, dispatchUserAction] = useReducer(reducer, initialState);
 
-  const getUser = (data: any) => {
+  const getUser = (data: MovieStateTypes) => {
     dispatchUserAction({
       type: 'ADD',
       payload: data,

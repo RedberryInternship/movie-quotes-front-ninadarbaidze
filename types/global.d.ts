@@ -10,19 +10,13 @@ export type ClassName = {
 
 export type ChildrenAndClass = {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 };
 export type ClickAndClass = {
-  onClick: any;
+  onClick: () => void;
   className?: string;
 };
 
-export type Click = {
-  onClick: any;
-};
-
-export type kkk = {
-  _id: string;
-  email: string;
-  username: string;
+export type OnClick = {
+  onClick: () => void;
 };

@@ -38,7 +38,7 @@ export const verifyAccount = async (
 
 export const passwordRecovery = async (
   data: PasswordRecoveryTypes
-): Promise<any> => {
+): Promise<AxiosResponse<any, string>> => {
   const response = await axios.post(`password-recovery`, data);
   return response;
 };

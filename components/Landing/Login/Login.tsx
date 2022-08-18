@@ -57,7 +57,7 @@ const Login = () => {
           <div className='flex justify-between items-center mt-8'>
             <Checkbox
               name={'remember'}
-              checked={formik.values.remember as any}
+              checked={formik.values.remember as boolean}
               onChange={formik.handleChange}
               text={t('home:remember')}
             />

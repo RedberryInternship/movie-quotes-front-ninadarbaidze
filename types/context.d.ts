@@ -3,7 +3,7 @@ export type ContextData = {
   userId: string | null | undefined;
   isLoggedIn: boolean;
   loginHandler: (userId: string, token: string) => void;
-  logoutHandler: any;
+  logoutHandler: () => void;
   registrationModalState: boolean;
   changeRegistrationModalState: (_value: boolean) => void;
   loginModalState: boolean;
@@ -15,6 +15,56 @@ export type ContextData = {
 };
 
 export type UserContextData = {
-  userState: any;
-  getUser: (data: any) => void;
+  userState: UserStateTypes;
+  getUser: (data: MovieStateTypes) => void;
+};
+
+export type UserStateTypes = {
+  username: string;
+  email: string;
+  profileImage: string;
+};
+
+export type MovieContextTypes = {
+  movieCreationModal: boolean;
+  movieCreationStateHandler: () => void;
+  movieAdded: boolean;
+  getMoviesRefresh: () => void;
+  isMovieEdited: boolean;
+  movieEditingStateHandler: (value: boolean) => void;
+  movieState: MovieStateTypes;
+  getMovie: (data: MovieStateTypes) => void;
+};
+
+export type MovieStateTypes = {
+  en: MovieInfo;
+  ge: MovieInfo;
+  budget: number;
+  year: number;
+  genres: string[];
+  userId: string;
+  image: string;
+};
+
+export type MovieInfo = {
+  movieName: string;
+  director: string;
+  description: string;
+};
+
+export type Data = {
+  data: DataTypes;
+};
+
+export type DataTypes = {
+  name: string;
+  director: string;
+  description: string;
+  year: number;
+  budget: number;
+  image: string;
+  en: MovieInfo | undefined;
+  ge: MovieInfo | undefined;
+  genres?: string[];
+  userId?: string;
 };

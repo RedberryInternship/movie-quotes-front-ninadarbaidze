@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { signup } from 'services';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
+import { RegistrationTypes } from 'types';
 
 export const useSignUp = () => {
   const ctx = useContext(AuthContext);
@@ -16,7 +17,7 @@ export const useSignUp = () => {
 
   const router = useRouter();
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: RegistrationTypes) => {
     try {
       await signup(values);
       router.push(`/?modal=email-sent`);

@@ -8,3 +8,8 @@ export * from './GoogleBtn';
 export * from './Checkbox';
 export * from './MainHeader';
 export * from './NotificationBadge';
+export * from './FeedModal';
+export * from './FeedBackdrop';
+export * from './UserInfo';
+export * from './FeedWrapper';
+export * from './FeedButton';
