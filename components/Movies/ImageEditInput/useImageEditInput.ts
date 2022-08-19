@@ -1,10 +1,10 @@
-import { SetStateAction, useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'next-i18next';
 import { MovieContext } from 'store';
-import { FieldProps } from 'formik';
+import { FormikHelpers } from 'formik';
 
-export const useImageEditInput = (props: { form: FieldProps | any }) => {
+export const useImageEditInput = (props: { form: FormikHelpers<File> }) => {
   const { form } = props;
   const [imagePreview, setImagePreview] = useState<any>();
   const { t } = useTranslation();
@@ -12,8 +12,12 @@ export const useImageEditInput = (props: { form: FieldProps | any }) => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      form.setFieldValue('image', acceptedFiles[0]);
-      setImagePreview(acceptedFiles[0] as unknown as SetStateAction<undefined>);
+      form.setFieldValue('image', acceptedFiles[0]) as unknown as (
+        field: string,
+        value: any,
+        shouldValidate?: boolean
+      ) => void;
+      setImagePreview(acceptedFiles[0] as File);
       Object.assign(acceptedFiles[0], {
         preview: URL.createObjectURL(acceptedFiles[0]),
       });
