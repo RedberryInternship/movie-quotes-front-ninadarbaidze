@@ -59,9 +59,13 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
           </div>
           <div className='w-full md:w-2/5 flex flex-col relative gap-4'>
             <div className='flex absolute right-0 justify-around  w-1/3 md:w-32 py-2 px-4 rounded-[10px] bg-gray50'>
-              <EditBtn onClick={editMovieHandler} />
+              <button onClick={editMovieHandler}>
+                <EditBtn />
+              </button>
               <div className='bg-gray w-[1px] h-4' />
-              <Trash onClick={() => setOpenDeleteModal(true)} />
+              <div onClick={() => setOpenDeleteModal(true)}>
+                <Trash />
+              </div>
             </div>
             <h2 className='text-beidge text-2xl w-2/3 md:w-none'>
               {data.name} ({data.year})
