@@ -21,7 +21,7 @@ export const useProfileForm = () => {
     imageChangeHandler: (imageSrc: string) => void
   ) => {
     formik.setFieldValue('image', event.currentTarget.files![0]);
-    const imageSrc = URL.createObjectURL(event.target.files[0]);
+    const imageSrc = URL.createObjectURL(event.target.files![0]);
     imageChangeHandler(imageSrc);
   };
 

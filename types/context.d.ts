@@ -1,6 +1,6 @@
 export type ContextData = {
-  token: string | null | undefined;
-  userId: string | null | undefined;
+  token: string;
+  userId: string;
   isLoggedIn: boolean;
   loginHandler: (userId: string, token: string) => void;
   logoutHandler: () => void;
@@ -16,7 +16,7 @@ export type ContextData = {
 
 export type UserContextData = {
   userState: UserStateTypes;
-  getUser: (data: MovieStateTypes) => void;
+  getUser: (data: UserStateTypes) => void;
 };
 
 export type UserStateTypes = {
@@ -63,8 +63,8 @@ export type DataTypes = {
   year: number;
   budget: number;
   image: string;
-  en: MovieInfo | undefined;
-  ge: MovieInfo | undefined;
-  genres?: string[];
-  userId?: string;
+  en: MovieInfo;
+  ge: MovieInfo;
+  genres: string[] | any;
+  userId: string | any;
 };

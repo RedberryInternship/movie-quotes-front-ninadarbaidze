@@ -10,8 +10,6 @@ export const useLanguageSwitchBtn = () => {
     setLanguageModal((prevState) => !prevState);
   };
 
-  const router = useRouter();
-
   return {
     locale,
     languageModal,

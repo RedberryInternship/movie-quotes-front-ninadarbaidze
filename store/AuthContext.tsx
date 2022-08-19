@@ -77,7 +77,7 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
 
   const contextValue: ContextData = {
     token: token!,
-    userId: user,
+    userId: user!,
     isLoggedIn: userIsLoggedIn,
     loginHandler: loginHandler,
     logoutHandler: logoutHandler,

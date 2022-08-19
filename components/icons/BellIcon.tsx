@@ -1,7 +1,4 @@
-import { Click } from 'types';
-
-const BellIcon: React.FC<Click> = (props) => {
-  const { onClick } = props;
+const BellIcon = () => {
   return (
     <svg
       width='24'
@@ -9,7 +6,6 @@ const BellIcon: React.FC<Click> = (props) => {
       viewBox='0 0 32 32'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      onClick={onClick}
       className='mr-6 cursor-pointer'
     >
       <g clipPath='url(#clip0_4157_4559)'>

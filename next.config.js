@@ -5,7 +5,11 @@ const nextConfig = {
   swcMinify: true,
   i18n,
   images: {
-    domains: ['http://localhost:3001/', 'lh3.googleusercontent.com'],
+    domains: [
+      'http://localhost:3001/',
+      'lh3.googleusercontent.com',
+      'https://movie-quotes-api.nina.redberryinternship.ge/',
+    ],
   },
 };
 

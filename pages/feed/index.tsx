@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 import { FeedWrapper } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { useFeed } from 'hooks';
+import { useFeed } from 'hooks/useFeed';
 
 const Feed = () => {
   useFeed();

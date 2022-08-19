@@ -1,10 +1,10 @@
 import { FormValues } from './types';
-import { FormikProps } from 'formik';
+import { FieldProps } from 'formik';
+import { InputHTMLAttributes } from 'react';
 
-const MovieTextArea: React.FC<FormikProps<FormValues>> = ({
-  field,
-  ...props
-}) => {
+const MovieTextArea: React.FC<
+  FormValues & FieldProps & InputHTMLAttributes<HTMLTextAreaElement>
+> = ({ field, ...props }) => {
   let { className, lang } = props;
 
   return (

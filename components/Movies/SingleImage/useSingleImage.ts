@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-export const useSingleImage = (props: string) => {
+export const useSingleImage = (props: string | any) => {
   const { image } = props;
   const router = useRouter();
 

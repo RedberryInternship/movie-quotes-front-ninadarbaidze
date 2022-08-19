@@ -1,7 +1,4 @@
-import { Click } from 'types';
-
-const DeleteIcon: React.FC<Click> = (props) => {
-  const { onClick } = props;
+const DeleteIcon = () => {
   return (
     <svg
       width='14'
@@ -9,8 +6,7 @@ const DeleteIcon: React.FC<Click> = (props) => {
       viewBox='0 0 14 14'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className='absolute ml-[92%] cursor-pointer'
-      onClick={onClick}
+      className=''
     >
       <rect width='14' height='14' fill='white' fillOpacity='0.01' />
       <g clipPath='url(#clip0_4351_16735)'>

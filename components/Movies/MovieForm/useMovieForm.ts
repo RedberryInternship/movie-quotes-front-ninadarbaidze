@@ -35,7 +35,7 @@ export const useMovieForm = () => {
   const movieState = movieCtx.movieState;
 
   const defaultValues: FormValues = {
-    genre: isMovieEdited ? movieState.genres[0].split(',') : [],
+    genre: isMovieEdited ? movieState.genres![0].split(',') : [],
     movieNameEN: isMovieEdited ? movieState.en.movieName : '',
     movieNameGE: isMovieEdited ? movieState.ge.movieName : '',
     directorEN: isMovieEdited ? movieState.en.director : '',
@@ -59,7 +59,7 @@ export const useMovieForm = () => {
     const keys = Object.keys(values);
 
     keys.forEach((key: string) => {
-      formData.append(`${key}`, values[key]);
+      formData.append(`${key}`, values[key as keyof FormValues]);
     });
     formData.append('userId', userId as string);
     try {

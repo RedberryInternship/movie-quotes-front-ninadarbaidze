@@ -13,9 +13,9 @@ const initialState = {
     director: '',
     description: '',
   },
-  budget: null,
-  year: null,
-  genres: [],
+  budget: 0,
+  year: 0,
+  genres: [''],
   userId: '',
   image: '',
 };

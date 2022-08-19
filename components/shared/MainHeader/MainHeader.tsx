@@ -24,7 +24,9 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
         <h1 className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl'>
           MOVIE QUOTES
         </h1>
-        <HamMenu onClick={handleMobileMenu} className='lg:hidden' />
+        <button onClick={handleMobileMenu}>
+          <HamMenu className='lg:hidden' />
+        </button>
         <div className='flex gap-4 '>
           <NotificationBadge />
           <LanguageSwitchBtn className='mr-0' />

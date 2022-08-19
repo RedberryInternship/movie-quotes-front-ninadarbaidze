@@ -15,7 +15,7 @@ const initialState = {
 };
 const reducer = (
   state: any,
-  action: { type: string; payload: MovieStateTypes }
+  action: { type: string; payload: UserStateTypes }
 ) => {
   switch (action.type) {
     case 'ADD':
@@ -34,7 +34,7 @@ export const UserContext = createContext({
 export const UserContextProvider: React.FC<Children> = (props) => {
   const [userState, dispatchUserAction] = useReducer(reducer, initialState);
 
-  const getUser = (data: MovieStateTypes) => {
+  const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
       type: 'ADD',
       payload: data,

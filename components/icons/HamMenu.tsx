@@ -1,14 +1,13 @@
-import { ClickAndClass } from 'types';
+import { ClassName } from 'types';
 
-const HamMenu: React.FC<ClickAndClass> = (props) => {
-  const { className, onClick } = props;
+const HamMenu: React.FC<ClassName> = (props) => {
+  const { className } = props;
   return (
     <svg
       width='18'
       height='14'
       viewBox='0 0 18 14'
       fill='none'
-      onClick={onClick}
       className={`${className} cursor-pointer`}
       xmlns='http://www.w3.org/2000/svg'
     >

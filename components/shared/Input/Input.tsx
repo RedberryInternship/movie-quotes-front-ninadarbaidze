@@ -30,7 +30,7 @@ const Input: React.FC<InputTypes> = (props) => {
     : type;
 
   const deleteInputHandler = () => {
-    document.getElementById(`${id}`)!.value = '';
+    (document.getElementById(`${id}`) as HTMLInputElement)!.value = '';
   };
 
   return (
@@ -54,20 +54,31 @@ const Input: React.FC<InputTypes> = (props) => {
         />
         {passwordField ? (
           showPassword ? (
-            <ShowPassword
+            <div
               onClick={showHidePassHandler}
               className={'absolute ml-[90%] cursor-pointer'}
-            />
+            >
+              <ShowPassword />
+            </div>
           ) : (
-            <HidePassword
+            <div
               onClick={showHidePassHandler}
               className={'absolute ml-[90%] cursor-pointer'}
-            />
+            >
+              <HidePassword />
+            </div>
           )
         ) : (
           ''
         )}
-        {deleteInput && <DeleteIcon onClick={deleteInputHandler} />}
+        {deleteInput && (
+          <div
+            onClick={deleteInputHandler}
+            className='absolute ml-[92%] cursor-pointer'
+          >
+            <DeleteIcon />
+          </div>
+        )}
       </div>
 
       <div className='flex gap-3'>

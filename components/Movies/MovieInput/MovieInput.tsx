@@ -1,7 +1,10 @@
 import { FieldProps } from 'formik';
+import { InputHTMLAttributes } from 'react';
 import { FormValues } from './types';
 
-const MovieInput: React.FC<FormValues & FieldProps> = ({ field, ...props }) => {
+const MovieInput: React.FC<
+  FormValues & FieldProps & InputHTMLAttributes<HTMLInputElement>
+> = ({ field, ...props }) => {
   const { className, lang, type } = props;
   return (
     <div className='h-[1.5rem]'>

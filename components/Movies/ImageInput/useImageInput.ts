@@ -2,11 +2,13 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import { useTranslation } from 'next-i18next';
-import { FieldProps } from 'formik';
+import { FormikHelpers } from 'formik';
 
-export const useImageInput = (props: { form: FieldProps }) => {
+export const useImageInput = (props: {
+  form: FormikHelpers<{ image: File }>;
+}) => {
   const { form } = props;
-  const [imagePreview, setImagePreview] = useState<string | Blob>();
+  const [imagePreview, setImagePreview] = useState<any>();
   const { t } = useTranslation();
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {

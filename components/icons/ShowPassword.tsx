@@ -1,14 +1,13 @@
 import React from 'react';
-import { ClickAndClass } from 'types';
+import { ClassName } from 'types';
 
-const ShowHidePassword: React.FC<ClickAndClass> = (props) => {
-  const { className, onClick } = props;
+const ShowHidePassword: React.FC<ClassName> = (props) => {
+  const { className } = props;
   return (
     <svg
       width='24'
       height='24'
       className={className}
-      onClick={onClick}
       xmlns='http://www.w3.org/2000/svg'
       fillRule='evenodd'
       clipRule='evenodd'
