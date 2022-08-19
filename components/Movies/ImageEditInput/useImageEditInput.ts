@@ -4,7 +4,9 @@ import { useTranslation } from 'next-i18next';
 import { MovieContext } from 'store';
 import { FormikHelpers } from 'formik';
 
-export const useImageEditInput = (props: { form: FormikHelpers<File> }) => {
+export const useImageEditInput = (props: {
+  form: FormikHelpers<{ image: File }>;
+}) => {
   const { form } = props;
   const [imagePreview, setImagePreview] = useState<any>();
   const { t } = useTranslation();
