@@ -36,6 +36,11 @@ export type MovieContextTypes = {
   getMovie: (data: MovieStateTypes) => void;
 };
 
+export type QuoteContextTypes = {
+  quoteCreationModal: boolean;
+  quoteCreationStateHandler: () => void;
+};
+
 export type MovieStateTypes = {
   en: MovieInfo;
   ge: MovieInfo;

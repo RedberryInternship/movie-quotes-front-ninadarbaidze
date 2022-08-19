@@ -14,3 +14,4 @@ export { default as QuoteIcon } from './QuoteIcon';
 export { default as EditBtn } from './EditBtn';
 export { default as Trash } from './Trash';
 export { default as Search } from './Search';
+export { default as CreateIcon } from './CreateIcon';

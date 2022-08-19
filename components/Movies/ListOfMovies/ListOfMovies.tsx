@@ -11,18 +11,22 @@ const ListOfMovies = () => {
         <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
           {t('movies:heading')} ({t('movies:total')} {movieSum})
         </h1>
-        <div className='flex'>
-          <div className='items-center hidden sm:flex'>
+        <div className='flex justify-end gap-5 w-92'>
+          <div className='items-center w-32 hidden sm:flex focus-within:w-52 focus-within:border-b-[0.5px] focus-within:border-gray20 transition-all duration-500 ease-in-out'>
             <Search />
             <input
               type='text'
               value={searchQuery}
               placeholder='search'
               onChange={onChange}
-              className='bg-transparent w-32 pl-4 text-white appearance-none outline-none'
+              className='bg-transparent w-full pl-4 text-white appearance-none outline-none'
             />
           </div>
-          <FeedButton text={t('movies:addbtn')} onClick={openMovieForm} />
+          <FeedButton
+            text={t('movies:addbtn')}
+            onClick={openMovieForm}
+            className='w-32'
+          />
         </div>
       </header>
       {data.length === 0 ? (

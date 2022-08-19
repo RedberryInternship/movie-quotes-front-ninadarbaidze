@@ -6,6 +6,7 @@ import {
   AuthContextProvider,
   UserContextProvider,
   MovieContextProvider,
+  QuoteContextProvider,
 } from 'store';
 import { SessionProvider } from 'next-auth/react';
 
@@ -16,13 +17,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <AuthContextProvider>
         <UserContextProvider>
           <MovieContextProvider>
-            <div
-              className={
-                locale === 'en' ? 'font-helvetica_en' : 'font-helvetica_ge'
-              }
-            >
-              <Component {...pageProps} />
-            </div>
+            <QuoteContextProvider>
+              <div
+                className={
+                  locale === 'en' ? 'font-helvetica_en' : 'font-helvetica_ge'
+                }
+              >
+                <Component {...pageProps} />
+              </div>
+            </QuoteContextProvider>
           </MovieContextProvider>
         </UserContextProvider>
       </AuthContextProvider>
