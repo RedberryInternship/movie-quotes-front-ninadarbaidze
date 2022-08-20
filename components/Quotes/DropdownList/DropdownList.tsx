@@ -1,12 +1,12 @@
 import { CheckIcon } from '@heroicons/react/solid';
 import React from 'react';
 import Image from 'next/image';
+import { useDropdownList } from './useDropdownList';
 
 const DropdownList: React.FC<any> = (props) => {
   const { id, image, movieName, onClick, selectedMovie } = props;
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${image as string}`;
-  };
+  const { myLoader } = useDropdownList({ image });
+
   return (
     <>
       <li

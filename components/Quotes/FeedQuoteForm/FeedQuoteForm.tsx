@@ -4,12 +4,6 @@ import { movieSchema } from 'schema';
 import { useFeedQuoteForm } from './useFeedQuoteForm';
 import { FormValues } from './types';
 import CustomDropdown from '../CustomDropdown/CustomDropdown';
-import { MovieTypes } from 'components/Movies/ListOfMovies/types';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useContext, useState, useEffect } from 'react';
-import { getMovies } from 'services';
-import { AuthContext } from 'store';
 
 const FeedQuoteForm = () => {
   const { onSubmit, t, defaultValues } = useFeedQuoteForm();
@@ -21,7 +15,6 @@ const FeedQuoteForm = () => {
           name='quoteEN'
           component={MovieTextArea}
           placeholder='Movie discription'
-          isMulti={true}
           lang={'Eng'}
           className='placeholder:italic placeholder:text-gray text-white'
         />
@@ -29,7 +22,6 @@ const FeedQuoteForm = () => {
           name='quoteGE'
           component={MovieTextArea}
           placeholder='ახალი ციტატა'
-          isMulti={true}
           lang={'ქარ'}
           className='placeholder:italic placeholder:text-gray text-white'
         />

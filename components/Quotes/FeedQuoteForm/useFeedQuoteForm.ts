@@ -1,26 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { FormValues } from './types';
+import { QuoteDefaultValues, QuoteFormValues } from './types';
 
 export const useFeedQuoteForm = () => {
   const { t } = useTranslation();
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //     } catch (err) {}
-  //   };
-
-  //   getData();
-  // }, [t]);
-
-  const defaultValues: any = {
+  const defaultValues: QuoteDefaultValues = {
     quoteEN: '',
     quoteGE: '',
     movieId: '',
+    image: '',
   };
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: QuoteFormValues) => {
     console.log(values);
     try {
     } catch (error: any) {

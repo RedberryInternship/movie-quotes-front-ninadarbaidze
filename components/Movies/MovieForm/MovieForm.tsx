@@ -31,19 +31,15 @@ const MovieForm = () => {
       ) : null}
       <Field
         name='movieNameEN'
-        options={genres}
         component={MovieInput}
         placeholder='Movie name'
-        isMulti={true}
         lang={'Eng'}
       />
 
       <Field
         name='movieNameGE'
-        options={genres}
         component={MovieInput}
         placeholder='ფილმის სახელი'
-        isMulti={true}
       />
       <Field
         name='genre'
@@ -54,51 +50,35 @@ const MovieForm = () => {
       />
       <Field
         name='directorEN'
-        options={genres}
         component={MovieInput}
         placeholder='Director'
-        isMulti={true}
         lang={'Eng'}
       />
-      <Field
-        name='directorGE'
-        options={genres}
-        component={MovieInput}
-        placeholder='რეჟისორი'
-        isMulti={true}
-      />
+      <Field name='directorGE' component={MovieInput} placeholder='რეჟისორი' />
       <Field
         name='budget'
-        options={genres}
         component={MovieInput}
         placeholder={t('movies:budget')}
         type='number'
-        isMulti={true}
         className='appearance-none'
       />
       <Field
         name='year'
-        options={genres}
         component={MovieInput}
         placeholder={t('movies:year')}
         type='number'
-        isMulti={true}
         className='appearance-none'
       />
       <Field
         name='descriptionEN'
-        options={genres}
         component={MovieTextArea}
         placeholder='Movie discription'
-        isMulti={true}
         lang={'Eng'}
       />
       <Field
         name='descriptionGE'
-        options={genres}
         component={MovieTextArea}
         placeholder='ფილმის აღწერა'
-        isMulti={true}
         lang={'ქარ'}
       />
 
