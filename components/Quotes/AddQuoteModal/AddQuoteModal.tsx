@@ -1,4 +1,4 @@
-import { FeedModal, MovieForm } from 'components';
+import { FeedModal, FeedQuoteForm } from 'components';
 import { useAddQuoteModal } from './useAddQuoteModal';
 
 const AddQuoteModal = () => {
@@ -11,7 +11,7 @@ const AddQuoteModal = () => {
           <h1 className='text-md text-white'>Add quote</h1>
         </div>
 
-        <MovieForm />
+        <FeedQuoteForm />
       </FeedModal>
     </>
   );

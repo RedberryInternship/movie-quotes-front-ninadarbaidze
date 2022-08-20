@@ -9,4 +9,5 @@ export interface QuoteFormValues {
   quoteGE: string;
   movieId: string;
   image: string;
+  userId: string;
 }

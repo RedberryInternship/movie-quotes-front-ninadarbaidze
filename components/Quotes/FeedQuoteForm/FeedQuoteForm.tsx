@@ -9,7 +9,7 @@ const FeedQuoteForm = () => {
   const { onSubmit, t, defaultValues } = useFeedQuoteForm();
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
-    <Form className='flex flex-col h-[80vh] overflow-scroll'>
+    <Form className='flex flex-col min-h-[60vh] overflow-scroll'>
       <div className='flex flex-col gap-10'>
         <Field
           name='quoteEN'
