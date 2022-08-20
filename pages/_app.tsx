@@ -20,7 +20,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <QuoteContextProvider>
               <div
                 className={
-                  locale === 'en' ? 'font-helvetica_en' : 'font-helvetica_ge'
+                  locale === 'en'
+                    ? 'font-helvetica_en overflow-x-clip'
+                    : 'font-helvetica_ge overflow-x-clip'
                 }
               >
                 <Component {...pageProps} />
