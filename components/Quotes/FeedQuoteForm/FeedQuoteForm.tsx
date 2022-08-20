@@ -1,23 +1,30 @@
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikProps } from 'formik';
 import { MovieTextArea, Button, ImageInput } from 'components';
-import { movieSchema } from 'schema';
+import { quoteSchema } from 'schema';
 import { useFeedQuoteForm } from './useFeedQuoteForm';
-import { FormValues } from './types';
+import { QuoteDefaultValues } from './types';
 import CustomDropdown from '../CustomDropdown/CustomDropdown';
 
 const FeedQuoteForm = () => {
   const { onSubmit, t, defaultValues } = useFeedQuoteForm();
 
-  const renderForm: React.FC<FormikProps<FormValues>> = ({ errors }) => (
+  const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <Form className='flex flex-col h-[80vh] overflow-scroll'>
       <div className='flex flex-col gap-10'>
         <Field
           name='quoteEN'
           component={MovieTextArea}
-          placeholder='Movie discription'
+          placeholder='Movie description'
           lang={'Eng'}
           className='placeholder:italic placeholder:text-gray text-white'
         />
+        <ErrorMessage name='quoteEN'>
+          {(msg) => (
+            <div className='mt-[-1rem] mb-[-2rem] text-red text-xs pl-3'>
+              {msg}
+            </div>
+          )}
+        </ErrorMessage>
         <Field
           name='quoteGE'
           component={MovieTextArea}
@@ -25,15 +32,34 @@ const FeedQuoteForm = () => {
           lang={'ქარ'}
           className='placeholder:italic placeholder:text-gray text-white'
         />
+        <ErrorMessage name='quoteGE'>
+          {(msg) => (
+            <div className='mt-[-1rem] mb-[-2.5rem] text-red text-xs pl-3'>
+              {msg}
+            </div>
+          )}
+        </ErrorMessage>
         <Field
           type='file'
           name='image'
           accept='image/*'
           component={ImageInput}
         />
+        <ErrorMessage name='image'>
+          {(msg) => (
+            <div className='mt-[-2rem] mb-[-0.5rem] text-red text-xs pl-3'>
+              {msg}
+            </div>
+          )}
+        </ErrorMessage>
       </div>
       <Field type='text' name='movieId' component={CustomDropdown} />
-      <Button text={'Add Quote'} className='bg-red mt-2 mb-10 w-[100%]' />
+      <ErrorMessage name='movieId'>
+        {(msg) => (
+          <div className='mt-[0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
+      <Button text={'Add Quote'} className='bg-red mt-6 mb-10 w-[100%]' />
     </Form>
   );
 
@@ -42,7 +68,7 @@ const FeedQuoteForm = () => {
       initialValues={defaultValues}
       render={renderForm}
       onSubmit={onSubmit}
-      validationSchema={movieSchema}
+      validationSchema={quoteSchema}
     />
   );
 };

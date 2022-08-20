@@ -11,7 +11,7 @@ const ImageInput: React.FC<FieldProps> = ({ form }) => {
   return (
     <>
       <div
-        className='flex items-center gap-2 w-full h-16 mt-2 pl-3 border-gray20 border-[1px] rounded-[4px]'
+        className='flex items-center gap-2 w-full h-full py-5 mt-2 pl-3 border-gray20 border-[1px] rounded-[4px]'
         {...getRootProps()}
       >
         <input type='file' accept='image/*' {...getInputProps()} />

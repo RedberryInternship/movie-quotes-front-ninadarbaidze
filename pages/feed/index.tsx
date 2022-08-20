@@ -1,17 +1,12 @@
 import type { GetStaticProps } from 'next';
 import { FeedBackdrop, FeedWrapper, WriteNewQuote } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import { useFeed } from 'hooks/useFeed';
-import { useContext } from 'react';
-import { QuoteContext } from 'store';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 
 const Feed = () => {
-  const quoteCtx = useContext(QuoteContext);
-
-  useFeed();
+  const { quoteCtx } = useFeed();
 
   return (
     <>
@@ -19,10 +14,14 @@ const Feed = () => {
         <div className='flex items-center gap-4 w-[80%] h-10'>
           <WriteNewQuote />
         </div>
-        <FeedBackdrop onClick={quoteCtx.quoteCreationStateHandler} />
-        <QuoteModal>
-          <FeedQuoteForm />
-        </QuoteModal>
+        {quoteCtx.quoteCreationModal && (
+          <>
+            <FeedBackdrop onClick={quoteCtx.quoteCreationStateHandler} />
+            <QuoteModal>
+              <FeedQuoteForm />
+            </QuoteModal>
+          </>
+        )}
       </FeedWrapper>
     </>
   );

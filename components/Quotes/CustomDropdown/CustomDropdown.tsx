@@ -25,7 +25,7 @@ const CustomDropdown: React.FC<FieldProps> = ({ form }) => {
         <ChevronDownIcon className='text-white w-6 mr-3 ' />
       </div>
       {openList && (
-        <div className='flex justify-between w-full mb-4 h-48 overflow-scroll pl-3 bg-black rounded-[4px]'>
+        <div className='flex justify-between w-full h-48 transition-all visible duration-500 ease-linear overflow-scroll pl-3 bg-black rounded-[4px]'>
           <ul className='text-white w-full'>
             {data.length === 0 ? (
               <h1>No movies yet</h1>

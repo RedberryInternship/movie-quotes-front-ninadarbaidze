@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikProps } from 'formik';
 import {
   SelectInput,
   MovieInput,
@@ -14,33 +14,30 @@ import { FormValues } from './types';
 const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
-  const renderForm: React.FC<FormikProps<FormValues>> = ({ errors }) => (
+  const renderForm: React.FC<FormikProps<FormValues>> = () => (
     <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
-      {errors.movieNameEN ||
-      errors.movieNameGE ||
-      errors.genre ||
-      errors.directorEN ||
-      errors.directorGE ||
-      errors.budget ||
-      errors.descriptionEN ||
-      errors.descriptionGE ||
-      errors.image ? (
-        <div className='text-red text-sm absolute top-[11%] right-[5%] '>
-          {t('movies:required')}
-        </div>
-      ) : null}
       <Field
         name='movieNameEN'
         component={MovieInput}
         placeholder='Movie name'
         lang={'Eng'}
       />
+      <ErrorMessage name='movieNameEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Field
         name='movieNameGE'
         component={MovieInput}
         placeholder='ფილმის სახელი'
       />
+      <ErrorMessage name='movieNameGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='genre'
         options={genres}
@@ -48,13 +45,28 @@ const MovieForm = () => {
         placeholder={t('movies:genre')}
         isMulti={true}
       />
+      <ErrorMessage name='genre'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='directorEN'
         component={MovieInput}
         placeholder='Director'
         lang={'Eng'}
       />
+      <ErrorMessage name='directorEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field name='directorGE' component={MovieInput} placeholder='რეჟისორი' />
+      <ErrorMessage name='directorGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='budget'
         component={MovieInput}
@@ -62,6 +74,11 @@ const MovieForm = () => {
         type='number'
         className='appearance-none'
       />
+      <ErrorMessage name='budget'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='year'
         component={MovieInput}
@@ -69,18 +86,33 @@ const MovieForm = () => {
         type='number'
         className='appearance-none'
       />
+      <ErrorMessage name='year'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='descriptionEN'
         component={MovieTextArea}
         placeholder='Movie discription'
         lang={'Eng'}
       />
+      <ErrorMessage name='descriptionEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='descriptionGE'
         component={MovieTextArea}
         placeholder='ფილმის აღწერა'
         lang={'ქარ'}
       />
+      <ErrorMessage name='descriptionGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Field
         type='file'
@@ -88,6 +120,11 @@ const MovieForm = () => {
         accept='image/*'
         component={movieCtx.isMovieEdited ? ImageEditInput : ImageInput}
       />
+      <ErrorMessage name='image'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Button
         text={
