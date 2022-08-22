@@ -14,6 +14,7 @@ export const useFeedQuoteForm = () => {
     quoteEN: '',
     quoteGE: '',
     movieId: '',
+    userId: '',
     image: '',
   };
 
@@ -33,7 +34,7 @@ export const useFeedQuoteForm = () => {
     formData.append('userId', userId as string);
 
     try {
-      await addQuote(formData, token);
+      await addQuote(formData, token as string);
     } catch (error: any) {
       throw new Error('Request failed!');
     }
