@@ -1,20 +1,24 @@
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { addQuote } from 'services';
-import { AuthContext } from 'store';
+import { AuthContext, MovieContext, QuoteContext } from 'store';
 import { QuoteDefaultValues, QuoteFormValues } from './types';
 
 export const useFeedQuoteForm = () => {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
+  const quoteCtx = useContext(QuoteContext);
+  const router = useRouter();
+  const movieId = router.query.movieId as string;
+  console.log(movieId);
 
   const defaultValues: QuoteDefaultValues = {
     quoteEN: '',
     quoteGE: '',
-    movieId: '',
-    userId: '',
+    movieId: quoteCtx.isMovieQuote ? movieId : '',
     image: '',
   };
 
@@ -35,10 +39,15 @@ export const useFeedQuoteForm = () => {
 
     try {
       await addQuote(formData, token as string);
+      router.replace(
+        quoteCtx.isMovieQuote ? `/feed/movies/${movieId}` : '/feed'
+      );
+      quoteCtx.movieQuoteCreationHandler();
+      quoteCtx.quoteCreationStateHandler();
     } catch (error: any) {
       throw new Error('Request failed!');
     }
   };
 
-  return { t, onSubmit, defaultValues };
+  return { t, onSubmit, defaultValues, quoteCtx };
 };

@@ -39,6 +39,8 @@ export type MovieContextTypes = {
 export type QuoteContextTypes = {
   quoteCreationModal: boolean;
   quoteCreationStateHandler: () => void;
+  isMovieQuote: boolean;
+  movieQuoteCreationHandler: () => void;
 };
 
 export type MovieStateTypes = {

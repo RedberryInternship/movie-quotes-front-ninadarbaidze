@@ -4,3 +4,4 @@ export * from './CustomDropdown';
 export * from './DropdownList';
 export * from './FeedQuoteForm';
 export * from './Posts';
+export * from './SingleMovie';

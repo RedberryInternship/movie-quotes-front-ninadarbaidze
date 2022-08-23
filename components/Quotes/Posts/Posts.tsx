@@ -4,7 +4,7 @@ import { Comment, Like } from 'components';
 
 const Posts = () => {
   return (
-    <div className='flex flex-col gap-3 w-[65%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
+    <div className='flex flex-col gap-3 w-[65%] mr-[15%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
       <div className='flex items-center gap-2 pt-[2%]'>
         <div className='object-cover w-12 h-12 rounded-full overflow-clip border-2'>
           <Image
