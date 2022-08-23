@@ -60,7 +60,7 @@ export type MovieInfo = {
 };
 
 export type Data = {
-  data: DataTypes;
+  data?: DataTypes;
 };
 
 export type DataTypes = {
@@ -74,4 +74,14 @@ export type DataTypes = {
   ge: MovieInfo;
   genres: string[] | any;
   userId: string | any;
+  quotes: QuotesTypes[];
+};
+
+export type QuotesTypes = {
+  quoteEN: string;
+  quoteGE: string;
+  image: string;
+  userId?: string;
+  movieId?: string;
+  _id?: string;
 };

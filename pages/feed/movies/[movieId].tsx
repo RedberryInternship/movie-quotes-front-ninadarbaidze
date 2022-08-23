@@ -37,6 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     description: res.movie[currLan].description,
     genres: res.movie.genres,
     image: res.movie.image,
+    quotes: res.movie.quotes,
   };
   return {
     props: {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { addQuote } from 'services';
-import { AuthContext, MovieContext, QuoteContext } from 'store';
+import { AuthContext, QuoteContext } from 'store';
 import { QuoteDefaultValues, QuoteFormValues } from './types';
 
 export const useFeedQuoteForm = () => {
@@ -33,7 +33,7 @@ export const useFeedQuoteForm = () => {
     const keys = Object.keys(values);
 
     keys.forEach((key: string) => {
-      formData.append(`${key}`, values[key as keyof QuoteFormValues]);
+      formData.append(`${key}`, values[key as keyof QuoteDefaultValues]);
     });
     formData.append('userId', userId as string);
 
