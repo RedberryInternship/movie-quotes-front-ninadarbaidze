@@ -35,6 +35,7 @@ export const useListOfMovies = () => {
             movieName: movies[currentLan!].movieName,
             year: movies.year,
             image: movies.image,
+            quotesQuantity: movies!.quotes!.length,
           };
         });
         setMovieSum(movieNumber);
@@ -52,6 +53,7 @@ export const useListOfMovies = () => {
         movieName: data.movie[currentLan!].movieName,
         year: data.movie.year,
         image: data.movie.image,
+        quotesQuantity: data.movie!.quotes!.length,
       };
       if (data.action === 'create') {
         addMovie(movie);
