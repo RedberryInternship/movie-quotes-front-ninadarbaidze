@@ -11,7 +11,7 @@ const Feed = () => {
   return (
     <>
       <FeedWrapper className='flex flex-col items-center mt-10'>
-        <div className='flex w-[65%] mr-[15%] '>
+        <div className='flex w-[65%] mr-[20%] '>
           <div className='flex items-center w-full gap-4 h-10'>
             <WriteNewQuote />
           </div>

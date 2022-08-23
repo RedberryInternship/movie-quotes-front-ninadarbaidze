@@ -6,7 +6,7 @@ import { useQuoteItem } from './useQuoteItem';
 import { useRouter } from 'next/router';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
-  const { quoteEN, quoteGE, image, userId, movieId, _id } = props;
+  const { quoteEN, quoteGE, image, userId, movieId, _id, setViewQuote } = props;
   const { myLoader } = useQuoteItem({ image });
   const [quoteHandler, setQuoteHandler] = useState(false);
   const router = useRouter();
@@ -28,7 +28,11 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
               <div className='h-1 w-1 bg-white rounded-full' />
             </div>
             {quoteHandler && (
-              <ManageQuoteModal id={_id} setQuoteHandler={setQuoteHandler} />
+              <ManageQuoteModal
+                id={_id}
+                setViewQuote={setViewQuote}
+                setQuoteHandler={setQuoteHandler}
+              />
             )}
 
             <div className='w-44 h-24 overflow-clip rounded-sm'>

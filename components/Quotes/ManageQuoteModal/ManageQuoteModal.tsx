@@ -7,7 +7,7 @@ import { deleteQuote } from 'services';
 import { useRouter } from 'next/router';
 
 const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
-  const { id, setQuoteHandler } = props;
+  const { id, setQuoteHandler, setViewQuote } = props;
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -45,7 +45,10 @@ const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
         </div>
       ) : (
         <>
-          <div className='flex items-center gap-2 cursor-pointer'>
+          <div
+            className='flex items-center gap-2 cursor-pointer'
+            onClick={() => setViewQuote(true)}
+          >
             <PreviewIcon />
             <p>View Post</p>
           </div>
