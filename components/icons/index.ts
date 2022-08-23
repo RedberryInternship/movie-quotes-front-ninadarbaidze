@@ -17,3 +17,4 @@ export { default as Search } from './Search';
 export { default as CreateIcon } from './CreateIcon';
 export { default as Like } from './Like';
 export { default as Comment } from './Comment';
+export { default as PreviewIcon } from './PreviewIcon';

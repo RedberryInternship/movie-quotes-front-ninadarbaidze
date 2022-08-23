@@ -10,3 +10,14 @@ export const addQuote = async (
   });
   return response;
 };
+
+export const deleteQuote = async (
+  data: string,
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.delete(`delete-quote`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data,
+  });
+  return response;
+};

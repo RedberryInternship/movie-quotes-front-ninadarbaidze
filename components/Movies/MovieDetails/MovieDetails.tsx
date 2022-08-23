@@ -5,11 +5,11 @@ import {
   EditBtn,
   AddMovieModal,
   FeedBackdrop,
+  QuoteList,
 } from 'components';
 
 import { useMovieDetails } from './useMovieDetails';
 import { Data } from 'types';
-import { QuoteList } from '../QuoteList';
 
 const MovieDetails: React.FC<Data> = ({ data }) => {
   const {

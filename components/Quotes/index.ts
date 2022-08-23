@@ -5,3 +5,6 @@ export * from './DropdownList';
 export * from './FeedQuoteForm';
 export * from './Posts';
 export * from './SingleMovie';
+export * from './ManageQuoteModal';
+export * from './QuoteItem';
+export * from './QuoteList';

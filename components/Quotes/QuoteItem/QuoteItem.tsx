@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Data, QuotesTypes } from 'types';
 import Image from 'next/image';
-import { Comment, Like } from 'components';
+import { Comment, Like, ManageQuoteModal } from 'components';
 import { useQuoteItem } from './useQuoteItem';
 import { useRouter } from 'next/router';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
   const { quoteEN, quoteGE, image, userId, movieId, _id } = props;
   const { myLoader } = useQuoteItem({ image });
+  const [quoteHandler, setQuoteHandler] = useState(false);
   const router = useRouter();
   const quote = router.locale === 'ge' ? quoteGE : quoteEN;
   return (
     <div>
-      <div className=' bg-mainDark w-full rounded-[10px] h-full'>
+      <div
+        className=' bg-mainDark w-full rounded-[10px] h-full'
+        onMouseLeave={() => setQuoteHandler(false)}
+      >
         <div className='px-6 py-5 flex flex-col gap-4'>
           <div className='flex items-center relative gap-2'>
-            <div className='flex gap-[1px] absolute right-0 top-0 cursor-pointer'>
+            <div
+              className='flex gap-[1px] absolute right-0 top-0 cursor-pointer'
+              onClick={() => setQuoteHandler(true)}
+            >
               <div className='h-1 w-1 bg-white rounded-full' />
               <div className='h-1 w-1 bg-white rounded-full' />
               <div className='h-1 w-1 bg-white rounded-full' />
             </div>
+            {quoteHandler && (
+              <ManageQuoteModal id={_id} setQuoteHandler={setQuoteHandler} />
+            )}
+
             <div className='w-44 h-24 overflow-clip rounded-sm'>
               <Image
                 loader={myLoader}

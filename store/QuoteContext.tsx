@@ -12,6 +12,7 @@ export const QuoteContext = createContext({
 export const QuoteContextProvider: React.FC<Children> = (props) => {
   const [quoteCreationModal, setQuoteCreationModal] = useState(false);
   const [isMovieQuote, setIsMovieQuote] = useState(false);
+  const [refreshQuotes, setRefreshQuotes] = useState(false);
 
   const quoteCreationStateHandler = () => {
     setQuoteCreationModal(!quoteCreationModal);
