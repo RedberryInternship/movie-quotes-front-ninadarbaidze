@@ -1,4 +1,10 @@
-import { FeedBackdrop, FeedButton, FeedQuoteForm, ViewQuote } from 'components';
+import {
+  EditQuoteModal,
+  FeedBackdrop,
+  FeedButton,
+  FeedQuoteForm,
+  ViewQuote,
+} from 'components';
 import { QuoteModal } from 'components';
 import { Data } from 'types';
 import { QuoteItem } from '../QuoteItem';
@@ -16,6 +22,8 @@ const QuoteList: React.FC<Data> = ({ data }) => {
   return (
     <>
       {viewQuote && <ViewQuote setViewQuote={setViewQuote} />}
+      {quoteCtx.editQuoteModal && <EditQuoteModal />}
+
       <div className='flex items-center gap-4 mt-8 h-12'>
         <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
           Quotes (Total: {data?.quotes.length})

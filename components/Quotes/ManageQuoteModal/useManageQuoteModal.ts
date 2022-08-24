@@ -39,5 +39,5 @@ export const useManageQuoteModal = (props: {
     viewQuoteHandler();
   }, [id, setViewQuote, token]);
 
-  return { deleteHandler, deleteModal, setDeleteModal };
+  return { deleteHandler, deleteModal, setDeleteModal, quoteCtx };
 };

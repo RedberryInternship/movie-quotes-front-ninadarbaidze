@@ -4,10 +4,11 @@ import { useManageQuoteModal } from './useManageQuoteModal';
 
 const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
   const { id, setQuoteHandler, setViewQuote } = props;
-  const { deleteHandler, deleteModal, setDeleteModal } = useManageQuoteModal({
-    id,
-    setViewQuote,
-  });
+  const { deleteHandler, deleteModal, setDeleteModal, quoteCtx } =
+    useManageQuoteModal({
+      id,
+      setViewQuote,
+    });
 
   return (
     <div className='flex flex-col justify-around px-8 py-3 bg-gray50 rounded-[10px] w-48 h-36 absolute top-6 right-0 text-white text-sm'>
@@ -38,7 +39,10 @@ const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
             <PreviewIcon />
             <p>View Post</p>
           </div>
-          <div className='flex items-center gap-2 cursor-pointer'>
+          <div
+            className='flex items-center gap-2 cursor-pointer'
+            onClick={() => quoteCtx.editQuoteHandler(true)}
+          >
             <EditBtn />
             <p>Edit</p>
           </div>

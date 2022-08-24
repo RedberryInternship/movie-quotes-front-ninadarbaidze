@@ -5,11 +5,14 @@ import { useQuoteItem } from './useQuoteItem';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
   const { quoteEN, quoteGE, image, _id, setViewQuote } = props;
-  const { myLoader, quoteHandler, setQuoteHandler, quote } = useQuoteItem({
-    image,
-    quoteEN,
-    quoteGE,
-  });
+  const { myLoader, quoteHandler, setQuoteHandler, quote, quoteCtx } =
+    useQuoteItem({
+      image,
+      quoteEN,
+      quoteGE,
+    });
+
+  console.log(quoteCtx.quoteState._id);
 
   return (
     <div>
@@ -34,7 +37,6 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
                 setQuoteHandler={setQuoteHandler}
               />
             )}
-
             <div className='w-44 h-24 overflow-clip rounded-sm'>
               <Image
                 loader={myLoader}

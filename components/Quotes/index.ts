@@ -10,3 +10,5 @@ export * from './QuoteList';
 export * from './ViewQuote';
 export * from './QuoteModal';
 export * from './DeleteQuoteModal';
+export * from './EditQuoteModal';
+export * from './QuoteImageEditInput';

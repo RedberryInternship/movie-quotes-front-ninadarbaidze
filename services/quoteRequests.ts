@@ -31,3 +31,14 @@ export const getQuoteById = async (
   });
   return response;
 };
+
+export const updateQuote = async (
+  data: unknown,
+  token: string,
+  quoteId: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.patch(`/edit-quote/${quoteId}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};

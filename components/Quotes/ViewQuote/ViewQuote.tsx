@@ -19,7 +19,8 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
     deleteModal,
     setDeleteModal,
     deleteQuoteHandler,
-  } = useViewQuote();
+    editQuoteHandler,
+  } = useViewQuote({ setViewQuote });
 
   return (
     <div>
@@ -32,7 +33,7 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
           />
         )}
         <div className='flex gap-4 px-[4%] pt-5 items-center absolute top-0 left-0'>
-          <button>
+          <button onClick={() => editQuoteHandler()}>
             <EditBtn />
           </button>
           <div className='w-[1px] h-3 rounded-full bg-gray20' />

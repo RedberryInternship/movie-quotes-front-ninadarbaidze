@@ -43,6 +43,8 @@ export type QuoteContextTypes = {
   movieQuoteCreationHandler: () => void;
   quoteState: QuoteStateTypes;
   getQuote: (data: QuoteStateTypes) => void;
+  editQuoteModal: boolean;
+  editQuoteHandler: (arg0: boolean) => void;
 };
 
 export type MovieStateTypes = {

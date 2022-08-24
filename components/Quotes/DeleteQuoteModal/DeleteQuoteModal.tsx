@@ -3,7 +3,9 @@ import { useDeleteQuoteModal } from './useDeleteQuoteModal';
 
 const DeleteQuoteModal: React.FC<DeleteModalTypes> = (props) => {
   const { setViewQuote, setDeleteModal } = props;
-  const { t, deleteHandler } = useDeleteQuoteModal({ setViewQuote });
+  const { t, deleteHandler } = useDeleteQuoteModal({
+    setViewQuote,
+  });
 
   return (
     <>

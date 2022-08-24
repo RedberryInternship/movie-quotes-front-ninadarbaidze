@@ -6,7 +6,7 @@ import { deleteQuote } from 'services';
 import { AuthContext, MovieContext, QuoteContext } from 'store';
 
 export const useDeleteQuoteModal = (props: {
-  setViewQuote: (arg0: boolean) => void;
+  setViewQuote: ((arg0: boolean) => void) | undefined;
 }) => {
   const { setViewQuote } = props;
   const { t } = useTranslation();
@@ -22,7 +22,8 @@ export const useDeleteQuoteModal = (props: {
     const quoteId = { quoteId: id };
     try {
       await deleteQuote(quoteId as unknown as string, token as string);
-      setViewQuote(false);
+      setViewQuote && setViewQuote(false);
+      quoteCtx.editQuoteModal && quoteCtx.editQuoteHandler(false);
       router.replace(`/feed/movies/${router.query.movieId}`);
     } catch (err: any) {}
   };
