@@ -47,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         'home',
         'genres',
         'movies',
+        'quotes',
       ])),
     },
   };

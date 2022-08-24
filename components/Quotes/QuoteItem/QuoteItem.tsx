@@ -5,14 +5,11 @@ import { useQuoteItem } from './useQuoteItem';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
   const { quoteEN, quoteGE, image, _id, setViewQuote } = props;
-  const { myLoader, quoteHandler, setQuoteHandler, quote, quoteCtx } =
-    useQuoteItem({
-      image,
-      quoteEN,
-      quoteGE,
-    });
-
-  console.log(quoteCtx.quoteState._id);
+  const { myLoader, quoteHandler, setQuoteHandler, quote } = useQuoteItem({
+    image,
+    quoteEN,
+    quoteGE,
+  });
 
   return (
     <div>

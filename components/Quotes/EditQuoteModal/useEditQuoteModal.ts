@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { addQuote, deleteQuote, updateQuote } from 'services';
+import { deleteQuote, updateQuote } from 'services';
 import { AuthContext, QuoteContext } from 'store';
 import { QuoteDefaultValues, QuoteFormValues } from './types';
 
@@ -16,7 +16,7 @@ export const useEditQuoteModal = () => {
   const movieId = router.query.movieId as string;
   const quoteId = quoteCtx.quoteState._id;
 
-  const defaultValues: QuoteDefaultValues = {
+  const defaultValues = {
     quoteEN: quoteCtx.quoteState.quoteEN,
     quoteGE: quoteCtx.quoteState.quoteGE,
     movieId: quoteCtx.quoteState.movieId,
@@ -51,7 +51,6 @@ export const useEditQuoteModal = () => {
     formData.append('userId', userId as string);
 
     try {
-      console.log(values);
       await updateQuote(formData, token as unknown as string, quoteId);
       router.replace(`/feed/movies/${movieId}`);
       quoteCtx.editQuoteHandler(false);

@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         'home',
         'genres',
         'movies',
+        'quotes',
       ])),
     },
   };

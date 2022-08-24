@@ -68,7 +68,7 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
                 <Trash />
               </div>
             </div>
-            <h2 className='text-beidge text-2xl w-2/3 md:w-none'>
+            <h2 className='text-beidge font-helvetica_ge font-thin text-2xl w-2/3 md:w-none'>
               {data!.name} ({data!.year})
             </h2>
             <ul className='flex gap-1 text-lg text-white'>

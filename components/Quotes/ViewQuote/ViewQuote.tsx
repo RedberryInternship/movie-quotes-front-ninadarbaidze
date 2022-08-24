@@ -14,6 +14,7 @@ import { useViewQuote } from './useViewQuote';
 const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
   const { setViewQuote } = props;
   const {
+    t,
     myLoader,
     quoteData,
     deleteModal,
@@ -25,7 +26,7 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
   return (
     <div>
       <FeedBackdrop onClick={() => setViewQuote(false)} />
-      <QuoteModal title='View Quote'>
+      <QuoteModal title={t('quotes:viewQt')}>
         {deleteModal && (
           <DeleteQuoteModal
             setViewQuote={setViewQuote}

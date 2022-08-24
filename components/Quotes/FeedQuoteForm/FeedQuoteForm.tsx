@@ -66,7 +66,10 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
           </ErrorMessage>
         </>
       )}
-      <Button text={'Add Quote'} className='bg-red mt-6 mb-10 w-[100%]' />
+      <Button
+        text={t('quotes:addQtBtn')}
+        className='bg-red mt-6 mb-10 w-[100%]'
+      />
     </Form>
   );
 

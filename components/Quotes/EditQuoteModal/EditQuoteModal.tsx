@@ -20,14 +20,14 @@ const EditQuoteModal = () => {
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <div>
       <FeedBackdrop onClick={() => quoteCtx.editQuoteHandler(false)} />
-      <QuoteModal title='Edit Quote'>
+      <QuoteModal title={t('quotes:editQt')}>
         {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
         <button
           className='flex gap-2 px-[4%] pt-5 absolute top-0 left-0'
           onClick={() => setDeleteModal(true)}
         >
           <Trash />
-          <p className='text-white text-sm'>Delete</p>
+          <p className='text-white text-sm'>{t('quotes:delete')}</p>
         </button>
         <div className='flex flex-col gap-4'>
           <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-scroll'>
@@ -75,7 +75,7 @@ const EditQuoteModal = () => {
               </ErrorMessage>
             </div>
             <Button
-              text={'Save changes'}
+              text={t('quotes:saveBtn')}
               className='bg-red mt-6 mb-10 w-[100%]'
             />
           </Form>

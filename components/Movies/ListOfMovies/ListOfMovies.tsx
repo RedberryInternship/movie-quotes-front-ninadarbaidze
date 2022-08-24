@@ -17,7 +17,7 @@ const ListOfMovies = () => {
             <input
               type='text'
               value={searchQuery}
-              placeholder='search'
+              placeholder={t('quotes:search')}
               onChange={onChange}
               className='bg-transparent w-full pl-4 text-white appearance-none outline-none'
             />

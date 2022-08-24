@@ -12,6 +12,7 @@ import { useQuoteList } from './useQuoteList';
 
 const QuoteList: React.FC<Data> = ({ data }) => {
   const {
+    t,
     quoteCtx,
     viewQuote,
     setViewQuote,
@@ -26,10 +27,15 @@ const QuoteList: React.FC<Data> = ({ data }) => {
 
       <div className='flex items-center gap-4 mt-8 h-12'>
         <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
-          Quotes (Total: {data?.quotes.length})
+          {`${t('quotes:quotes')} (${t('quotes:total')}: ${
+            data?.quotes.length
+          })`}
         </h1>
         <div className='bg-gray20 w-[1px] rounded-full h-6'></div>
-        <FeedButton text={'Add quote'} onClick={addQuoteModalHandler} />
+        <FeedButton
+          text={t('quotes:addQtBtn')}
+          onClick={addQuoteModalHandler}
+        />
       </div>
       <div>
         <ul>
@@ -43,7 +49,7 @@ const QuoteList: React.FC<Data> = ({ data }) => {
       {quoteCtx.quoteCreationModal && (
         <>
           <FeedBackdrop onClick={closeQuoteModalHandler} />
-          <QuoteModal title='Add Quote'>
+          <QuoteModal title={t('quotes:addQt')}>
             <FeedQuoteForm data={data} />
           </QuoteModal>
         </>

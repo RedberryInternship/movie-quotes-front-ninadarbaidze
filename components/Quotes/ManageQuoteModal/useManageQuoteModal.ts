@@ -1,4 +1,5 @@
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from 'react';
 import { deleteQuote, getQuoteById } from 'services';
@@ -14,6 +15,7 @@ export const useManageQuoteModal = (props: {
   const quoteCtx = useContext(QuoteContext);
   const [deleteModal, setDeleteModal] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   let token = session ? session.accessToken : ctx.token;
 
@@ -39,5 +41,5 @@ export const useManageQuoteModal = (props: {
     viewQuoteHandler();
   }, [id, setViewQuote, token]);
 
-  return { deleteHandler, deleteModal, setDeleteModal, quoteCtx };
+  return { t, deleteHandler, deleteModal, setDeleteModal, quoteCtx };
 };

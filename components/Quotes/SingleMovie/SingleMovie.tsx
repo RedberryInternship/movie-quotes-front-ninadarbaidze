@@ -20,7 +20,7 @@ const SingleMovie: React.FC<Data> = ({ data }) => {
           />
         </div>
         <div className='flex flex-col gap-4'>
-          <h2 className='text-beidge text-xl md:w-none'>
+          <h2 className='text-beidge font-helvetica_ge font-thin text-xl md:w-none'>
             {data!.name} ({data!.year})
           </h2>
           <ul className='flex gap-1 text-sm text-white'>
