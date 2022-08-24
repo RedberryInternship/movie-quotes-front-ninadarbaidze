@@ -1,8 +1,8 @@
 import { FeedModal, UserInfo } from 'components/shared';
 import React from 'react';
-import { ChildrenTitle } from 'types';
+import { QuoteModalTypes } from './types';
 
-const QuoteModal: React.FC<ChildrenTitle> = (props) => {
+const QuoteModal: React.FC<QuoteModalTypes> = (props) => {
   const { children, title } = props;
   return (
     <>

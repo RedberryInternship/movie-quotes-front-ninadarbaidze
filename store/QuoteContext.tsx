@@ -8,6 +8,7 @@ const initialState = {
   image: '',
   movieId: '',
   userId: '',
+  _id: '',
 };
 const reducer = (
   state: QuoteStateTypes | any,

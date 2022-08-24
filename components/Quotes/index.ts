@@ -9,3 +9,4 @@ export * from './QuoteItem';
 export * from './QuoteList';
 export * from './ViewQuote';
 export * from './QuoteModal';
+export * from './DeleteQuoteModal';
