@@ -1,20 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Trash, EditBtn, PreviewIcon } from 'components';
 import { ManageQuoteTypes } from './types';
 import { useSession } from 'next-auth/react';
-import { AuthContext } from 'store';
+import { AuthContext, QuoteContext } from 'store';
 import { deleteQuote } from 'services';
 import { useRouter } from 'next/router';
+import { getQuoteById } from 'services';
 
 const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
   const { id, setQuoteHandler, setViewQuote } = props;
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
+  const quoteCtx = useContext(QuoteContext);
   const [deleteModal, setDeleteModal] = useState(false);
   const router = useRouter();
 
+  let token = session ? session.accessToken : ctx.token;
+
   const deleteHandler = async () => {
-    let token = session ? session.accessToken : ctx.token;
     const quoteId = { quoteId: id };
     try {
       await deleteQuote(quoteId as unknown as string, token as string);
@@ -22,6 +25,20 @@ const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
       router.replace(`/feed/movies/${router.query.movieId}`);
     } catch (err: any) {}
   };
+  useEffect(() => {
+    const viewQuoteHandler = async () => {
+      try {
+        const response = await getQuoteById(
+          id as unknown as string,
+          token as string
+        );
+        quoteCtx.getQuote(response.data.quote);
+      } catch (err: any) {}
+    };
+    viewQuoteHandler();
+  }, [id, setViewQuote, token]);
+
+  console.log(quoteCtx.quoteState);
 
   return (
     <div className='flex flex-col justify-around px-8 py-3 bg-gray50 rounded-[10px] w-48 h-36 absolute top-6 right-0 text-white text-sm'>

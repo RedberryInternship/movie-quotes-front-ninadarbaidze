@@ -17,7 +17,6 @@ const QuoteList: React.FC<Data> = ({ data }) => {
   const closeQuoteModalHandler = () => {
     quoteCtx.quoteCreationStateHandler();
     quoteCtx.movieQuoteCreationHandler();
-    console.log(movieCtx.movieState);
   };
 
   return (

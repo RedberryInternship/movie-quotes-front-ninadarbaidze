@@ -41,6 +41,8 @@ export type QuoteContextTypes = {
   quoteCreationStateHandler: () => void;
   isMovieQuote: boolean;
   movieQuoteCreationHandler: () => void;
+  quoteState: QuoteStateTypes;
+  getQuote: (data: QuoteStateTypes) => void;
 };
 
 export type MovieStateTypes = {
@@ -51,6 +53,14 @@ export type MovieStateTypes = {
   genres: string[];
   userId: string;
   image: string;
+};
+
+export type QuoteStateTypes = {
+  quoteEN: string;
+  quoteGE: string;
+  image: string;
+  movieId: string;
+  userId: string;
 };
 
 export type MovieInfo = {

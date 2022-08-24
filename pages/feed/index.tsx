@@ -18,7 +18,7 @@ const Feed = () => {
           {quoteCtx.quoteCreationModal && (
             <>
               <FeedBackdrop onClick={quoteCtx.quoteCreationStateHandler} />
-              <QuoteModal>
+              <QuoteModal title={'Add Quote'}>
                 <FeedQuoteForm />
               </QuoteModal>
             </>

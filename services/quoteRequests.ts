@@ -21,3 +21,13 @@ export const deleteQuote = async (
   });
   return response;
 };
+
+export const getQuoteById = async (
+  quoteId: string,
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.get(`quote/${quoteId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};

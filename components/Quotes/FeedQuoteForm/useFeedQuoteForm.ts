@@ -13,7 +13,6 @@ export const useFeedQuoteForm = () => {
   const quoteCtx = useContext(QuoteContext);
   const router = useRouter();
   const movieId = router.query.movieId as string;
-  console.log(movieId);
 
   const defaultValues: QuoteDefaultValues = {
     quoteEN: '',

@@ -1,5 +1,5 @@
 export type ManageQuoteTypes = {
   id: string | undefined;
-  setQuoteHandler: (value: boolean) => void;
-  setViewQuote: (value: boolean) => void;
+  setQuoteHandler: IntrinsicAttributes & ManageQuoteTypes;
+  setViewQuote: IntrinsicAttributes & ManageQuoteTypes;
 };
