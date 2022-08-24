@@ -15,7 +15,7 @@ const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
   const renderForm: React.FC<FormikProps<FormValues>> = () => (
-    <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
+    <Form className='flex flex-col gap-5 h-full lg:h-[80vh] overflow-scroll'>
       <Field
         name='movieNameEN'
         component={MovieInput}
@@ -130,7 +130,7 @@ const MovieForm = () => {
         text={
           movieCtx.isMovieEdited ? t('movies:updateMovie') : t('movies:addbtn')
         }
-        className='bg-red mt-2 mb-10 w-[100%]'
+        className='bg-red mt-2 mb-6 w-[100%]'
       />
     </Form>
   );

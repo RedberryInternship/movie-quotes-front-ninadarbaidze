@@ -11,7 +11,7 @@ const ManageQuoteModal: React.FC<ManageQuoteTypes> = (props) => {
     });
 
   return (
-    <div className='flex flex-col justify-around px-8 py-3 bg-gray50 rounded-[10px] w-48 h-36 absolute top-6 right-0 text-white text-sm'>
+    <div className='flex flex-col justify-around px-8 py-3 bg-gray50 rounded-[10px] w-48 h-36 absolute top-6 right-0 text-white text-sm z-50'>
       {deleteModal ? (
         <div className='flex flex-col items-center gap-4'>
           <h3 className='text-lg font-semibold'>Are you sure?</h3>

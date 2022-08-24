@@ -30,7 +30,7 @@ const EditQuoteModal = () => {
           <p className='text-white text-sm'>Delete</p>
         </button>
         <div className='flex flex-col gap-4'>
-          <Form className='flex flex-col min-h-[60vh] overflow-scroll'>
+          <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-scroll'>
             <div className='flex flex-col gap-10'>
               <Field
                 name='quoteEN'
