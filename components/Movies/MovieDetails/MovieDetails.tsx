@@ -50,7 +50,7 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
           <div className='w-full md:w-3/5 h-[23rem] rounded-xl overflow-clip'>
             <Image
               loader={myLoader}
-              src={`${process.env.NEXT_PUBLIC_API_URL}/${data.image}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${data!.image}`}
               objectFit='cover'
               layout='responsive'
               width={600}
@@ -69,7 +69,7 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
               </div>
             </div>
             <h2 className='text-beidge text-2xl w-2/3 md:w-none'>
-              {data.name} ({data.year})
+              {data!.name} ({data!.year})
             </h2>
             <ul className='flex gap-1 text-lg text-white'>
               {genresArray.map((genre: string) => (
@@ -80,13 +80,13 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
             </ul>
             <div className='flex gap-2'>
               <h3 className='text-gray10 text-lg'>{t('movies:director')}:</h3>
-              <span className='text-white text-lg'>{data.director}</span>
+              <span className='text-white text-lg'>{data!.director}</span>
             </div>
             <div className='flex gap-2'>
               <h3 className='text-gray10 text-lg'>{t('movies:budget')}:</h3>
-              <span className='text-white text-lg'>{data.budget}</span>
+              <span className='text-white text-lg'>{data!.budget}</span>
             </div>
-            <p className='text-gray10 text-lg'>{data.description}</p>
+            <p className='text-gray10 text-lg'>{data!.description}</p>
           </div>
         </div>
         <div className='w-full px-[5%] md:px-0 md:w-3/5 '>

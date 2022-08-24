@@ -6,14 +6,16 @@ import { AuthContext, MovieContext } from 'store';
 import { deleteMovie, getMovieById } from 'services';
 import { useRouter } from 'next/router';
 
-export const useMovieDetails = (props: { data: MovieStateTypes }) => {
+export const useMovieDetails = (props: {
+  data: MovieStateTypes | undefined;
+}) => {
   const { data } = props;
   const { t } = useTranslation();
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
   const movieCtx = useContext(MovieContext);
   const router = useRouter();
-  let genresArray = data.genres[0].split(',');
+  let genresArray = data!.genres[0].split(',');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export const useMovieDetails = (props: { data: MovieStateTypes }) => {
   };
 
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${data.image}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}/${data!.image}`;
   };
   return {
     t,

@@ -1,10 +1,8 @@
 import { CreateIcon, Search } from 'components/icons';
-import React, { useContext, useState } from 'react';
-import { QuoteContext } from 'store';
+import { useWriteNewQuote } from './useWriteNewQuote';
 
 const WriteNewQuote = () => {
-  const quoteCtx = useContext(QuoteContext);
-  const [searchExpanded, setSearchExpanded] = useState(false);
+  const { quoteCtx, searchExpanded, setSearchExpanded } = useWriteNewQuote();
 
   return (
     <>

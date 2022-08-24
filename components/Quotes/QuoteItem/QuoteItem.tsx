@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Data, QuotesTypes } from 'types';
+import { QuotesTypes } from 'types';
 import Image from 'next/image';
 import { Comment, Like, ManageQuoteModal } from 'components';
 import { useQuoteItem } from './useQuoteItem';
-import { useRouter } from 'next/router';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
-  const { quoteEN, quoteGE, image, userId, movieId, _id, setViewQuote } = props;
-  const { myLoader } = useQuoteItem({ image });
-  const [quoteHandler, setQuoteHandler] = useState(false);
-  const router = useRouter();
-  const quote = router.locale === 'ge' ? quoteGE : quoteEN;
+  const { quoteEN, quoteGE, image, _id, setViewQuote } = props;
+  const { myLoader, quoteHandler, setQuoteHandler, quote } = useQuoteItem({
+    image,
+    quoteEN,
+    quoteGE,
+  });
+
   return (
     <div>
       <div

@@ -53,6 +53,7 @@ export type MovieStateTypes = {
   genres: string[];
   userId: string;
   image: string;
+  quotes: QuotesTypes[];
 };
 
 export type QuoteStateTypes = {

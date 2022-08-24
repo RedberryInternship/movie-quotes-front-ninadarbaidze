@@ -1,23 +1,17 @@
 import { FeedBackdrop, FeedButton, FeedQuoteForm, ViewQuote } from 'components';
 import { QuoteModal } from 'components';
-import React, { useContext, useState } from 'react';
-import { MovieContext, QuoteContext } from 'store';
 import { Data } from 'types';
 import { QuoteItem } from '../QuoteItem';
+import { useQuoteList } from './useQuoteList';
 
 const QuoteList: React.FC<Data> = ({ data }) => {
-  const quoteCtx = useContext(QuoteContext);
-  const movieCtx = useContext(MovieContext);
-  const [viewQuote, setViewQuote] = useState(false);
-
-  const addQuoteModalHandler = () => {
-    quoteCtx.quoteCreationStateHandler();
-    quoteCtx.movieQuoteCreationHandler();
-  };
-  const closeQuoteModalHandler = () => {
-    quoteCtx.quoteCreationStateHandler();
-    quoteCtx.movieQuoteCreationHandler();
-  };
+  const {
+    quoteCtx,
+    viewQuote,
+    setViewQuote,
+    addQuoteModalHandler,
+    closeQuoteModalHandler,
+  } = useQuoteList();
 
   return (
     <>

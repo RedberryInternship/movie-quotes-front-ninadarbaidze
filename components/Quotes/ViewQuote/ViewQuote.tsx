@@ -2,15 +2,12 @@ import { FeedBackdrop, Comment, Like } from 'components';
 import { QuoteModal } from '../QuoteModal';
 import Image from 'next/image';
 import { ViewQuoteTypes } from './types';
-import { useContext } from 'react';
-import { QuoteContext } from 'store';
+import { useViewQuote } from './useViewQuote';
 
 const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
   const { setViewQuote } = props;
-  const quoteCtx = useContext(QuoteContext);
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${quoteCtx.quoteState.image}`;
-  };
+  const { myLoader, quoteData } = useViewQuote();
+
   return (
     <div>
       <FeedBackdrop onClick={() => setViewQuote(false)} />
@@ -18,20 +15,20 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
         <div className='flex flex-col gap-4'>
           <div className='flex items-center relative'>
             <div className='py-2 italic placeholder:text-white text-white  pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate'>
-              <p>{quoteCtx.quoteState.quoteEN}</p>
+              <p>{quoteData.quoteEN}</p>
             </div>
             <p className='absolute right-4 cursor-pointer text-gray20'>Eng</p>
           </div>
           <div className='flex items-center relative '>
             <div className='py-2 italic placeholder:text-white text-white  pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate'>
-              <p>{quoteCtx.quoteState.quoteGE}</p>
+              <p>{quoteData.quoteGE}</p>
             </div>
             <p className='absolute right-4 cursor-pointer text-gray20'>ქარ</p>
           </div>
           <div className='flex overflow-clip w-full relative rounded-[10px] object-cover'>
             <Image
               loader={myLoader}
-              src={`${process.env.NEXT_PUBLIC_API_URL}/${quoteCtx.quoteState.image}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${quoteData.image}`}
               alt='imagePreview'
               objectFit='cover'
               width={'800px'}
