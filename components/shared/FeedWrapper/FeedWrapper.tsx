@@ -1,9 +1,9 @@
 import { MainHeader, SideBar } from 'components';
-import { Children } from 'types';
+import { ChildrenAndClass } from 'types';
 import { useFeedWrapper } from './useFeedWrapper';
 
-const FeedWrapper: React.FC<Children> = (props) => {
-  const { children } = props;
+const FeedWrapper: React.FC<ChildrenAndClass> = (props) => {
+  const { children, className } = props;
   const { mobileMenu, setMobileMenu } = useFeedWrapper();
 
   return (
@@ -17,7 +17,9 @@ const FeedWrapper: React.FC<Children> = (props) => {
         <div className='lg:w-[22%] z-0'>
           <SideBar />
         </div>
-        <div className='w-full md:px-[10%] lg:w-[70%] lg:px-0 '>{children}</div>
+        <div className={`${className} w-full md:px-[10%] lg:w-[70%] lg:px-0`}>
+          {children}
+        </div>
       </div>
     </>
   );

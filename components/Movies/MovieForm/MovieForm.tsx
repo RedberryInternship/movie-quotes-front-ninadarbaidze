@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikProps } from 'formik';
 import {
   SelectInput,
   MovieInput,
@@ -14,37 +14,30 @@ import { FormValues } from './types';
 const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
-  const renderForm: React.FC<FormikProps<FormValues>> = ({ errors }) => (
+  const renderForm: React.FC<FormikProps<FormValues>> = () => (
     <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
-      {errors.movieNameEN ||
-      errors.movieNameGE ||
-      errors.genre ||
-      errors.directorEN ||
-      errors.directorGE ||
-      errors.budget ||
-      errors.descriptionEN ||
-      errors.descriptionGE ||
-      errors.image ? (
-        <div className='text-red text-sm absolute top-[11%] right-[5%] '>
-          {t('movies:required')}
-        </div>
-      ) : null}
       <Field
         name='movieNameEN'
-        options={genres}
         component={MovieInput}
         placeholder='Movie name'
-        isMulti={true}
         lang={'Eng'}
       />
+      <ErrorMessage name='movieNameEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Field
         name='movieNameGE'
-        options={genres}
         component={MovieInput}
         placeholder='ფილმის სახელი'
-        isMulti={true}
       />
+      <ErrorMessage name='movieNameGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='genre'
         options={genres}
@@ -52,55 +45,74 @@ const MovieForm = () => {
         placeholder={t('movies:genre')}
         isMulti={true}
       />
+      <ErrorMessage name='genre'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='directorEN'
-        options={genres}
         component={MovieInput}
         placeholder='Director'
-        isMulti={true}
         lang={'Eng'}
       />
-      <Field
-        name='directorGE'
-        options={genres}
-        component={MovieInput}
-        placeholder='რეჟისორი'
-        isMulti={true}
-      />
+      <ErrorMessage name='directorEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
+      <Field name='directorGE' component={MovieInput} placeholder='რეჟისორი' />
+      <ErrorMessage name='directorGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='budget'
-        options={genres}
         component={MovieInput}
         placeholder={t('movies:budget')}
         type='number'
-        isMulti={true}
         className='appearance-none'
       />
+      <ErrorMessage name='budget'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='year'
-        options={genres}
         component={MovieInput}
         placeholder={t('movies:year')}
         type='number'
-        isMulti={true}
         className='appearance-none'
       />
+      <ErrorMessage name='year'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='descriptionEN'
-        options={genres}
         component={MovieTextArea}
         placeholder='Movie discription'
-        isMulti={true}
         lang={'Eng'}
       />
+      <ErrorMessage name='descriptionEN'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
       <Field
         name='descriptionGE'
-        options={genres}
         component={MovieTextArea}
         placeholder='ფილმის აღწერა'
-        isMulti={true}
         lang={'ქარ'}
       />
+      <ErrorMessage name='descriptionGE'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Field
         type='file'
@@ -108,12 +120,17 @@ const MovieForm = () => {
         accept='image/*'
         component={movieCtx.isMovieEdited ? ImageEditInput : ImageInput}
       />
+      <ErrorMessage name='image'>
+        {(msg) => (
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+        )}
+      </ErrorMessage>
 
       <Button
         text={
           movieCtx.isMovieEdited ? t('movies:updateMovie') : t('movies:addbtn')
         }
-        className='bg-red mt-2 mb-10 w-[100%]'
+        className='bg-red mt-2 mb-6 w-[100%]'
       />
     </Form>
   );

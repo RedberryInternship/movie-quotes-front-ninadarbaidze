@@ -36,6 +36,17 @@ export type MovieContextTypes = {
   getMovie: (data: MovieStateTypes) => void;
 };
 
+export type QuoteContextTypes = {
+  quoteCreationModal: boolean;
+  quoteCreationStateHandler: () => void;
+  isMovieQuote: boolean;
+  movieQuoteCreationHandler: () => void;
+  quoteState: QuoteStateTypes;
+  getQuote: (data: QuoteStateTypes) => void;
+  editQuoteModal: boolean;
+  editQuoteHandler: (arg0: boolean) => void;
+};
+
 export type MovieStateTypes = {
   en: MovieInfo;
   ge: MovieInfo;
@@ -44,6 +55,15 @@ export type MovieStateTypes = {
   genres: string[];
   userId: string;
   image: string;
+  quotes: QuotesTypes[];
+};
+
+export type QuoteStateTypes = {
+  quoteEN: string;
+  quoteGE: string;
+  image: string;
+  movieId: string;
+  userId: string;
 };
 
 export type MovieInfo = {
@@ -53,7 +73,7 @@ export type MovieInfo = {
 };
 
 export type Data = {
-  data: DataTypes;
+  data?: DataTypes;
 };
 
 export type DataTypes = {
@@ -67,4 +87,15 @@ export type DataTypes = {
   ge: MovieInfo;
   genres: string[] | any;
   userId: string | any;
+  quotes: QuotesTypes[];
+};
+
+export type QuotesTypes = {
+  quoteEN: string;
+  quoteGE: string;
+  image: string;
+  userId?: string;
+  movieId?: string;
+  _id?: string;
+  setViewQuote?: (value: boolean) => void;
 };

@@ -11,13 +11,13 @@ const ImageInput: React.FC<FieldProps> = ({ form }) => {
   return (
     <>
       <div
-        className='flex items-center gap-2 w-full h-16 mt-2 pl-3 border-gray20 border-[1px] rounded-[4px]'
+        className='flex items-center gap-2 w-full h-full py-5 mt-2 pl-3 border-gray20 border-[1px] rounded-[4px]'
         {...getRootProps()}
       >
         <input type='file' accept='image/*' {...getInputProps()} />
         <UploadImgIcon />
         <p className='text-white text-base truncate'>{t('movies:drag')}</p>
-        <button className='bg-purple text-white text-base px-3 py-1'>
+        <button className='bg-purple text-white text-sm sm:text-base px-3 py-1'>
           {t('movies:chooseFile')}
         </button>
         {imagePreview && (

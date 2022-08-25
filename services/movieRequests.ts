@@ -1,6 +1,6 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
-import { MovieStateTypes } from 'types';
+import { MovieIdType, MovieStateTypes } from 'types';
 
 export const addMovie = async (
   data: FormData,
@@ -47,7 +47,7 @@ export const editMovie = async (
 
 export const deleteMovie = async (
   token: string,
-  data: string | string[] | undefined
+  data: MovieIdType
 ): Promise<AxiosResponse<any, string>> => {
   const response = await axios.delete(`delete-movie`, {
     headers: { Authorization: `Bearer ${token}` },

@@ -11,7 +11,7 @@ const ImageEditInput: React.FC<FieldProps> = ({ form }) => {
   return (
     <>
       <div
-        className='flex flex-col items-center gap-2 w-full h-full mt-2   rounded-[4px]'
+        className='flex flex-col items-center gap-2 w-full  mt-2  rounded-[4px]'
         {...getRootProps()}
       >
         <input type='file' accept='image/*' {...getInputProps()} />

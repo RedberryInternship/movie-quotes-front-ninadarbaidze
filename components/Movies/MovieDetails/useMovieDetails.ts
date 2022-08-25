@@ -1,19 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
-import { MovieStateTypes } from 'types';
+import { MovieIdType, MovieStateTypes } from 'types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { AuthContext, MovieContext } from 'store';
 import { deleteMovie, getMovieById } from 'services';
 import { useRouter } from 'next/router';
 
-export const useMovieDetails = (props: { data: MovieStateTypes }) => {
+export const useMovieDetails = (props: {
+  data: MovieStateTypes | undefined;
+}) => {
   const { data } = props;
   const { t } = useTranslation();
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
   const movieCtx = useContext(MovieContext);
   const router = useRouter();
-  let genresArray = data.genres[0].split(',');
+  let genresArray = data!.genres[0].split(',');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   useEffect(() => {
@@ -31,9 +33,9 @@ export const useMovieDetails = (props: { data: MovieStateTypes }) => {
     const token: string | unknown = session ? session.accessToken : ctx.token;
 
     try {
-      const movieId = { movieId: router.query.movieId };
+      const movieId: MovieIdType = { movieId: router.query.movieId as string };
       setOpenDeleteModal(false);
-      await deleteMovie(token as string, movieId as unknown as string);
+      await deleteMovie(token as string, movieId);
       router.replace(`/feed/movies`);
     } catch (err: any) {}
   };
@@ -47,7 +49,7 @@ export const useMovieDetails = (props: { data: MovieStateTypes }) => {
   };
 
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${data.image}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}/${data!.image}`;
   };
   return {
     t,

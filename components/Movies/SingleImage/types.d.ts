@@ -3,4 +3,5 @@ export type SingleImageType = {
   year?: number;
   id?: string;
   image?: string;
+  quotesQuantity?: number;
 };

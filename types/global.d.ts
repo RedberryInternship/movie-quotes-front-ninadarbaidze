@@ -20,3 +20,18 @@ export type ClickAndClass = {
 export type OnClick = {
   onClick: () => void;
 };
+
+export type MovieTypes = {
+  [x?: string]: { movieName?: string };
+  _id: string;
+  year?: number;
+  image: string;
+};
+
+export type QuoteIdType = {
+  quoteId: string;
+};
+
+export type MovieIdType = {
+  movieId: string;
+};

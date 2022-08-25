@@ -32,7 +32,7 @@ export default NextAuth({
     },
 
     async redirect() {
-      return `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/feed/profile`;
+      return `${process.env.NEXTAUTH_URL}/feed/profile`;
     },
 
     async signIn({ account, profile }) {

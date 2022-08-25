@@ -5,7 +5,7 @@ import { useSingleImage } from './useSingleImage';
 import { SingleImageType } from './types';
 
 const SingleImage: React.FC<SingleImageType> = (props) => {
-  const { movieName, year, id, image } = props;
+  const { movieName, year, id, image, quotesQuantity } = props;
   const { router, myLoader } = useSingleImage({ image } as unknown as string);
 
   return (
@@ -31,7 +31,7 @@ const SingleImage: React.FC<SingleImageType> = (props) => {
           </h1>
         </div>
         <div className='flex gap-2'>
-          <span className='text-white text-md'>10</span>
+          <span className='text-white text-md'>{quotesQuantity}</span>
           <QuoteIcon />
         </div>
       </div>
