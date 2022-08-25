@@ -1,16 +1,16 @@
-import { Trash } from 'components/icons';
+import { Trash } from 'components';
 import React from 'react';
-import { QuoteModal } from '../QuoteModal';
 import {
   MovieTextArea,
   QuoteImageEditInput,
   Button,
   FeedBackdrop,
   DeleteQuoteModal,
+  QuoteModal,
 } from 'components';
 import { FormikProps, Form, Field, ErrorMessage, Formik } from 'formik';
 import { quoteSchema } from 'schema';
-import { QuoteDefaultValues } from '../FeedQuoteForm/types';
+import { QuoteDefaultValues } from './types';
 import { useEditQuoteModal } from './useEditQuoteModal';
 
 const EditQuoteModal = () => {

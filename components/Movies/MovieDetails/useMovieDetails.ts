@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { MovieStateTypes } from 'types';
+import { MovieIdType, MovieStateTypes } from 'types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { AuthContext, MovieContext } from 'store';
@@ -33,9 +33,9 @@ export const useMovieDetails = (props: {
     const token: string | unknown = session ? session.accessToken : ctx.token;
 
     try {
-      const movieId = { movieId: router.query.movieId };
+      const movieId: MovieIdType = { movieId: router.query.movieId as string };
       setOpenDeleteModal(false);
-      await deleteMovie(token as string, movieId as unknown as string);
+      await deleteMovie(token as string, movieId);
       router.replace(`/feed/movies`);
     } catch (err: any) {}
   };

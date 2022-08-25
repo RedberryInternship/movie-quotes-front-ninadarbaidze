@@ -4,10 +4,10 @@ import {
   FeedButton,
   FeedQuoteForm,
   ViewQuote,
+  QuoteItem,
 } from 'components';
 import { QuoteModal } from 'components';
 import { Data } from 'types';
-import { QuoteItem } from '../QuoteItem';
 import { useQuoteList } from './useQuoteList';
 
 const QuoteList: React.FC<Data> = ({ data }) => {

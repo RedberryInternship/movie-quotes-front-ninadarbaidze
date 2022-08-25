@@ -1,4 +1,4 @@
-import { MovieTypes } from 'components/Movies/ListOfMovies/types';
+import { MovieTypes } from 'types';
 import { FormikHelpers } from 'formik';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

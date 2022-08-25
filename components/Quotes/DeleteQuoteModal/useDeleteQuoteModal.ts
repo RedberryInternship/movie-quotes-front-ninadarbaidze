@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { deleteQuote } from 'services';
 import { AuthContext, MovieContext, QuoteContext } from 'store';
+import { QuoteIdType } from 'types';
 
 export const useDeleteQuoteModal = (props: {
   setViewQuote: ((arg0: boolean) => void) | undefined;
@@ -19,9 +20,9 @@ export const useDeleteQuoteModal = (props: {
   const id = quoteCtx.quoteState._id;
 
   const deleteHandler = async () => {
-    const quoteId = { quoteId: id };
+    const quoteId: QuoteIdType = { quoteId: id };
     try {
-      await deleteQuote(quoteId as unknown as string, token as string);
+      await deleteQuote(quoteId, token as string);
       setViewQuote && setViewQuote(false);
       quoteCtx.editQuoteModal && quoteCtx.editQuoteHandler(false);
       router.replace(`/feed/movies/${router.query.movieId}`);

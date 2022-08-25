@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import { MovieIcon } from 'components/icons';
+import { MovieIcon } from 'components';
 import { DropdownList } from 'components';
 import { FieldProps } from 'formik';
 import { useCustomDropdown } from './useCustomDropdown';

@@ -1,5 +1,6 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
+import { QuoteIdType } from 'types';
 
 export const addQuote = async (
   data: FormData,
@@ -12,7 +13,7 @@ export const addQuote = async (
 };
 
 export const deleteQuote = async (
-  data: string,
+  data: QuoteIdType,
   token: string
 ): Promise<AxiosResponse<any, string>> => {
   const response = await axios.delete(`delete-quote`, {

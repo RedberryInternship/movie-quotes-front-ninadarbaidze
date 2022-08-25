@@ -1,9 +1,14 @@
 import { ErrorMessage, Field, Form, Formik, FormikProps } from 'formik';
-import { MovieTextArea, Button, ImageInput, SingleMovie } from 'components';
+import {
+  MovieTextArea,
+  Button,
+  ImageInput,
+  SingleMovie,
+  CustomDropdown,
+} from 'components';
 import { quoteSchema } from 'schema';
 import { useFeedQuoteForm } from './useFeedQuoteForm';
 import { QuoteDefaultValues } from './types';
-import CustomDropdown from '../CustomDropdown/CustomDropdown';
 import { Data } from 'types';
 
 const FeedQuoteForm: React.FC<Data> = ({ data }) => {

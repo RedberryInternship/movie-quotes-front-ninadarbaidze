@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deleteQuote, updateQuote } from 'services';
 import { AuthContext, QuoteContext } from 'store';
+import { QuoteIdType } from 'types';
 import { QuoteDefaultValues, QuoteFormValues } from './types';
 
 export const useEditQuoteModal = () => {
@@ -26,9 +27,9 @@ export const useEditQuoteModal = () => {
   let token = session ? session.accessToken : ctx.token;
 
   const deleteHandler = async (setQuoteHandler: (arg0: boolean) => void) => {
-    const id = { quoteId: quoteId };
+    const id: QuoteIdType = { quoteId: quoteId };
     try {
-      await deleteQuote(id as unknown as string, token as string);
+      await deleteQuote(id, token as string);
       setQuoteHandler(false);
       router.replace(`/feed/movies/${router.query.movieId}`);
     } catch (err: any) {}
@@ -51,7 +52,7 @@ export const useEditQuoteModal = () => {
     formData.append('userId', userId as string);
 
     try {
-      await updateQuote(formData, token as unknown as string, quoteId);
+      await updateQuote(formData, token as string, quoteId);
       router.replace(`/feed/movies/${movieId}`);
       quoteCtx.editQuoteHandler(false);
     } catch (error: any) {

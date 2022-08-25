@@ -8,7 +8,6 @@ const Posts = () => {
       <div className='flex items-center gap-2 pt-[2%]'>
         <div className='object-cover w-12 h-12 rounded-full overflow-clip border-2'>
           <Image
-            // loader={myLoader}
             src={'/assets/images/profile.png'}
             alt='profile-icon'
             width={50}
@@ -28,7 +27,6 @@ const Posts = () => {
       </div>
       <div className='flex overflow-clip w-full relative rounded-[10px] object-cover'>
         <Image
-          // loader={myLoader}
           src={'/assets/images/image-1.png'}
           alt='imagePreview'
           objectFit='cover'

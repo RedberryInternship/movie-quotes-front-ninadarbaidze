@@ -5,8 +5,8 @@ import {
   EditBtn,
   Trash,
   DeleteQuoteModal,
+  QuoteModal,
 } from 'components';
-import { QuoteModal } from '../QuoteModal';
 import Image from 'next/image';
 import { ViewQuoteTypes } from './types';
 import { useViewQuote } from './useViewQuote';
