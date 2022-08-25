@@ -1,12 +1,14 @@
-import React from 'react';
 import Image from 'next/image';
-import { Comment, Like } from 'components';
+import { Comment, CommentItem, Like, CommentInput } from 'components';
+import { usePosts } from './usePosts';
 
 const Posts = () => {
+  const {} = usePosts();
+
   return (
     <div className='flex flex-col gap-3 w-[65%] mr-[20%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
       <div className='flex items-center gap-2 pt-[2%]'>
-        <div className='object-cover w-12 h-12 rounded-full overflow-clip border-2'>
+        <div className='object-cover w-10 h-10 rounded-full overflow-clip border-2'>
           <Image
             src={'/assets/images/profile.png'}
             alt='profile-icon'
@@ -45,6 +47,10 @@ const Posts = () => {
         </button>
       </div>
       <div className='w-full h-[1px] bg-gray15 bg-opacity-30' />
+
+      <CommentItem />
+      <CommentItem />
+      <CommentInput />
     </div>
   );
 };
