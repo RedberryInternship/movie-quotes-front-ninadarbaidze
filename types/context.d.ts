@@ -64,6 +64,7 @@ export type QuoteStateTypes = {
   image: string;
   movieId: string;
   userId: string;
+  _id: string;
 };
 
 export type MovieInfo = {
