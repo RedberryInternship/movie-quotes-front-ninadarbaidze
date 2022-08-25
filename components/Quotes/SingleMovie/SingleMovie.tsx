@@ -5,6 +5,7 @@ import { Data } from 'types';
 
 const SingleMovie: React.FC<Data> = ({ data }) => {
   const { myLoader, t } = useSingleMovie();
+
   return (
     <div>
       <div className='flex gap-4'>
