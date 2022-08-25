@@ -96,6 +96,6 @@ export type QuotesTypes = {
   image: string;
   userId?: string;
   movieId?: string;
-  _id?: string;
+  _id: string;
   setViewQuote?: (value: boolean) => void;
 };
