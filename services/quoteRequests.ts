@@ -43,3 +43,34 @@ export const updateQuote = async (
   });
   return response;
 };
+
+//change any
+export const getQuotes = async (
+  token: string
+): Promise<AxiosResponse<any, any>> => {
+  const response = await axios.get(`quotes`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const likePost = async (
+  data: any,
+  token: string
+): Promise<AxiosResponse<any, any>> => {
+  const response = await axios.post(`add-like`, {
+    headers: { Authorization: `Bearer ${token}` },
+    ...data,
+  });
+  return response;
+};
+export const commentPost = async (
+  data: any,
+  token: string
+): Promise<AxiosResponse<any, any>> => {
+  const response = await axios.post(`add-comment`, {
+    headers: { Authorization: `Bearer ${token}` },
+    ...data,
+  });
+  return response;
+};

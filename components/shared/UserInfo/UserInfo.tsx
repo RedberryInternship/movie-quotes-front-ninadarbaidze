@@ -16,14 +16,16 @@ const UserInfo: React.FC<UserInfoTypes> = (props) => {
             color ? color : 'mainDark2'
           }`}
         >
-          <div className='object-cover'>
-            <Image
-              loader={myLoader}
-              src={imagePreviewHandler(userCtx, session)}
-              alt='profile-icon'
-              width={50}
-              height={50}
-            />
+          <div>
+            <div className='object-cover'>
+              <Image
+                loader={myLoader}
+                src={imagePreviewHandler(userCtx, session)}
+                alt='profile-icon'
+                width={50}
+                height={50}
+              />
+            </div>
           </div>
         </div>
         <div>

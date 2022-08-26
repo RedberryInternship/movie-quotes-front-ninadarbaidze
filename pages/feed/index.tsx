@@ -6,12 +6,12 @@ import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 
 const Feed = () => {
-  const { quoteCtx } = useFeed();
+  const { quoteCtx, quotes } = useFeed();
 
   return (
     <>
-      <FeedWrapper className='flex flex-col items-center mt-10'>
-        <div className='flex w-[65%] mr-[20%] '>
+      <FeedWrapper className='flex flex-col translate-x-[10%] mt-10'>
+        <div className='flex w-[65%]'>
           <div className='flex items-center w-full gap-4 h-10'>
             <WriteNewQuote />
           </div>
@@ -24,7 +24,13 @@ const Feed = () => {
             </>
           )}
         </div>
-        <Posts />
+        <ul className='w-full'>
+          {quotes.map((quote) => (
+            <li key={quote._id} className='w-full'>
+              <Posts quote={quote} />
+            </li>
+          ))}
+        </ul>
       </FeedWrapper>
     </>
   );

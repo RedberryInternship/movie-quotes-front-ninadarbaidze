@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useCommentInput } from './useCommentInput';
 import Image from 'next/image';
+import { UserContext } from 'store';
 
-const CommentInput = () => {
-  const { formik } = useCommentInput();
+const CommentInput = (props) => {
+  const { quoteId } = props;
+  console.log('aba', quoteId);
+  const { formik } = useCommentInput({ quoteId });
+  const userCtx = useContext(UserContext);
+
+  const myLoader = () => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+  };
   return (
     <div className='flex justify-center gap-3 mt-3'>
       <div>
         <div className='object-cover w-10 h-10 rounded-full overflow-clip border-2'>
           <Image
-            src={'/assets/images/profile.png'}
+            loader={myLoader}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`}
             alt='profile-icon'
             width={50}
             height={50}
