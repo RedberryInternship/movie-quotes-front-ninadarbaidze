@@ -1,40 +1,12 @@
 import Image from 'next/image';
 import { Comment, CommentItem, Like, CommentInput } from 'components';
 import { usePosts } from './usePosts';
-import { useRouter } from 'next/router';
-import { useContext } from 'react';
-import { AuthContext, UserContext } from 'store';
-import { useSession } from 'next-auth/react';
-import { likePost } from 'services';
-import { Comments } from 'types';
+import { Comments, PostTypes } from 'types';
 
-const Posts: React.FC<any> = (props) => {
+const Posts: React.FC<PostTypes> = (props) => {
   const { quote } = props;
-  const {} = usePosts();
-  const router = useRouter();
-  const currentLan: string | undefined = router!.locale;
-  const userCtx = useContext(UserContext);
-  const { data: session } = useSession();
-  const ctx = useContext(AuthContext);
-
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-  };
-  const myLoader2 = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${quote.image}`;
-  };
-
-  const likeHandler = async () => {
-    let token = session ? session.accessToken : ctx.token;
-    const userId: string | Blob | unknown = session
-      ? session.userId
-      : ctx.userId;
-    const data = {
-      userId: userId as string,
-      quoteId: quote._id as string,
-    };
-    await likePost(data, token as string);
-  };
+  const { userCtx, currentLan, myLoader, myLoader2, likeHandler, router } =
+    usePosts({ quote });
 
   return (
     <div className='flex flex-col gap-3 w-[65%] mr-[20%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
@@ -59,7 +31,10 @@ const Posts: React.FC<any> = (props) => {
         <p>
           movie-
           <span className='text-beidge'>
-            {quote.movieId[currentLan!].movieName}.
+            {currentLan === 'ge'
+              ? quote.movieId.ge.movieName
+              : quote.movieId.en.movieName}
+            .
           </span>
           <span>({quote.movieId.year})</span>
         </p>

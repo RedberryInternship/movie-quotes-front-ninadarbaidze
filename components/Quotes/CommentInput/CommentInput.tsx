@@ -1,16 +1,10 @@
-import React, { useContext } from 'react';
 import { useCommentInput } from './useCommentInput';
 import Image from 'next/image';
-import { UserContext } from 'store';
 
 const CommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
-  const { formik } = useCommentInput({ quoteId });
-  const userCtx = useContext(UserContext);
+  const { formik, userCtx, myLoader } = useCommentInput({ quoteId });
 
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-  };
   return (
     <div className='flex justify-center gap-3 mt-3'>
       <div>

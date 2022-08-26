@@ -5,11 +5,8 @@ import { Comments } from 'types';
 
 const CommentItem = (props: { comment: Comments }) => {
   const { comment } = props;
-  const {} = useCommentItem();
+  const { myLoader } = useCommentItem({ image: comment.userId.profileImage });
 
-  const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${comment.userId.profileImage}`;
-  };
   return (
     <>
       <div className='flex gap-3 mt-3'>

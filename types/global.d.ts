@@ -36,12 +36,16 @@ export type MovieIdType = {
   movieId: string;
 };
 
+export type PostTypes = {
+  quote: QuotesListTypes;
+};
+
 export type QuotesListTypes = {
   _id: string;
   comments: Comments[];
   image: string;
   likes: string[];
-  movieId: string;
+  movieId: MovieId;
   quoteEN: string;
   quoteGE: string;
   userId: string;
@@ -56,4 +60,15 @@ export type CommentUser = {
   _id: string;
   username: string;
   profileImage: string;
+};
+
+export type MovieId = {
+  _id: string;
+  en: movieName;
+  ge: movieName;
+  year: number;
+};
+
+export type movieName = {
+  movieName: string;
 };

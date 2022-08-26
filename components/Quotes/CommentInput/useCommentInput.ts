@@ -2,13 +2,14 @@ import { FormikState, useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
 import { useContext } from 'react';
 import { commentPost } from 'services';
-import { AuthContext } from 'store';
+import { AuthContext, UserContext } from 'store';
 import { CommentRequest } from 'types';
 import { InputTypes } from './types';
 
 export const useCommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
   const { data: session } = useSession();
+  const userCtx = useContext(UserContext);
   const ctx = useContext(AuthContext);
 
   const onSubmit = async (
@@ -45,5 +46,9 @@ export const useCommentInput = (props: { quoteId: string }) => {
     onSubmit: onSubmit,
   });
 
-  return { formik };
+  const myLoader = () => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+  };
+
+  return { formik, userCtx, myLoader };
 };
