@@ -5,7 +5,6 @@ import { UserContext } from 'store';
 
 const CommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
-  console.log('aba', quoteId);
   const { formik } = useCommentInput({ quoteId });
   const userCtx = useContext(UserContext);
 
