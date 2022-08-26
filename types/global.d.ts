@@ -72,3 +72,7 @@ export type MovieId = {
 export type movieName = {
   movieName: string;
 };
+
+export type Liked = {
+  liked: boolean;
+};

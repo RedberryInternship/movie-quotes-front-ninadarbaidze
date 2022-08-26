@@ -34,5 +34,21 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     } catch (err: any) {}
   };
 
-  return { userCtx, currentLan, myLoader, myLoader2, likeHandler, router };
+  const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
+
+  // console.log(quote);
+  // console.log(userId);
+
+  const liked = !!quote.likes.find((user) => user === userId);
+
+  return {
+    userCtx,
+    currentLan,
+    myLoader,
+    myLoader2,
+    likeHandler,
+    router,
+    session,
+    liked,
+  };
 };

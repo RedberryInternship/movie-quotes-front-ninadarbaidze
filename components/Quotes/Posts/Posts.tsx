@@ -5,8 +5,15 @@ import { Comments, PostTypes } from 'types';
 
 const Posts: React.FC<PostTypes> = (props) => {
   const { quote } = props;
-  const { userCtx, currentLan, myLoader, myLoader2, likeHandler, router } =
-    usePosts({ quote });
+  const {
+    userCtx,
+    currentLan,
+    myLoader,
+    myLoader2,
+    likeHandler,
+    router,
+    liked,
+  } = usePosts({ quote });
 
   return (
     <div className='flex flex-col gap-3 w-[65%] mr-[20%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
@@ -56,7 +63,7 @@ const Posts: React.FC<PostTypes> = (props) => {
         </button>
         <button className='flex gap-1' onClick={likeHandler}>
           <p>{quote.likes.length}</p>
-          <Like />
+          <Like liked={liked} />
         </button>
       </div>
       <div className='w-full h-[1px] bg-gray15 bg-opacity-30' />

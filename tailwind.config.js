@@ -36,6 +36,7 @@ module.exports = {
         link: '#0D6EFD',
         green: '#198754',
         purple: '#422772',
+        pink: '#F3426C',
       },
       backgroundImage: {
         gradient:
