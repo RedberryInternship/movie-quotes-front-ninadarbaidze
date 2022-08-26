@@ -1,10 +1,11 @@
 import { FormikState, useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
-import { useContext } from 'react';
-import { commentPost } from 'services';
-import { AuthContext, UserContext } from 'store';
+import { useContext, useEffect, useState } from 'react';
+import { commentPost, getQuoteById } from 'services';
+import { AuthContext, QuoteContext, UserContext } from 'store';
 import { CommentRequest } from 'types';
 import { InputTypes } from './types';
+import openSocket from 'socket.io-client';
 
 export const useCommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;

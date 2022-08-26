@@ -1,9 +1,10 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
-import { likePost } from 'services';
-import { AuthContext, UserContext } from 'store';
+import { useContext, useEffect, useState } from 'react';
+import { getQuoteById, likePost } from 'services';
+import { AuthContext, QuoteContext, UserContext } from 'store';
 import { QuotesListTypes } from 'types';
+import openSocket from 'socket.io-client';
 
 export const usePosts = (props: { quote: QuotesListTypes }) => {
   const { quote } = props;
@@ -12,6 +13,9 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
   const currentLan: string | undefined = router!.locale;
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
+  const quoteCtx = useContext(QuoteContext);
+  const [comments, setComments] = useState([]);
+  const [commentQuantity, setCommentQuantity] = useState(null);
 
   const myLoader = () => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
@@ -20,9 +24,9 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${quote?.image}`;
   };
 
+  let token = session ? session.accessToken : ctx.token;
   const likeHandler = async () => {
     try {
-      let token = session ? session.accessToken : ctx.token;
       const userId: string | Blob | unknown = session
         ? session.userId
         : ctx.userId;
@@ -34,10 +38,18 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     } catch (err: any) {}
   };
 
-  const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getQuoteById(quote._id, token as string);
+        setComments(response.data.quote.comments);
+      } catch (err: any) {}
+    };
 
-  // console.log(quote);
-  // console.log(userId);
+    getData();
+  }, [quote._id, token]);
+
+  const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
 
   const liked = !!quote.likes.find((user) => user === userId);
 
@@ -50,5 +62,8 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     router,
     session,
     liked,
+    quoteCtx,
+    comments,
+    commentQuantity,
   };
 };

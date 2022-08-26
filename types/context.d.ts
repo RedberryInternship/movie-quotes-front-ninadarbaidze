@@ -47,6 +47,8 @@ export type QuoteContextTypes = {
   editQuoteHandler: (arg0: boolean) => void;
   quoteUpdates: boolean;
   quoteUpdateHandler: (value: boolean) => void;
+  comments: [];
+  getComments: (comments: any) => void;
 };
 
 export type MovieStateTypes = {

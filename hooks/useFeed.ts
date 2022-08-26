@@ -25,7 +25,6 @@ export const useFeed = () => {
       try {
         let token = session ? session.accessToken : ctx.token;
         const response = await getQuotes(token as string);
-        console.log(response.data);
         setQuotes(response.data);
       } catch (err: any) {}
     };
@@ -37,8 +36,10 @@ export const useFeed = () => {
     socket.on('quotes', (data) => {
       const quote = data.quote;
       if (data.action === 'create') {
-        // console.log(data.quote);
         addQuote(quote);
+      }
+      if (data.action === 'addComment') {
+        addComment(data.quote);
       }
     });
   }, []);
@@ -49,6 +50,15 @@ export const useFeed = () => {
       updatedQuotes = [...prevState];
       updatedQuotes!.unshift(quote);
       return updatedQuotes;
+    });
+  };
+  const addComment = (comment: QuotesListTypes) => {
+    setQuotes((prevState) => {
+      const quoteIds = prevState.map((quote) => quote._id);
+      const index = quoteIds.indexOf(comment._id);
+      let newState = [...prevState];
+      newState.splice(index, 1, comment);
+      return newState;
     });
   };
 
