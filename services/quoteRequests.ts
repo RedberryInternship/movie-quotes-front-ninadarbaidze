@@ -1,6 +1,6 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
-import { QuoteIdType } from 'types';
+import { CommentRequest, LikeRequest, QuoteIdType, QuotesTypes } from 'types';
 
 export const addQuote = async (
   data: FormData,
@@ -44,10 +44,9 @@ export const updateQuote = async (
   return response;
 };
 
-//change any
 export const getQuotes = async (
   token: string
-): Promise<AxiosResponse<any, any>> => {
+): Promise<AxiosResponse<any, QuotesTypes>> => {
   const response = await axios.get(`quotes`, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -55,9 +54,9 @@ export const getQuotes = async (
 };
 
 export const likePost = async (
-  data: any,
+  data: LikeRequest,
   token: string
-): Promise<AxiosResponse<any, any>> => {
+): Promise<AxiosResponse<any, string>> => {
   const response = await axios.post(`add-like`, {
     headers: { Authorization: `Bearer ${token}` },
     ...data,
@@ -65,9 +64,9 @@ export const likePost = async (
   return response;
 };
 export const commentPost = async (
-  data: any,
+  data: CommentRequest,
   token: string
-): Promise<AxiosResponse<any, any>> => {
+): Promise<AxiosResponse<any, string>> => {
   const response = await axios.post(`add-comment`, {
     headers: { Authorization: `Bearer ${token}` },
     ...data,

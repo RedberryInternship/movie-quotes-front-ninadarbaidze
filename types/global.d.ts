@@ -35,3 +35,25 @@ export type QuoteIdType = {
 export type MovieIdType = {
   movieId: string;
 };
+
+export type QuotesListTypes = {
+  _id: string;
+  comments: Comments[];
+  image: string;
+  likes: string[];
+  movieId: string;
+  quoteEN: string;
+  quoteGE: string;
+  userId: string;
+};
+
+export type Comments = {
+  _id: string;
+  comment: string;
+  userId: CommentUser;
+};
+export type CommentUser = {
+  _id: string;
+  username: string;
+  profileImage: string;
+};

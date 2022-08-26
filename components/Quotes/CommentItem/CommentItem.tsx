@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { useCommentItem } from './useCommentItem';
+import { Comments } from 'types';
 
-const CommentItem = (props) => {
+const CommentItem = (props: { comment: Comments }) => {
   const { comment } = props;
   const {} = useCommentItem();
-  console.log(comment);
 
   const myLoader = () => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${comment.userId.profileImage}`;
@@ -20,7 +20,6 @@ const CommentItem = (props) => {
             <Image
               loader={myLoader}
               src={`${process.env.NEXT_PUBLIC_API_URL}/${comment.userId.profileImage}`}
-              // src={'/assets/images/profile.png'}
               alt='profile-icon'
               width={150}
               height={150}

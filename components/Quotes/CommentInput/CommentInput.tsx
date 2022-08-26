@@ -3,7 +3,7 @@ import { useCommentInput } from './useCommentInput';
 import Image from 'next/image';
 import { UserContext } from 'store';
 
-const CommentInput = (props) => {
+const CommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
   console.log('aba', quoteId);
   const { formik } = useCommentInput({ quoteId });

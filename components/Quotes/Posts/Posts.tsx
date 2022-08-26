@@ -6,11 +6,13 @@ import { useContext } from 'react';
 import { AuthContext, UserContext } from 'store';
 import { useSession } from 'next-auth/react';
 import { likePost } from 'services';
+import { Comments } from 'types';
 
 const Posts: React.FC<any> = (props) => {
   const { quote } = props;
   const {} = usePosts();
   const router = useRouter();
+  const currentLan: string | undefined = router!.locale;
   const userCtx = useContext(UserContext);
   const { data: session } = useSession();
   const ctx = useContext(AuthContext);
@@ -28,10 +30,10 @@ const Posts: React.FC<any> = (props) => {
       ? session.userId
       : ctx.userId;
     const data = {
-      userId: userId,
-      quoteId: quote._id,
+      userId: userId as string,
+      quoteId: quote._id as string,
     };
-    await likePost(data, token);
+    await likePost(data, token as string);
   };
 
   return (
@@ -57,7 +59,7 @@ const Posts: React.FC<any> = (props) => {
         <p>
           movie-
           <span className='text-beidge'>
-            {quote.movieId[router.locale].movieName}.
+            {quote.movieId[currentLan!].movieName}.
           </span>
           <span>({quote.movieId.year})</span>
         </p>
@@ -85,7 +87,7 @@ const Posts: React.FC<any> = (props) => {
       <div className='w-full h-[1px] bg-gray15 bg-opacity-30' />
 
       <ul>
-        {quote.comments.map((comment) => (
+        {quote.comments.map((comment: Comments) => (
           <li key={comment._id}>
             <CommentItem comment={comment} />
           </li>
