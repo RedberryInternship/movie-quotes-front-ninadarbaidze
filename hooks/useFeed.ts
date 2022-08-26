@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { getQuotes } from 'services';
 import { AuthContext, QuoteContext } from 'store';
 import { QuotesListTypes } from 'types';
+import openSocket from 'socket.io-client';
 
 export const useFeed = () => {
   const router = useRouter();
@@ -21,13 +22,35 @@ export const useFeed = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let token = session ? session.accessToken : ctx.token;
-      const response = await getQuotes(token as string);
-      setQuotes(response.data);
+      try {
+        let token = session ? session.accessToken : ctx.token;
+        const response = await getQuotes(token as string);
+        console.log(response.data);
+        setQuotes(response.data);
+      } catch (err: any) {}
     };
     getData();
   }, [ctx.token, session]);
-  console.log(quotes);
+
+  useEffect(() => {
+    const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
+    socket.on('quotes', (data) => {
+      const quote = data.quote;
+      if (data.action === 'create') {
+        // console.log(data.quote);
+        addQuote(quote);
+      }
+    });
+  }, []);
+
+  const addQuote = (quote: QuotesListTypes) => {
+    setQuotes((prevState) => {
+      let updatedQuotes = [];
+      updatedQuotes = [...prevState];
+      updatedQuotes!.unshift(quote);
+      return updatedQuotes;
+    });
+  };
 
   return { router, ctx, status, quoteCtx, quotes };
 };
