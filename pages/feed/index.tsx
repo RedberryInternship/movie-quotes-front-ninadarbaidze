@@ -5,10 +5,9 @@ import { useFeed } from 'hooks/useFeed';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
 
 const Feed = () => {
-  const { quoteCtx, quotes, setPage, page } = useFeed();
+  const { quoteCtx, quotes, setPage, page, total } = useFeed();
 
   console.log(quotes.length);
 
@@ -32,13 +31,17 @@ const Feed = () => {
           <InfiniteScroll
             dataLength={quotes.length}
             next={() => setPage(page + 1)}
-            hasMore={true}
+            hasMore={total === quotes.length ? false : true}
             loader={
               <div className='flex flex-col items-center w-full mt-8'>
                 <div className='w-8 h-8 border-t-2 border-b-2 border-red rounded-full animate-spin'></div>
               </div>
             }
-            className=''
+            endMessage={
+              <p className='flex justify-center text-gray30 text-lg mt-6'>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
           >
             {quotes.map((quote) => (
               <li key={quote._id} className='w-full'>

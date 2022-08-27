@@ -14,6 +14,7 @@ export const useFeed = () => {
   const { data: session } = useSession();
   const [quotes, setQuotes] = useState<QuotesListTypes[]>([]);
   const [page, setPage] = useState(1);
+  const [total, setTotal] = useState();
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -26,7 +27,8 @@ export const useFeed = () => {
       try {
         let token = session ? session.accessToken : ctx.token;
         const response = await getQuotes(page, token as string);
-        setQuotes(response.data);
+        setQuotes(response.data.quotes);
+        setTotal(response.data.total);
       } catch (err: any) {}
     };
     getData();
@@ -83,5 +85,5 @@ export const useFeed = () => {
     });
   };
 
-  return { router, ctx, status, quoteCtx, quotes, setPage, page };
+  return { router, ctx, status, quoteCtx, quotes, setPage, page, total };
 };
