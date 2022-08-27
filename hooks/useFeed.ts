@@ -71,14 +71,13 @@ export const useFeed = () => {
     });
   };
 
-  const addLike = (likes, id) => {
+  const addLike = (likes: string[], id: string) => {
     setQuotes((prevState) => {
       const quoteIds = prevState.map((quote) => quote._id);
       const index = quoteIds.indexOf(id);
       let newState = [...prevState];
       newState[index].likes = likes;
       console.log(newState);
-      // newState.splice(index, 1, comment);
       return newState;
     });
   };

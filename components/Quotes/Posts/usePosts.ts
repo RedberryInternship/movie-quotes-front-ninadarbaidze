@@ -1,24 +1,29 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { getQuoteById, likePost } from 'services';
 import { AuthContext, QuoteContext, UserContext } from 'store';
 import { QuotesListTypes } from 'types';
-import openSocket from 'socket.io-client';
 
 export const usePosts = (props: { quote: QuotesListTypes }) => {
   const { quote } = props;
   const userCtx = useContext(UserContext);
+  const quoteCtx = useContext(QuoteContext);
+  const ctx = useContext(AuthContext);
+  const [comments, setComments] = useState([]);
   const router = useRouter();
   const currentLan: string | undefined = router!.locale;
   const { data: session } = useSession();
-  const ctx = useContext(AuthContext);
-  const quoteCtx = useContext(QuoteContext);
-  const [comments, setComments] = useState([]);
-  const [commentQuantity, setCommentQuantity] = useState(null);
 
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    const defaultProfileImg = `/assets/images/profile.png`;
+    if (session?.user && !userCtx.userState.profileImage) {
+      return session!.user.image as string;
+    } else if (userCtx.userState.profileImage) {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    } else {
+      return defaultProfileImg;
+    }
   };
   const myLoader2 = () => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${quote?.image}`;
@@ -52,6 +57,13 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
   const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
 
   const liked = !!quote.likes.find((user) => user === userId);
+  const commented = !!quote.comments.find((user) => user.userId._id === userId);
+
+  const commentRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    commentRef.current?.focus();
+  };
 
   return {
     userCtx,
@@ -62,8 +74,10 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     router,
     session,
     liked,
+    commented,
     quoteCtx,
     comments,
-    commentQuantity,
+    commentRef,
+    handleClick,
   };
 };

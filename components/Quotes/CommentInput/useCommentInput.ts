@@ -1,11 +1,10 @@
 import { FormikState, useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
-import { useContext, useEffect, useState } from 'react';
-import { commentPost, getQuoteById } from 'services';
-import { AuthContext, QuoteContext, UserContext } from 'store';
+import { useContext } from 'react';
+import { commentPost } from 'services';
+import { AuthContext, UserContext } from 'store';
 import { CommentRequest } from 'types';
 import { InputTypes } from './types';
-import openSocket from 'socket.io-client';
 
 export const useCommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
@@ -47,8 +46,19 @@ export const useCommentInput = (props: { quoteId: string }) => {
     onSubmit: onSubmit,
   });
 
+  // const myLoader = () => {
+  //   return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+  // };
+
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    const defaultProfileImg = `/assets/images/profile.png`;
+    if (session?.user && !userCtx.userState.profileImage) {
+      return session!.user.image as string;
+    } else if (userCtx.userState.profileImage) {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+    } else {
+      return defaultProfileImg;
+    }
   };
 
   return { formik, userCtx, myLoader };

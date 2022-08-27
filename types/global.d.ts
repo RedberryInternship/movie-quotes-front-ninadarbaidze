@@ -48,13 +48,19 @@ export type QuotesListTypes = {
   movieId: MovieId;
   quoteEN: string;
   quoteGE: string;
-  userId: string;
+  userId: UserId;
 };
 
 export type Comments = {
   _id: string;
   comment: string;
   userId: CommentUser;
+};
+
+export type UserId = {
+  _id: string;
+  username: string;
+  profileImage: string;
 };
 export type CommentUser = {
   _id: string;
@@ -75,4 +81,7 @@ export type movieName = {
 
 export type Liked = {
   liked: boolean;
+};
+export type Commented = {
+  commented: boolean;
 };

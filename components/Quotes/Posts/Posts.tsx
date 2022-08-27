@@ -6,13 +6,15 @@ import { Comments, PostTypes } from 'types';
 const Posts: React.FC<PostTypes> = (props) => {
   const { quote } = props;
   const {
-    userCtx,
+    commented,
     currentLan,
     myLoader,
     myLoader2,
     likeHandler,
     router,
     liked,
+    commentRef,
+    handleClick,
   } = usePosts({ quote });
 
   return (
@@ -21,14 +23,14 @@ const Posts: React.FC<PostTypes> = (props) => {
         <div className='object-cover w-10 h-10 rounded-full overflow-clip border-2'>
           <Image
             loader={myLoader}
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${quote.userId.profileImage}`}
             alt='profile-icon'
             width={50}
             height={50}
           />
         </div>
         <div>
-          <p className='text-white font-base'>{userCtx.userState.username}</p>
+          <p className='text-white font-base'>{quote.userId.username}</p>
         </div>
       </div>
       <div className='flex gap-2 text-white'>
@@ -57,9 +59,9 @@ const Posts: React.FC<PostTypes> = (props) => {
         />
       </div>
       <div className='flex items-center gap-4 text-white'>
-        <button className='flex gap-1'>
+        <button className='flex gap-1' onClick={() => handleClick()}>
           <p>{quote.comments.length}</p>
-          <Comment />
+          <Comment commented={commented} />
         </button>
         <button className='flex gap-1' onClick={likeHandler}>
           <p>{quote.likes.length}</p>
@@ -75,7 +77,7 @@ const Posts: React.FC<PostTypes> = (props) => {
           </li>
         ))}
       </ul>
-      <CommentInput quoteId={quote._id} />
+      <CommentInput quoteId={quote._id} commentRef={commentRef} />
     </div>
   );
 };

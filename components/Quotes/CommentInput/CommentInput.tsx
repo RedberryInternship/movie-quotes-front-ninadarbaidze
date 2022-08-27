@@ -1,8 +1,12 @@
 import { useCommentInput } from './useCommentInput';
 import Image from 'next/image';
+import { LegacyRef } from 'react';
 
-const CommentInput = (props: { quoteId: string }) => {
-  const { quoteId } = props;
+const CommentInput = (props: {
+  quoteId: string;
+  commentRef: LegacyRef<HTMLInputElement> | null;
+}) => {
+  const { quoteId, commentRef } = props;
   const { formik, userCtx, myLoader } = useCommentInput({ quoteId });
 
   return (
@@ -23,6 +27,7 @@ const CommentInput = (props: { quoteId: string }) => {
           id='comment'
           name='comment'
           type='text'
+          ref={commentRef}
           placeholder='Write a comment'
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
