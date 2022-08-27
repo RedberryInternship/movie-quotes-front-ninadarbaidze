@@ -46,10 +46,6 @@ export const useCommentInput = (props: { quoteId: string }) => {
     onSubmit: onSubmit,
   });
 
-  // const myLoader = () => {
-  //   return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
-  // };
-
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
     if (session?.user && !userCtx.userState.profileImage) {

@@ -45,9 +45,10 @@ export const updateQuote = async (
 };
 
 export const getQuotes = async (
+  pageNumber: number,
   token: string
 ): Promise<AxiosResponse<any, QuotesTypes>> => {
-  const response = await axios.get(`quotes`, {
+  const response = await axios.get(`quotes?page=${pageNumber}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response;

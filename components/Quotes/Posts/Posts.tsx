@@ -18,7 +18,7 @@ const Posts: React.FC<PostTypes> = (props) => {
   } = usePosts({ quote });
 
   return (
-    <div className='flex flex-col gap-3 w-[65%] mr-[20%] mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
+    <div className='flex flex-col gap-3 mt-4 h-full bg-mainDark rounded-[12px] px-[2%] '>
       <div className='flex items-center gap-2 pt-[2%]'>
         <div className='object-cover w-10 h-10 rounded-full overflow-clip border-2'>
           <Image

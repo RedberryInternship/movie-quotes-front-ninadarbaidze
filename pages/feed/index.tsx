@@ -4,9 +4,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useFeed } from 'hooks/useFeed';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState } from 'react';
 
 const Feed = () => {
-  const { quoteCtx, quotes } = useFeed();
+  const { quoteCtx, quotes, setPage, page } = useFeed();
+
+  console.log(quotes.length);
 
   return (
     <>
@@ -18,18 +22,30 @@ const Feed = () => {
           </QuoteModal>
         </>
       )}
-      <FeedWrapper className='flex flex-col translate-x-[10%] mt-10'>
-        <div className='flex w-[65%]'>
+      <FeedWrapper className='flex flex-col items-center mt-10  lg:pr-[12%]'>
+        <div className='flex w-[75%]'>
           <div className='flex items-center w-full gap-4 h-10'>
             <WriteNewQuote />
           </div>
         </div>
-        <ul className='w-full'>
-          {quotes.map((quote) => (
-            <li key={quote._id} className='w-full'>
-              <Posts quote={quote} />
-            </li>
-          ))}
+        <ul className='w-[75%]'>
+          <InfiniteScroll
+            dataLength={quotes.length}
+            next={() => setPage(page + 1)}
+            hasMore={true}
+            loader={
+              <div className='flex flex-col items-center w-full mt-8'>
+                <div className='w-8 h-8 border-t-2 border-b-2 border-red rounded-full animate-spin'></div>
+              </div>
+            }
+            className=''
+          >
+            {quotes.map((quote) => (
+              <li key={quote._id} className='w-full'>
+                <Posts quote={quote} />
+              </li>
+            ))}
+          </InfiniteScroll>
         </ul>
       </FeedWrapper>
     </>

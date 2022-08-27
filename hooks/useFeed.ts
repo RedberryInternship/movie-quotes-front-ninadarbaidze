@@ -13,6 +13,7 @@ export const useFeed = () => {
   const quoteCtx = useContext(QuoteContext);
   const { data: session } = useSession();
   const [quotes, setQuotes] = useState<QuotesListTypes[]>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -24,12 +25,12 @@ export const useFeed = () => {
     const getData = async () => {
       try {
         let token = session ? session.accessToken : ctx.token;
-        const response = await getQuotes(token as string);
+        const response = await getQuotes(page, token as string);
         setQuotes(response.data);
       } catch (err: any) {}
     };
     getData();
-  }, [ctx.token, session]);
+  }, [ctx.token, page, session]);
 
   useEffect(() => {
     const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
@@ -82,5 +83,5 @@ export const useFeed = () => {
     });
   };
 
-  return { router, ctx, status, quoteCtx, quotes };
+  return { router, ctx, status, quoteCtx, quotes, setPage, page };
 };
