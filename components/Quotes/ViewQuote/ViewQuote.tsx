@@ -6,8 +6,11 @@ import {
   Trash,
   DeleteQuoteModal,
   QuoteModal,
+  CommentItem,
+  CommentInput,
 } from 'components';
 import Image from 'next/image';
+import { Comments } from 'types';
 import { ViewQuoteTypes } from './types';
 import { useViewQuote } from './useViewQuote';
 
@@ -21,6 +24,12 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
     setDeleteModal,
     deleteQuoteHandler,
     editQuoteHandler,
+    quoteDetail,
+    likeHandler,
+    liked,
+    commented,
+    handleClick,
+    commentRef,
   } = useViewQuote({ setViewQuote });
 
   return (
@@ -42,7 +51,7 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
             <Trash />
           </button>
         </div>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 h-[70vh] overflow-scroll'>
           <div className='flex items-center relative'>
             <div className='py-2 italic placeholder:text-white text-white  pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate'>
               <p>{quoteData.quoteEN}</p>
@@ -66,15 +75,25 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
             />
           </div>
           <div className='flex items-center gap-4 text-white'>
-            <button className='flex gap-1'>
-              <p>3</p>
-              <Comment />
+            <button className='flex gap-1' onClick={handleClick}>
+              <p>{quoteDetail && quoteDetail.comments.length}</p>
+              <Comment commented={commented as boolean} />
             </button>
-            <button className='flex gap-1'>
-              <p>3</p>
-              <Like />
+            <button className='flex gap-1' onClick={likeHandler}>
+              <p>{quoteDetail && quoteDetail.likes.length}</p>
+              <Like liked={liked as boolean} />
             </button>
           </div>
+          <ul>
+            <div className='w-full h-[1px] mb-4 z-50 bg-gray15 bg-opacity-30' />
+            {quoteDetail &&
+              quoteDetail.comments.map((comment: Comments) => (
+                <li key={comment._id}>
+                  <CommentItem comment={comment} />
+                </li>
+              ))}
+          </ul>
+          <CommentInput quoteId={quoteData._id} commentRef={commentRef} />
         </div>
       </QuoteModal>
     </div>
