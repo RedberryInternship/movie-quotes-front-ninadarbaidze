@@ -39,7 +39,16 @@ export const useFeed = () => {
         addQuote(quote);
       }
       if (data.action === 'addComment') {
+        console.log(data.quote);
         addComment(data.quote);
+      }
+
+      if (data.action === 'like') {
+        addLike(data.likes, data.id);
+      }
+
+      if (data.action === 'dislike') {
+        addLike(data.likes, data.id);
       }
     });
   }, []);
@@ -58,6 +67,18 @@ export const useFeed = () => {
       const index = quoteIds.indexOf(comment._id);
       let newState = [...prevState];
       newState.splice(index, 1, comment);
+      return newState;
+    });
+  };
+
+  const addLike = (likes, id) => {
+    setQuotes((prevState) => {
+      const quoteIds = prevState.map((quote) => quote._id);
+      const index = quoteIds.indexOf(id);
+      let newState = [...prevState];
+      newState[index].likes = likes;
+      console.log(newState);
+      // newState.splice(index, 1, comment);
       return newState;
     });
   };
