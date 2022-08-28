@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { getQuotes } from 'services';
+import { getQuotes, searchQuotes } from 'services';
 import { AuthContext, QuoteContext } from 'store';
 import { QuotesListTypes } from 'types';
 import openSocket from 'socket.io-client';
@@ -15,6 +15,7 @@ export const useFeed = () => {
   const [quotes, setQuotes] = useState<QuotesListTypes[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -26,13 +27,26 @@ export const useFeed = () => {
     const getData = async () => {
       try {
         let token = session ? session.accessToken : ctx.token;
-        const response = await getQuotes(page, token as string);
+        let query;
+
+        if (searchQuery.includes('@')) {
+          query = 'movies';
+        } else if (searchQuery.includes('#')) {
+          query = 'quotes';
+        }
+
+        const queryName = searchQuery.substring(1);
+        const queryType = query;
+
+        const response = searchQuery
+          ? await searchQuotes(queryName, queryType, page, token as string)
+          : await getQuotes(page, token as string);
         setQuotes(response.data.quotes);
         setTotal(response.data.total);
       } catch (err: any) {}
     };
     getData();
-  }, [ctx.token, page, session]);
+  }, [ctx.token, page, searchQuery, session]);
 
   useEffect(() => {
     const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
@@ -42,7 +56,6 @@ export const useFeed = () => {
         addQuote(quote);
       }
       if (data.action === 'addComment') {
-        console.log(data.quote);
         addComment(data.quote);
       }
 
@@ -80,10 +93,20 @@ export const useFeed = () => {
       const index = quoteIds.indexOf(id);
       let newState = [...prevState];
       newState[index].likes = likes;
-      console.log(newState);
       return newState;
     });
   };
 
-  return { router, ctx, status, quoteCtx, quotes, setPage, page, total };
+  return {
+    router,
+    ctx,
+    status,
+    quoteCtx,
+    quotes,
+    setPage,
+    page,
+    total,
+    searchQuery,
+    setSearchQuery,
+  };
 };

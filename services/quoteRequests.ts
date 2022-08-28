@@ -54,6 +54,22 @@ export const getQuotes = async (
   return response;
 };
 
+//change any
+export const searchQuotes = async (
+  queryName,
+  queryType,
+  pageNumber: number,
+  token: string
+): Promise<AxiosResponse<any>> => {
+  const response = await axios.get(
+    `search-quotes?page=${pageNumber}&queryName=${queryName}&queryType=${queryType}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return response;
+};
+
 export const likePost = async (
   data: LikeRequest,
   token: string

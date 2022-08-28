@@ -5,11 +5,18 @@ import { useFeed } from 'hooks/useFeed';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState } from 'react';
 
 const Feed = () => {
-  const { quoteCtx, quotes, setPage, page, total } = useFeed();
-
-  console.log(quotes.length);
+  const {
+    quoteCtx,
+    quotes,
+    setPage,
+    page,
+    total,
+    searchQuery,
+    setSearchQuery,
+  } = useFeed();
 
   return (
     <>
@@ -24,7 +31,10 @@ const Feed = () => {
       <FeedWrapper className='flex flex-col items-center mt-10  lg:pr-[12%]'>
         <div className='flex w-[75%]'>
           <div className='flex items-center w-full gap-4 h-10'>
-            <WriteNewQuote />
+            <WriteNewQuote
+              setSearchQuery={setSearchQuery}
+              searchQuery={searchQuery}
+            />
           </div>
         </div>
         <ul className='w-[75%]'>
@@ -43,11 +53,16 @@ const Feed = () => {
               </p>
             }
           >
-            {quotes.map((quote) => (
-              <li key={quote._id} className='w-full'>
-                <Posts quote={quote} />
-              </li>
-            ))}
+            {quotes
+              // .filter(
+              //   (quote) => quote.quoteEN.includes(searchQuery)
+              //   // movie.props.movieName.toLowerCase().includes(searchQuery)
+              // )
+              .map((quote) => (
+                <li key={quote._id} className='w-full'>
+                  <Posts quote={quote} />
+                </li>
+              ))}
           </InfiniteScroll>
         </ul>
       </FeedWrapper>
