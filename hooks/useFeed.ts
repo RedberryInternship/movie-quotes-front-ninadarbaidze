@@ -39,7 +39,6 @@ export const useFeed = () => {
 
         const queryName: string = searchQuery.substring(1);
         const queryType: string | undefined = query;
-        console.log(!!searchQuery);
 
         const response =
           searchQuery !== ''
