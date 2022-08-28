@@ -3,10 +3,16 @@ import { useWriteNewQuote } from './useWriteNewQuote';
 
 const WriteNewQuote = (props: { setSearchQuery: (arg0: string) => void }) => {
   const { setSearchQuery } = props;
-  const { quoteCtx, searchExpanded, setSearchExpanded, submitHandler, query } =
-    useWriteNewQuote({
-      setSearchQuery,
-    });
+  const {
+    t,
+    quoteCtx,
+    searchExpanded,
+    setSearchExpanded,
+    submitHandler,
+    query,
+  } = useWriteNewQuote({
+    setSearchQuery,
+  });
 
   return (
     <>
@@ -17,7 +23,7 @@ const WriteNewQuote = (props: { setSearchQuery: (arg0: string) => void }) => {
         <input
           type='text'
           className='bg-gray50 w-full h-full rounded-[10px] placeholder:text-white text-white text-base pl-12 truncate'
-          placeholder='Write new quote'
+          placeholder={t('quotes:newPost')}
         />
         <CreateIcon />
       </div>
@@ -27,8 +33,8 @@ const WriteNewQuote = (props: { setSearchQuery: (arg0: string) => void }) => {
           type='text'
           placeholder={
             searchExpanded
-              ? 'Enter @ to search movies, Enter # to search quotes '
-              : 'Search by'
+              ? `${t('quotes:searchLong')}`
+              : `${t('quotes:search2')}`
           }
           className='text-sm bg-transparent w-full pl-4 pb-2 text-white appearance-none outline-none truncate'
           onClick={() => setSearchExpanded(true)}

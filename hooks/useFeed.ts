@@ -5,10 +5,12 @@ import { getQuotes, searchQuotes } from 'services';
 import { AuthContext, QuoteContext } from 'store';
 import { QuotesListTypes } from 'types';
 import openSocket from 'socket.io-client';
+import { useTranslation } from 'next-i18next';
 
 export const useFeed = () => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
+  const { t } = useTranslation();
   const { status } = useSession();
   const quoteCtx = useContext(QuoteContext);
   const { data: session } = useSession();
@@ -100,6 +102,7 @@ export const useFeed = () => {
   };
 
   return {
+    t,
     router,
     ctx,
     status,

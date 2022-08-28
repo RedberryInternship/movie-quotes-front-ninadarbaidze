@@ -7,36 +7,26 @@ import { QuoteModal } from 'components/Quotes/QuoteModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Feed = () => {
-  const {
-    quoteCtx,
-    quotes,
-    setPage,
-    page,
-    total,
-    searchQuery,
-    setSearchQuery,
-  } = useFeed();
+  const { t, quoteCtx, quotes, setPage, page, total, setSearchQuery } =
+    useFeed();
 
   return (
     <>
       {quoteCtx.quoteCreationModal && (
         <>
           <FeedBackdrop onClick={quoteCtx.quoteCreationStateHandler} />
-          <QuoteModal title={'Add Quote'}>
+          <QuoteModal title={t('quotes:addQtBtn')}>
             <FeedQuoteForm />
           </QuoteModal>
         </>
       )}
-      <FeedWrapper className='flex flex-col items-center mt-10  lg:pr-[12%]'>
-        <div className='flex w-[75%]'>
+      <FeedWrapper className='flex flex-col mt-10 px-[5%]'>
+        <div className='flex lg:w-[75%] xl:w-[65%]'>
           <div className='flex items-center w-full gap-4 h-10'>
-            <WriteNewQuote
-              setSearchQuery={setSearchQuery}
-              searchQuery={searchQuery}
-            />
+            <WriteNewQuote setSearchQuery={setSearchQuery} />
           </div>
         </div>
-        <ul className='w-[75%]'>
+        <ul className='lg:w-[75%] xl:w-[65%]'>
           <InfiniteScroll
             dataLength={quotes.length}
             next={() => setPage(page + 1)}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useContext, useRef, useState } from 'react';
 import { QuoteContext } from 'store';
 
@@ -6,6 +7,7 @@ export const useWriteNewQuote = (props: {
 }) => {
   const { setSearchQuery } = props;
   const quoteCtx = useContext(QuoteContext);
+  const { t } = useTranslation();
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
 
@@ -23,6 +25,7 @@ export const useWriteNewQuote = (props: {
   };
 
   return {
+    t,
     quoteCtx,
     searchExpanded,
     setSearchExpanded,

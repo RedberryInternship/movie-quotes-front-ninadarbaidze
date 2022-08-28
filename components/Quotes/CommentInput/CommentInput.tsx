@@ -7,7 +7,7 @@ const CommentInput = (props: {
   commentRef: LegacyRef<HTMLInputElement> | null;
 }) => {
   const { quoteId, commentRef } = props;
-  const { formik, userCtx, myLoader } = useCommentInput({ quoteId });
+  const { t, formik, userCtx, myLoader } = useCommentInput({ quoteId });
 
   return (
     <div className='flex justify-center gap-3 mt-3'>
@@ -28,7 +28,7 @@ const CommentInput = (props: {
           name='comment'
           type='text'
           ref={commentRef}
-          placeholder='Write a comment'
+          placeholder={t('quotes:comment')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.comment}

@@ -5,7 +5,7 @@ import { FieldProps } from 'formik';
 import { useCustomDropdown } from './useCustomDropdown';
 
 const CustomDropdown: React.FC<FieldProps> = ({ form }) => {
-  const { data, openList, selectedMovie, dropDownHandler, setOpenList } =
+  const { t, data, openList, selectedMovie, dropDownHandler, setOpenList } =
     useCustomDropdown({
       form,
     });
@@ -20,7 +20,9 @@ const CustomDropdown: React.FC<FieldProps> = ({ form }) => {
           <div className='mb-2'>
             <MovieIcon />
           </div>
-          <h1 className='text-white text-base'>Choose movie</h1>
+          <h1 className='text-white text-base font-helvetica_ge font-thin'>
+            {t('quotes:choose')}
+          </h1>
         </div>
         <ChevronDownIcon className='text-white w-6 mr-3 ' />
       </div>

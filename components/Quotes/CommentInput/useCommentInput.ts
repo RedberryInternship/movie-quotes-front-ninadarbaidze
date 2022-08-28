@@ -1,5 +1,6 @@
 import { FormikState, useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { useContext } from 'react';
 import { commentPost } from 'services';
 import { AuthContext, UserContext } from 'store';
@@ -9,6 +10,7 @@ import { InputTypes } from './types';
 export const useCommentInput = (props: { quoteId: string }) => {
   const { quoteId } = props;
   const { data: session } = useSession();
+  const { t } = useTranslation();
   const userCtx = useContext(UserContext);
   const ctx = useContext(AuthContext);
 
@@ -57,5 +59,5 @@ export const useCommentInput = (props: { quoteId: string }) => {
     }
   };
 
-  return { formik, userCtx, myLoader };
+  return { t, formik, userCtx, myLoader };
 };
