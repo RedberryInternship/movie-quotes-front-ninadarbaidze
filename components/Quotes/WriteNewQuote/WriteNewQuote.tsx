@@ -1,26 +1,12 @@
 import { CreateIcon, Search } from 'components/icons';
-import { useRef, useState } from 'react';
 import { useWriteNewQuote } from './useWriteNewQuote';
 
-const WriteNewQuote = (props) => {
-  const { setSearchQuery, searchQuery, setTest } = props;
-  const { quoteCtx, searchExpanded, setSearchExpanded } = useWriteNewQuote();
-
-  const [timer, setTimer] = useState();
-
-  // const onChange = (event: { target: { value: string } }) => {
-  //   setSearchQuery(event.target.value);
-  // };
-
-  const query = useRef<any>();
-
-  const submitHandler = () => {
-    clearTimeout(timer);
-    const newTimer = setTimeout(() => {
-      setSearchQuery(query.current.value);
-    }, 1500);
-    setTimer(newTimer);
-  };
+const WriteNewQuote = (props: { setSearchQuery: (arg0: string) => void }) => {
+  const { setSearchQuery } = props;
+  const { quoteCtx, searchExpanded, setSearchExpanded, submitHandler, query } =
+    useWriteNewQuote({
+      setSearchQuery,
+    });
 
   return (
     <>
@@ -44,12 +30,10 @@ const WriteNewQuote = (props) => {
               ? 'Enter @ to search movies, Enter # to search quotes '
               : 'Search by'
           }
-          className=' bg-transparent w-full pl-4 pb-2 text-white appearance-none outline-none truncate'
+          className='text-sm bg-transparent w-full pl-4 pb-2 text-white appearance-none outline-none truncate'
           onClick={() => setSearchExpanded(true)}
           onBlur={() => setSearchExpanded(false)}
-          // onChange={onChange}
           onKeyUp={submitHandler}
-          // onKeyDown={submitHandler}
           ref={query}
         />
       </div>

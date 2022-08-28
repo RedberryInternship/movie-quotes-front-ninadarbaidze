@@ -56,7 +56,7 @@ export const useViewQuote = (props: {
     } catch (err: any) {}
   };
 
-  const commentRef = useRef<HTMLInputElement>(null);
+  const commentRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleClick = () => {
     commentRef.current?.focus();

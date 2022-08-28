@@ -54,10 +54,9 @@ export const getQuotes = async (
   return response;
 };
 
-//change any
 export const searchQuotes = async (
-  queryName,
-  queryType,
+  queryName: string,
+  queryType: string | undefined,
   pageNumber: number,
   token: string
 ): Promise<AxiosResponse<any>> => {

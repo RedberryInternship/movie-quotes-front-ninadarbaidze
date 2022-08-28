@@ -15,7 +15,7 @@ export const useFeed = () => {
   const [quotes, setQuotes] = useState<QuotesListTypes[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -35,12 +35,14 @@ export const useFeed = () => {
           query = 'quotes';
         }
 
-        const queryName = searchQuery.substring(1);
-        const queryType = query;
+        const queryName: string = searchQuery.substring(1);
+        const queryType: string | undefined = query;
+        console.log(!!searchQuery);
 
-        const response = searchQuery
-          ? await searchQuotes(queryName, queryType, page, token as string)
-          : await getQuotes(page, token as string);
+        const response =
+          searchQuery !== ''
+            ? await searchQuotes(queryName, queryType, page, token as string)
+            : await getQuotes(page, token as string);
         setQuotes(response.data.quotes);
         setTotal(response.data.total);
       } catch (err: any) {}

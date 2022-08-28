@@ -5,7 +5,6 @@ import { useFeed } from 'hooks/useFeed';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
 
 const Feed = () => {
   const {
@@ -53,16 +52,11 @@ const Feed = () => {
               </p>
             }
           >
-            {quotes
-              // .filter(
-              //   (quote) => quote.quoteEN.includes(searchQuery)
-              //   // movie.props.movieName.toLowerCase().includes(searchQuery)
-              // )
-              .map((quote) => (
-                <li key={quote._id} className='w-full'>
-                  <Posts quote={quote} />
-                </li>
-              ))}
+            {quotes.map((quote) => (
+              <li key={quote._id} className='w-full'>
+                <Posts quote={quote} />
+              </li>
+            ))}
           </InfiniteScroll>
         </ul>
       </FeedWrapper>

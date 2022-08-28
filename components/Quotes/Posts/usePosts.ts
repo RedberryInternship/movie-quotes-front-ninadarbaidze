@@ -59,7 +59,7 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
   const liked = !!quote.likes.find((user) => user === userId);
   const commented = !!quote.comments.find((user) => user.userId._id === userId);
 
-  const commentRef = useRef<HTMLInputElement>(null);
+  const commentRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleClick = () => {
     commentRef.current?.focus();
