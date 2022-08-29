@@ -47,6 +47,8 @@ export type QuoteContextTypes = {
   editQuoteHandler: (arg0: boolean) => void;
   refreshQuotes: boolean;
   refreshQuotesHandler: () => void;
+  notificationState: boolean;
+  notificationStateHandler: () => void;
 };
 
 export type MovieStateTypes = {

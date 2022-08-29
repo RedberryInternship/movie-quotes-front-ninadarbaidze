@@ -1,10 +1,12 @@
 import { BellIcon } from 'components';
+import { useNotificationBadge } from './useNotificationBadge';
 
 const NotificationBadge = () => {
+  const { quoteCtx } = useNotificationBadge();
   return (
     <>
-      <div className='relative'>
-        <button onClick={() => {}}>
+      <div className='relative z-20'>
+        <button onClick={() => quoteCtx.notificationStateHandler()}>
           <BellIcon />
         </button>
         <div className='flex flex-col absolute left-3 bottom-3 justify-center items-center'>

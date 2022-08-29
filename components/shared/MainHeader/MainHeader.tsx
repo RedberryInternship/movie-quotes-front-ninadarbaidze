@@ -11,7 +11,7 @@ import { NotificationModal } from '../NotificationModal';
 
 const MainHeader: React.FC<MobileMenuTypes> = (props) => {
   const { mobileMenu, setMobileMenu } = props;
-  const { t, logoutHandler } = useMainHeader();
+  const { t, logoutHandler, quoteCtx } = useMainHeader();
 
   const handleMobileMenu = () => {
     setMobileMenu(true);
@@ -21,7 +21,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
     <>
       {mobileMenu && <MobileMenu />}
 
-      <nav className='flex  justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
+      <nav className='flex justify-between absolute w-full items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 z-20'>
         <h1 className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl'>
           MOVIE QUOTES
         </h1>
@@ -30,7 +30,9 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
         </button>
         <div className='flex gap-4 relative'>
           <NotificationBadge />
-          <NotificationModal />
+
+          {quoteCtx.notificationState && <NotificationModal />}
+
           <LanguageSwitchBtn className='mr-0' />
           <Button
             text={t('profile:logout')}
@@ -39,6 +41,12 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
           />
         </div>
       </nav>
+      {quoteCtx.notificationState && (
+        <div
+          className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-10'
+          onClick={() => quoteCtx.notificationStateHandler()}
+        ></div>
+      )}
     </>
   );
 };

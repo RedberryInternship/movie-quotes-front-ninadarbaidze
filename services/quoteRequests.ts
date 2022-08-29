@@ -89,3 +89,11 @@ export const commentPost = async (
   });
   return response;
 };
+export const getNotifications = async (
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.get(`notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};

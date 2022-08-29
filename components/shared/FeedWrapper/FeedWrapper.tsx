@@ -10,7 +10,7 @@ const FeedWrapper: React.FC<ChildrenAndClass> = (props) => {
     <>
       <MainHeader setMobileMenu={setMobileMenu} mobileMenu={mobileMenu} />
       <div
-        className='flex w-screen h-[100%] py-[100vh] bg-background pt-10 '
+        className='flex w-screen h-[100%] py-[100vh] bg-background pt-24 '
         onClick={() => setMobileMenu(false)}
       >
         <div className='lg:w-[30%] z-0'>

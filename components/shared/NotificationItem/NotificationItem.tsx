@@ -1,8 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { Liked } from 'components/icons';
+import { Liked, QuoteIcon } from 'components/icons';
+import { useNotificationItem } from './useNotificationItem';
+import { format } from 'timeago.js';
 
-const NotificationItem = () => {
+const NotificationItem: React.FC<any> = (props) => {
+  const { notificationData } = props;
+  const { liked, myLoader } = useNotificationItem({ notificationData });
   return (
     <div>
       <div className='flex items-center justify-between p-2 border-[1px] border-opacity-50 border-gray20 rounded w-full h-20'>
@@ -12,8 +16,8 @@ const NotificationItem = () => {
           >
             <div className='object-cover'>
               <Image
-                // loader={myLoader}
-                src={'/assets/images/profile.png'}
+                loader={myLoader}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/${notificationData.senderId.profileImage}`}
                 alt='profile-icon'
                 width={50}
                 height={50}
@@ -21,15 +25,21 @@ const NotificationItem = () => {
             </div>
           </div>
           <div className='text-white text-base'>
-            <h3>saxeli goes here</h3>
+            <h3>{notificationData.senderId.username}</h3>
             <div className='flex gap-2 items-center'>
-              <Liked />
-              <p className='text-sm text-gray10'>Reacted to your quote</p>
+              {liked ? <Liked /> : <QuoteIcon />}
+              <p className='text-sm text-gray10'>
+                {liked
+                  ? 'Reacted to your quote'
+                  : 'Commented to your movie quote'}
+              </p>
             </div>
           </div>
         </div>
         <div className='flex flex-col items-end'>
-          <p className='text-darkWhite text-sm'>5 min ago</p>
+          <p className='text-darkWhite text-sm'>
+            {format(notificationData.createdAt)}
+          </p>
           <p className='text-green text-sm'>new</p>
         </div>
       </div>
