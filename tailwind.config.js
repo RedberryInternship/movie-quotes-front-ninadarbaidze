@@ -36,6 +36,7 @@ module.exports = {
         link: '#0D6EFD',
         green: '#198754',
         purple: '#422772',
+        pink: '#F3426C',
       },
       backgroundImage: {
         gradient:
@@ -46,6 +47,7 @@ module.exports = {
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
         feedBackground:
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);',
+        image: "url('/assets/images/profile.png')",
       },
     },
   },

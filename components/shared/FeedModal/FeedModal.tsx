@@ -6,7 +6,7 @@ const FeedModal: React.FC<ChildrenAndClass> = (props) => {
   return (
     <>
       <div
-        className={`${className} fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-mainDark rounded-[12px]   z-40 `}
+        className={`${className} fixed overflow-scroll top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-mainDark rounded-[12px]   z-40 `}
       >
         {children}
       </div>

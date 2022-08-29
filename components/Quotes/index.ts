@@ -12,3 +12,5 @@ export * from './QuoteModal';
 export * from './DeleteQuoteModal';
 export * from './EditQuoteModal';
 export * from './QuoteImageEditInput';
+export * from './CommentItem';
+export * from './CommentInput';

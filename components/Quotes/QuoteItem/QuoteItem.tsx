@@ -4,7 +4,7 @@ import { Comment, Like, ManageQuoteModal } from 'components';
 import { useQuoteItem } from './useQuoteItem';
 
 const QuoteItem: React.FC<QuotesTypes> = (props) => {
-  const { quoteEN, quoteGE, image, _id, setViewQuote } = props;
+  const { quoteEN, quoteGE, image, _id, likes, comments, setViewQuote } = props;
   const { myLoader, quoteHandler, setQuoteHandler, quote } = useQuoteItem({
     image,
     quoteEN,
@@ -50,13 +50,13 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
           <div className='w-full h-[1px] bg-gray20' />
 
           <div className='flex items-center gap-4 text-white'>
-            <button className='flex gap-1'>
-              <p>3</p>
-              <Comment />
+            <button className='flex gap-1 cursor-auto'>
+              <p>{comments.length}</p>
+              <Comment commented={false} />
             </button>
-            <button className='flex gap-1'>
-              <p>3</p>
-              <Like />
+            <button className='flex gap-1  cursor-auto'>
+              <p>{likes.length}</p>
+              <Like liked={false} />
             </button>
           </div>
         </div>

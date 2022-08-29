@@ -32,12 +32,15 @@ export const QuoteContext = createContext({
   getQuote: (data: QuoteStateTypes) => {},
   editQuoteModal: false,
   editQuoteHandler: (value: boolean) => {},
+  refreshQuotes: false,
+  refreshQuotesHandler: () => {},
 });
 
 export const QuoteContextProvider: React.FC<Children> = (props) => {
   const [quoteCreationModal, setQuoteCreationModal] = useState(false);
   const [isMovieQuote, setIsMovieQuote] = useState(false);
   const [editQuoteModal, setEditQuoteModal] = useState(false);
+  const [refreshQuotes, setRefreshQuotes] = useState(false);
 
   const [quoteState, dispatchQuoteAction] = useReducer(reducer, initialState);
 
@@ -56,6 +59,10 @@ export const QuoteContextProvider: React.FC<Children> = (props) => {
     setIsMovieQuote(!isMovieQuote);
   };
 
+  const refreshQuotesHandler = () => {
+    setRefreshQuotes(!refreshQuotes);
+  };
+
   const editQuoteHandler = (value: boolean) => {
     setEditQuoteModal(value);
   };
@@ -69,6 +76,8 @@ export const QuoteContextProvider: React.FC<Children> = (props) => {
     getQuote,
     editQuoteModal,
     editQuoteHandler,
+    refreshQuotes,
+    refreshQuotesHandler,
   };
 
   return (

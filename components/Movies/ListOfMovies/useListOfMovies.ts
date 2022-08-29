@@ -49,7 +49,7 @@ export const useListOfMovies = () => {
     const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
     socket.on('movies', (data) => {
       const movie = {
-        id: data.movie,
+        id: data.movie._id,
         movieName: data.movie[currentLan!].movieName,
         year: data.movie.year,
         image: data.movie.image,

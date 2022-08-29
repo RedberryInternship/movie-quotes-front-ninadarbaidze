@@ -5,12 +5,14 @@ import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from 'react';
 import { getMovies } from 'services';
 import { AuthContext } from 'store';
+import { useTranslation } from 'next-i18next';
 
 export const useCustomDropdown = (props: {
   form: FormikHelpers<MovieTypes>;
 }) => {
   const { form } = props;
   const { data: session } = useSession();
+  const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -42,5 +44,5 @@ export const useCustomDropdown = (props: {
     setSelectedMovie(id);
     setOpenList((prev) => !prev);
   };
-  return { data, openList, selectedMovie, dropDownHandler, setOpenList };
+  return { t, data, openList, selectedMovie, dropDownHandler, setOpenList };
 };
