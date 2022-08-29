@@ -7,6 +7,7 @@ import {
 import useMainHeader from './useMainHeader';
 import { MobileMenuTypes } from 'types';
 import { MobileMenu } from 'components';
+import { NotificationModal } from '../NotificationModal';
 
 const MainHeader: React.FC<MobileMenuTypes> = (props) => {
   const { mobileMenu, setMobileMenu } = props;
@@ -20,15 +21,16 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
     <>
       {mobileMenu && <MobileMenu />}
 
-      <nav className='flex justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
+      <nav className='flex  justify-between items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 '>
         <h1 className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl'>
           MOVIE QUOTES
         </h1>
         <button onClick={handleMobileMenu}>
           <HamMenu className='lg:hidden' />
         </button>
-        <div className='flex gap-4 '>
+        <div className='flex gap-4 relative'>
           <NotificationBadge />
+          <NotificationModal />
           <LanguageSwitchBtn className='mr-0' />
           <Button
             text={t('profile:logout')}

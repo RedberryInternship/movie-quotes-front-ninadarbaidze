@@ -9,7 +9,7 @@ const MovieId = ({ data }: Data) => {
 
   return (
     <>
-      <FeedWrapper>
+      <FeedWrapper className='mr-[10%]'>
         <MovieDetails data={data} />
       </FeedWrapper>
     </>
