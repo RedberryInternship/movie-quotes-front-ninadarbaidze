@@ -27,7 +27,7 @@ const NotificationItem: React.FC<any> = (props) => {
           <div className='text-white text-base'>
             <h3>{notificationData.senderId.username}</h3>
             <div className='flex gap-2 items-center'>
-              {liked ? <Liked /> : <QuoteIcon />}
+              {liked ? <Liked /> : <QuoteIcon className='w-[18px]' />}
               <p className='text-sm text-gray10'>
                 {liked
                   ? 'Reacted to your quote'
