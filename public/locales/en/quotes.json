@@ -1,1 +1,21 @@
-{"addQt":"Add Quote","addQtBtn":"Add quote","choose":"Choose movie","comment":"Write a comment","delete":"Delete","edit":"Edit","editQt":"Edit Quote","newPost":"Write new quote","no":"No","quotes":"Quotes","saveBtn":"Save changes","search":"search","search2":"Search by","searchLong":"Enter @ to search movies, Enter # to search quotes","sure":"Are you sure?","total":"Total","viewPost":"View Post","viewQt":"View Quote","yes":"Yes"}
+{
+  "addQt": "Add Quote",
+  "addQtBtn": "Add quote",
+  "choose": "Choose movie",
+  "comment": "Write a comment",
+  "delete": "Delete",
+  "edit": "Edit",
+  "editQt": "Edit Quote",
+  "newPost": "Write new quote",
+  "no": "No",
+  "quotes": "Quotes",
+  "saveBtn": "Save changes",
+  "search": "search",
+  "search2": "Search by",
+  "searchLong": "Enter @ to search movies, Enter # to search quotes",
+  "sure": "Are you sure?",
+  "total": "Total",
+  "viewPost": "View Post",
+  "viewQt": "View Quote",
+  "yes": "Yes"
+}

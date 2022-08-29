@@ -1,7 +1,8 @@
 import { CreateIcon, Search } from 'components/icons';
+import { WriteQuoteTypes } from './types';
 import { useWriteNewQuote } from './useWriteNewQuote';
 
-const WriteNewQuote = (props: { setSearchQuery: (arg0: string) => void }) => {
+const WriteNewQuote: React.FC<WriteQuoteTypes> = (props) => {
   const { setSearchQuery } = props;
   const {
     t,

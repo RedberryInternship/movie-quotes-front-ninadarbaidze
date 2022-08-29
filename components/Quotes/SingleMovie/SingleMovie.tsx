@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { useSingleMovie } from './useSingleMovie';
 import { Data } from 'types';
 
-const SingleMovie: React.FC<Data> = ({ data }) => {
+const SingleMovie: React.FC<Data> = (props) => {
+  const { data } = props;
   const { myLoader, t } = useSingleMovie();
 
   return (

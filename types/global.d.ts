@@ -56,6 +56,9 @@ export type Comments = {
   comment: string;
   userId: CommentUser;
 };
+export type Comment = {
+  comment: Comments;
+};
 
 export type UserId = {
   _id: string;

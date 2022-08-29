@@ -4,7 +4,8 @@ import { DropdownList } from 'components';
 import { FieldProps } from 'formik';
 import { useCustomDropdown } from './useCustomDropdown';
 
-const CustomDropdown: React.FC<FieldProps> = ({ form }) => {
+const CustomDropdown: React.FC<FieldProps> = (props) => {
+  const { form } = props;
   const { t, data, openList, selectedMovie, dropDownHandler, setOpenList } =
     useCustomDropdown({
       form,

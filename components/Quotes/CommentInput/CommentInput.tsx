@@ -1,11 +1,8 @@
 import { useCommentInput } from './useCommentInput';
 import Image from 'next/image';
-import { LegacyRef } from 'react';
+import { CommentInputTypes } from './types';
 
-const CommentInput = (props: {
-  quoteId: string;
-  commentRef: LegacyRef<HTMLInputElement> | null;
-}) => {
+const CommentInput: React.FC<CommentInputTypes> = (props) => {
   const { quoteId, commentRef } = props;
   const { t, formik, userCtx, myLoader } = useCommentInput({ quoteId });
 

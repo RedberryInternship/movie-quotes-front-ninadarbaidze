@@ -10,7 +10,8 @@ import { QuoteModal } from 'components';
 import { Data } from 'types';
 import { useQuoteList } from './useQuoteList';
 
-const QuoteList: React.FC<Data> = ({ data }) => {
+const QuoteList: React.FC<Data> = (props) => {
+  const { data } = props;
   const {
     t,
     quoteCtx,

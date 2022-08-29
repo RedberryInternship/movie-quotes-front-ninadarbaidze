@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { useCommentItem } from './useCommentItem';
-import { Comments } from 'types';
+import { Comment } from 'types';
 
-const CommentItem = (props: { comment: Comments }) => {
+const CommentItem: React.FC<Comment> = (props) => {
   const { comment } = props;
   const { myLoader } = useCommentItem({ image: comment.userId.profileImage });
 
