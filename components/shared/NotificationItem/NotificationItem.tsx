@@ -16,8 +16,8 @@ const NotificationItem: React.FC<any> = (props) => {
       >
         <div className='flex items-center gap-2'>
           <div
-            className={`w-12 h-12 rounded-full overflow-clip border-2 border-${
-              isRead ? 'mainDark2' : 'green'
+            className={`w-12 h-12 rounded-full overflow-clip border-2 ${
+              isRead ? 'border-mainDark2' : 'border-green'
             }`}
           >
             <div className='object-cover'>

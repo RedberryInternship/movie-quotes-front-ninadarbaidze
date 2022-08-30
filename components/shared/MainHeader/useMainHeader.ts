@@ -39,11 +39,7 @@ const useMainHeader = () => {
   useEffect(() => {
     const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
     socket.on('quotes', (data) => {
-      // if (data.action === 'addComment') {
-      //   addComment(data.quote);
-      // }
-
-      if (data.action === 'like') {
+      if (data.action === 'addComment' || data.action === 'like') {
         const receiverNotifications = data.notifications.filter(
           (notification) => notification.receiverId === userId
         );
