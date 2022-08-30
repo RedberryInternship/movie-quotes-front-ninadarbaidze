@@ -31,9 +31,9 @@ const QuoteId = ({ data }: Data) => {
 
   return (
     <>
-      <FeedWrapper className='mr-[10%]'>
+      <FeedWrapper>
         {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
-        <div className=' bg-mainDark rounded-[12px] px-[5%] w-[80%] mt-10'>
+        <div className=' bg-mainDark w-full sm:w-[70%] rounded-[12px] px-[5%] mt-10'>
           <h1 className='text-2xl text-white text-center py-8'>Quote</h1>
           <div className='flex gap-4 px-[4%] pt-5 items-center absolute top-0 left-0'>
             <button onClick={() => deleteQuoteHandler()}>
@@ -64,13 +64,13 @@ const QuoteId = ({ data }: Data) => {
               />
             </div>
             <div className='flex items-center gap-4 text-white'>
-              <button className='flex gap-1' onClick={handleClick}>
+              <button className='flex items-center gap-1' onClick={handleClick}>
                 <p>{data && data.comments.length}</p>
                 <Comment commented={commented as boolean} />
               </button>
-              <button className='flex gap-1' onClick={likeHandler}>
+              <button className='flex items-center gap-1' onClick={likeHandler}>
                 <p>{data && data.likes.length}</p>
-                {/* <Like liked={liked as boolean} /> */}
+                <Like liked={liked as boolean} />
               </button>
             </div>
             <ul>

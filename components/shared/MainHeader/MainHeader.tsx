@@ -65,7 +65,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
               variants={conainerVariants}
               initial='initial'
               animate='visible'
-              className='absolute bg-mainDark w-[24rem] top-[15vh] right-0'
+              className='absolute bg-mainDark w-[24rem] top-[12vh] sm:top-[15vh] right-[-1rem]'
             >
               <NotificationItem notificationData={notifications[0]} />
             </motion.div>

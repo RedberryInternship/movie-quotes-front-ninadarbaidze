@@ -42,10 +42,6 @@ export const useQuoteId = (props: { data }) => {
     } catch (err: any) {}
   }, [quoteId, token, userId]);
 
-  useEffect(() => {
-    likeHandler();
-  }, [likeHandler]);
-
   const commentRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleClick = () => {

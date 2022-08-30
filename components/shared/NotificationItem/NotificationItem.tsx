@@ -30,11 +30,11 @@ const NotificationItem: React.FC<any> = (props) => {
               />
             </div>
           </div>
-          <div className='text-white text-base'>
+          <div className='text-white text-base w-[12rem] '>
             <h3>{notificationData.senderId.username}</h3>
-            <div className='flex gap-2 items-center'>
+            <div className='flex gap-2 items-center w-[90%] sm:w-full'>
               {liked ? <Liked /> : <QuoteIcon className='w-[18px]' />}
-              <p className='text-sm text-gray10'>
+              <p className='text-sm text-gray10 truncate w-[100%]'>
                 {liked
                   ? 'Reacted to your quote'
                   : 'Commented to your movie quote'}
@@ -42,8 +42,8 @@ const NotificationItem: React.FC<any> = (props) => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col items-end'>
-          <p className='text-darkWhite text-sm'>
+        <div className='flex flex-col items-end '>
+          <p className='text-darkWhite text-xs text-right sm:text-sm'>
             {format(notificationData.createdAt)}
           </p>
           {!isRead && <p className='text-green text-sm'>new</p>}
