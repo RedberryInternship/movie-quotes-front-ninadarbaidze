@@ -1,8 +1,9 @@
 import { useSession } from 'next-auth/react';
 import { Router, useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { markAsRead } from 'services';
 import { AuthContext, QuoteContext } from 'store';
+import openSocket from 'socket.io-client';
 
 export const useNotificationItem = (props: { notificationData }) => {
   const { notificationData } = props;
