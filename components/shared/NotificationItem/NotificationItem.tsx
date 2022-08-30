@@ -6,13 +6,19 @@ import { format } from 'timeago.js';
 
 const NotificationItem: React.FC<any> = (props) => {
   const { notificationData } = props;
-  const { liked, myLoader } = useNotificationItem({ notificationData });
+  const { liked, myLoader, isRead, notificationRedirectHandler } =
+    useNotificationItem({ notificationData });
   return (
     <div>
-      <div className='flex items-center justify-between p-2 border-[1px] border-opacity-50 border-gray20 rounded w-full h-20'>
+      <div
+        className='flex items-center justify-between p-2 border-[1px] border-opacity-50 border-gray20 rounded w-full h-20 cursor-pointer hover:border-green transition-all duration-500'
+        onClick={() => notificationRedirectHandler()}
+      >
         <div className='flex items-center gap-2'>
           <div
-            className={`w-12 h-12 rounded-full overflow-clip border-2 border-mainDark2`}
+            className={`w-12 h-12 rounded-full overflow-clip border-2 border-${
+              isRead ? 'mainDark2' : 'green'
+            }`}
           >
             <div className='object-cover'>
               <Image
@@ -40,7 +46,7 @@ const NotificationItem: React.FC<any> = (props) => {
           <p className='text-darkWhite text-sm'>
             {format(notificationData.createdAt)}
           </p>
-          <p className='text-green text-sm'>new</p>
+          {!isRead && <p className='text-green text-sm'>new</p>}
         </div>
       </div>
     </div>

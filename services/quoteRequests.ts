@@ -89,10 +89,30 @@ export const commentPost = async (
   });
   return response;
 };
+
 export const getNotifications = async (
   token: string
 ): Promise<AxiosResponse<any, string>> => {
   const response = await axios.get(`notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const markAsRead = async (
+  notificationId: string,
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.patch(`read-notifications/${notificationId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const deleteAllNotifications = async (
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.delete(`delete-notifications`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response;

@@ -8,10 +8,12 @@ import useMainHeader from './useMainHeader';
 import { MobileMenuTypes } from 'types';
 import { MobileMenu } from 'components';
 import { NotificationModal } from '../NotificationModal';
+import { useState } from 'react';
 
 const MainHeader: React.FC<MobileMenuTypes> = (props) => {
   const { mobileMenu, setMobileMenu } = props;
-  const { t, logoutHandler, quoteCtx } = useMainHeader();
+  const { t, logoutHandler, quoteCtx, notifications, totalNotifications } =
+    useMainHeader();
 
   const handleMobileMenu = () => {
     setMobileMenu(true);
@@ -29,9 +31,11 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
           <HamMenu className='lg:hidden' />
         </button>
         <div className='flex gap-4 relative'>
-          <NotificationBadge />
+          <NotificationBadge totalNotifications={totalNotifications} />
 
-          {quoteCtx.notificationState && <NotificationModal />}
+          {quoteCtx.notificationState && (
+            <NotificationModal notifications={notifications} />
+          )}
 
           <LanguageSwitchBtn className='mr-0' />
           <Button

@@ -20,7 +20,7 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
     if (session?.user && !userCtx.userState.profileImage) {
       return session!.user.image as string;
     } else if (userCtx.userState.profileImage) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
+      return `${process.env.NEXT_PUBLIC_API_URL}/${quote.userId.profileImage}`;
     } else {
       return defaultProfileImg;
     }
