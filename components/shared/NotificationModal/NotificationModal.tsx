@@ -4,7 +4,7 @@ import { useNotificationModal } from './useNotificationModal';
 
 const NotificationModal = (props) => {
   const { notifications } = props;
-  const { deleteNotifications } = useNotificationModal();
+  const { deleteNotifications, markAllRead } = useNotificationModal();
 
   return (
     <>
@@ -20,7 +20,10 @@ const NotificationModal = (props) => {
             >
               clear all
             </p>
-            <p className='underline text-sm cursor-pointer hover:text-green'>
+            <p
+              className='underline text-sm cursor-pointer hover:text-green'
+              onClick={() => markAllRead()}
+            >
               Mark as all read
             </p>
           </div>

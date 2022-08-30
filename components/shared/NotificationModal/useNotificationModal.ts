@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useContext } from 'react';
-import { deleteAllNotifications } from 'services';
+import { deleteAllNotifications, markAllAsRead } from 'services';
 import { AuthContext } from 'store';
 
 export const useNotificationModal = () => {
@@ -11,5 +11,10 @@ export const useNotificationModal = () => {
   const deleteNotifications = async () => {
     await deleteAllNotifications(token as string);
   };
-  return { deleteNotifications };
+
+  const markAllRead = async () => {
+    await markAllAsRead(token as string);
+  };
+
+  return { deleteNotifications, markAllRead };
 };

@@ -109,6 +109,15 @@ export const markAsRead = async (
   return response;
 };
 
+export const markAllAsRead = async (
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.put(`read-all`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
 export const deleteAllNotifications = async (
   token: string
 ): Promise<AxiosResponse<any, string>> => {
