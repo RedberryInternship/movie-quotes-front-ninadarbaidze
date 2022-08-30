@@ -20,7 +20,7 @@ export const useNotificationItem = (props: { notificationData }) => {
   const notificationRedirectHandler = async () => {
     let token = session ? session.accessToken : ctx.token;
     try {
-      quoteCtx.notificationStateHandler();
+      quoteCtx.notificationStateHandler(false);
       await markAsRead(notificationData._id, token as string);
       router.replace(`/feed/quotes/${notificationData.quoteId}`);
     } catch (err: any) {}

@@ -5,11 +5,11 @@ import { useNotificationItem } from './useNotificationItem';
 import { format } from 'timeago.js';
 
 const NotificationItem: React.FC<any> = (props) => {
-  const { notificationData } = props;
+  const { notificationData, className } = props;
   const { liked, myLoader, isRead, notificationRedirectHandler } =
     useNotificationItem({ notificationData });
   return (
-    <div>
+    <div className={`${className}`}>
       <div
         className='flex items-center justify-between p-2 border-[1px] border-opacity-50 border-gray20 rounded w-full h-20 cursor-pointer hover:border-green transition-all duration-500'
         onClick={() => notificationRedirectHandler()}

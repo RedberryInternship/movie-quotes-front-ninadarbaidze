@@ -51,7 +51,7 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
             <Trash />
           </button>
         </div>
-        <div className='flex flex-col gap-4 h-[70vh] overflow-scroll'>
+        <div className='flex flex-col gap-4 h-[70vh] overflow-auto'>
           <div className='flex items-center relative'>
             <div className='py-2 italic placeholder:text-white text-white  pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate'>
               <p>{quoteData.quoteEN}</p>

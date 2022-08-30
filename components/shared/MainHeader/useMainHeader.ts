@@ -14,6 +14,7 @@ const useMainHeader = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [notifications, setNotifications] = useState([]);
+  const [readNotifications, setReadNotifications] = useState([]);
   const [totalNotifications, setTotalNotifications] = useState(0);
 
   let token = session ? session.accessToken : ctx.token;
@@ -67,7 +68,24 @@ const useMainHeader = () => {
     router.push('/');
   };
 
-  return { t, logoutHandler, quoteCtx, notifications, totalNotifications };
+  const readNotificationsHandler = () => {
+    const readNotifications = notifications.map(
+      (notificaiton) => notificaiton.isRead === false
+    );
+    return (
+      (readNotifications.length > 0 || notifications[0] === false) &&
+      readNotifications[0]
+    );
+  };
+
+  return {
+    t,
+    logoutHandler,
+    quoteCtx,
+    notifications,
+    totalNotifications,
+    readNotificationsHandler,
+  };
 };
 
 export default useMainHeader;

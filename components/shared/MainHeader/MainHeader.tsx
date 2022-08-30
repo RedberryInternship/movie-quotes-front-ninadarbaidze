@@ -3,20 +3,43 @@ import {
   Button,
   NotificationBadge,
   HamMenu,
+  NotificationItem,
 } from 'components';
 import useMainHeader from './useMainHeader';
 import { MobileMenuTypes } from 'types';
 import { MobileMenu } from 'components';
 import { NotificationModal } from '../NotificationModal';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const MainHeader: React.FC<MobileMenuTypes> = (props) => {
   const { mobileMenu, setMobileMenu } = props;
-  const { t, logoutHandler, quoteCtx, notifications, totalNotifications } =
-    useMainHeader();
+  const {
+    t,
+    logoutHandler,
+    quoteCtx,
+    notifications,
+    totalNotifications,
+    readNotificationsHandler,
+  } = useMainHeader();
 
   const handleMobileMenu = () => {
     setMobileMenu(true);
+  };
+
+  const conainerVariants = {
+    initial: {
+      opacity: 0,
+    },
+    visible: {
+      y: [-50, 0, -500],
+      opacity: [1, 0],
+      transition: {
+        type: 'ease-in',
+        delay: 2,
+        duration: 2,
+      },
+    },
   };
 
   return (
@@ -37,6 +60,17 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
             <NotificationModal notifications={notifications} />
           )}
 
+          {readNotificationsHandler() && (
+            <motion.div
+              variants={conainerVariants}
+              initial='initial'
+              animate='visible'
+              className='absolute bg-mainDark w-[24rem] top-[15vh] right-0'
+            >
+              <NotificationItem notificationData={notifications[0]} />
+            </motion.div>
+          )}
+
           <LanguageSwitchBtn className='mr-0' />
           <Button
             text={t('profile:logout')}
@@ -48,7 +82,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
       {quoteCtx.notificationState && (
         <div
           className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-10'
-          onClick={() => quoteCtx.notificationStateHandler()}
+          onClick={() => quoteCtx.notificationStateHandler(false)}
         ></div>
       )}
     </>

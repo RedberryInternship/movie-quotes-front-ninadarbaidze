@@ -35,7 +35,7 @@ export const QuoteContext = createContext({
   refreshQuotes: false,
   refreshQuotesHandler: () => {},
   notificationState: false,
-  notificationStateHandler: () => {},
+  notificationStateHandler: (value: boolean) => {},
 });
 
 export const QuoteContextProvider: React.FC<Children> = (props) => {
@@ -65,8 +65,8 @@ export const QuoteContextProvider: React.FC<Children> = (props) => {
   const refreshQuotesHandler = () => {
     setRefreshQuotes(!refreshQuotes);
   };
-  const notificationStateHandler = () => {
-    setNotificationState(!notificationState);
+  const notificationStateHandler = (value: boolean) => {
+    setNotificationState(value);
   };
 
   const editQuoteHandler = (value: boolean) => {

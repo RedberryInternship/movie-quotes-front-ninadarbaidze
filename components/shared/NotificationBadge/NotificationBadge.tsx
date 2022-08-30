@@ -8,7 +8,9 @@ const NotificationBadge = (props) => {
     <>
       <div
         className='relative z-20 cursor-pointer'
-        onClick={() => quoteCtx.notificationStateHandler()}
+        onClick={() =>
+          quoteCtx.notificationStateHandler(!quoteCtx.notificationState)
+        }
       >
         <button>
           <BellIcon />
