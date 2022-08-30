@@ -42,7 +42,8 @@ const useMainHeader = () => {
       if (
         data.action === 'addComment' ||
         data.action === 'like' ||
-        data.action === 'isRead'
+        data.action === 'isRead' ||
+        data.action === 'deleteAll'
       ) {
         const receiverNotifications = data.notifications.filter(
           (notification) => notification.receiverId === userId
