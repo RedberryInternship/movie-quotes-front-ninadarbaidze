@@ -6,7 +6,7 @@ const FeedBackdrop: React.FC<OnClick> = (props) => {
   return (
     <>
       <div
-        className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-20'
+        className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-30'
         onClick={onClick}
       ></div>
     </>

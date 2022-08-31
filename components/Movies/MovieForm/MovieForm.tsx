@@ -15,7 +15,7 @@ const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
 
   const renderForm: React.FC<FormikProps<FormValues>> = () => (
-    <Form className='flex flex-col gap-5 h-[80vh] overflow-scroll'>
+    <Form className='flex flex-col gap-5 h-[80vh] overflow-auto'>
       <Field
         name='movieNameEN'
         component={MovieInput}

@@ -43,7 +43,7 @@ export const useViewQuote = (props: {
       } catch (err: any) {}
     };
     getData();
-  }, [ctx.token, quoteData._id, session, quoteCtx.refreshQuotes, token]);
+  }, [ctx.token, session, quoteCtx.refreshQuotes, token]);
 
   const likeHandler = async () => {
     try {

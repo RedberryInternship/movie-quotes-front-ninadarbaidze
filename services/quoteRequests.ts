@@ -1,6 +1,12 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
-import { CommentRequest, LikeRequest, QuoteIdType, QuotesTypes } from 'types';
+import {
+  CommentRequest,
+  LikeRequest,
+  QuoteIdType,
+  QuotesTypes,
+  Notifications,
+} from 'types';
 
 export const addQuote = async (
   data: FormData,
@@ -59,7 +65,7 @@ export const searchQuotes = async (
   queryType: string | undefined,
   pageNumber: number,
   token: string
-): Promise<AxiosResponse<any>> => {
+): Promise<AxiosResponse<any, QuotesTypes>> => {
   const response = await axios.get(
     `search-quotes?page=${pageNumber}&queryName=${queryName}&queryType=${queryType}`,
     {
@@ -86,6 +92,43 @@ export const commentPost = async (
   const response = await axios.post(`add-comment`, {
     headers: { Authorization: `Bearer ${token}` },
     ...data,
+  });
+  return response;
+};
+
+export const getNotifications = async (
+  token: string
+): Promise<AxiosResponse<any, Notifications[]>> => {
+  const response = await axios.get(`notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const markAsRead = async (
+  notificationId: string,
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.patch(`read-notifications/${notificationId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const markAllAsRead = async (
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.put(`read-all`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+export const deleteAllNotifications = async (
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.delete(`delete-notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
   });
   return response;
 };

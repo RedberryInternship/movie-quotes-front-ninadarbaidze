@@ -15,7 +15,7 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
   const { onSubmit, t, defaultValues, quoteCtx } = useFeedQuoteForm();
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
-    <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-scroll'>
+    <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-auto'>
       <div className='flex flex-col gap-10'>
         {quoteCtx.isMovieQuote && <SingleMovie data={data} />}
 

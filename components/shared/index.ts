@@ -13,3 +13,5 @@ export * from './FeedBackdrop';
 export * from './UserInfo';
 export * from './FeedWrapper';
 export * from './FeedButton';
+export * from './NotificationItem';
+export * from './NotificationModal';

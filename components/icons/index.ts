@@ -18,3 +18,5 @@ export { default as CreateIcon } from './CreateIcon';
 export { default as Like } from './Like';
 export { default as Comment } from './Comment';
 export { default as PreviewIcon } from './PreviewIcon';
+export { default as Polygon } from './Polygon';
+export { default as Liked } from './Liked';

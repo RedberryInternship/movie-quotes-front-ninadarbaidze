@@ -40,6 +40,10 @@ export type PostTypes = {
   quote: QuotesListTypes;
 };
 
+export type QuoteDetailsType = {
+  data: QuotesListTypes;
+};
+
 export type QuotesListTypes = {
   _id: string;
   comments: Comments[];
@@ -87,4 +91,21 @@ export type Liked = {
 };
 export type Commented = {
   commented: boolean;
+};
+
+export type NotificationTypes = {
+  notifications: Notifications[];
+};
+export type Notifications = {
+  _id: string;
+  receiverId: string;
+  senderId: SenderId;
+  quoteId: string;
+  type: string;
+  isRead: boolean;
+};
+
+export type SenderId = {
+  username: string;
+  profileImage: string;
 };
