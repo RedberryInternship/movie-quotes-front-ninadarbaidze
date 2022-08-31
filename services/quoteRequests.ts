@@ -65,7 +65,7 @@ export const searchQuotes = async (
   queryType: string | undefined,
   pageNumber: number,
   token: string
-): Promise<AxiosResponse<any>> => {
+): Promise<AxiosResponse<any, QuotesTypes>> => {
   const response = await axios.get(
     `search-quotes?page=${pageNumber}&queryName=${queryName}&queryType=${queryType}`,
     {
