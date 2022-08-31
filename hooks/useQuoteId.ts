@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { likePost } from 'services';
 import { AuthContext, QuoteContext } from 'store';
+import openSocket from 'socket.io-client';
 
 export const useQuoteId = (props: { data }) => {
   const { data } = props;
@@ -14,6 +15,8 @@ export const useQuoteId = (props: { data }) => {
   const { status } = useSession();
   const quoteCtx = useContext(QuoteContext);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [likes, setLikes] = useState([data.likes]);
+  const [comments, setComments] = useState([...data.comments]);
   const { t } = useTranslation();
   let token = session ? session.accessToken : ctx.token;
   let userId: string | Blob | unknown = session ? session.userId : ctx.userId;
@@ -24,9 +27,12 @@ export const useQuoteId = (props: { data }) => {
     }
   }, [ctx.isLoggedIn, router, status]);
 
-  const liked = data && !!data.likes.find((user) => user === userId);
-  const commented =
-    data && !!data.comments.find((user) => user.userId._id === userId);
+  const liked = likes
+    ? !!likes.find((user) => user === userId)
+    : data.likes.find((user) => user === userId);
+  const commented = comments
+    ? !!comments.find((user) => user.userId._id === userId)
+    : data.comments.find((user) => user.userId._id === userId);
 
   const deleteQuoteHandler = () => {
     setDeleteModal(true);
@@ -48,6 +54,18 @@ export const useQuoteId = (props: { data }) => {
     commentRef.current?.focus();
   };
 
+  useEffect(() => {
+    const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
+    socket.on('quotes', (data) => {
+      if (data.action === 'dislike' || data.action === 'like') {
+        setLikes(data.likes);
+      }
+      if (data.action === 'addComment') {
+        setComments(data.quote.comments);
+      }
+    });
+  }, [userId]);
+
   const myLoader = () => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${data.image}`;
   };
@@ -64,5 +82,7 @@ export const useQuoteId = (props: { data }) => {
     commented,
     handleClick,
     commentRef,
+    likes,
+    comments,
   };
 };
