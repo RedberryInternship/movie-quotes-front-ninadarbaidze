@@ -1,18 +1,24 @@
 import { useSession } from 'next-auth/react';
-import { Router, useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import { markAsRead } from 'services';
 import { AuthContext, QuoteContext } from 'store';
-import openSocket from 'socket.io-client';
+import { Notifications } from 'types';
 
-export const useNotificationItem = (props: { notificationData }) => {
+export const useNotificationItem = (props: {
+  notificationData: Notifications;
+}) => {
   const { notificationData } = props;
-  const liked = notificationData.type === 'like';
-  const isRead = notificationData.isRead === true;
   const quoteCtx = useContext(QuoteContext);
+  const ctx = useContext(AuthContext);
+  const { t } = useTranslation();
   const router = useRouter();
   const { data: session } = useSession();
-  const ctx = useContext(AuthContext);
+
+  const liked = notificationData.type === 'like';
+  const isRead = notificationData.isRead === true;
+
   const myLoader = () => {
     return `${process.env.NEXT_PUBLIC_API_URL}/${notificationData.senderId.profileImage}`;
   };
@@ -26,5 +32,5 @@ export const useNotificationItem = (props: { notificationData }) => {
     } catch (err: any) {}
   };
 
-  return { liked, myLoader, isRead, notificationRedirectHandler };
+  return { t, liked, myLoader, isRead, notificationRedirectHandler };
 };

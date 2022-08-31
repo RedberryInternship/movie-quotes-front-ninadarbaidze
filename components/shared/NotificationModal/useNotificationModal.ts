@@ -1,10 +1,12 @@
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { useContext } from 'react';
 import { deleteAllNotifications, markAllAsRead } from 'services';
 import { AuthContext } from 'store';
 
 export const useNotificationModal = () => {
   const { data: session } = useSession();
+  const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   let token = session ? session.accessToken : ctx.token;
 
@@ -16,5 +18,5 @@ export const useNotificationModal = () => {
     await markAllAsRead(token as string);
   };
 
-  return { deleteNotifications, markAllRead };
+  return { t, deleteNotifications, markAllRead };
 };

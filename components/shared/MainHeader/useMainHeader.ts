@@ -6,15 +6,16 @@ import { AuthContext, QuoteContext } from 'store';
 import { signOut } from 'next-auth/react';
 import { getNotifications } from 'services';
 import openSocket from 'socket.io-client';
+import { Notifications } from 'types';
 
-const useMainHeader = () => {
-  const { t } = useTranslation();
+const useMainHeader = (props: { setMobileMenu: (arg0: boolean) => void }) => {
+  const { setMobileMenu } = props;
   const ctx = useContext(AuthContext);
   const quoteCtx = useContext(QuoteContext);
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
   const [notifications, setNotifications] = useState([]);
-  const [readNotifications, setReadNotifications] = useState([]);
   const [totalNotifications, setTotalNotifications] = useState(0);
 
   let token = session ? session.accessToken : ctx.token;
@@ -24,18 +25,18 @@ const useMainHeader = () => {
       try {
         const response = await getNotifications(token as string);
         const receiverNotifications = response.data.filter(
-          (notification) => notification.receiverId === userId
+          (notification: Notifications) => notification.receiverId === userId
         );
         setNotifications(receiverNotifications);
 
         const totalNewNotifications = receiverNotifications.filter(
-          (notification) => notification.isRead === false
+          (notification: Notifications) => notification.isRead === false
         );
         setTotalNotifications(totalNewNotifications.length);
       } catch (err: any) {}
     };
     getData();
-  }, [ctx.token, ctx.userId, session]);
+  }, [ctx.token, ctx.userId, session, token, userId]);
 
   useEffect(() => {
     const socket = openSocket(`${process.env.NEXT_PUBLIC_API_URL}`);
@@ -47,12 +48,12 @@ const useMainHeader = () => {
         data.action === 'deleteAll'
       ) {
         const receiverNotifications = data.notifications.filter(
-          (notification) => notification.receiverId === userId
+          (notification: Notifications) => notification.receiverId === userId
         );
         setNotifications(receiverNotifications);
 
         const totalNewNotifications = receiverNotifications.filter(
-          (notification) => notification.isRead === false
+          (notification: Notifications) => notification.isRead === false
         );
         setTotalNotifications(totalNewNotifications.length);
       }
@@ -70,12 +71,31 @@ const useMainHeader = () => {
 
   const readNotificationsHandler = () => {
     const readNotifications = notifications.map(
-      (notificaiton) => notificaiton.isRead === false
+      (notification: Notifications) => notification.isRead === false
     );
     return (
       (readNotifications.length > 0 || notifications[0] === false) &&
       readNotifications[0]
     );
+  };
+
+  const handleMobileMenu = () => {
+    setMobileMenu(true);
+  };
+
+  const variants = {
+    initial: {
+      opacity: 0,
+    },
+    visible: {
+      y: [-50, 0, -500],
+      opacity: [1, 0],
+      transition: {
+        type: 'ease-in',
+        delay: 2,
+        duration: 2,
+      },
+    },
   };
 
   return {
@@ -85,6 +105,8 @@ const useMainHeader = () => {
     notifications,
     totalNotifications,
     readNotificationsHandler,
+    variants,
+    handleMobileMenu,
   };
 };
 

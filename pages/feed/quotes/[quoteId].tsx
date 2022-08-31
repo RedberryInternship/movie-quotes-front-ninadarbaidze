@@ -4,24 +4,23 @@ import {
   DeleteQuoteModal,
   FeedWrapper,
   Like,
-  QuoteModal,
   Trash,
   Comment,
 } from 'components';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Comments, Data } from 'types';
+import { Comments, QuoteDetailsType } from 'types';
 import Image from 'next/image';
 import { useQuoteId } from 'hooks';
 
-const QuoteId = ({ data }: Data) => {
+const QuoteId: React.FC<QuoteDetailsType> = (props) => {
+  const { data } = props;
   const {
     t,
     myLoader,
     deleteModal,
     setDeleteModal,
     deleteQuoteHandler,
-    // quoteDetail,
     likeHandler,
     liked,
     commented,
@@ -31,14 +30,14 @@ const QuoteId = ({ data }: Data) => {
     comments,
   } = useQuoteId({ data });
 
-  console.log(comments);
-
   return (
     <>
       <FeedWrapper>
         {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
         <div className=' bg-mainDark w-[100%] lg:w-[70%] rounded-[12px] px-[5%] mt-10'>
-          <h1 className='text-2xl text-white text-center py-8'>Quote</h1>
+          <h1 className='text-2xl text-white text-center py-8'>
+            {t('quotes:quote')}
+          </h1>
           <div className='flex gap-4 px-[4%] pt-5 items-center absolute top-0 left-0'>
             <button onClick={() => deleteQuoteHandler()}>
               <Trash />

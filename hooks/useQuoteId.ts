@@ -5,19 +5,20 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { likePost } from 'services';
 import { AuthContext, QuoteContext } from 'store';
 import openSocket from 'socket.io-client';
+import { QuotesListTypes } from 'types';
 
-export const useQuoteId = (props: { data }) => {
+export const useQuoteId = (props: { data: QuotesListTypes }) => {
   const { data } = props;
+  const { data: session, status } = useSession();
+  const { t } = useTranslation();
   const router = useRouter();
-  const quoteId = router.query.quoteId;
   const ctx = useContext(AuthContext);
-  const { data: session } = useSession();
-  const { status } = useSession();
   const quoteCtx = useContext(QuoteContext);
+  const [comments, setComments] = useState([...data.comments]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [likes, setLikes] = useState([data.likes]);
-  const [comments, setComments] = useState([...data.comments]);
-  const { t } = useTranslation();
+
+  const quoteId = router.query.quoteId;
   let token = session ? session.accessToken : ctx.token;
   let userId: string | Blob | unknown = session ? session.userId : ctx.userId;
 
@@ -76,7 +77,6 @@ export const useQuoteId = (props: { data }) => {
     setDeleteModal,
     deleteQuoteHandler,
     quoteCtx,
-    // quoteDetail,
     likeHandler,
     liked,
     commented,

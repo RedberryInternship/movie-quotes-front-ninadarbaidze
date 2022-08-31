@@ -6,7 +6,7 @@ import { format } from 'timeago.js';
 
 const NotificationItem: React.FC<any> = (props) => {
   const { notificationData, className } = props;
-  const { liked, myLoader, isRead, notificationRedirectHandler } =
+  const { t, liked, myLoader, isRead, notificationRedirectHandler } =
     useNotificationItem({ notificationData });
   return (
     <div className={`${className}`}>
@@ -35,9 +35,7 @@ const NotificationItem: React.FC<any> = (props) => {
             <div className='flex gap-2 items-center w-[90%] sm:w-full'>
               {liked ? <Liked /> : <QuoteIcon className='w-[18px]' />}
               <p className='text-sm text-gray10 truncate w-[100%]'>
-                {liked
-                  ? 'Reacted to your quote'
-                  : 'Commented to your movie quote'}
+                {liked ? `${t('quotes:reacted')}` : `${t('quotes:commented')}`}
               </p>
             </div>
           </div>
@@ -46,7 +44,7 @@ const NotificationItem: React.FC<any> = (props) => {
           <p className='text-darkWhite text-xs text-right sm:text-sm'>
             {format(notificationData.createdAt)}
           </p>
-          {!isRead && <p className='text-green text-sm'>new</p>}
+          {!isRead && <p className='text-green text-sm'>{t('quotes:new')}</p>}
         </div>
       </div>
     </div>

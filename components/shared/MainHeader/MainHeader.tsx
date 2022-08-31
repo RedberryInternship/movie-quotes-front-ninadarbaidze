@@ -9,7 +9,6 @@ import useMainHeader from './useMainHeader';
 import { MobileMenuTypes } from 'types';
 import { MobileMenu } from 'components';
 import { NotificationModal } from '../NotificationModal';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const MainHeader: React.FC<MobileMenuTypes> = (props) => {
@@ -21,26 +20,9 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
     notifications,
     totalNotifications,
     readNotificationsHandler,
-  } = useMainHeader();
-
-  const handleMobileMenu = () => {
-    setMobileMenu(true);
-  };
-
-  const conainerVariants = {
-    initial: {
-      opacity: 0,
-    },
-    visible: {
-      y: [-50, 0, -500],
-      opacity: [1, 0],
-      transition: {
-        type: 'ease-in',
-        delay: 2,
-        duration: 2,
-      },
-    },
-  };
+    variants,
+    handleMobileMenu,
+  } = useMainHeader({ setMobileMenu });
 
   return (
     <>
@@ -62,7 +44,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
 
           {readNotificationsHandler() && (
             <motion.div
-              variants={conainerVariants}
+              variants={variants}
               initial='initial'
               animate='visible'
               className='absolute bg-mainDark w-[24rem] top-[12vh] sm:top-[15vh] right-[-1rem]'

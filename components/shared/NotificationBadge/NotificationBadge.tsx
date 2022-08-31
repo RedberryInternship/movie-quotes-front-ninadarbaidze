@@ -1,7 +1,8 @@
 import { BellIcon } from 'components';
+import { TotalNotificationsType } from './types';
 import { useNotificationBadge } from './useNotificationBadge';
 
-const NotificationBadge = (props) => {
+const NotificationBadge: React.FC<TotalNotificationsType> = (props) => {
   const { totalNotifications } = props;
   const { quoteCtx } = useNotificationBadge();
   return (
