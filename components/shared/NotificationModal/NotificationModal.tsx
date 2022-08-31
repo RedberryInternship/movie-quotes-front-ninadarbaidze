@@ -10,7 +10,7 @@ const NotificationModal = (props) => {
     <>
       <Polygon />
 
-      <div className='flex flex-col  gap-2 w-[46vh] sm:w-[66vh] absolute right-[-1rem] lg:right-32 top-10 lg:w-[75vh] sm:h-[55vh] p-4 bg-black rounded-xl z-50 '>
+      <div className='flex flex-col gap-2 w-full sm:w-[66vh] lg:w-[75vh] fixed sm:absolute right-0 sm:right-[-1rem] lg:right-32 top-[4rem] sm:top-10 sm:h-[55vh] p-4 bg-black rounded-xl z-50 '>
         <div className='flex justify-between text-white'>
           <h2 className='font-helvetica_ge font-thin text-xl'>Notifications</h2>
           <div className='flex gap-2'>

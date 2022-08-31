@@ -30,7 +30,7 @@ const NotificationItem: React.FC<any> = (props) => {
               />
             </div>
           </div>
-          <div className='text-white text-base w-[12rem] '>
+          <div className='text-white text-base w-[12rem] sm:w-[15rem]'>
             <h3>{notificationData.senderId.username}</h3>
             <div className='flex gap-2 items-center w-[90%] sm:w-full'>
               {liked ? <Liked /> : <QuoteIcon className='w-[18px]' />}
