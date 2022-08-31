@@ -1,6 +1,12 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
-import { CommentRequest, LikeRequest, QuoteIdType, QuotesTypes } from 'types';
+import {
+  CommentRequest,
+  LikeRequest,
+  QuoteIdType,
+  QuotesTypes,
+  Notifications,
+} from 'types';
 
 export const addQuote = async (
   data: FormData,
@@ -92,7 +98,7 @@ export const commentPost = async (
 
 export const getNotifications = async (
   token: string
-): Promise<AxiosResponse<any, string>> => {
+): Promise<AxiosResponse<any, Notifications[]>> => {
   const response = await axios.get(`notifications`, {
     headers: { Authorization: `Bearer ${token}` },
   });

@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { Liked, QuoteIcon } from 'components/icons';
 import { useNotificationItem } from './useNotificationItem';
 import { format } from 'timeago.js';
+import { NotificationItemTypes } from './types';
 
-const NotificationItem: React.FC<any> = (props) => {
+const NotificationItem: React.FC<NotificationItemTypes> = (props) => {
   const { notificationData, className } = props;
   const { t, liked, myLoader, isRead, notificationRedirectHandler } =
     useNotificationItem({ notificationData });
