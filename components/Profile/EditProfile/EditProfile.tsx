@@ -17,7 +17,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className='h-full xs:mt-24 lg:w-[80%] lg:mt-0'>
+      <div className='h-full xs:mt-24 lg:w-[90%] lg:mt-0'>
         <h1 className='xs:hidden lg:block text-white text-2xl pb-[10%]'>
           {t('profile:profile')}
         </h1>
@@ -42,7 +42,15 @@ const EditProfile = () => {
               updatePassword={updatePassword}
               setUpdatePassword={setUpdatePassword}
             /> */}
-            <GoogleProfileForm imageChangeHandler={imageChangeHandler} />
+            {session ? (
+              <GoogleProfileForm imageChangeHandler={imageChangeHandler} />
+            ) : (
+              <ProfileForm
+                updatePassword={updatePassword}
+                setUpdatePassword={setUpdatePassword}
+                imageChangeHandler={imageChangeHandler}
+              />
+            )}
           </div>
         </div>
       </div>

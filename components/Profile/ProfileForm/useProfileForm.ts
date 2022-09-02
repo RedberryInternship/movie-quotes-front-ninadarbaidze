@@ -4,7 +4,7 @@ import { editProfileSchema } from 'schema';
 import { useRouter } from 'next/router';
 import { updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { ProfileInfoTypes } from './types';
 
@@ -12,6 +12,7 @@ export const useProfileForm = () => {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
+  const [editPassword, setEditPassword] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -37,6 +38,8 @@ export const useProfileForm = () => {
     formData.append('userId', userId as string);
 
     try {
+      console.log(values);
+
       await updateProfile(formData, token as string);
       router.push(`/feed`);
     } catch (error: any) {
@@ -48,8 +51,7 @@ export const useProfileForm = () => {
     initialValues: {
       image: '',
       username: userCtx.userState.username || '',
-      email: userCtx.userState.email || '',
-      password: '',
+      newPassword: '',
       repeatPassword: '',
     },
     enableReinitialize: true,
@@ -57,5 +59,13 @@ export const useProfileForm = () => {
     validationSchema: editProfileSchema,
   });
 
-  return { formik, t, fileRef, changeHandler };
+  return {
+    formik,
+    t,
+    fileRef,
+    changeHandler,
+    editPassword,
+    setEditPassword,
+    userCtx,
+  };
 };

@@ -12,6 +12,7 @@ const initialState = {
   username: '',
   profileImage: '',
   email: '',
+  password: '',
 };
 const reducer = (
   state: any,

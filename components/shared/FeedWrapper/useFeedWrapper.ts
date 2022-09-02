@@ -20,11 +20,10 @@ export const useFeedWrapper = () => {
           userId = session.userId;
           response = await getUserInfo(userId as string, token as string);
           userCtx.getUser(response.data.user);
+        } else {
+          response = await getUserInfo(ctx.userId, ctx.token);
+          userCtx.getUser(response.data.user);
         }
-        // else {
-        //   response = await getUserInfo(ctx.userId, ctx.token);
-        //   userCtx.getUser(response.data.user);
-        // }
       } catch (err: any) {}
     };
     getData();

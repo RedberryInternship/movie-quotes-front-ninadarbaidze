@@ -23,6 +23,7 @@ export type UserStateTypes = {
   username: string;
   email: string;
   profileImage: string;
+  password?: string;
 };
 
 export type MovieContextTypes = {

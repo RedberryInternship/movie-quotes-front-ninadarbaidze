@@ -7,6 +7,6 @@ export type UpdatePassTypes = {
 export type ProfileInfoTypes = {
   username: string;
   image: string;
-  email: string;
-  password: string;
+  newPassword: string;
+  repeatPassword: string;
 };
