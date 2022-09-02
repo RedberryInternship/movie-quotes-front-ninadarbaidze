@@ -42,3 +42,10 @@ export const passwordRecovery = async (
   const response = await axios.post(`password-recovery`, data);
   return response;
 };
+
+export const updatePassword = async (
+  data: PasswordRecoveryTypes
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.post(`update-password`, data);
+  return response;
+};

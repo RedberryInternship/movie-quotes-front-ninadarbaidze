@@ -16,7 +16,7 @@ export const getUserInfo = async (
   userId: string | undefined | string[],
   token: string
 ): Promise<AxiosResponse<any, ProfileResponse>> => {
-  const response = await axios.get(`profile/${userId}`, {
+  const response = await axios.get(`user/${userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response;

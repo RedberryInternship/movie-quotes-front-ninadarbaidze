@@ -20,13 +20,13 @@ const Feed = () => {
           </QuoteModal>
         </>
       )}
-      <FeedWrapper className='flex flex-col mt-10 px-[5%]'>
-        <div className='flex lg:w-[75%] xl:w-[65%]'>
+      <FeedWrapper className='flex flex-col mt-10 sm:px-[5%] lg:mr-[10%]'>
+        <div className='flex lg:w-[85%] xl:w-[80%]'>
           <div className='flex items-center w-full gap-4 h-10'>
             <WriteNewQuote setSearchQuery={setSearchQuery} />
           </div>
         </div>
-        <ul className='lg:w-[75%] xl:w-[65%]'>
+        <ul className='lg:w-[85%] xl:w-[80%]'>
           <InfiniteScroll
             dataLength={quotes.length}
             next={() => setPage(page + 1)}

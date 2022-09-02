@@ -7,7 +7,7 @@ const ListOfMovies = () => {
 
   return (
     <>
-      <header className='flex justify-between px-[5%] md:px-0'>
+      <header className='flex justify-between px-[5%] md:px-0 mt-10'>
         <h1 className='text-white text-xl sm:text-2xl font-helvetica_ge font-thin'>
           {t('movies:heading')} ({t('movies:total')} {movieSum})
         </h1>

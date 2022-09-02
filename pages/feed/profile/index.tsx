@@ -9,7 +9,7 @@ const Profile = () => {
 
   return (
     <>
-      <FeedWrapper>
+      <FeedWrapper className='mr-[10%] mt-10'>
         <EditProfile />
       </FeedWrapper>
     </>

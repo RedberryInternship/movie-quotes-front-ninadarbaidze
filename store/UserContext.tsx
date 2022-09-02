@@ -10,7 +10,6 @@ import {
 
 const initialState = {
   username: '',
-  email: '',
   profileImage: '',
 };
 const reducer = (

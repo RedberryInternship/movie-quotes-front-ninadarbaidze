@@ -24,7 +24,6 @@ export const useSignUp = () => {
       ctx.changeRegistrationModalState(false);
     } catch (error: any) {
       setError(error.response.status);
-      throw new Error('Request failed!');
     }
   };
 
