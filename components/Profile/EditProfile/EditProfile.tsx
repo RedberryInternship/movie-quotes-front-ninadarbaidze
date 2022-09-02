@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ProfileForm } from 'components';
+import { GoogleProfileForm, ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
 import { imagePreviewHandler } from './helper';
 
@@ -21,7 +21,7 @@ const EditProfile = () => {
         <h1 className='xs:hidden lg:block text-white text-2xl pb-[10%]'>
           {t('profile:profile')}
         </h1>
-        <div className='bg-mainDark relative lg:w-[95%] rounded-[12px]'>
+        <div className='bg-mainDark relative lg:w-[100%] rounded-[12px]'>
           <div className='absolute top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black'>
             <div>
               <div className='object-fit'>
@@ -37,11 +37,12 @@ const EditProfile = () => {
             </div>
           </div>
           <div>
-            <ProfileForm
+            {/* <ProfileForm
               imageChangeHandler={imageChangeHandler}
               updatePassword={updatePassword}
               setUpdatePassword={setUpdatePassword}
-            />
+            /> */}
+            <GoogleProfileForm imageChangeHandler={imageChangeHandler} />
           </div>
         </div>
       </div>

@@ -20,6 +20,8 @@ const Input: React.FC<InputTypes> = (props) => {
     error,
     errorMsg,
     deleteInput,
+    disabled,
+    onClick,
   } = props;
 
   const passwordField = type === 'password';
@@ -39,7 +41,6 @@ const Input: React.FC<InputTypes> = (props) => {
         <label htmlFor='username' className='text-white'>
           {label}
         </label>
-        <span className='text-red'>*</span>
       </div>
       <div className='flex items-center relative'>
         <input
@@ -50,6 +51,8 @@ const Input: React.FC<InputTypes> = (props) => {
           onChange={onChange}
           onBlur={onBlur}
           value={value}
+          disabled={disabled ? true : false}
+          onClick={onClick}
           className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
         />
         {passwordField ? (

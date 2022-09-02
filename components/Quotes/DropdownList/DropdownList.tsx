@@ -21,6 +21,7 @@ const DropdownList: React.FC<any> = (props) => {
             height='70'
             alt='movies'
             className='rounded-2xl overflow-clip'
+            objectFit='cover'
           />
         </div>
         <h3>{movieName}</h3>

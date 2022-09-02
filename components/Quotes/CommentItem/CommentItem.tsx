@@ -20,6 +20,7 @@ const CommentItem: React.FC<Comment> = (props) => {
               alt='profile-icon'
               width={150}
               height={150}
+              objectFit='cover'
             />
           </div>
         </div>

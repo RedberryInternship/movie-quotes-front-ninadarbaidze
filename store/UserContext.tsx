@@ -11,6 +11,7 @@ import {
 const initialState = {
   username: '',
   profileImage: '',
+  email: '',
 };
 const reducer = (
   state: any,

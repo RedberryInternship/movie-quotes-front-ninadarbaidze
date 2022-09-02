@@ -27,6 +27,7 @@ const Posts: React.FC<PostTypes> = (props) => {
             alt='profile-icon'
             width={50}
             height={50}
+            objectFit='cover'
           />
         </div>
         <div>
