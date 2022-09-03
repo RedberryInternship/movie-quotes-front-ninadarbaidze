@@ -16,4 +16,8 @@ export type InputTypes = {
   disabled?: boolean;
   onClick?: () => void;
   disablePassword?: boolean;
+  primary?: boolean;
+  verified?: boolean;
+  verifiedInfoBar?: boolean;
+  setVerifiedInfoBar?: (arg0: boolean) => void;
 };

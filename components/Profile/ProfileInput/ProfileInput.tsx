@@ -1,5 +1,12 @@
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword, DeleteIcon } from 'components';
+import {
+  HidePassword,
+  ShowPassword,
+  DeleteIcon,
+  Primary,
+  NotVerified,
+  VerifiedInfoBar,
+} from 'components';
 import useInput from './useProfileInput';
 
 const ProfileInput: React.FC<InputTypes> = (props) => {
@@ -15,13 +22,16 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     onChange,
     value,
     onBlur,
-    error,
-    errorMsg,
+    primary,
+    verified,
     deleteInput,
     disabled,
     onClick,
     disablePassword,
+    verifiedInfoBar,
+    setVerifiedInfoBar,
   } = props;
+  console.log(verifiedInfoBar);
 
   const passwordField = type === 'password';
   const inputType = passwordField
@@ -35,8 +45,9 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
   };
 
   return (
-    <div className='h-[6rem]'>
+    <div className='h-[6rem] relative'>
       <div className='flex gap-2 mb-2 mt-8'>
+        {verifiedInfoBar && <VerifiedInfoBar />}
         <label htmlFor='username' className='text-white'>
           {label}
         </label>
@@ -52,7 +63,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
           value={value}
           disabled={disabled ? true : false}
           onClick={onClick}
-          className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
+          className={`${className} py-2  placeholder:text-gray20  pl-3 w-[100%] rounded-[4px] px-12 truncate`}
         />
         {passwordField && !disablePassword ? (
           showPassword ? (
@@ -81,20 +92,20 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
             <DeleteIcon />
           </div>
         )}
-      </div>
-
-      <div className='flex gap-3'>
-        {/* {isTouched && errorMessage ? (
-          <p className='text-red text-xs mt-1'>{errorMessage}</p>
-        ) : (
-          ''
+        {primary && (
+          <div className='absolute ml-[92%]'>
+            <Primary />
+          </div>
         )}
-        {error && errorMessage ? (
-          <p className='text-red text-xs mt-1'> | </p>
-        ) : (
-          ''
-        )} */}
-        {error ? <p className='text-red text-xs mt-1'>{errorMsg}</p> : ''}
+        {verified === false && (
+          <div
+            onMouseEnter={() => setVerifiedInfoBar!(true)}
+            onMouseLeave={() => setVerifiedInfoBar!(false)}
+            className='absolute ml-[92%] cursor-pointer'
+          >
+            <NotVerified className='#EC9524' />
+          </div>
+        )}
       </div>
     </div>
   );

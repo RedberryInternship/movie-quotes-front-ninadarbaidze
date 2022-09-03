@@ -1,7 +1,11 @@
+import { EmailListObjectTypes } from 'types';
+
 export type UpdatePassTypes = {
   updatePassword: boolean;
-  setUpdatePassword: (boolean) => void;
+  emailList: EmailListObjectTypes[];
   imageChangeHandler: (string) => void;
+  setEmailList: () => void;
+  // setUpdatePassword: (boolean) => void;
 };
 
 export type ProfileInfoTypes = {

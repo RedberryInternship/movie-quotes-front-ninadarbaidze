@@ -1,9 +1,9 @@
 import { useProfileForm } from './useProfileForm';
 import { UpdatePassTypes } from './types';
-import { ProfileInput, Button } from 'components';
+import { ProfileInput, Button, EmailItem } from 'components';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
-  const { updatePassword, setUpdatePassword, imageChangeHandler } = props;
+  const { imageChangeHandler, emailList, setEmailList } = props;
   const {
     t,
     formik,
@@ -49,7 +49,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   value={formik.values.username}
                   errorMessage={formik.errors.username!}
                   deleteInput={true}
-                  className='px-48'
+                  className='px-48 bg-gray10 text-black'
                 />
                 <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
               </div>
@@ -59,26 +59,11 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
               </p>
             </div>
 
-            <div className='flex justify-start gap-4 w-full '>
-              <ProfileInput
-                id='email'
-                name='email'
-                type='email'
-                label={t('home:loginInp1')}
-                placeholder={t('home:emailPlaceholder')}
-                disabled={true}
-                deleteInput={true}
-                className='px-48'
-              />
-              <div className='flex items-center gap-2 mt-[4.5rem]'>
-                <p className='text-gray10 text-sm  cursor-pointer'>
-                  Make this primary
-                </p>
-                <div className='w-[1px] h-3 rounded-full bg-gray20' />
-
-                <p className='text-gray10 text-sm cursor-pointer'>Remove</p>
-              </div>
-            </div>
+            <ul>
+              {emailList.map((email) => (
+                <EmailItem {...email} key={email._id} />
+              ))}
+            </ul>
 
             <div className='flex justify-start items-center gap-4 w-full'>
               <div>
@@ -91,7 +76,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   label={t('home:inputPassword')}
                   placeholder={t('home:passwordPlaceholder')}
                   value={userCtx.userState.password}
-                  className='px-48'
+                  className='px-48  bg-gray10 text-black'
                   disabled={true}
                   disablePassword={true}
                 />
@@ -201,7 +186,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                       isTouched={formik.touched.newPassword}
                       value={formik.values.newPassword}
                       errorMessage={formik.errors.newPassword!}
-                      className='px-48'
+                      className='px-48  bg-gray10 text-black'
                     />
                   </div>
                 </div>
@@ -219,7 +204,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                       isTouched={formik.touched.repeatPassword}
                       value={formik.values.repeatPassword}
                       errorMessage={formik.errors.repeatPassword!}
-                      className='px-48'
+                      className='px-48  bg-gray10 text-black'
                     />
                   </div>
                 </div>

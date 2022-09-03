@@ -13,6 +13,8 @@ const EditProfile = () => {
     session,
     myLoader,
     userCtx,
+    emailList,
+    setEmailList,
   } = useEditProfile();
 
   return (
@@ -49,6 +51,8 @@ const EditProfile = () => {
                 updatePassword={updatePassword}
                 setUpdatePassword={setUpdatePassword}
                 imageChangeHandler={imageChangeHandler}
+                emailList={emailList}
+                setEmailList={setEmailList}
               />
             )}
           </div>
