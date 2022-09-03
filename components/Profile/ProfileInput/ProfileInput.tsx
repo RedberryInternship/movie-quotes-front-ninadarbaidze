@@ -1,8 +1,8 @@
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword } from 'components';
-import useInput from './useInput';
+import { HidePassword, ShowPassword, DeleteIcon } from 'components';
+import useInput from './useProfileInput';
 
-const Input: React.FC<InputTypes> = (props) => {
+const ProfileInput: React.FC<InputTypes> = (props) => {
   const { showPassword, showHidePassHandler } = useInput();
 
   let {
@@ -14,11 +14,13 @@ const Input: React.FC<InputTypes> = (props) => {
     placeholder,
     onChange,
     value,
-    errorMessage,
     onBlur,
-    isTouched,
     error,
     errorMsg,
+    deleteInput,
+    disabled,
+    onClick,
+    disablePassword,
   } = props;
 
   const passwordField = type === 'password';
@@ -27,6 +29,10 @@ const Input: React.FC<InputTypes> = (props) => {
       ? 'password'
       : 'text'
     : type;
+
+  const deleteInputHandler = () => {
+    (document.getElementById(`${id}`) as HTMLInputElement)!.value = '';
+  };
 
   return (
     <div className='h-[6rem]'>
@@ -44,9 +50,11 @@ const Input: React.FC<InputTypes> = (props) => {
           onChange={onChange}
           onBlur={onBlur}
           value={value}
+          disabled={disabled ? true : false}
+          onClick={onClick}
           className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
         />
-        {passwordField ? (
+        {passwordField && !disablePassword ? (
           showPassword ? (
             <div
               onClick={showHidePassHandler}
@@ -65,10 +73,18 @@ const Input: React.FC<InputTypes> = (props) => {
         ) : (
           ''
         )}
+        {deleteInput && (
+          <div
+            onClick={deleteInputHandler}
+            className='absolute ml-[92%] cursor-pointer'
+          >
+            <DeleteIcon />
+          </div>
+        )}
       </div>
 
       <div className='flex gap-3'>
-        {isTouched && errorMessage ? (
+        {/* {isTouched && errorMessage ? (
           <p className='text-red text-xs mt-1'>{errorMessage}</p>
         ) : (
           ''
@@ -77,11 +93,11 @@ const Input: React.FC<InputTypes> = (props) => {
           <p className='text-red text-xs mt-1'> | </p>
         ) : (
           ''
-        )}
+        )} */}
         {error ? <p className='text-red text-xs mt-1'>{errorMsg}</p> : ''}
       </div>
     </div>
   );
 };
 
-export default Input;
+export default ProfileInput;

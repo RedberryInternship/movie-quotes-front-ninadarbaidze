@@ -1,6 +1,6 @@
 import { useProfileForm } from './useProfileForm';
 import { UpdatePassTypes } from './types';
-import { Input, Button } from 'components';
+import { ProfileInput, Button } from 'components';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { updatePassword, setUpdatePassword, imageChangeHandler } = props;
@@ -37,7 +37,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             />
             <div className='flex justify-start gap-4 w-full'>
               <div>
-                <Input
+                <ProfileInput
                   name={'username'}
                   label={t('profile:username')}
                   type={'text'}
@@ -60,17 +60,13 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
             </div>
 
             <div className='flex justify-start gap-4 w-full '>
-              <Input
+              <ProfileInput
                 id='email'
                 name='email'
                 type='email'
                 label={t('home:loginInp1')}
                 placeholder={t('home:emailPlaceholder')}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                isTouched={formik.touched.email}
-                value={formik.values.email}
-                errorMessage={formik.errors.email!}
+                disabled={true}
                 deleteInput={true}
                 className='px-48'
               />
@@ -88,7 +84,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
               <div>
                 <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-12' />
 
-                <Input
+                <ProfileInput
                   id='password'
                   name='password'
                   type='password'
@@ -97,6 +93,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   value={userCtx.userState.password}
                   className='px-48'
                   disabled={true}
+                  disablePassword={true}
                 />
               </div>
 
@@ -112,14 +109,93 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
 
             {editPassword && (
               <>
+                <div className='flex  w-full'>
+                  <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 pr-56 h-full'>
+                    <h4 className='text-sm text-white'>
+                      Passwords should contain:
+                    </h4>
+                    <div className='flex items-center gap-1'>
+                      <div
+                        className={`rounded-full text-white w-1 h-1 ${
+                          formik.errors.newPassword?.includes('8')
+                            ? 'bg-gray25'
+                            : 'bg-green'
+                        } `}
+                      />
+                      <p
+                        className={` text-white ${
+                          formik.errors.newPassword?.includes('8')
+                            ? 'text-gray25'
+                            : 'text-white'
+                        } `}
+                      >
+                        8 or more characters
+                      </p>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                      <div
+                        className={`rounded-full text-white w-1 h-1 ${
+                          formik.errors.newPassword?.includes('15')
+                            ? 'bg-gray25'
+                            : 'bg-green'
+                        } `}
+                      />
+                      <p
+                        className={`${
+                          formik.errors.newPassword?.includes('15')
+                            ? 'text-gray25'
+                            : 'text-white'
+                        } `}
+                      >
+                        15 or less characters
+                      </p>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                      <div
+                        className={`rounded-full text-white w-1 h-1 ${
+                          formik.errors.newPassword?.includes('valid')
+                            ? 'bg-gray25'
+                            : 'bg-green'
+                        } `}
+                      />
+                      <p
+                        className={`${
+                          formik.errors.newPassword?.includes('valid')
+                            ? 'text-gray25'
+                            : 'text-white'
+                        } `}
+                      >
+                        Lowercase letters and numbers
+                      </p>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                      <div
+                        className={`rounded-full text-white w-1 h-1 ${
+                          formik.errors.repeatPassword?.includes('match')
+                            ? 'bg-gray25'
+                            : 'bg-green'
+                        } `}
+                      />
+                      <p
+                        className={`${
+                          formik.errors.repeatPassword?.includes('match')
+                            ? 'text-gray25'
+                            : 'text-white'
+                        } `}
+                      >
+                        Passwords should match
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className='flex justify-start items-center gap-4 w-full'>
                   <div>
-                    <Input
+                    <ProfileInput
                       id='newPassword'
                       name='newPassword'
                       type='password'
-                      label={t('home:inputConfirmPass')}
-                      placeholder={t('home:confirmPassPlaceholder')}
+                      label={t('home:New password')}
+                      placeholder={t('home:New Password')}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       isTouched={formik.touched.newPassword}
@@ -132,7 +208,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
 
                 <div className='flex justify-start items-center gap-4 w-full'>
                   <div>
-                    <Input
+                    <ProfileInput
                       id='repPassword'
                       name='repeatPassword'
                       type='password'

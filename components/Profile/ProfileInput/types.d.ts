@@ -12,4 +12,8 @@ export type InputTypes = {
   errorMessage?: string;
   error?: boolean;
   errorMsg?: string;
+  deleteInput?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  disablePassword?: boolean;
 };

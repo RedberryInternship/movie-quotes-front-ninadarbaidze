@@ -1,6 +1,6 @@
 import { useGoogleProfileForm } from './useGoogleProfileForm';
 import { UpdatePassTypes } from './types';
-import { Input, Button } from 'components';
+import { ProfileInput, Button } from 'components';
 
 const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { imageChangeHandler } = props;
@@ -29,7 +29,7 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
               }
               onClick={() => setEditState(true)}
             />
-            <Input
+            <ProfileInput
               name={'username'}
               label={t('profile:username')}
               type={'text'}
@@ -46,7 +46,7 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
 
             <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
 
-            <Input
+            <ProfileInput
               id='email'
               name='email'
               type='email'
