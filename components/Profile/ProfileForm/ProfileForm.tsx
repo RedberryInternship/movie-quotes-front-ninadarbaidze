@@ -1,6 +1,14 @@
 import { useProfileForm } from './useProfileForm';
 import { UpdatePassTypes } from './types';
-import { ProfileInput, Button, EmailItem } from 'components';
+import {
+  ProfileInput,
+  Button,
+  EmailItem,
+  FeedButton,
+  FeedBackdrop,
+  ProfileModal,
+  Dialog,
+} from 'components';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { imageChangeHandler, emailList, setEmailList } = props;
@@ -16,6 +24,10 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
 
   return (
     <>
+      <FeedBackdrop />
+      {/* <ProfileModal title={'ola'}> */}
+      {/* <Dialog /> */}
+
       <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
         <p
           className='text-white text-center text-md z-50 pt-28 cursor-pointer'
@@ -64,6 +76,10 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                 <EmailItem {...email} key={email._id} />
               ))}
             </ul>
+            <FeedButton
+              text={'Add new email'}
+              className='bg-transparent border-[1px] border-white mt-12 hover:border-red'
+            />
 
             <div className='flex justify-start items-center gap-4 w-full'>
               <div>

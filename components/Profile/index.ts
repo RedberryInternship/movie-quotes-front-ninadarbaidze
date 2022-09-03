@@ -6,3 +6,5 @@ export * from './ProfileForm';
 export * from './ProfileInput';
 export * from './EmailItem';
 export * from './VerifiedInfoBar';
+export * from './ProfileModal';
+export * from './Dialog';
