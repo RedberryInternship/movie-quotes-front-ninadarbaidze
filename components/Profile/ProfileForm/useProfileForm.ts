@@ -2,14 +2,16 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { editProfileSchema } from 'schema';
 import { useRouter } from 'next/router';
-import { updateProfile } from 'services';
+import { sendVerificationEmail, updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
 import { useContext, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { ProfileInfoTypes } from './types';
 import { EmailListObjectTypes } from 'types';
 
-export const useProfileForm = (props: { emailList: EmailListObjectTypes }) => {
+export const useProfileForm = (props: {
+  emailList: EmailListObjectTypes[];
+}) => {
   const { emailList } = props;
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
@@ -42,9 +44,14 @@ export const useProfileForm = (props: { emailList: EmailListObjectTypes }) => {
     formData.append('emails', JSON.stringify(emailList));
 
     try {
-      console.log(values);
-      console.log(emailList);
       await updateProfile(formData, token as string);
+      const notVerifiedMails = emailList.filter(
+        (email) => email.verified === false
+      );
+      const lastNotVerifiedMail =
+        notVerifiedMails.length > 0 &&
+        notVerifiedMails[notVerifiedMails.length - 1].email;
+      await sendVerificationEmail({ email: lastNotVerifiedMail });
       router.push(`/feed`);
     } catch (error: any) {
       setError(error.response.status);
