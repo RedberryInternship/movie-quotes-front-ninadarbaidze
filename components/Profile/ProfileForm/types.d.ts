@@ -1,11 +1,10 @@
 import { EmailListObjectTypes } from 'types';
 
-export type UpdatePassTypes = {
+export type ProfileFormTypes = {
   updatePassword: boolean;
   emailList: EmailListObjectTypes[];
   imageChangeHandler: (string) => void;
-  setEmailList: (prevState: EmailListObjectTypes[]) => void;
-  // setUpdatePassword: (boolean) => void;
+  setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
 };
 
 export type ProfileInfoTypes = {

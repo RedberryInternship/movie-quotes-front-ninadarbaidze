@@ -11,13 +11,14 @@ import { EmailListObjectTypes } from 'types';
 
 export const useProfileForm = (props: {
   emailList: EmailListObjectTypes[];
+  setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
 }) => {
-  const { emailList } = props;
+  const { emailList, setEmailList } = props;
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
   const [editPassword, setEditPassword] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
   const { data: session } = useSession();
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -51,10 +52,12 @@ export const useProfileForm = (props: {
       const lastNotVerifiedMail =
         notVerifiedMails.length > 0 &&
         notVerifiedMails[notVerifiedMails.length - 1].email;
-      await sendVerificationEmail({ email: lastNotVerifiedMail });
-      router.push(`/feed`);
+      await sendVerificationEmail({
+        email: lastNotVerifiedMail,
+      } as unknown as string);
+      router.push(`/feed/profile`);
     } catch (error: any) {
-      setError(error.response.status);
+      setError(error.response.data.message);
       throw new Error('Request failed!');
     }
   };
@@ -71,6 +74,29 @@ export const useProfileForm = (props: {
     validationSchema: editProfileSchema,
   });
 
+  const onDeleteMail = (value: string) => {
+    setEmailList((prevState) => {
+      let index = [...prevState].map((emails) => emails.email).indexOf(value);
+      const updatedEmailList = [...prevState];
+      updatedEmailList.splice(index, 1);
+      return updatedEmailList;
+    });
+  };
+  const onMakePrimary = (value: string) => {
+    setEmailList((prevState) => {
+      const primaryIndex = [...prevState]
+        .map((email) => email.primary === true)
+        .indexOf(true);
+      const newPrimaryIndex = [...prevState]
+        .map((emails) => emails.email)
+        .indexOf(value);
+      const updatedList = [...prevState];
+      updatedList[primaryIndex].primary = false;
+      updatedList[newPrimaryIndex].primary = true;
+      return updatedList;
+    });
+  };
+
   return {
     formik,
     t,
@@ -80,5 +106,7 @@ export const useProfileForm = (props: {
     setEditPassword,
     userCtx,
     error,
+    onDeleteMail,
+    onMakePrimary,
   };
 };

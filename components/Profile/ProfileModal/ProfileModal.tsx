@@ -1,6 +1,5 @@
-import { FeedBackdrop, FeedModal, Input, UserInfo } from 'components/shared';
-import { t } from 'i18next';
-import error from 'next/error';
+import { FeedBackdrop, Input } from 'components/shared';
+
 import React from 'react';
 import { Dialog } from '../Dialog';
 import { ProfileModalTypes } from './types';
@@ -64,7 +63,6 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                     type='button'
                     onClick={() => {
                       userCtx.setDialog(true);
-                      //   userCtx.setFormModal(true);
                     }}
                     className='bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-2 py-1'
                   >

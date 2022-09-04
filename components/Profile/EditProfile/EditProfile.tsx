@@ -7,7 +7,6 @@ const EditProfile = () => {
   const {
     t,
     updatePassword,
-    setUpdatePassword,
     imagePreview,
     imageChangeHandler,
     session,
@@ -39,17 +38,11 @@ const EditProfile = () => {
             </div>
           </div>
           <div>
-            {/* <ProfileForm
-              imageChangeHandler={imageChangeHandler}
-              updatePassword={updatePassword}
-              setUpdatePassword={setUpdatePassword}
-            /> */}
             {session ? (
               <GoogleProfileForm imageChangeHandler={imageChangeHandler} />
             ) : (
               <ProfileForm
                 updatePassword={updatePassword}
-                setUpdatePassword={setUpdatePassword}
                 imageChangeHandler={imageChangeHandler}
                 emailList={emailList}
                 setEmailList={setEmailList}

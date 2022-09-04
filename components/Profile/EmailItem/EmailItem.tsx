@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
 import { ProfileInput } from 'components';
 import { EmailItemTypes } from './types';
 import { useEmailItem } from './useEmailItem';
 
 const EmailItem: React.FC<EmailItemTypes> = (props) => {
   const { email, primary, verified, onDeleteMail, onMakePrimary } = props;
-  const { t, deleteEmailHandler } = useEmailItem({ email });
+  const {
+    t,
+    primaryClass,
+    verifiedInfoBar,
+    setVerifiedInfoBar,
+    defaultClass,
+    verifiedClass,
+  } = useEmailItem();
 
-  const primaryClass =
-    'px-48 border-[1px] border-green bg-green bg-opacity-20 text-white';
-  const defaultClass = 'px-48 bg-gray10 text-black';
-  const verifiedClass =
-    'px-48 border-[1px] border-yellow bg-yellow bg-opacity-20 text-white';
-  const [verifiedInfoBar, setVerifiedInfoBar] = useState(false);
   return (
     <>
       <li className='flex justify-start gap-4 w-full '>

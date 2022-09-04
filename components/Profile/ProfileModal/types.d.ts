@@ -3,5 +3,5 @@ export type ProfileModalTypes = {
   placeholder: string;
   name: string;
   title: string;
-  setEmailList: (arg0: EmailListObjectTypes[]) => void;
+  setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
 };

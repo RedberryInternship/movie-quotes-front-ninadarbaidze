@@ -1,5 +1,5 @@
 import { useProfileForm } from './useProfileForm';
-import { UpdatePassTypes } from './types';
+import { ProfileFormTypes } from './types';
 import {
   ProfileInput,
   Button,
@@ -7,11 +7,9 @@ import {
   FeedButton,
   FeedBackdrop,
   ProfileModal,
-  Dialog,
 } from 'components';
-import { EmailListObjectTypes } from 'types';
 
-const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
+const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
   const { imageChangeHandler, emailList, setEmailList } = props;
   const {
     t,
@@ -22,32 +20,9 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
     setEditPassword,
     userCtx,
     error,
-    editInputState,
-    setEditInputState,
-  } = useProfileForm({ emailList });
-
-  const onDeleteMail = (value: string) => {
-    setEmailList((prevState) => {
-      let index = [...prevState].map((emails) => emails.email).indexOf(value);
-      const updatedEmailList = [...prevState];
-      updatedEmailList.splice(index, 1);
-      return updatedEmailList;
-    });
-  };
-  const onMakePrimary = (value) => {
-    setEmailList((prevState) => {
-      const primaryIndex = [...prevState]
-        .map((email) => email.primary === true)
-        .indexOf(true);
-      const newPrimaryIndex = [...prevState]
-        .map((emails) => emails.email)
-        .indexOf(value);
-      const updatedList = [...prevState];
-      updatedList[primaryIndex].primary = false;
-      updatedList[newPrimaryIndex].primary = true;
-      return updatedList;
-    });
-  };
+    onDeleteMail,
+    onMakePrimary,
+  } = useProfileForm({ emailList, setEmailList });
 
   return (
     <>
@@ -114,7 +89,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   errorMessage={formik.errors.username!}
                   disabled={true}
                   error={error}
-                  errorMsg={'user already exists'}
+                  errorMsg={'User already exists'}
                   className='px-48 bg-gray10 text-black'
                 />
                 <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
@@ -144,6 +119,11 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   />
                 ))}
             </ul>
+            {error?.includes('Email') && (
+              <p className='text-red text-xs mt-2'>
+                This email is already taken
+              </p>
+            )}
             <FeedButton
               text={'Add new email'}
               type='button'

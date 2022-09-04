@@ -114,7 +114,7 @@ export type EmailListType = {
   emailList: EmailListObjectTypes[];
 };
 export type EmailListObjectTypes = {
-  _id: string;
+  _id?: string;
   email: string;
   primary: boolean;
   verified: boolean;

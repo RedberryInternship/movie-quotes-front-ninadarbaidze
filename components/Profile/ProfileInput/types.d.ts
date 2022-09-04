@@ -10,7 +10,7 @@ export type InputTypes = {
   isTouched?: boolean | undefined;
   value?: string | undefined;
   errorMessage?: string;
-  error?: number;
+  error?: string;
   errorMsg?: string;
   deleteInput?: boolean;
   disabled?: boolean;

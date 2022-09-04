@@ -1,17 +1,12 @@
-import { UpdatedMovieTypes } from 'components/Movies/ListOfMovies/types';
 import { useFormik } from 'formik';
-import { t } from 'i18next';
 import { useTranslation } from 'next-i18next';
-import error from 'next/error';
-import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { profileSchema } from 'schema';
-import { login } from 'services';
-import { AuthContext, UserContext } from 'store';
+import { UserContext } from 'store';
 import { EmailListObjectTypes, ModalTypes } from 'types';
 
 export const useProfileModal = (props: {
-  setEmailList: (arg0: EmailListObjectTypes) => void;
+  setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
 }) => {
   const { setEmailList } = props;
   const userCtx = useContext(UserContext);
@@ -22,7 +17,7 @@ export const useProfileModal = (props: {
     try {
       userCtx.editInputState === 'username' &&
         userCtx.getUser({ username: values.username });
-      userCtx.editInputState === 'email' && addEmail(values.email);
+      userCtx.editInputState === 'email' && addEmail(values.email as string);
 
       userCtx.setDialog(false);
       userCtx.setFormModal(false);
@@ -32,7 +27,7 @@ export const useProfileModal = (props: {
     }
   };
 
-  const addEmail = (value) => {
+  const addEmail = (value: string) => {
     setEmailList((prevState) => {
       let updatedEmailList: EmailListObjectTypes[] = [];
       const data = {

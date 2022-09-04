@@ -7,11 +7,9 @@ import {
   NotVerified,
   VerifiedInfoBar,
 } from 'components';
-import useInput from './useProfileInput';
+import useProfileInput from './useProfileInput';
 
 const ProfileInput: React.FC<InputTypes> = (props) => {
-  const { showPassword, showHidePassHandler } = useInput();
-
   let {
     name,
     label,
@@ -32,19 +30,20 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     setVerifiedInfoBar,
     error,
     errorMsg,
+    errorMessage,
+    isTouched,
   } = props;
-  console.log(verifiedInfoBar);
 
-  const passwordField = type === 'password';
-  const inputType = passwordField
-    ? !showPassword
-      ? 'password'
-      : 'text'
-    : type;
-
-  const deleteInputHandler = () => {
-    (document.getElementById(`${id}`) as HTMLInputElement)!.value = '';
-  };
+  const {
+    showPassword,
+    showHidePassHandler,
+    inputType,
+    deleteInputHandler,
+    passwordField,
+  } = useProfileInput({
+    type,
+    id,
+  });
 
   return (
     <div className='h-[6rem] relative'>
@@ -108,8 +107,15 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
             <NotVerified className='#EC9524' />
           </div>
         )}
-        {error ? <p className='text-red text-xs mt-1'>{errorMsg}</p> : ''}
       </div>
+      {error?.includes('User') ? (
+        <p className='text-red text-xs mt-2'>{errorMsg}</p>
+      ) : (
+        ''
+      )}
+      {isTouched && errorMessage && (
+        <p className='text-red text-xs mt-1'>{errorMessage}</p>
+      )}
     </div>
   );
 };
