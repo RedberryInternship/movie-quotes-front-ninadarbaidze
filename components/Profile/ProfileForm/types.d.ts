@@ -4,7 +4,7 @@ export type UpdatePassTypes = {
   updatePassword: boolean;
   emailList: EmailListObjectTypes[];
   imageChangeHandler: (string) => void;
-  setEmailList: () => void;
+  setEmailList: (prevState: EmailListObjectTypes[]) => void;
   // setUpdatePassword: (boolean) => void;
 };
 

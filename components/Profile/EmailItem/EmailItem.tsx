@@ -4,8 +4,9 @@ import { EmailItemTypes } from './types';
 import { useEmailItem } from './useEmailItem';
 
 const EmailItem: React.FC<EmailItemTypes> = (props) => {
-  const { email, primary, verified } = props;
-  const { t } = useEmailItem();
+  const { email, primary, verified, onDeleteMail, onMakePrimary } = props;
+  const { t, deleteEmailHandler } = useEmailItem({ email });
+
   const primaryClass =
     'px-48 border-[1px] border-green bg-green bg-opacity-20 text-white';
   const defaultClass = 'px-48 bg-gray10 text-black';
@@ -32,18 +33,31 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
           }`}
         />
         <div className='flex items-center gap-2 mt-[4.5rem]'>
-          <p className='text-gray10 text-sm  cursor-pointer'>
-            {primary && 'Primary'}
-            {!primary && !verified && 'Not verified'}
-            {!primary && verified && 'Make this primary'}
-          </p>
+          {primary && (
+            <p className='text-gray10 text-sm  cursor-pointer'>Primary</p>
+          )}
+          {!primary && !verified && (
+            <p className='text-gray10 text-sm  cursor-pointer'>Not verified</p>
+          )}
+          {!primary && verified && (
+            <p
+              className='text-gray10 text-sm  cursor-pointer'
+              onClick={() => onMakePrimary(email)}
+            >
+              Make this primary
+            </p>
+          )}
+
           {!primary ? (
             <div className='w-[1px] h-3 rounded-full bg-gray20' />
           ) : (
             ''
           )}
 
-          <p className='text-gray10 text-sm cursor-pointer'>
+          <p
+            className='text-gray10 text-sm cursor-pointer'
+            onClick={() => onDeleteMail(email)}
+          >
             {!primary ? 'Remove' : ''}
           </p>
         </div>

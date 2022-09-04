@@ -1,4 +1,7 @@
 export type ProfileModalTypes = {
-  children: React.ReactNode;
+  label: string;
+  placeholder: string;
+  name: string;
   title: string;
+  setEmailList: (arg0: EmailListObjectTypes[]) => void;
 };

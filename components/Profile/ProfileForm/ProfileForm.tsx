@@ -9,6 +9,7 @@ import {
   ProfileModal,
   Dialog,
 } from 'components';
+import { EmailListObjectTypes } from 'types';
 
 const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
   const { imageChangeHandler, emailList, setEmailList } = props;
@@ -20,14 +21,65 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
     editPassword,
     setEditPassword,
     userCtx,
-  } = useProfileForm();
+    error,
+    editInputState,
+    setEditInputState,
+  } = useProfileForm({ emailList });
+
+  const onDeleteMail = (value: string) => {
+    setEmailList((prevState) => {
+      let index = [...prevState].map((emails) => emails.email).indexOf(value);
+      const updatedEmailList = [...prevState];
+      updatedEmailList.splice(index, 1);
+      return updatedEmailList;
+    });
+  };
+  const onMakePrimary = (value) => {
+    setEmailList((prevState) => {
+      const primaryIndex = [...prevState]
+        .map((email) => email.primary === true)
+        .indexOf(true);
+      const newPrimaryIndex = [...prevState]
+        .map((emails) => emails.email)
+        .indexOf(value);
+      const updatedList = [...prevState];
+      updatedList[primaryIndex].primary = false;
+      updatedList[newPrimaryIndex].primary = true;
+      return updatedList;
+    });
+  };
 
   return (
     <>
-      <FeedBackdrop />
-      {/* <ProfileModal title={'ola'}> */}
-      {/* <Dialog /> */}
-
+      {userCtx.formModal && (
+        <>
+          <FeedBackdrop
+            onClick={() => {
+              userCtx.setFormModal(false);
+              userCtx.setDialog(false);
+            }}
+          />
+          <ProfileModal
+            label={
+              userCtx.editInputState === 'username'
+                ? 'New username'
+                : 'New email'
+            }
+            placeholder={
+              userCtx.editInputState === 'username'
+                ? 'Enter new username'
+                : 'Enter new email'
+            }
+            name={userCtx.editInputState === 'username' ? 'username' : 'email'}
+            title={
+              userCtx.editInputState === 'username'
+                ? 'Add new username'
+                : 'Add new Email'
+            }
+            setEmailList={setEmailList}
+          />
+        </>
+      )}
       <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
         <p
           className='text-white text-center text-md z-50 pt-28 cursor-pointer'
@@ -60,25 +112,46 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
                   isTouched={formik.touched.username}
                   value={formik.values.username}
                   errorMessage={formik.errors.username!}
-                  deleteInput={true}
+                  disabled={true}
+                  error={error}
+                  errorMsg={'user already exists'}
                   className='px-48 bg-gray10 text-black'
                 />
                 <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
               </div>
 
-              <p className='text-gray10 text-sm mt-[4.5rem] cursor-pointer'>
+              <p
+                className='text-gray10 text-sm mt-[4.5rem] cursor-pointer'
+                onClick={() => {
+                  userCtx.setEditInputState('username');
+                  userCtx.setFormModal(true);
+                }}
+              >
                 Edit
               </p>
             </div>
 
             <ul>
-              {emailList.map((email) => (
-                <EmailItem {...email} key={email._id} />
-              ))}
+              {emailList
+                .sort((a, b) => (a.primary < b.primary) as unknown as number)
+                .map((email) => (
+                  <EmailItem
+                    {...email}
+                    key={email._id}
+                    setEmailList={setEmailList}
+                    onDeleteMail={onDeleteMail}
+                    onMakePrimary={onMakePrimary}
+                  />
+                ))}
             </ul>
             <FeedButton
               text={'Add new email'}
+              type='button'
               className='bg-transparent border-[1px] border-white mt-12 hover:border-red'
+              onClick={() => {
+                userCtx.setEditInputState('email');
+                userCtx.setFormModal(true);
+              }}
             />
 
             <div className='flex justify-start items-center gap-4 w-full'>
@@ -231,6 +304,7 @@ const ProfileForm: React.FC<UpdatePassTypes> = (props) => {
         <div className='absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]'>
           <Button
             text={t('profile:saveBtn')}
+            type='submit'
             className='bg-red hover:bg-redHover w-[10rem] mt-12 h-12 text-base'
           />
         </div>

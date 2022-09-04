@@ -17,6 +17,12 @@ export type ContextData = {
 export type UserContextData = {
   userState: UserStateTypes;
   getUser: (data: UserStateTypes) => void;
+  formModal: boolean;
+  setFormModal: (arg0: boolean) => void;
+  dialog: boolean;
+  setDialog: (arg0: boolean) => void;
+  editInputState: string;
+  setEditInputState: (arg0: string) => void;
 };
 
 export type UserStateTypes = {

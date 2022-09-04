@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
 import { AuthContext, UserContext } from 'store';
 import { getUserInfo } from 'services';
+import { EmailListObjectTypes } from 'types';
 
 export const useEditProfile = () => {
   const { t } = useTranslation();
   const [updatePassword, setUpdatePassword] = useState(false);
   const [imagePreview, setImagePreview] = useState('');
-  const [emailList, setEmailList] = useState([]);
+  const [emailList, setEmailList] = useState<EmailListObjectTypes[]>([]);
   const { data: session } = useSession();
   const userCtx = useContext(UserContext);
   const ctx = useContext(AuthContext);

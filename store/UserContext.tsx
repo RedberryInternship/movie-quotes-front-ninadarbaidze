@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import {
   Children,
   Data,
@@ -7,6 +7,7 @@ import {
   UserContextData,
   UserStateTypes,
 } from 'types';
+import { bool } from 'yup';
 
 const initialState = {
   username: '',
@@ -30,10 +31,19 @@ const reducer = (
 export const UserContext = createContext({
   userState: initialState,
   getUser: (_data: UserStateTypes) => {},
+  formModal: false,
+  setFormModal: (arg0: boolean) => {},
+  dialog: false,
+  setDialog: (arg0: boolean) => {},
+  editInputState: '',
+  setEditInputState: (arg0: string) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
   const [userState, dispatchUserAction] = useReducer(reducer, initialState);
+  const [dialog, setDialog] = useState(false);
+  const [formModal, setFormModal] = useState(false);
+  const [editInputState, setEditInputState] = useState('');
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -41,9 +51,16 @@ export const UserContextProvider: React.FC<Children> = (props) => {
       payload: data,
     });
   };
+
   const contextValue: UserContextData = {
     userState,
     getUser,
+    formModal,
+    setFormModal,
+    dialog,
+    setDialog,
+    editInputState,
+    setEditInputState,
   };
 
   return (

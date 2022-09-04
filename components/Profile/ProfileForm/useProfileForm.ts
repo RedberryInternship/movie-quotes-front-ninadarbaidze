@@ -7,12 +7,15 @@ import { AuthContext, UserContext } from 'store';
 import { useContext, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { ProfileInfoTypes } from './types';
+import { EmailListObjectTypes } from 'types';
 
-export const useProfileForm = () => {
+export const useProfileForm = (props: { emailList: EmailListObjectTypes }) => {
+  const { emailList } = props;
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
   const [editPassword, setEditPassword] = useState(false);
+  const [error, setError] = useState();
   const { data: session } = useSession();
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -36,13 +39,15 @@ export const useProfileForm = () => {
       formData.append(`${key}`, values[key as keyof typeof values]);
     });
     formData.append('userId', userId as string);
+    formData.append('emails', JSON.stringify(emailList));
 
     try {
       console.log(values);
-
+      console.log(emailList);
       await updateProfile(formData, token as string);
       router.push(`/feed`);
     } catch (error: any) {
+      setError(error.response.status);
       throw new Error('Request failed!');
     }
   };
@@ -67,5 +72,6 @@ export const useProfileForm = () => {
     editPassword,
     setEditPassword,
     userCtx,
+    error,
   };
 };

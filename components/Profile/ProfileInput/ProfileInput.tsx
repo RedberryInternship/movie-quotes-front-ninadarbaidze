@@ -30,6 +30,8 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     disablePassword,
     verifiedInfoBar,
     setVerifiedInfoBar,
+    error,
+    errorMsg,
   } = props;
   console.log(verifiedInfoBar);
 
@@ -106,6 +108,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
             <NotVerified className='#EC9524' />
           </div>
         )}
+        {error ? <p className='text-red text-xs mt-1'>{errorMsg}</p> : ''}
       </div>
     </div>
   );

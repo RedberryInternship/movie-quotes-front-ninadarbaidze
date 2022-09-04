@@ -27,3 +27,7 @@ export type loginTypes = {
   password: string;
   remember?: boolean;
 };
+export type ModalTypes = {
+  username?: string;
+  email?: string;
+};
