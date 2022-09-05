@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from 'store';
 
 const useProfileInput = (props: { type: string; id: string }) => {
   const { type, id } = props;
   const [showPassword, setShowPassword] = useState(false);
+  const userCtx = useContext(UserContext);
 
   const showHidePassHandler = () => {
     setShowPassword((prevState) => !prevState);
@@ -24,6 +26,7 @@ const useProfileInput = (props: { type: string; id: string }) => {
     inputType,
     deleteInputHandler,
     passwordField,
+    userCtx,
   };
 };
 

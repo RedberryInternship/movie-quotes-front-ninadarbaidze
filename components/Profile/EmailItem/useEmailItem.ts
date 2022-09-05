@@ -1,16 +1,18 @@
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from 'store';
 
 export const useEmailItem = () => {
   const [verifiedInfoBar, setVerifiedInfoBar] = useState(false);
+  const userCtx = useContext(UserContext);
 
   const { t } = useTranslation();
 
   const primaryClass =
-    'px-48 border-[1px] border-green bg-green bg-opacity-20 text-white';
-  const defaultClass = 'px-48 bg-gray10 text-black';
+    ' border-[1px] border-green bg-green bg-opacity-20 text-white';
+  const defaultClass = ' md:bg-gray10 bg-transparent text-white md:text-black';
   const verifiedClass =
-    'px-48 border-[1px] border-yellow bg-yellow bg-opacity-20 text-white';
+    ' md:border-[1px] md:border-yellow bg-transparent md:bg-yellow md:bg-opacity-20 text-white';
 
   return {
     t,
@@ -19,5 +21,6 @@ export const useEmailItem = () => {
     setVerifiedInfoBar,
     defaultClass,
     verifiedClass,
+    userCtx,
   };
 };

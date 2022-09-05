@@ -27,6 +27,10 @@ export type UserContextData = {
   setSuccessPopup: (arg0: string) => void;
   errorPopup: string;
   setErrorPopup: (arg0: string) => void;
+  emailSection: boolean;
+  setEmailSection: (arg0: boolean) => void;
+  passwordSection: boolean;
+  setPasswordSection: (arg0: boolean) => void;
 };
 
 export type UserStateTypes = {

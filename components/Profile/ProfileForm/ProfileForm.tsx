@@ -8,6 +8,7 @@ import {
   FeedBackdrop,
   ProfileModal,
 } from 'components';
+import { ChevronDownIcon } from '@heroicons/react/solid';
 
 const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
   const { imageChangeHandler, emailList, setEmailList } = props;
@@ -58,12 +59,14 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
       )}
       <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
         <p
-          className='text-white text-center text-md z-50 pt-28 cursor-pointer'
+          className={` ${
+            userCtx.emailSection ? 'hidden md:block' : 'block'
+          } text-white text-center text-md z-50 pt-60 md:pt-28 cursor-pointer`}
           onClick={() => fileRef.current!.click()}
         >
           {t('profile:upload')}
         </p>
-        <div className='flex justify-center gap-6 pt-6 px-[5%] pb-12 w-[100%]'>
+        <div className='flex justify-center gap-6 pt-0 md:pt-6 px-[5%] pb-12 w-[100%]'>
           <div className=''>
             <input
               type='file'
@@ -75,7 +78,11 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 changeHandler(e, imageChangeHandler)
               }
             />
-            <div className='flex justify-start gap-4 w-full'>
+            <div
+              className={`${
+                userCtx.emailSection ? 'hidden md:flex' : 'flex'
+              } justify-start gap-4 w-full xs:border-b-[1px] border-gray10 border-opacity-50 md:border-0`}
+            >
               <div>
                 <ProfileInput
                   name={'username'}
@@ -91,9 +98,9 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                   disabled={true}
                   error={error}
                   errorMsg={'User already exists'}
-                  className='px-48 bg-gray10 text-black'
+                  className='bg-transparent md:bg-gray10 text-white md:text-black'
                 />
-                <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
+                <div className='xs:hidden md:block w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
               </div>
 
               <p
@@ -106,38 +113,60 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 Edit
               </p>
             </div>
+            <div
+              className={`${
+                userCtx.emailSection ? 'block' : 'hidden md:block'
+              } `}
+            >
+              <ul>
+                {emailList
+                  .sort((a, b) => (a.primary < b.primary) as unknown as number)
+                  .map((email) => (
+                    <>
+                      {email.primary && (
+                        <p className='md:hidden text-white mt-4 text-sm'>
+                          PRIMARY EMAIL
+                        </p>
+                      )}
 
-            <ul>
-              {emailList
-                .sort((a, b) => (a.primary < b.primary) as unknown as number)
-                .map((email) => (
-                  <EmailItem
-                    {...email}
-                    key={email._id}
-                    setEmailList={setEmailList}
-                    onDeleteMail={onDeleteMail}
-                    onMakePrimary={onMakePrimary}
-                  />
-                ))}
-            </ul>
-            {error?.includes('Email') && (
-              <p className='text-red text-xs mt-4'>
-                This email is already taken
-              </p>
-            )}
-            <FeedButton
-              text={'Add new email'}
-              type='button'
-              className='bg-transparent border-[1px] border-white mt-12 hover:border-red'
-              onClick={() => {
-                userCtx.setEditInputState('email');
-                userCtx.setFormModal(true);
-              }}
-            />
+                      <EmailItem
+                        {...email}
+                        key={email._id}
+                        setEmailList={setEmailList}
+                        onDeleteMail={onDeleteMail}
+                        onMakePrimary={onMakePrimary}
+                      />
+                    </>
+                  ))}
+              </ul>
+              {error?.includes('Email') && (
+                <p className='text-red text-xs mt-4'>
+                  This email is already taken
+                </p>
+              )}
+              {userCtx.emailSection && (
+                <p className='md:hidden text-white mt-4 text-sm'>
+                  ADD NEW EMAIL
+                </p>
+              )}
+              <FeedButton
+                text={'Add new email'}
+                type='button'
+                className='flex justify-center bg-transparent border-[1px] border-white mt-12 w-full md:w-40 text-center hover:border-red'
+                onClick={() => {
+                  userCtx.setEditInputState('email');
+                  userCtx.setFormModal(true);
+                }}
+              />
+            </div>
 
-            <div className='flex justify-start items-center gap-4 w-full'>
+            <div
+              className={` ${
+                userCtx.emailSection ? 'hidden md:flex' : 'flex'
+              } justify-start items-center gap-4 w-full xs:border-b-[1px] border-gray10 border-opacity-50 md:border-0`}
+            >
               <div>
-                <div className='w-full h-[1px] bg-gray20 bg-opacity-30 mt-12' />
+                <div className='xs:hidden md:block w-full h-[1px] bg-gray20 bg-opacity-30 mt-12 ' />
 
                 <ProfileInput
                   id='password'
@@ -146,7 +175,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                   label={t('home:inputPassword')}
                   placeholder={t('home:passwordPlaceholder')}
                   value={userCtx.userState.password}
-                  className='px-48  bg-gray10 text-black'
+                  className=' bg-transparent md:bg-gray10 text-white md:text-black'
                   disabled={true}
                   disablePassword={true}
                 />
@@ -154,7 +183,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
 
               {!editPassword && (
                 <p
-                  className='text-gray10 text-sm mt-[5.5rem] cursor-pointer'
+                  className='text-gray10 text-sm mt-[2rem] md:mt-[5.5rem] cursor-pointer'
                   onClick={() => setEditPassword(true)}
                 >
                   Edit
@@ -165,7 +194,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
             {editPassword && (
               <>
                 <div className='flex  w-full'>
-                  <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 pr-56 h-full'>
+                  <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 pr-60 h-full'>
                     <h4 className='text-sm text-white'>
                       Passwords should contain:
                     </h4>
@@ -280,6 +309,15 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 </div>
               </>
             )}
+            <div
+              className={` ${
+                userCtx.emailSection ? 'hidden md:hidden' : 'flex md:hidden'
+              } md:hidden flex justify-between mt-8 cursor-pointer`}
+              onClick={() => userCtx.setEmailSection(true)}
+            >
+              <h3 className='text-white'>Email</h3>
+              <ChevronDownIcon className=' -rotate-90 text-white w-6' />
+            </div>
           </div>
         </div>
         <div className='absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]'>

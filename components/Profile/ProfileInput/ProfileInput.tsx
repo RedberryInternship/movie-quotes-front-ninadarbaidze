@@ -40,6 +40,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     inputType,
     deleteInputHandler,
     passwordField,
+    userCtx,
   } = useProfileInput({
     type,
     id,
@@ -49,7 +50,14 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     <div className='h-[6rem] relative'>
       <div className='flex gap-2 mb-2 mt-8'>
         {verifiedInfoBar && <VerifiedInfoBar />}
-        <label htmlFor='username' className='text-white'>
+        <label
+          htmlFor='username'
+          className={`${
+            userCtx.emailSection
+              ? 'text-transparent md:text-white'
+              : 'text-white md:text-white'
+          } `}
+        >
           {label}
         </label>
       </div>
@@ -64,7 +72,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
           value={value}
           disabled={disabled ? true : false}
           onClick={onClick}
-          className={`${className} py-2  placeholder:text-gray20  pl-3 w-[100%] rounded-[4px] px-12 truncate`}
+          className={`${className} py-2  placeholder:text-gray20  pl-3 w-[100%] pr-32 sm:pr-52 md:pr-32 lg:pr-48 rounded-[4px] truncate`}
         />
         {passwordField && !disablePassword ? (
           showPassword ? (
@@ -102,7 +110,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
           <div
             onMouseEnter={() => setVerifiedInfoBar!(true)}
             onMouseLeave={() => setVerifiedInfoBar!(false)}
-            className='absolute ml-[92%] cursor-pointer'
+            className='xs:hidden md:block absolute ml-[92%] cursor-pointer'
           >
             <NotVerified className='#EC9524' />
           </div>

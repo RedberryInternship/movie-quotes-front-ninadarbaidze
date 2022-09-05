@@ -9,7 +9,7 @@ const Profile = () => {
 
   return (
     <>
-      <FeedWrapper className='mr-[10%] mt-10 relative'>
+      <FeedWrapper className='xl:mr-[10%] md:mt-10 relative'>
         {userCtx.successPopup && <AlertPopup />}
         {userCtx.errorPopup && <ErrorPopup />}
         <EditProfile />

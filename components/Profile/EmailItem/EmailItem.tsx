@@ -1,4 +1,4 @@
-import { ProfileInput } from 'components';
+import { NotVerified, ProfileInput } from 'components';
 import { EmailItemTypes } from './types';
 import { useEmailItem } from './useEmailItem';
 
@@ -11,11 +11,12 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
     setVerifiedInfoBar,
     defaultClass,
     verifiedClass,
+    userCtx,
   } = useEmailItem();
 
   return (
     <>
-      <li className='flex justify-start gap-4 w-full '>
+      <li className='flex xs:flex-col md:flex-row justify-start xs:mt-[-3rem] md:mt-0 md:gap-4 w-full '>
         <ProfileInput
           id='email'
           name='email'
@@ -28,20 +29,31 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
           verified={verified}
           verifiedInfoBar={verifiedInfoBar}
           setVerifiedInfoBar={setVerifiedInfoBar}
-          className={`${
+          className={` ${
             primary ? primaryClass : !verified ? verifiedClass : defaultClass
-          }`}
+          } `}
         />
-        <div className='flex items-center gap-2 mt-[4.5rem]'>
+        <div className='flex justify-between md:justify-start items-center gap-2 mt-8 mb-10 md:mb-0 md:mt-[4.5rem]'>
           {primary && (
-            <p className='text-gray10 text-sm  cursor-pointer'>Primary</p>
+            <p className='text-gray10 text-sm  cursor-pointer xs:hidden md:block'>
+              Primary
+            </p>
           )}
           {!primary && !verified && (
-            <p className='text-gray10 text-sm  cursor-pointer'>Not verified</p>
+            <>
+              <div className='flex gap-2 items-center'>
+                <div className='md:hidden'>
+                  <NotVerified className='#EC9524' />
+                </div>
+                <p className='md:text-gray10 text-sm italic text-yellow md:not-italic cursor-pointer'>
+                  Not verified
+                </p>
+              </div>
+            </>
           )}
           {!primary && verified && (
             <p
-              className='text-gray10 text-sm  cursor-pointer'
+              className='text-gray10 text-sm  cursor-pointer border-[1px] border-gray10 rounded-md px-4 py-2 md:px-0 md:py-0 md:border-none'
               onClick={() => onMakePrimary(email)}
             >
               Make this primary
@@ -49,7 +61,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
           )}
 
           {!primary ? (
-            <div className='w-[1px] h-3 rounded-full bg-gray20' />
+            <div className='hidden md:block w-[1px] h-3 rounded-full bg-gray20' />
           ) : (
             ''
           )}
@@ -62,6 +74,14 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
           </p>
         </div>
       </li>
+      {userCtx.emailSection && (
+        <div className='md:hidden'>
+          <div className='w-full h-[1px] mt-[-1rem] bg-gray10 bg-opacity-50 md:border-0' />
+          {primary && (
+            <p className='text-white mt-4 text-sm'>CHANGE PRIMARY EMAIL</p>
+          )}
+        </div>
+      )}
     </>
   );
 };

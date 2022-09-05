@@ -41,6 +41,10 @@ export const UserContext = createContext({
   setSuccessPopup: (arg0: string) => {},
   errorPopup: '',
   setErrorPopup: (arg0: string) => {},
+  emailSection: false,
+  setEmailSection: (arg0: boolean) => {},
+  passwordSection: false,
+  setPasswordSection: (arg0: boolean) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
@@ -50,6 +54,8 @@ export const UserContextProvider: React.FC<Children> = (props) => {
   const [editInputState, setEditInputState] = useState('');
   const [successPopup, setSuccessPopup] = useState('');
   const [errorPopup, setErrorPopup] = useState('');
+  const [emailSection, setEmailSection] = useState(false);
+  const [passwordSection, setPasswordSection] = useState(false);
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -71,6 +77,10 @@ export const UserContextProvider: React.FC<Children> = (props) => {
     setSuccessPopup,
     errorPopup,
     setErrorPopup,
+    emailSection,
+    setEmailSection,
+    passwordSection,
+    setPasswordSection,
   };
 
   return (

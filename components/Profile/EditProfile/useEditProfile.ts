@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { AuthContext, UserContext } from 'store';
 import { getUserInfo } from 'services';
 import { EmailListObjectTypes } from 'types';
+import { useRouter } from 'next/router';
 
 export const useEditProfile = () => {
   const { t } = useTranslation();
@@ -13,9 +14,15 @@ export const useEditProfile = () => {
   const { data: session } = useSession();
   const userCtx = useContext(UserContext);
   const ctx = useContext(AuthContext);
+  const router = useRouter();
 
   const imageChangeHandler = (imageUrl: string) => {
     setImagePreview(imageUrl);
+  };
+  const mobileProfileStateHandler = () => {
+    userCtx.emailSection && userCtx.setEmailSection(false);
+    userCtx.passwordSection && userCtx.setPasswordSection(false);
+    !userCtx.emailSection && !userCtx.passwordSection && router.push('/feed');
   };
 
   useEffect(() => {
@@ -50,5 +57,6 @@ export const useEditProfile = () => {
     userCtx,
     emailList,
     setEmailList,
+    mobileProfileStateHandler,
   };
 };
