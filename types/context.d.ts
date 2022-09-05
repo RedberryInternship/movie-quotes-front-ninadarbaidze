@@ -31,6 +31,8 @@ export type UserContextData = {
   setEmailSection: (arg0: boolean) => void;
   passwordSection: boolean;
   setPasswordSection: (arg0: boolean) => void;
+  editPassword: boolean;
+  setEditPassword: (arg0: boolean) => void;
 };
 
 export type UserStateTypes = {

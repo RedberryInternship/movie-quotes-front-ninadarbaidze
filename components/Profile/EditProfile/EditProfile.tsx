@@ -34,7 +34,9 @@ const EditProfile = () => {
           <div>
             <div
               className={`${
-                userCtx.emailSection ? 'hidden md:flex' : 'flex'
+                userCtx.emailSection || userCtx.passwordSection
+                  ? 'hidden md:flex'
+                  : 'flex'
               } absolute top-12 md:top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black`}
             >
               <div>

@@ -17,7 +17,9 @@ export const useProfileForm = (props: {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
-  const [editPassword, setEditPassword] = useState(false);
+  // const [editPassword, setEditPassword] = useState(false);
+  const editPassword = userCtx.editPassword;
+  const setEditPassword = userCtx.setEditPassword;
   const [error, setError] = useState('');
   const { data: session } = useSession();
   const router = useRouter();
@@ -30,6 +32,19 @@ export const useProfileForm = (props: {
     formik.setFieldValue('image', event.currentTarget.files![0]);
     const imageSrc = URL.createObjectURL(event.target.files![0]);
     imageChangeHandler(imageSrc);
+  };
+
+  const deleteInputHandler = () => {
+    formik.values.repeatPassword = '';
+    formik.values.newPassword = '';
+    formik.touched.repeatPassword = false;
+    formik.touched.newPassword = false;
+  };
+
+  const cancelPasswordEditHandler = () => {
+    deleteInputHandler();
+    userCtx.setPasswordSection(false);
+    userCtx.setEditPassword(false);
   };
 
   const onSubmit = async (values: ProfileInfoTypes) => {
@@ -113,5 +128,7 @@ export const useProfileForm = (props: {
     error,
     onDeleteMail,
     onMakePrimary,
+    deleteInputHandler,
+    cancelPasswordEditHandler,
   };
 };

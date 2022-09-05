@@ -7,6 +7,7 @@ import {
   FeedButton,
   FeedBackdrop,
   ProfileModal,
+  Dialog,
 } from 'components';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
@@ -23,6 +24,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
     error,
     onDeleteMail,
     onMakePrimary,
+    cancelPasswordEditHandler,
   } = useProfileForm({ emailList, setEmailList });
 
   return (
@@ -57,10 +59,13 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
           />
         </>
       )}
+      {userCtx.dialog && <Dialog />}
       <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
         <p
           className={` ${
-            userCtx.emailSection ? 'hidden md:block' : 'block'
+            userCtx.emailSection || userCtx.passwordSection
+              ? 'hidden md:block'
+              : 'block'
           } text-white text-center text-md z-50 pt-60 md:pt-28 cursor-pointer`}
           onClick={() => fileRef.current!.click()}
         >
@@ -80,7 +85,9 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
             />
             <div
               className={`${
-                userCtx.emailSection ? 'hidden md:flex' : 'flex'
+                userCtx.emailSection || userCtx.passwordSection
+                  ? 'hidden md:flex'
+                  : 'flex'
               } justify-start gap-4 w-full xs:border-b-[1px] border-gray10 border-opacity-50 md:border-0`}
             >
               <div>
@@ -162,7 +169,9 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
 
             <div
               className={` ${
-                userCtx.emailSection ? 'hidden md:flex' : 'flex'
+                userCtx.emailSection || userCtx.passwordSection
+                  ? 'hidden md:flex'
+                  : 'flex'
               } justify-start items-center gap-4 w-full xs:border-b-[1px] border-gray10 border-opacity-50 md:border-0`}
             >
               <div>
@@ -184,17 +193,20 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
               {!editPassword && (
                 <p
                   className='text-gray10 text-sm mt-[2rem] md:mt-[5.5rem] cursor-pointer'
-                  onClick={() => setEditPassword(true)}
+                  onClick={() => {
+                    setEditPassword(true);
+                    userCtx.setPasswordSection(true);
+                  }}
                 >
                   Edit
                 </p>
               )}
             </div>
 
-            {editPassword && (
+            {editPassword && userCtx.passwordSection && (
               <>
-                <div className='flex  w-full'>
-                  <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 pr-60 h-full'>
+                <div className='flex bg-mainDark w-full xs:mt-12 md:mt-0'>
+                  <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 xs:w-full  md:mr-48 lg:mr-74 h-full'>
                     <h4 className='text-sm text-white'>
                       Passwords should contain:
                     </h4>
@@ -307,11 +319,31 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                     />
                   </div>
                 </div>
+
+                <div className='flex md:hidden justify-between items-center py-4 '>
+                  <p
+                    className='text-gray10 cursor-pointer'
+                    onClick={() => cancelPasswordEditHandler()}
+                  >
+                    Cancel
+                  </p>
+                  <button
+                    type='button'
+                    className='bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-3 py-1'
+                    onClick={() => {
+                      userCtx.setDialog(true);
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
               </>
             )}
             <div
               className={` ${
-                userCtx.emailSection ? 'hidden md:hidden' : 'flex md:hidden'
+                userCtx.emailSection || userCtx.passwordSection
+                  ? 'hidden md:hidden'
+                  : 'flex md:hidden'
               } md:hidden flex justify-between mt-8 cursor-pointer`}
               onClick={() => userCtx.setEmailSection(true)}
             >
@@ -320,7 +352,13 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
             </div>
           </div>
         </div>
-        <div className='absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]'>
+        <div
+          className={`${
+            userCtx.passwordSection || userCtx.emailSection
+              ? 'hidden md:absolute'
+              : 'absolute'
+          } absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]`}
+        >
           <Button
             text={t('profile:saveBtn')}
             type='submit'

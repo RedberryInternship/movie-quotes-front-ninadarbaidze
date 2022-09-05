@@ -2,7 +2,7 @@ import React from 'react';
 import { useDialog } from './useDialog';
 
 const Dialog = () => {
-  const { userCtx } = useDialog();
+  const { userCtx, dialogConfirmHandler } = useDialog();
   return (
     <div className='flex md:w-[25%] h-48 bg-profileDialog bg-mainDark fixed  top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] rounded-[12px]  z-40'>
       <div className='flex flex-col justify-between items-center w-full mb-2 '>
@@ -17,7 +17,10 @@ const Dialog = () => {
             >
               Cancel
             </p>
-            <button className='bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-2 py-1'>
+            <button
+              className='bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-2 py-1'
+              onClick={() => userCtx.passwordSection && dialogConfirmHandler()}
+            >
               Confirm
             </button>
           </div>

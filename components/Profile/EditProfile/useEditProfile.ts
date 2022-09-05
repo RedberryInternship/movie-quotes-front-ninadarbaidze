@@ -23,6 +23,7 @@ export const useEditProfile = () => {
     userCtx.emailSection && userCtx.setEmailSection(false);
     userCtx.passwordSection && userCtx.setPasswordSection(false);
     !userCtx.emailSection && !userCtx.passwordSection && router.push('/feed');
+    userCtx.setEditPassword(false);
   };
 
   useEffect(() => {
