@@ -52,6 +52,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 : 'Add new Email'
             }
             setEmailList={setEmailList}
+            emailList={emailList}
           />
         </>
       )}
@@ -120,7 +121,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 ))}
             </ul>
             {error?.includes('Email') && (
-              <p className='text-red text-xs mt-2'>
+              <p className='text-red text-xs mt-4'>
                 This email is already taken
               </p>
             )}

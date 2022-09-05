@@ -23,6 +23,10 @@ export type UserContextData = {
   setDialog: (arg0: boolean) => void;
   editInputState: string;
   setEditInputState: (arg0: string) => void;
+  successPopup: string;
+  setSuccessPopup: (arg0: string) => void;
+  errorPopup: string;
+  setErrorPopup: (arg0: string) => void;
 };
 
 export type UserStateTypes = {

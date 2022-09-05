@@ -37,6 +37,8 @@ module.exports = {
         redHover: '#b0101b',
         link: '#0D6EFD',
         green: '#198754',
+        green20: '#0F5132',
+        greenPastel: '#BADBCC',
         yellow: '#EC9524',
         purple: '#422772',
         pink: '#F3426C',

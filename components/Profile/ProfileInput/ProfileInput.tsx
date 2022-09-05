@@ -114,7 +114,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
         ''
       )}
       {isTouched && errorMessage && (
-        <p className='text-red text-xs mt-1'>{errorMessage}</p>
+        <p className='text-red text-xs mt-2'>{errorMessage}</p>
       )}
     </div>
   );

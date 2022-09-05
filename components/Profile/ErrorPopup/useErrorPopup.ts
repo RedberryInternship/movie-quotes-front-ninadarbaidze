@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { UserContext } from 'store';
 
-export const useDialog = () => {
+export const useErrorPopup = () => {
   const userCtx = useContext(UserContext);
   return { userCtx };
 };

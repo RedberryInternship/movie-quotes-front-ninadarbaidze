@@ -119,3 +119,6 @@ export type EmailListObjectTypes = {
   primary: boolean;
   verified: boolean;
 };
+export type AlertPopupTypes = {
+  text: string;
+};

@@ -6,8 +6,8 @@ import { ProfileModalTypes } from './types';
 import { useProfileModal } from './useProfileModal';
 
 const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
-  const { label, placeholder, name, title, setEmailList } = props;
-  const { formik, t, userCtx } = useProfileModal({ setEmailList });
+  const { label, placeholder, name, title, setEmailList, emailList } = props;
+  const { formik, t, userCtx } = useProfileModal({ setEmailList, emailList });
   return (
     <>
       <FeedBackdrop

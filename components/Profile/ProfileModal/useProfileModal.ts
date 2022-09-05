@@ -7,22 +7,33 @@ import { EmailListObjectTypes, ModalTypes } from 'types';
 
 export const useProfileModal = (props: {
   setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
+  emailList: EmailListObjectTypes[];
 }) => {
-  const { setEmailList } = props;
+  const { setEmailList, emailList } = props;
   const userCtx = useContext(UserContext);
   const [error, setError] = useState(false);
   const { t } = useTranslation();
 
   const onSubmit = async (values: ModalTypes) => {
     try {
-      userCtx.editInputState === 'username' &&
+      if (userCtx.editInputState === 'username') {
         userCtx.getUser({ username: values.username });
-      userCtx.editInputState === 'email' && addEmail(values.email as string);
+        userCtx.setSuccessPopup('Username change requested');
+      }
 
+      if (userCtx.editInputState === 'email') {
+        const existingEmail = emailList.find(
+          (email) => email.email === values.email
+        );
+        existingEmail
+          ? userCtx.setErrorPopup('You already have this email')
+          : addEmail(values.email as string);
+      }
       userCtx.setDialog(false);
       userCtx.setFormModal(false);
     } catch (error: any) {
       setError(error.response.status);
+      userCtx.setErrorPopup(error.response.data.message);
       throw new Error('Request failed!');
     }
   };
@@ -39,6 +50,7 @@ export const useProfileModal = (props: {
       updatedEmailList.push(data);
       return updatedEmailList;
     });
+    userCtx.setSuccessPopup('New email is added');
   };
 
   const formik = useFormik({

@@ -37,6 +37,10 @@ export const UserContext = createContext({
   setDialog: (arg0: boolean) => {},
   editInputState: '',
   setEditInputState: (arg0: string) => {},
+  successPopup: '',
+  setSuccessPopup: (arg0: string) => {},
+  errorPopup: '',
+  setErrorPopup: (arg0: string) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
@@ -44,6 +48,8 @@ export const UserContextProvider: React.FC<Children> = (props) => {
   const [dialog, setDialog] = useState(false);
   const [formModal, setFormModal] = useState(false);
   const [editInputState, setEditInputState] = useState('');
+  const [successPopup, setSuccessPopup] = useState('');
+  const [errorPopup, setErrorPopup] = useState('');
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -61,6 +67,10 @@ export const UserContextProvider: React.FC<Children> = (props) => {
     setDialog,
     editInputState,
     setEditInputState,
+    successPopup,
+    setSuccessPopup,
+    errorPopup,
+    setErrorPopup,
   };
 
   return (

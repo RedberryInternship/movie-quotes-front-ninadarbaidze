@@ -8,3 +8,5 @@ export * from './EmailItem';
 export * from './VerifiedInfoBar';
 export * from './ProfileModal';
 export * from './Dialog';
+export * from './AlertPopup';
+export * from './ErrorPopup';

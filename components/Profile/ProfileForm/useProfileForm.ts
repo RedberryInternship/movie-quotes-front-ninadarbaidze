@@ -46,18 +46,23 @@ export const useProfileForm = (props: {
 
     try {
       await updateProfile(formData, token as string);
+
       const notVerifiedMails = emailList.filter(
         (email) => email.verified === false
       );
-      const lastNotVerifiedMail =
-        notVerifiedMails.length > 0 &&
-        notVerifiedMails[notVerifiedMails.length - 1].email;
-      await sendVerificationEmail({
-        email: lastNotVerifiedMail,
-      } as unknown as string);
+      if (notVerifiedMails.length > 0) {
+        const lastNotVerifiedMail =
+          notVerifiedMails[notVerifiedMails.length - 1].email;
+        await sendVerificationEmail({
+          email: lastNotVerifiedMail,
+        } as unknown as string);
+      }
       router.push(`/feed/profile`);
+      userCtx.setSuccessPopup('Profile updated successfully');
     } catch (error: any) {
       setError(error.response.data.message);
+      userCtx.setErrorPopup(error.response.data.message);
+
       throw new Error('Request failed!');
     }
   };
