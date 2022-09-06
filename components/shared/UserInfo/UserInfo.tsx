@@ -24,6 +24,7 @@ const UserInfo: React.FC<UserInfoTypes> = (props) => {
                 alt='profile-icon'
                 width={50}
                 height={50}
+                objectFit='cover'
               />
             </div>
           </div>

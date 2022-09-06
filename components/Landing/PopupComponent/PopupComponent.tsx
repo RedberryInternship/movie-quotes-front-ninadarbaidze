@@ -23,6 +23,16 @@ const PopupComponent = () => {
         />
       )}
 
+      {modalState === 'email-verified' && (
+        <Popup
+          icon={'/assets/images/check-icon.png'}
+          heading='Verified'
+          paragraph='Your new email is verified'
+          buttonTxt='Profile page'
+          url={'/feed/profile'}
+        />
+      )}
+
       {modalState === 'verification-failed' && (
         <Popup
           icon={'/assets/images/error-icon.png'}

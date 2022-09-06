@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import {
   Children,
   Data,
@@ -7,11 +7,13 @@ import {
   UserContextData,
   UserStateTypes,
 } from 'types';
+import { bool } from 'yup';
 
 const initialState = {
   username: '',
-  email: '',
   profileImage: '',
+  email: '',
+  password: '',
 };
 const reducer = (
   state: any,
@@ -29,10 +31,34 @@ const reducer = (
 export const UserContext = createContext({
   userState: initialState,
   getUser: (_data: UserStateTypes) => {},
+  formModal: false,
+  setFormModal: (arg0: boolean) => {},
+  dialog: false,
+  setDialog: (arg0: boolean) => {},
+  editInputState: '',
+  setEditInputState: (arg0: string) => {},
+  successPopup: '',
+  setSuccessPopup: (arg0: string) => {},
+  errorPopup: '',
+  setErrorPopup: (arg0: string) => {},
+  emailSection: false,
+  setEmailSection: (arg0: boolean) => {},
+  passwordSection: false,
+  setPasswordSection: (arg0: boolean) => {},
+  editPassword: false,
+  setEditPassword: (arg0: boolean) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
   const [userState, dispatchUserAction] = useReducer(reducer, initialState);
+  const [dialog, setDialog] = useState(false);
+  const [formModal, setFormModal] = useState(false);
+  const [editInputState, setEditInputState] = useState('');
+  const [successPopup, setSuccessPopup] = useState('');
+  const [errorPopup, setErrorPopup] = useState('');
+  const [emailSection, setEmailSection] = useState(false);
+  const [passwordSection, setPasswordSection] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -40,9 +66,26 @@ export const UserContextProvider: React.FC<Children> = (props) => {
       payload: data,
     });
   };
+
   const contextValue: UserContextData = {
     userState,
     getUser,
+    formModal,
+    setFormModal,
+    dialog,
+    setDialog,
+    editInputState,
+    setEditInputState,
+    successPopup,
+    setSuccessPopup,
+    errorPopup,
+    setErrorPopup,
+    emailSection,
+    setEmailSection,
+    passwordSection,
+    setPasswordSection,
+    editPassword,
+    setEditPassword,
   };
 
   return (

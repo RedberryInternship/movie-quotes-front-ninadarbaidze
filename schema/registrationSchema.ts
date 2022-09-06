@@ -10,7 +10,7 @@ const registrationSchema = Yup.object({
     .required('Email field is required')
     .email('Invalid email format'),
   password: Yup.string()
-    .lowercase()
+    .lowercase('Values should be lowercase')
     .required('Password field is required')
     .min(8, 'min 8 characters')
     .matches(/^[a-z0-9]+$/g, 'Enter valid password')

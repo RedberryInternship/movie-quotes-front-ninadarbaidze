@@ -1,5 +1,5 @@
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword, DeleteIcon } from 'components';
+import { HidePassword, ShowPassword } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
@@ -19,7 +19,6 @@ const Input: React.FC<InputTypes> = (props) => {
     isTouched,
     error,
     errorMsg,
-    deleteInput,
   } = props;
 
   const passwordField = type === 'password';
@@ -29,17 +28,12 @@ const Input: React.FC<InputTypes> = (props) => {
       : 'text'
     : type;
 
-  const deleteInputHandler = () => {
-    (document.getElementById(`${id}`) as HTMLInputElement)!.value = '';
-  };
-
   return (
     <div className='h-[6rem]'>
       <div className='flex gap-2 mb-2 mt-8'>
         <label htmlFor='username' className='text-white'>
           {label}
         </label>
-        <span className='text-red'>*</span>
       </div>
       <div className='flex items-center relative'>
         <input
@@ -70,14 +64,6 @@ const Input: React.FC<InputTypes> = (props) => {
           )
         ) : (
           ''
-        )}
-        {deleteInput && (
-          <div
-            onClick={deleteInputHandler}
-            className='absolute ml-[92%] cursor-pointer'
-          >
-            <DeleteIcon />
-          </div>
         )}
       </div>
 

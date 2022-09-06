@@ -109,3 +109,16 @@ export type SenderId = {
   username: string;
   profileImage: string;
 };
+
+export type EmailListType = {
+  emailList: EmailListObjectTypes[];
+};
+export type EmailListObjectTypes = {
+  _id?: string;
+  email: string;
+  primary: boolean;
+  verified: boolean;
+};
+export type AlertPopupTypes = {
+  text: string;
+};

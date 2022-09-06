@@ -17,12 +17,29 @@ export type ContextData = {
 export type UserContextData = {
   userState: UserStateTypes;
   getUser: (data: UserStateTypes) => void;
+  formModal: boolean;
+  setFormModal: (arg0: boolean) => void;
+  dialog: boolean;
+  setDialog: (arg0: boolean) => void;
+  editInputState: string;
+  setEditInputState: (arg0: string) => void;
+  successPopup: string;
+  setSuccessPopup: (arg0: string) => void;
+  errorPopup: string;
+  setErrorPopup: (arg0: string) => void;
+  emailSection: boolean;
+  setEmailSection: (arg0: boolean) => void;
+  passwordSection: boolean;
+  setPasswordSection: (arg0: boolean) => void;
+  editPassword: boolean;
+  setEditPassword: (arg0: boolean) => void;
 };
 
 export type UserStateTypes = {
-  username: string;
-  email: string;
-  profileImage: string;
+  username?: string | undefined;
+  email?: string;
+  profileImage?: string;
+  password?: string;
 };
 
 export type MovieContextTypes = {

@@ -15,7 +15,10 @@ const Movies = () => {
     <>
       {movieCtx.movieCreationModal && (
         <>
-          <FeedBackdrop onClick={() => movieCtx.movieCreationStateHandler()} />
+          <FeedBackdrop
+            onClick={() => movieCtx.movieCreationStateHandler()}
+            className='backdrop-blur-sm'
+          />
           <AddMovieModal />
         </>
       )}

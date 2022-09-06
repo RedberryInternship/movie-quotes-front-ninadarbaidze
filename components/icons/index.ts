@@ -20,3 +20,7 @@ export { default as Comment } from './Comment';
 export { default as PreviewIcon } from './PreviewIcon';
 export { default as Polygon } from './Polygon';
 export { default as Liked } from './Liked';
+export { default as NotVerified } from './NotVerified';
+export { default as Primary } from './Primary';
+export { default as ArrowDown } from './ArrowDown';
+export { default as Check } from './Check';

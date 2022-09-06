@@ -52,5 +52,6 @@
   "thanksText1": "Please check your email and follow the instructions to\nactivate your account.",
   "thanksText2": "Your account has been activated.",
   "user": "User",
+  "userExists": "User already exists",
   "userPlaceholder": "Enter your email/username"
 }

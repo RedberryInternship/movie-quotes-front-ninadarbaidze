@@ -26,7 +26,9 @@ module.exports = {
         gray10: '#CED4DA',
         gray15: '#EFEFEF',
         gray20: '#6C757D',
+        gray25: '#9C9A9A',
         gray30: '#24222E',
+        gray35: '#485563',
         gray50: '#24222F',
         beidge: '#DDCCAA',
         darkWhite: '#D9D9D9',
@@ -35,6 +37,9 @@ module.exports = {
         redHover: '#b0101b',
         link: '#0D6EFD',
         green: '#198754',
+        green20: '#0F5132',
+        greenPastel: '#BADBCC',
+        yellow: '#EC9524',
         purple: '#422772',
         pink: '#F3426C',
       },
@@ -46,7 +51,9 @@ module.exports = {
         background:
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
         feedBackground:
-          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%);',
+          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
+        profileDialog:
+          'linear-gradient(-50deg, rgba(239, 239, 239, 0.125) -1.81%, rgba(239, 239, 239, 0.00514528) 102.5%, rgba(1, 1, 1, 0.00260417) 102.51%, rgba(239, 239, 239, 0.95) 102.52%)',
         image: "url('/assets/images/profile.png')",
       },
     },

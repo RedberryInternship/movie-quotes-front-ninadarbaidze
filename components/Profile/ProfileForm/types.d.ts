@@ -1,12 +1,15 @@
-export type UpdatePassTypes = {
+import { EmailListObjectTypes } from 'types';
+
+export type ProfileFormTypes = {
   updatePassword: boolean;
-  setUpdatePassword: (boolean) => void;
+  emailList: EmailListObjectTypes[];
   imageChangeHandler: (string) => void;
+  setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
 };
 
 export type ProfileInfoTypes = {
   username: string;
   image: string;
-  email: string;
-  password: string;
+  newPassword: string;
+  repeatPassword: string;
 };

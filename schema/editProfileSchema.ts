@@ -1,15 +1,16 @@
 import * as Yup from 'yup';
 
 const editProfileSchema = Yup.object({
-  username: Yup.string().min(3, 'min 3 characters'),
+  username: Yup.string()
+    .min(3, 'min 3 characters')
+    .required('This field is required'),
   email: Yup.string().email('Invalid email format'),
-  password: Yup.string()
-    .lowercase()
+  newPassword: Yup.string()
     .min(8, 'min 8 characters')
     .matches(/^[a-z0-9]+$/g, 'Enter valid password')
     .max(15, 'max 15 characters'),
   repeatPassword: Yup.string().oneOf(
-    [Yup.ref('password'), null],
+    [Yup.ref('newPassword'), null],
     "Password don't match"
   ),
 });

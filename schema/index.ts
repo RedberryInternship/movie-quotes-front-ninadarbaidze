@@ -5,3 +5,4 @@ export { default as updatePasswordSchema } from './updatePasswordSchema';
 export { default as editProfileSchema } from './editProfileSchema';
 export { default as movieSchema } from './movieSchema';
 export { default as quoteSchema } from './quoteSchema';
+export { default as profileSchema } from './profileSchema';
