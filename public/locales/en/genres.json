@@ -1,10 +1,1 @@
-{
-  "Action": "Action",
-  "Comedy": "Comedy",
-  "Drama": "Drama",
-  "Fantasy": "Fantasy",
-  "Horror": "Horror",
-  "Romance": "Romance",
-  "Thriller": "Thriller",
-  "Western": "Western"
-}
+{"Drama":"Drama","Action":"Action","Comedy":"Comedy","Horror":"Horror","Fantasy":"Fantasy","Romance":"Romance","Western":"Western","Thriller":"Thriller"}
