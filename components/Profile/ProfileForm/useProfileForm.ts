@@ -17,7 +17,6 @@ export const useProfileForm = (props: {
   const { t } = useTranslation();
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
-  // const [editPassword, setEditPassword] = useState(false);
   const editPassword = userCtx.editPassword;
   const setEditPassword = userCtx.setEditPassword;
   const [error, setError] = useState('');

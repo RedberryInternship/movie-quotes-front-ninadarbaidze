@@ -7,7 +7,6 @@ import {
   FeedButton,
   FeedBackdrop,
   ProfileModal,
-  Dialog,
 } from 'components';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 

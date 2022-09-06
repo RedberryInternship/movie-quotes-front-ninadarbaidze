@@ -63,7 +63,6 @@ export const useProfileModal = (props: {
     initialValues: {
       username: '',
       email: '',
-      // newPassword: '',
     },
     onSubmit: onSubmit,
     validationSchema: profileSchema,

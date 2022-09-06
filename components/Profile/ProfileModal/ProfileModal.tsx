@@ -1,4 +1,4 @@
-import { FeedBackdrop, Input } from 'components/shared';
+import { Input } from 'components/shared';
 
 import React from 'react';
 import { Dialog } from '../Dialog';
