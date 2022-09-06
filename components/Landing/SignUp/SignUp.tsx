@@ -35,7 +35,7 @@ const SignUp = () => {
                 value={formik.values.username}
                 errorMessage={formik.errors.username!}
                 error={error}
-                errorMsg={'user already exists'}
+                errorMsg={`${t('home:userExists')}`}
               />
               <Input
                 id='email'
@@ -49,7 +49,7 @@ const SignUp = () => {
                 value={formik.values.email}
                 errorMessage={formik.errors.email!}
                 error={error}
-                errorMsg={'user already exists'}
+                errorMsg={`${t('home:userExists')}`}
               />
               <Input
                 id='password'

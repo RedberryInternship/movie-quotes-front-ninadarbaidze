@@ -27,7 +27,7 @@ const EditProfile = () => {
         <ArrowSmLeftIcon className='text-white w-6 ' />
       </div>
       <div className='h-full mt-8 md:mt-24 lg:w-[90%] lg:mt-0'>
-        <h1 className='xs:hidden lg:block text-white text-2xl pb-[10%]'>
+        <h1 className='xs:hidden lg:block text-white text-2xl pb-[10%] font-helvetica_ge font-thin'>
           {t('profile:profile')}
         </h1>
         <div className='bg-gray50 md:bg-mainDark relative lg:w-[100%] rounded-[12px]'>

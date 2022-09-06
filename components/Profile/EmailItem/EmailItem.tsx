@@ -36,7 +36,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
         <div className='flex justify-between md:justify-start items-center gap-2 mt-8 mb-10 md:mb-0 md:mt-[4.5rem]'>
           {primary && (
             <p className='text-gray10 text-sm  cursor-pointer xs:hidden md:block'>
-              Primary
+              {t('profile:primary')}
             </p>
           )}
           {!primary && !verified && (
@@ -46,7 +46,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
                   <NotVerified className='#EC9524' />
                 </div>
                 <p className='md:text-gray10 text-sm italic text-yellow md:not-italic cursor-pointer'>
-                  Not verified
+                  {t('profile:notVerified')}
                 </p>
               </div>
             </>
@@ -56,7 +56,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
               className='text-gray10 text-sm  cursor-pointer border-[1px] border-gray10 rounded-md px-4 py-2 md:px-0 md:py-0 md:border-none'
               onClick={() => onMakePrimary(email)}
             >
-              Make this primary
+              {t('profile:makePrimary')}
             </p>
           )}
 
@@ -70,7 +70,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
             className='text-gray10 text-sm cursor-pointer'
             onClick={() => onDeleteMail(email)}
           >
-            {!primary ? 'Remove' : ''}
+            {!primary ? `${t('profile:remove')}` : ''}
           </p>
         </div>
       </li>
@@ -78,7 +78,9 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
         <div className='md:hidden'>
           <div className='w-full h-[1px] mt-[-1rem] bg-gray10 bg-opacity-50 md:border-0' />
           {primary && (
-            <p className='text-white mt-4 text-sm'>CHANGE PRIMARY EMAIL</p>
+            <p className='text-white mt-4 text-sm'>
+              {t('profile:changePrimaryH')}
+            </p>
           )}
         </div>
       )}

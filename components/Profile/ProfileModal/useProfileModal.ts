@@ -21,7 +21,7 @@ export const useProfileModal = (props: {
       }
 
       if (values.email === '' && userCtx.editInputState === 'email') {
-        userCtx.setErrorPopup("You can't add empty email");
+        userCtx.setErrorPopup(`${t('profile:emailError')}`);
         userCtx.setFormModal(false);
         return;
       } else if (userCtx.editInputState === 'email') {
@@ -29,13 +29,13 @@ export const useProfileModal = (props: {
           (email) => email.email === values.email
         );
         existingEmail
-          ? userCtx.setErrorPopup('You already have this email')
+          ? userCtx.setErrorPopup(`${t('profile:emailDub')}`)
           : addEmail(values.email as string);
       }
       userCtx.setDialog(false);
       userCtx.setFormModal(false);
       if (userCtx.editInputState === 'username') {
-        userCtx.setSuccessPopup('Username change requested');
+        userCtx.setSuccessPopup(`${t('profile:usernameChange')}`);
       }
     } catch (error: any) {
       setError(error.response.status);
@@ -56,7 +56,7 @@ export const useProfileModal = (props: {
       updatedEmailList.push(data);
       return updatedEmailList;
     });
-    userCtx.setSuccessPopup('New email is added');
+    userCtx.setSuccessPopup(`${t('profile:newEmail2')}`);
   };
 
   const formik = useFormik({

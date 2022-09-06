@@ -44,19 +44,19 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
           <ProfileModal
             label={
               userCtx.editInputState === 'username'
-                ? 'New username'
-                : 'New email'
+                ? `${t('profile:newUsername')}`
+                : `${t('profile:newEmail')}`
             }
             placeholder={
               userCtx.editInputState === 'username'
-                ? 'Enter new username'
-                : 'Enter new email'
+                ? `${t('profile:enterNewUsername')}`
+                : `${t('profile:enterNewEmail')}`
             }
             name={userCtx.editInputState === 'username' ? 'username' : 'email'}
             title={
               userCtx.editInputState === 'username'
-                ? 'Add new username'
-                : 'Add new Email'
+                ? `${t('profile:addNewUserName')}`
+                : `${t('profile:addNewEmail')}`
             }
             setEmailList={setEmailList}
             emailList={emailList}
@@ -112,7 +112,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                   errorMessage={formik.errors.username!}
                   disabled={true}
                   error={error}
-                  errorMsg={'User already exists'}
+                  errorMsg={`${t('home:userExists')}`}
                   className='bg-transparent md:bg-gray10 text-white md:text-black'
                 />
                 <div className='xs:hidden md:block w-full h-[1px] bg-gray20 bg-opacity-30 mt-4' />
@@ -125,7 +125,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                   userCtx.setFormModal(true);
                 }}
               >
-                Edit
+                {t('profile:edit')}
               </p>
             </div>
             <div
@@ -140,7 +140,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                     <>
                       {email.primary && (
                         <p className='md:hidden text-white mt-4 text-sm'>
-                          PRIMARY EMAIL
+                          {t('profile:primaryEmail')}
                         </p>
                       )}
 
@@ -156,18 +156,18 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
               </ul>
               {error?.includes('Email') && (
                 <p className='text-red text-xs mt-4'>
-                  This email is already taken
+                  {t('profile:emailTakenError')}
                 </p>
               )}
               {userCtx.emailSection && (
                 <p className='md:hidden text-white mt-4 text-sm'>
-                  ADD NEW EMAIL
+                  {t('profile:addEmail')}
                 </p>
               )}
               <FeedButton
-                text={'Add new email'}
+                text={`${t('profile:addNewEmail')}`}
                 type='button'
-                className='flex justify-center bg-transparent border-[1px] border-white mt-12 w-full md:w-40 text-center hover:border-red'
+                className='flex justify-center bg-transparent border-[1px] border-white mt-12 w-full md:w-72 text-xs text-center hover:border-red'
                 onClick={() => {
                   userCtx.setEditInputState('email');
                   userCtx.setFormModal(true);
@@ -206,7 +206,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                     userCtx.setPasswordSection(true);
                   }}
                 >
-                  Edit
+                  {t('profile:edit')}
                 </p>
               )}
             </div>
@@ -216,7 +216,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 <div className='flex bg-mainDark w-full xs:mt-12 md:mt-0'>
                   <div className='flex flex-col justify-center gap-1  text-xs border-[1px] border-gray10 border-opacity-20 rounded py-4 pl-4 xs:w-full  md:mr-48 lg:mr-74 h-full'>
                     <h4 className='text-sm text-white'>
-                      Passwords should contain:
+                      {t('profile:passwordSectionH')}
                     </h4>
                     <div className='flex items-center gap-1'>
                       <div
@@ -233,7 +233,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                             : 'text-white'
                         } `}
                       >
-                        8 or more characters
+                        {t('profile:8orMore')}
                       </p>
                     </div>
                     <div className='flex items-center gap-1'>
@@ -251,7 +251,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                             : 'text-white'
                         } `}
                       >
-                        15 or less characters
+                        {t('profile:15orLess')}
                       </p>
                     </div>
                     <div className='flex items-center gap-1'>
@@ -269,7 +269,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                             : 'text-white'
                         } `}
                       >
-                        Lowercase letters and numbers
+                        {t('profile:lowerCase')}
                       </p>
                     </div>
                     <div className='flex items-center gap-1'>
@@ -287,7 +287,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                             : 'text-white'
                         } `}
                       >
-                        Passwords should match
+                        {t('profile:match')}
                       </p>
                     </div>
                   </div>
@@ -298,8 +298,8 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                       id='newPassword'
                       name='newPassword'
                       type='password'
-                      label={t('home:New password')}
-                      placeholder={t('home:New Password')}
+                      label={t('profile:newPassword')}
+                      placeholder={t('profile:newPassword')}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       isTouched={formik.touched.newPassword}
@@ -333,7 +333,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                     className='text-gray10 cursor-pointer'
                     onClick={() => cancelPasswordEditHandler()}
                   >
-                    Cancel
+                    {t('profile:cancel')}
                   </p>
                   <button
                     type='button'
@@ -342,7 +342,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                       userCtx.setDialog(true);
                     }}
                   >
-                    Add
+                    {t('profile:add')}
                   </button>
                 </div>
               </>
@@ -355,7 +355,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
               } md:hidden flex justify-between mt-8 cursor-pointer`}
               onClick={() => userCtx.setEmailSection(true)}
             >
-              <h3 className='text-white'>Email</h3>
+              <h3 className='text-white'>{t('profile:emailSectionH')}</h3>
               <ChevronDownIcon className=' -rotate-90 text-white w-6' />
             </div>
           </div>

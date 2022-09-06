@@ -13,7 +13,7 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
       <form onSubmit={formik.handleSubmit}>
         {userCtx.dialog && <Dialog />}
         {userCtx.formModal && !userCtx.dialog && (
-          <div className='absolute md:fixed w-full md:w-96 h-36 md:h-64 top-24 md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-gray50 md:bg-mainDark rounded-[12px]  z-40'>
+          <div className='absolute md:fixed w-full md:w-[27rem] h-36 md:h-64 top-24 md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-gray50 md:bg-mainDark rounded-[12px]  z-40'>
             <div className=''>
               <div className='hidden md:flex mb-2 border-b-[1px] border-gray15 border-opacity-20'>
                 <h1 className='text-md px-8 py-4 text-left text-white font-helvetica_ge font-thin'>
@@ -51,7 +51,7 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                     className='text-gray10 cursor-pointer'
                     onClick={() => userCtx.setFormModal(false)}
                   >
-                    Cancel
+                    {t('profile:cancel')}
                   </p>
                   <button
                     type='button'
@@ -60,7 +60,7 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                     }}
                     className='bg-red hover:bg-redHover text-white transition duration-300 font-helvetica_ge font-thin text-base rounded-[4px] px-2 py-1'
                   >
-                    Add
+                    {t('profile:add')}
                   </button>
                 </div>
               </div>

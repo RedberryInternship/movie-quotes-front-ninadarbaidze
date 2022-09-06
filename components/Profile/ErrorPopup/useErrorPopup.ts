@@ -1,7 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import { useContext } from 'react';
 import { UserContext } from 'store';
 
 export const useErrorPopup = () => {
   const userCtx = useContext(UserContext);
-  return { userCtx };
+  const { t } = useTranslation();
+  return { userCtx, t };
 };

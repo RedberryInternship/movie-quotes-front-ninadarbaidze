@@ -60,7 +60,7 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
             className='text-gray10 text-base mt-[4.5rem] cursor-pointer'
             onClick={() => setEditState(true)}
           >
-            Edit
+            {t('profile:edit')}
           </p>
         </div>
 
@@ -70,7 +70,7 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
               className='text-gray10 text-base  mt-12 mr-4 cursor-pointer w-12'
               onClick={() => setEditState(false)}
             >
-              cancel
+              {t('profile:cancel2')}
             </p>
             <Button
               text={t('profile:saveBtn')}

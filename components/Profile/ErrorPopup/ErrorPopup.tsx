@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useErrorPopup } from './useErrorPopup';
 
 const ErrorPopup = () => {
-  const { userCtx } = useErrorPopup();
+  const { userCtx, t } = useErrorPopup();
 
   return (
     <>
@@ -19,7 +19,9 @@ const ErrorPopup = () => {
                 height={25}
               />
             </div>
-            <h3 className='text-[#B91C1C] text-base'>Error occurred!</h3>
+            <h3 className='text-[#B91C1C] text-base'>
+              {t('profile:errorModal')}
+            </h3>
           </div>
           <button onClick={() => userCtx.setErrorPopup('')}>
             <CloseBtn className='#485563' />
