@@ -116,7 +116,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
           </div>
         )}
       </div>
-      {error?.includes('User') ? (
+      {error?.includes('User') && isTouched ? (
         <p className='text-red text-xs mt-2'>{errorMsg}</p>
       ) : (
         ''

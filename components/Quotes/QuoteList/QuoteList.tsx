@@ -49,7 +49,10 @@ const QuoteList: React.FC<Data> = (props) => {
       </div>
       {quoteCtx.quoteCreationModal && (
         <>
-          <FeedBackdrop onClick={closeQuoteModalHandler} />
+          <FeedBackdrop
+            onClick={closeQuoteModalHandler}
+            className='backdrop-blur-sm'
+          />
           <QuoteModal title={t('quotes:addQt')}>
             <FeedQuoteForm data={data} />
           </QuoteModal>

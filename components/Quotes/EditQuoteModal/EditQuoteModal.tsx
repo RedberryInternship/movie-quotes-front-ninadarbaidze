@@ -19,7 +19,10 @@ const EditQuoteModal = () => {
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <div>
-      <FeedBackdrop onClick={() => quoteCtx.editQuoteHandler(false)} />
+      <FeedBackdrop
+        onClick={() => quoteCtx.editQuoteHandler(false)}
+        className='backdrop-blur-sm'
+      />
       <QuoteModal title={t('quotes:editQt')}>
         {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
         <button

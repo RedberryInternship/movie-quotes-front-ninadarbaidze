@@ -14,7 +14,10 @@ const Feed = () => {
     <>
       {quoteCtx.quoteCreationModal && (
         <>
-          <FeedBackdrop onClick={quoteCtx.quoteCreationStateHandler} />
+          <FeedBackdrop
+            onClick={quoteCtx.quoteCreationStateHandler}
+            className='backdrop-blur-sm'
+          />
           <QuoteModal title={t('quotes:addQtBtn')}>
             <FeedQuoteForm />
           </QuoteModal>

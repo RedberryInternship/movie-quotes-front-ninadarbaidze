@@ -4,7 +4,7 @@ import { useDialog } from './useDialog';
 const Dialog = () => {
   const { userCtx, dialogConfirmHandler } = useDialog();
   return (
-    <div className='flex md:w-[25%] h-48 bg-profileDialog bg-mainDark fixed  top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] rounded-[12px]  z-40'>
+    <div className='flex w-[90%] sm:w-[50%] md:w-[35%] lg:w-[25%] h-48 bg-profileDialog bg-mainDark fixed top-[30%] md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] rounded-[12px]  z-40'>
       <div className='flex flex-col justify-between items-center w-full mb-2 '>
         <h1 className='text-md text-left text-white font-helvetica_ge font-thin px-4 pt-12'>
           Are you sure to make changes ?

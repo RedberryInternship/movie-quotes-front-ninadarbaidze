@@ -32,6 +32,11 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
       {userCtx.formModal && (
         <>
           <FeedBackdrop
+            className={`${
+              userCtx.formModal && !userCtx.dialog
+                ? 'backdrop-blur-0 bg-opacity-0 md:backdrop-blur-sm md:bg-opacity-20'
+                : 'backdrop-blur-sm'
+            }`}
             onClick={() => {
               userCtx.setFormModal(false);
               userCtx.setDialog(false);
@@ -59,8 +64,12 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
           />
         </>
       )}
-      {userCtx.dialog && <Dialog />}
-      <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
+
+      <form
+        onSubmit={formik.handleSubmit}
+        encType='multipart/form-data'
+        className={`${userCtx.formModal && 'hidden md:block'}`}
+      >
         <p
           className={` ${
             userCtx.emailSection || userCtx.passwordSection
@@ -355,8 +364,8 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
         <div
           className={`${
             userCtx.passwordSection || userCtx.emailSection
-              ? 'hidden md:absolute'
-              : 'absolute'
+              ? 'hidden md:block'
+              : 'block'
           } absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]`}
         >
           <Button

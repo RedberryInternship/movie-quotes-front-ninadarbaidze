@@ -34,7 +34,10 @@ const ViewQuote: React.FC<ViewQuoteTypes> = (props) => {
 
   return (
     <div>
-      <FeedBackdrop onClick={() => setViewQuote(false)} />
+      <FeedBackdrop
+        onClick={() => setViewQuote(false)}
+        className='backdrop-blur-sm'
+      />
       <QuoteModal title={t('quotes:viewQt')}>
         {deleteModal && (
           <DeleteQuoteModal

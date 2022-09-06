@@ -21,7 +21,7 @@ const EditProfile = () => {
   return (
     <>
       <div
-        className='w-full pl-4 block md:hidden pt-2 sm:pt-10 cursor-pointer'
+        className='w-full pl-4  md:hidden pt-2 sm:pt-10 cursor-pointer'
         onClick={() => mobileProfileStateHandler()}
       >
         <ArrowSmLeftIcon className='text-white w-6 ' />
@@ -34,13 +34,15 @@ const EditProfile = () => {
           <div>
             <div
               className={`${
-                userCtx.emailSection || userCtx.passwordSection
+                userCtx.emailSection ||
+                userCtx.passwordSection ||
+                userCtx.formModal
                   ? 'hidden md:flex'
                   : 'flex'
               } absolute top-12 md:top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black`}
             >
               <div>
-                <div className='object-fit'>
+                <div className='object-fit '>
                   <Image
                     loader={myLoader}
                     src={imagePreviewHandler(imagePreview, userCtx, session)}

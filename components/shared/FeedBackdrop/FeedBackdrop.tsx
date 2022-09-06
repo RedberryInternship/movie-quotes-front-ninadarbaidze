@@ -1,12 +1,12 @@
 import React from 'react';
-import { OnClick } from 'types';
+import { ClickAndClass } from 'types';
 
-const FeedBackdrop: React.FC<OnClick> = (props) => {
-  const { onClick } = props;
+const FeedBackdrop: React.FC<ClickAndClass> = (props) => {
+  const { onClick, className } = props;
   return (
     <>
       <div
-        className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-30'
+        className={`${className} w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter  z-30`}
         onClick={onClick}
       ></div>
     </>

@@ -6,7 +6,7 @@ const AlertPopup = () => {
   const { userCtx } = useAlertPopup();
   return (
     <>
-      <div className='flex flex-col px-2 pt-2 absolute w-72 h-24 rounded bg-greenPastel top-0 right-0 z-50'>
+      <div className='flex flex-col px-2 pt-2 w-full absolute md:w-72 h-20 rounded bg-greenPastel top-0 right-0 z-50'>
         <div className='flex justify-between items-center'>
           <div className='flex items-center gap-2'>
             <Check />
@@ -16,7 +16,7 @@ const AlertPopup = () => {
             <CloseBtn className='#485563' />
           </button>
         </div>
-        <p className='text-mainDark text-sm ml-3 mt-3'>
+        <p className='text-mainDark text-sm ml-3 mt-1'>
           {userCtx.successPopup}
         </p>
       </div>

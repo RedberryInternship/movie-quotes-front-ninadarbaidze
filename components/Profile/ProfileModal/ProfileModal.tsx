@@ -10,18 +10,12 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
   const { formik, t, userCtx } = useProfileModal({ setEmailList, emailList });
   return (
     <>
-      <FeedBackdrop
-        onClick={() => {
-          userCtx.setFormModal(false);
-          userCtx.setDialog(false);
-        }}
-      />
       <form onSubmit={formik.handleSubmit}>
         {userCtx.dialog && <Dialog />}
         {userCtx.formModal && !userCtx.dialog && (
-          <div className='fixed overflow-auto  top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-mainDark rounded-[12px]   z-40'>
+          <div className='absolute md:fixed w-full md:w-96 h-36 md:h-64 top-24 md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-gray50 md:bg-mainDark rounded-[12px]  z-40'>
             <div className=''>
-              <div className='flex mb-2 border-b-[1px] border-gray15 border-opacity-20'>
+              <div className='hidden md:flex mb-2 border-b-[1px] border-gray15 border-opacity-20'>
                 <h1 className='text-md px-8 py-4 text-left text-white font-helvetica_ge font-thin'>
                   {title}
                 </h1>
@@ -52,7 +46,7 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                   }
                   className='px-40'
                 />
-                <div className='flex justify-end gap-4 items-center py-4'>
+                <div className='flex justify-between md:justify-end gap-4 items-center py-4 mt-8 md:mt-0'>
                   <p
                     className='text-gray10 cursor-pointer'
                     onClick={() => userCtx.setFormModal(false)}

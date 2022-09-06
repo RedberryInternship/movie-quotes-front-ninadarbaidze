@@ -18,10 +18,13 @@ export const useProfileModal = (props: {
     try {
       if (userCtx.editInputState === 'username') {
         userCtx.getUser({ username: values.username });
-        userCtx.setSuccessPopup('Username change requested');
       }
 
-      if (userCtx.editInputState === 'email') {
+      if (values.email === '' && userCtx.editInputState === 'email') {
+        userCtx.setErrorPopup("You can't add empty email");
+        userCtx.setFormModal(false);
+        return;
+      } else if (userCtx.editInputState === 'email') {
         const existingEmail = emailList.find(
           (email) => email.email === values.email
         );
@@ -31,6 +34,9 @@ export const useProfileModal = (props: {
       }
       userCtx.setDialog(false);
       userCtx.setFormModal(false);
+      if (userCtx.editInputState === 'username') {
+        userCtx.setSuccessPopup('Username change requested');
+      }
     } catch (error: any) {
       setError(error.response.status);
       userCtx.setErrorPopup(error.response.data.message);

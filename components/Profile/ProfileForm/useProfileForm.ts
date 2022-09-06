@@ -74,10 +74,10 @@ export const useProfileForm = (props: {
       }
       router.push(`/feed/profile`);
       userCtx.setSuccessPopup('Profile updated successfully');
+      formik.touched.username = false;
     } catch (error: any) {
       setError(error.response.data.message);
       userCtx.setErrorPopup(error.response.data.message);
-
       throw new Error('Request failed!');
     }
   };
