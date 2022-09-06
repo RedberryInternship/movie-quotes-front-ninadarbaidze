@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { editProfileSchema } from 'schema';
+import { useEditProfileSchema } from 'schema';
 import { useRouter } from 'next/router';
 import { updateProfile } from 'services';
 import { AuthContext, UserContext } from 'store';
@@ -16,6 +16,7 @@ export const useGoogleProfileForm = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
+  const { editProfileSchema } = useEditProfileSchema();
 
   const changeHandler = (
     event: React.ChangeEvent<HTMLInputElement>,

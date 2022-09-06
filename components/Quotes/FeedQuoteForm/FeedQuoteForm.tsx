@@ -6,13 +6,14 @@ import {
   SingleMovie,
   CustomDropdown,
 } from 'components';
-import { quoteSchema } from 'schema';
+import { useQuoteSchema } from 'schema';
 import { useFeedQuoteForm } from './useFeedQuoteForm';
 import { QuoteDefaultValues } from './types';
 import { Data } from 'types';
 
 const FeedQuoteForm: React.FC<Data> = ({ data }) => {
   const { onSubmit, t, defaultValues, quoteCtx } = useFeedQuoteForm();
+  const { quoteSchema } = useQuoteSchema();
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-auto'>

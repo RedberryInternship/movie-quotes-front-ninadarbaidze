@@ -9,13 +9,14 @@ import {
   QuoteModal,
 } from 'components';
 import { FormikProps, Form, Field, ErrorMessage, Formik } from 'formik';
-import { quoteSchema } from 'schema';
+import { useQuoteSchema } from 'schema';
 import { QuoteDefaultValues } from './types';
 import { useEditQuoteModal } from './useEditQuoteModal';
 
 const EditQuoteModal = () => {
   const { onSubmit, t, defaultValues, quoteCtx, deleteModal, setDeleteModal } =
     useEditQuoteModal();
+  const { quoteSchema } = useQuoteSchema();
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <div>

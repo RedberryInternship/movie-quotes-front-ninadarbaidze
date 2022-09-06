@@ -32,7 +32,7 @@ const ForgotPassword = () => {
 
           <Button
             text={t('home:forgotBtn')}
-            className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
+            className='bg-red hover:bg-redHover w-[100%] mt-8 h-12 text-base'
           />
         </form>
         <div

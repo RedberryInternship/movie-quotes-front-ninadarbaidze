@@ -1,9 +1,15 @@
+import { useTranslation } from 'next-i18next';
 import * as Yup from 'yup';
 
-const forgotPassword = Yup.object({
-  email: Yup.string()
-    .required('Email field is required')
-    .email('Invalid email format'),
-});
+const useForgotPasswordSchema = () => {
+  const { t } = useTranslation();
 
-export default forgotPassword;
+  const forgotPasswordSchema = Yup.object({
+    email: Yup.string()
+      .required(`${t('home:emailRequired')}`)
+      .email(`${t('home:invalidEmail')}`),
+  });
+  return { forgotPasswordSchema };
+};
+
+export default useForgotPasswordSchema;

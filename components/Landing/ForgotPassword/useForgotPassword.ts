@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useFormik } from 'formik';
-import { forgotPasswordSchema } from 'schema';
+import { useForgotPasswordSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
@@ -12,6 +12,7 @@ export const useForgotPassword = () => {
   const { t } = useTranslation();
   const loginState = ctx.changeLoginModalState;
   const forgotPassState = ctx.changePasswordRecoveryState;
+  const { forgotPasswordSchema } = useForgotPasswordSchema();
 
   const router = useRouter();
 

@@ -7,12 +7,13 @@ import {
   ImageInput,
   ImageEditInput,
 } from 'components';
-import { movieSchema } from 'schema';
+import { useMovieSchema } from 'schema';
 import { useMovieForm } from './useMovieForm';
 import { FormValues } from './types';
 
 const MovieForm = () => {
   const { genres, onSubmit, t, defaultValues, movieCtx } = useMovieForm();
+  const { movieSchema } = useMovieSchema();
 
   const renderForm: React.FC<FormikProps<FormValues>> = () => (
     <Form className='flex flex-col gap-5 h-[80vh] overflow-auto'>

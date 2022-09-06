@@ -1,15 +1,21 @@
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
-const loginSchema = Yup.object({
-  user: Yup.string()
-    .required('User field is required')
-    .min(3, 'min 3 characters'),
-  password: Yup.string()
-    .lowercase()
-    .required('Password field is required')
-    .min(8, 'min 8 characters')
-    .matches(/^[a-z0-9]+$/g, 'Enter valid password')
-    .max(15, 'max 15 characters'),
-});
+const useLoginSchema = () => {
+  const { t } = useTranslation();
 
-export default loginSchema;
+  const loginSchema = Yup.object({
+    user: Yup.string()
+      .required(`${t('home:userRequired')}`)
+      .min(3, `${t('home:min3')}`),
+    password: Yup.string()
+      .lowercase()
+      .required(`${t('home:passRequired')}`)
+      .min(8, `${t('home:min8')}`)
+      .matches(/^[a-z0-9]+$/g, `${t('home:validPass')}`)
+      .max(15, `${t('home:max15')}`),
+  });
+  return { loginSchema };
+};
+
+export default useLoginSchema;

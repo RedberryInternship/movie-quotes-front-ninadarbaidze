@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
-import { registrationSchema } from 'schema';
+import { useSignupSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { signup } from 'services';
 import { useRouter } from 'next/router';
@@ -14,6 +14,7 @@ export const useSignUp = () => {
   const changeSignUpState = ctx.changeRegistrationModalState;
   const [error, setError] = useState(false);
   const { t } = useTranslation();
+  const { registrationSchema } = useSignupSchema();
 
   const router = useRouter();
 

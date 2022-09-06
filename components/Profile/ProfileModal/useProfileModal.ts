@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useTranslation } from 'next-i18next';
 import { useContext, useState } from 'react';
-import { profileSchema } from 'schema';
+import { useProfileSchema } from 'schema';
 import { UserContext } from 'store';
 import { EmailListObjectTypes, ModalTypes } from 'types';
 
@@ -13,6 +13,7 @@ export const useProfileModal = (props: {
   const userCtx = useContext(UserContext);
   const [error, setError] = useState(false);
   const { t } = useTranslation();
+  const { profileSchema } = useProfileSchema();
 
   const onSubmit = async (values: ModalTypes) => {
     try {

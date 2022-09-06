@@ -77,7 +77,7 @@ const SignUp = () => {
               />
               <Button
                 text={t('home:start')}
-                className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
+                className='bg-red hover:bg-redHover w-[100%] mt-8 h-12 text-base'
               />
               <GoogleBtn text='Sign up with Google' />
             </form>

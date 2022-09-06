@@ -1,8 +1,14 @@
+import { useTranslation } from 'next-i18next';
 import * as Yup from 'yup';
 
-const loginSchema = Yup.object({
-  username: Yup.string().min(3, 'min 3 characters'),
-  email: Yup.string().email('Invalid email format'),
-});
+const useProfileSchema = () => {
+  const { t } = useTranslation();
 
-export default loginSchema;
+  const profileSchema = Yup.object({
+    username: Yup.string().min(3, `${t('home:min3')}`),
+    email: Yup.string().email(`${t('home:invalidEmail')}`),
+  });
+  return { profileSchema };
+};
+
+export default useProfileSchema;

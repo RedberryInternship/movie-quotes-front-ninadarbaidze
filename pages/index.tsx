@@ -14,7 +14,7 @@ import {
 import { useMain } from 'hooks';
 
 const Home: NextPage = () => {
-  const { t, ctx } = useMain();
+  const { t, ctx, currLang } = useMain();
 
   return (
     <>
@@ -26,7 +26,13 @@ const Home: NextPage = () => {
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>
-        <h1 className='text-beidge pt-[40%] sm:pt-[20%] lg:pt-[10%] text-2xl sm:text-3xl lg:text-5xl 2xl:text-6xl font-bold font-Montserrat max-w-[70%] lg:max-w-[40%]'>
+        <h1
+          className={`${
+            currLang === 'ge'
+              ? 'font-helvetica_ge font-bold'
+              : 'font-bold font-Montserrat '
+          } text-beidge pt-[40%] sm:pt-[20%] lg:pt-[10%] text-2xl sm:text-3xl lg:text-5xl 2xl:text-6xl max-w-[70%] lg:max-w-[40%]`}
+        >
           {t('home:MainH1')}
         </h1>
         <Button
