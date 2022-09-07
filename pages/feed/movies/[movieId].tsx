@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const currLan = locale!;
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/movies/${movieId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/movie/${movieId}`
   );
   const res = await response.json();
   const data = {
