@@ -36,7 +36,7 @@ export type UserContextData = {
 };
 
 export type UserStateTypes = {
-  username?: string | unknown;
+  username: string;
   email?: string;
   profileImage?: string;
   password?: string;
