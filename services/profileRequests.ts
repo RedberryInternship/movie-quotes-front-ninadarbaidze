@@ -6,7 +6,7 @@ export const updateProfile = async (
   data: FormData,
   token: string
 ): Promise<AxiosResponse<any, string>> => {
-  const response = await axios.post(`update-profile`, data, {
+  const response = await axios.put(`update-profile`, data, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response;

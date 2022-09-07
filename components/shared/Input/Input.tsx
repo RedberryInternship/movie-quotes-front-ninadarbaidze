@@ -1,5 +1,5 @@
 import { InputTypes } from './types';
-import { HidePassword, ShowPassword } from 'components';
+import { Success, Fail, HidePassword, ShowPassword } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
@@ -44,26 +44,44 @@ const Input: React.FC<InputTypes> = (props) => {
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          className={`${className} py-2 text-black placeholder:text-gray20  pl-3 w-[100%] bg-gray10 rounded-[4px] px-12 truncate`}
+          className={`${className} py-2 text-black placeholder:text-gray20  pl-2 w-[100%] bg-gray10 rounded-[4px] ${
+            (isTouched && errorMessage) || (isTouched && error)
+              ? 'border-[2px] border-red px-20'
+              : 'px-12'
+          } ${
+            isTouched && !errorMessage && isTouched && !error
+              ? 'border-[2px] border-green px-20'
+              : 'px-12'
+          }  truncate`}
         />
         {passwordField ? (
           showPassword ? (
             <div
               onClick={showHidePassHandler}
-              className={'absolute ml-[90%] cursor-pointer'}
+              className={`absolute ${
+                isTouched ? 'right-9' : 'right-4'
+              } cursor-pointer`}
             >
               <ShowPassword />
             </div>
           ) : (
             <div
               onClick={showHidePassHandler}
-              className={'absolute ml-[90%] cursor-pointer'}
+              className={`absolute ${
+                isTouched ? 'right-9' : 'right-4'
+              } cursor-pointer`}
             >
               <HidePassword />
             </div>
           )
         ) : (
           ''
+        )}
+        {((isTouched && errorMessage) || (isTouched && error)) && (
+          <Fail className='absolute  right-4' />
+        )}
+        {isTouched && !errorMessage && isTouched && !error && (
+          <Success className='absolute  right-4' />
         )}
       </div>
 

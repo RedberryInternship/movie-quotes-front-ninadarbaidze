@@ -64,6 +64,7 @@ export const useProfileForm = (props: {
       const notVerifiedMails = emailList.filter(
         (email) => email.verified === false
       );
+
       if (notVerifiedMails.length > 0) {
         const lastNotVerifiedMail =
           notVerifiedMails[notVerifiedMails.length - 1].email;
