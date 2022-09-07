@@ -26,8 +26,10 @@ export const useListOfMovies = () => {
   useEffect(() => {
     const getData = async () => {
       let token = session ? session.accessToken : ctx.token;
+      const userId = session ? session.userId : ctx.userId;
+      console.log(userId);
       try {
-        const response = await getMovies(token as string);
+        const response = await getMovies(userId as string, token as string);
         const movieNumber = response.data.length;
         const newData = response.data.map((movies: UpdatedMovieTypes) => {
           return {
