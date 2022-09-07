@@ -6,14 +6,13 @@ import {
   SingleMovie,
   CustomDropdown,
 } from 'components';
-import { useQuoteSchema } from 'schema';
+import { quoteSchema } from 'schema';
 import { useFeedQuoteForm } from './useFeedQuoteForm';
 import { QuoteDefaultValues } from './types';
 import { Data } from 'types';
 
 const FeedQuoteForm: React.FC<Data> = ({ data }) => {
   const { onSubmit, t, defaultValues, quoteCtx } = useFeedQuoteForm();
-  const { quoteSchema } = useQuoteSchema();
 
   const renderForm: React.FC<FormikProps<QuoteDefaultValues>> = () => (
     <Form className='flex flex-col h-full lg:min-h-[60vh] overflow-auto'>
@@ -30,7 +29,7 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
         <ErrorMessage name='quoteEN'>
           {(msg) => (
             <div className='mt-[-1rem] mb-[-2rem] text-red text-xs pl-3'>
-              {msg}
+              {`${t(`${msg}`)}`}
             </div>
           )}
         </ErrorMessage>
@@ -44,7 +43,7 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
         <ErrorMessage name='quoteGE'>
           {(msg) => (
             <div className='mt-[-1rem] mb-[-2.5rem] text-red text-xs pl-3'>
-              {msg}
+              {`${t(`${msg}`)}`}
             </div>
           )}
         </ErrorMessage>
@@ -57,7 +56,7 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
         <ErrorMessage name='image'>
           {(msg) => (
             <div className='mt-[-2rem] mb-[-0.5rem] text-red text-xs pl-3'>
-              {msg}
+              {`${t(`${msg}`)}`}
             </div>
           )}
         </ErrorMessage>
@@ -67,7 +66,9 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
           <Field type='text' name='movieId' component={CustomDropdown} />
           <ErrorMessage name='movieId'>
             {(msg) => (
-              <div className='mt-[0.5rem] text-red text-xs pl-3'>{msg}</div>
+              <div className='mt-[0.5rem] text-red text-xs pl-3'>{`${t(
+                `${msg}`
+              )}`}</div>
             )}
           </ErrorMessage>
         </>

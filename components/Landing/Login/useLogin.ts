@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
 import { login } from 'services';
 import { loginTypes } from 'types';
-import { useLoginSchema } from 'schema';
+import { loginSchema } from 'schema';
 
 export const useLogin = () => {
   const ctx = useContext(AuthContext);
@@ -14,7 +14,6 @@ export const useLogin = () => {
   const changePasswordRecoveryState = ctx.changePasswordRecoveryState;
   const [error, setError] = useState(false);
   const { t } = useTranslation();
-  const { loginSchema } = useLoginSchema();
 
   const router = useRouter();
 

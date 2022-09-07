@@ -1,9 +1,8 @@
-export { default as useLoginSchema } from './loginSchema';
-export { default as useSignupSchema } from './registrationSchema';
-export { default as useForgotPasswordSchema } from './forgotPasswordSchema';
-export { default as useUpdatePasswordSchema } from './updatePasswordSchema';
-export { default as useEditProfileSchema } from './editProfileSchema';
-export { default as useProfileSchema } from './profileSchema';
-export { default as useMovieSchema } from './movieSchema';
-export { default as useQuoteSchema } from './quoteSchema';
+export { default as loginSchema } from './loginSchema';
+export { default as registrationSchema } from './registrationSchema';
+export { default as forgotPasswordSchema } from './forgotPasswordSchema';
+export { default as updatePasswordSchema } from './updatePasswordSchema';
+export { default as editProfileSchema } from './editProfileSchema';
+export { default as movieSchema } from './movieSchema';
+export { default as quoteSchema } from './quoteSchema';
 export { default as profileSchema } from './profileSchema';

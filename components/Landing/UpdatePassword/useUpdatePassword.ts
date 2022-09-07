@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useFormik } from 'formik';
-import { useUpdatePasswordSchema } from 'schema';
+import { updatePasswordSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
@@ -12,7 +12,6 @@ export const useUpdatePassword = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const token = router.query.token;
-  const { updatePasswordSchema } = useUpdatePasswordSchema();
 
   const onSubmit = async (values: PasswordRecoveryTypes) => {
     try {
