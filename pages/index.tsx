@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
   Header,
@@ -18,6 +19,21 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>
+          {currLang === 'en'
+            ? 'Movie Quotes - Find any quote'
+            : 'Movie Quotes - იპოვე ნებისმიერი ციტატა'}
+        </title>
+        <meta
+          name='description'
+          content={
+            currLang === 'en'
+              ? 'Find any quote in millions of movie lines'
+              : 'იპოვე ნებისმიერი ციტატა მილიონობით ფილმის სტრიქონში'
+          }
+        />
+      </Head>
       <Header />
       {ctx.registrationModalState && <SignUp />}
       {ctx.loginModalState && <Login />}

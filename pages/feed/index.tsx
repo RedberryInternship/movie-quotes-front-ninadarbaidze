@@ -5,13 +5,29 @@ import { useFeed } from 'hooks/useFeed';
 import { FeedQuoteForm } from 'components/Quotes/FeedQuoteForm';
 import { QuoteModal } from 'components/Quotes/QuoteModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Head from 'next/head';
 
 const Feed = () => {
-  const { t, quoteCtx, quotes, setPage, page, total, setSearchQuery } =
-    useFeed();
+  const {
+    t,
+    quoteCtx,
+    quotes,
+    setPage,
+    page,
+    total,
+    setSearchQuery,
+    currLang,
+  } = useFeed();
 
   return (
     <>
+      <Head>
+        <title>
+          {currLang === 'en'
+            ? 'News feed - Movie Quotes'
+            : 'ნიუს ფიდი - Movie Quotes'}
+        </title>
+      </Head>
       {quoteCtx.quoteCreationModal && (
         <>
           <FeedBackdrop

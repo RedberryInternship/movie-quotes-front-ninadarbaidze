@@ -12,6 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Comments, QuoteDetailsType } from 'types';
 import Image from 'next/image';
 import { useQuoteId } from 'hooks';
+import Head from 'next/head';
 
 const QuoteId: React.FC<QuoteDetailsType> = (props) => {
   const { data } = props;
@@ -28,10 +29,22 @@ const QuoteId: React.FC<QuoteDetailsType> = (props) => {
     commentRef,
     likes,
     comments,
+    cuurLang,
   } = useQuoteId({ data });
 
   return (
     <>
+      <Head>
+        <title>{`${
+          cuurLang === 'en' ? 'Quote' : 'ციტატა'
+        } - Movie Quotes`}</title>
+        <meta
+          name='description'
+          content={`${
+            cuurLang === 'en' ? data.quoteEN : data.quoteGE
+          } - Movie Quotes`}
+        />
+      </Head>
       <FeedWrapper>
         {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
         <div className=' bg-mainDark w-[100%] lg:w-[70%] rounded-[12px] px-[5%] mt-10'>

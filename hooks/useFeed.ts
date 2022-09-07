@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next';
 
 export const useFeed = () => {
   const router = useRouter();
+  const currLang = router.locale;
   const ctx = useContext(AuthContext);
   const { t } = useTranslation();
   const { status } = useSession();
@@ -112,5 +113,6 @@ export const useFeed = () => {
     total,
     searchQuery,
     setSearchQuery,
+    currLang,
   };
 };

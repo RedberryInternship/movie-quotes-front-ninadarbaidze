@@ -5,6 +5,7 @@ import { AuthContext, UserContext } from 'store';
 
 export const useProfile = () => {
   const router = useRouter();
+  const currLang = router.locale;
   const ctx = useContext(AuthContext);
   const userCtx = useContext(UserContext);
   const { status } = useSession();
@@ -15,5 +16,5 @@ export const useProfile = () => {
     }
   }, [ctx.isLoggedIn, router, status]);
 
-  return { router, ctx, status, userCtx };
+  return { router, ctx, status, userCtx, currLang };
 };
