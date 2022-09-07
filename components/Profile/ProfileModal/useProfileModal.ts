@@ -17,7 +17,12 @@ export const useProfileModal = (props: {
   const onSubmit = async (values: ModalTypes) => {
     try {
       if (userCtx.editInputState === 'username') {
-        userCtx.getUser({ username: values.username });
+        userCtx.getUser({
+          username: values!.username as string,
+          profileImage: userCtx.userState.profileImage,
+          email: userCtx.userState.email,
+          password: userCtx.userState.password,
+        });
       }
 
       if (values.email === '' && userCtx.editInputState === 'email') {
