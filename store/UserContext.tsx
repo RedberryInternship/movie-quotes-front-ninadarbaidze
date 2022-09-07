@@ -7,7 +7,6 @@ import {
   UserContextData,
   UserStateTypes,
 } from 'types';
-import { bool } from 'yup';
 
 const initialState = {
   username: '',
