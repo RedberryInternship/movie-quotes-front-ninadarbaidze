@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
-import { loginSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { AuthContext } from 'store';
 import { login } from 'services';
 import { loginTypes } from 'types';
+import { loginSchema } from 'schema';
 
 export const useLogin = () => {
   const ctx = useContext(AuthContext);

@@ -45,7 +45,7 @@ const EditQuoteModal = () => {
               <ErrorMessage name='quoteEN'>
                 {(msg) => (
                   <div className='mt-[-1rem] mb-[-2rem] text-red text-xs pl-3'>
-                    {msg}
+                    {`${t(`${msg}`)}`}
                   </div>
                 )}
               </ErrorMessage>
@@ -59,7 +59,7 @@ const EditQuoteModal = () => {
               <ErrorMessage name='quoteGE'>
                 {(msg) => (
                   <div className='mt-[-1rem] mb-[-2.5rem] text-red text-xs pl-3'>
-                    {msg}
+                    {`${t(`${msg}`)}`}
                   </div>
                 )}
               </ErrorMessage>
@@ -72,7 +72,7 @@ const EditQuoteModal = () => {
               <ErrorMessage name='image'>
                 {(msg) => (
                   <div className='mt-[-2rem] mb-[-0.5rem] text-red text-xs pl-3'>
-                    {msg}
+                    {`${t(`${msg}`)}`}
                   </div>
                 )}
               </ErrorMessage>

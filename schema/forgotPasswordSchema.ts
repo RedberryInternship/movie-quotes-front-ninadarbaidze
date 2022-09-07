@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
 
-const forgotPassword = Yup.object({
-  email: Yup.string()
-    .required('Email field is required')
-    .email('Invalid email format'),
+const forgotPasswordSchema = Yup.object({
+  email: Yup.string().required('home:emailRequired').email('home:invalidEmail'),
 });
 
-export default forgotPassword;
+export default forgotPasswordSchema;

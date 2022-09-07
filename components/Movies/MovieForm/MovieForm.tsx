@@ -24,7 +24,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='movieNameEN'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
 
@@ -35,7 +37,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='movieNameGE'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -47,7 +51,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='genre'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -58,13 +64,17 @@ const MovieForm = () => {
       />
       <ErrorMessage name='directorEN'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field name='directorGE' component={MovieInput} placeholder='რეჟისორი' />
       <ErrorMessage name='directorGE'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -76,7 +86,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='budget'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -88,7 +100,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='year'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -99,7 +113,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='descriptionEN'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
       <Field
@@ -110,7 +126,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='descriptionGE'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
 
@@ -122,7 +140,9 @@ const MovieForm = () => {
       />
       <ErrorMessage name='image'>
         {(msg) => (
-          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{msg}</div>
+          <div className='mb-[-0.5rem] text-red text-xs pl-3'>{`${t(
+            `${msg}`
+          )}`}</div>
         )}
       </ErrorMessage>
 

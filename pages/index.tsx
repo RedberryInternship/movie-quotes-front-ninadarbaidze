@@ -1,6 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'react-i18next';
 import {
   Header,
   Footer,
@@ -12,12 +11,10 @@ import {
   ForgotPassword,
   UpdatePassword,
 } from 'components';
-import { useContext } from 'react';
-import { AuthContext } from 'store';
+import { useMain } from 'hooks';
 
 const Home: NextPage = () => {
-  const { t } = useTranslation();
-  const ctx = useContext(AuthContext);
+  const { t, ctx, currLang } = useMain();
 
   return (
     <>
@@ -29,8 +26,14 @@ const Home: NextPage = () => {
       <PopupComponent />
 
       <div className='flex flex-col gap-12  lg:h-[80vh] w-screen pb-44 items-center text-center bg-mainDark'>
-        <h1 className='text-beidge pt-[40%] sm:pt-[20%] lg:pt-[10%] text-2xl sm:text-3xl lg:text-5xl 2xl:text-6xl font-bold font-Montserrat max-w-[70%] lg:max-w-[40%]'>
-          Find any quote in millions of movie lines
+        <h1
+          className={`${
+            currLang === 'ge'
+              ? 'font-helvetica_ge font-bold'
+              : 'font-bold font-Montserrat '
+          } text-beidge pt-[40%] sm:pt-[20%] lg:pt-[10%] text-2xl sm:text-3xl lg:text-5xl 2xl:text-6xl max-w-[70%] lg:max-w-[40%]`}
+        >
+          {t('home:MainH1')}
         </h1>
         <Button
           text={t('home:start')}
@@ -40,22 +43,18 @@ const Home: NextPage = () => {
       <div className='bg-homeGradient'>
         <ParallaxQuote
           imagePath={'/assets/images/image-1.png'}
-          quote={'"You have to leave something behind to go forward"'}
-          film={'Interstellar, 2014'}
+          quote={`"${t('home:quote1Qt')}"`}
+          film={`${t('home:quote1P')}`}
         />
         <ParallaxQuote
           imagePath={'/assets/images/image-2.png'}
-          quote={
-            '"I think we’re just gonna have to be secretly in love with each other and leave it that"'
-          }
-          film={'The Royal Tenenbaums,2001'}
+          quote={`"${t('home:quote2Qt')}"`}
+          film={`${t('home:quote2P')}`}
         />
         <ParallaxQuote
           imagePath={'/assets/images/image-3.png'}
-          quote={
-            '"I think we’re just gonna have to be secretly in love with earch other and leave it that"'
-          }
-          film={'The Royal Tenenbaums,2001 '}
+          quote={`"${t('home:quote3Qt')}"`}
+          film={`${t('home:quote3P')}`}
         />
       </div>
       <Footer />

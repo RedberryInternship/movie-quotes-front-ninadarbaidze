@@ -3,7 +3,7 @@ import { HidePassword, ShowPassword } from 'components';
 import useInput from './useInput';
 
 const Input: React.FC<InputTypes> = (props) => {
-  const { showPassword, showHidePassHandler } = useInput();
+  const { showPassword, showHidePassHandler, t } = useInput();
 
   let {
     name,
@@ -69,7 +69,7 @@ const Input: React.FC<InputTypes> = (props) => {
 
       <div className='flex gap-3'>
         {isTouched && errorMessage ? (
-          <p className='text-red text-xs mt-1'>{errorMessage}</p>
+          <p className='text-red text-xs mt-1'>{`${t(`${errorMessage}`)}`}</p>
         ) : (
           ''
         )}

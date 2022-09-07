@@ -41,6 +41,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
     deleteInputHandler,
     passwordField,
     userCtx,
+    t,
   } = useProfileInput({
     type,
     id,
@@ -122,7 +123,7 @@ const ProfileInput: React.FC<InputTypes> = (props) => {
         ''
       )}
       {isTouched && errorMessage && (
-        <p className='text-red text-xs mt-2'>{errorMessage}</p>
+        <p className='text-red text-xs mt-2'>{`${t(`${errorMessage}`)}`}</p>
       )}
     </div>
   );

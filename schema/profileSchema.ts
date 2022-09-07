@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-const loginSchema = Yup.object({
-  username: Yup.string().min(3, 'min 3 characters'),
-  email: Yup.string().email('Invalid email format'),
+const profileSchema = Yup.object({
+  username: Yup.string().min(3, 'home:min3'),
+  email: Yup.string().email('home:invalidEmail'),
 });
 
-export default loginSchema;
+export default profileSchema;

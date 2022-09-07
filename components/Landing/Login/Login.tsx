@@ -75,7 +75,7 @@ const Login = () => {
             text={t('home:loginBtn')}
             className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
           />
-          <GoogleBtn text='Sign in with Google' />
+          <GoogleBtn text={t('home:loginGoogle')} />
         </form>
         <div className='flex justify-center mt-4 mb-4 gap-3'>
           <p className='text-gray font-normal text-base'>
