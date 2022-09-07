@@ -36,10 +36,10 @@ export type UserContextData = {
 };
 
 export type UserStateTypes = {
-  username: any;
-  email?: string;
-  profileImage?: string;
-  password?: string;
+  username: string;
+  email?: string | undefined;
+  profileImage?: string | undefined;
+  password?: string | undefined;
 };
 
 export type MovieContextTypes = {
