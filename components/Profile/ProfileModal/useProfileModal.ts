@@ -20,6 +20,8 @@ export const useProfileModal = (props: {
         userCtx.getUser({
           username: values!.username as string,
           profileImage: userCtx.userState.profileImage,
+          email: userCtx.userState.email,
+          password: userCtx.userState.password,
         });
       }
 

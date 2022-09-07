@@ -37,9 +37,9 @@ export type UserContextData = {
 
 export type UserStateTypes = {
   username: string;
-  email?: string;
+  email: string;
   profileImage: string;
-  password?: string;
+  password: string;
 };
 
 export type MovieContextTypes = {
