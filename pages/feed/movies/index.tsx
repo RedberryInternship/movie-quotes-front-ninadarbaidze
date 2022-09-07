@@ -7,12 +7,24 @@ import {
 } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMovies } from 'hooks/useMovies';
+import Head from 'next/head';
 
 const Movies = () => {
-  const { movieCtx } = useMovies();
+  const { movieCtx, currLang } = useMovies();
 
   return (
     <>
+      <Head>
+        <title>
+          {currLang === 'en'
+            ? 'My list of movies - Movie Quotes'
+            : 'ჩემი ფილმების სია - Movie Quotes'}
+        </title>
+        <meta
+          name='description'
+          content={currLang === 'en' ? 'List of movies' : 'ფილმების სია'}
+        />
+      </Head>
       {movieCtx.movieCreationModal && (
         <>
           <FeedBackdrop

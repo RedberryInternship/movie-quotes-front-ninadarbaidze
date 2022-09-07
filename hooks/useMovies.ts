@@ -8,6 +8,7 @@ export const useMovies = () => {
   const ctx = useContext(AuthContext);
   const movieCtx = useContext(MovieContext);
   const { status } = useSession();
+  const currLang = router.locale;
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
@@ -15,5 +16,5 @@ export const useMovies = () => {
     }
   }, [ctx.isLoggedIn, router, status]);
 
-  return { router, ctx, movieCtx, status };
+  return { router, ctx, movieCtx, status, currLang };
 };

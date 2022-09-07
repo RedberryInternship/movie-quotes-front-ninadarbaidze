@@ -7,10 +7,11 @@ export const useQuotes = () => {
   const router = useRouter();
   const ctx = useContext(AuthContext);
   const { status } = useSession();
+  const currLang = router.locale;
 
   useEffect(() => {
     router.replace('/feed');
   }, [ctx.isLoggedIn, router, status]);
 
-  return { router, ctx, status };
+  return { router, ctx, status, currLang };
 };

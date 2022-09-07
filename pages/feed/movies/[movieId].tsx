@@ -3,12 +3,17 @@ import { useMovieDetail } from 'hooks/useMovieDetail';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Data } from 'types';
+import Head from 'next/head';
 
 const MovieId = ({ data }: Data) => {
   useMovieDetail();
 
   return (
     <>
+      <Head>
+        <title>{`${data?.name} - Movie Quotes`}</title>
+        <meta name='description' content={data?.description} />
+      </Head>
       <FeedWrapper className='mr-[10%]'>
         <MovieDetails data={data} />
       </FeedWrapper>

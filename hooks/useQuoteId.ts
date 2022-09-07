@@ -12,6 +12,7 @@ export const useQuoteId = (props: { data: QuotesListTypes }) => {
   const { data: session, status } = useSession();
   const { t } = useTranslation();
   const router = useRouter();
+  const cuurLang = router.locale;
   const ctx = useContext(AuthContext);
   const quoteCtx = useContext(QuoteContext);
   const [comments, setComments] = useState([...data.comments]);
@@ -84,5 +85,6 @@ export const useQuoteId = (props: { data: QuotesListTypes }) => {
     commentRef,
     likes,
     comments,
+    cuurLang,
   };
 };
