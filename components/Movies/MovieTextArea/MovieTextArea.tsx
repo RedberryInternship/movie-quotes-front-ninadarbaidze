@@ -4,7 +4,7 @@ import { InputHTMLAttributes } from 'react';
 
 const MovieTextArea: React.FC<
   FormValues & FieldProps & InputHTMLAttributes<HTMLTextAreaElement>
-> = ({ field, ...props }) => {
+> = ({ field, form: { touched, errors }, ...props }) => {
   let { className, lang } = props;
 
   return (
@@ -14,7 +14,11 @@ const MovieTextArea: React.FC<
         <textarea
           {...props}
           {...field}
-          className={`${className} py-1 placeholder:text-white text-white  pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate`}
+          className={`${className} ${
+            touched[field.name] && errors[field.name]
+              ? 'border-[1px] border-red px-20'
+              : 'border-[1px]  border-gray20'
+          } py-1 placeholder:text-white text-white  pl-3 w-[100%] bg-mainDark  rounded-[4px] px-12 truncate`}
         />
         {lang === 'Eng' ? (
           <p className='absolute right-4 cursor-pointer text-gray20'>Eng</p>

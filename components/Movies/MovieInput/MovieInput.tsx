@@ -4,8 +4,9 @@ import { FormValues } from './types';
 
 const MovieInput: React.FC<
   FormValues & FieldProps & InputHTMLAttributes<HTMLInputElement>
-> = ({ field, ...props }) => {
+> = ({ field, form: { touched, errors }, ...props }) => {
   const { className, lang, type } = props;
+
   return (
     <div className='h-[1.5rem]'>
       <div className='flex '></div>
@@ -14,7 +15,11 @@ const MovieInput: React.FC<
           {...props}
           {...field}
           type={type ? type : 'text'}
-          className={`${className} py-1 appearance-none placeholder:text-white  text-white pl-3 w-[100%] border-gray20 bg-mainDark border-[1px] rounded-[4px] px-12 truncate`}
+          className={`${className} ${
+            touched[field.name] && errors[field.name]
+              ? 'border-[1px] border-red px-20'
+              : 'border-[1px]  border-gray20'
+          } py-1 appearance-none placeholder:text-white  text-white pl-3 w-[100%] bg-mainDark  rounded-[4px] px-12 truncate`}
         />
         {type === 'number' ? (
           ''
