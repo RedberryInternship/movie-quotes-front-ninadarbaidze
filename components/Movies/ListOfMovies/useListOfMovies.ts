@@ -27,7 +27,6 @@ export const useListOfMovies = () => {
     const getData = async () => {
       let token = session ? session.accessToken : ctx.token;
       const userId = session ? session.userId : ctx.userId;
-      console.log(userId);
       try {
         const response = await getMovies(userId as string, token as string);
         const movieNumber = response.data.length;
