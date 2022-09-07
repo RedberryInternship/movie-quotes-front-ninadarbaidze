@@ -16,7 +16,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
 
   return (
     <>
-      <li className='flex xs:flex-col md:flex-row justify-start xs:mt-[-3rem] md:mt-0 md:gap-4 w-full '>
+      <div className='flex xs:flex-col md:flex-row justify-start xs:mt-[-3rem] md:mt-0 md:gap-4 w-full '>
         <ProfileInput
           id='email'
           name='email'
@@ -73,7 +73,7 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
             {!primary ? `${t('profile:remove')}` : ''}
           </p>
         </div>
-      </li>
+      </div>
       {userCtx.emailSection && (
         <div className='md:hidden'>
           <div className='w-full h-[1px] mt-[-1rem] bg-gray10 bg-opacity-50 md:border-0' />

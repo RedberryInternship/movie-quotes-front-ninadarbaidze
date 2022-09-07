@@ -137,7 +137,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                 {emailList
                   .sort((a, b) => (a.primary < b.primary) as unknown as number)
                   .map((email) => (
-                    <>
+                    <li key={email._id}>
                       {email.primary && (
                         <p className='md:hidden text-white mt-4 text-sm'>
                           {t('profile:primaryEmail')}
@@ -151,7 +151,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                         onDeleteMail={onDeleteMail}
                         onMakePrimary={onMakePrimary}
                       />
-                    </>
+                    </li>
                   ))}
               </ul>
               {error?.includes('Email') && (
