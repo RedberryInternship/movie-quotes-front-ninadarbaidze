@@ -2,7 +2,7 @@ import { Backdrop, Modal, Input, Button, BackIcon } from 'components';
 import { useForgotPassword } from './useForgotPassword';
 
 const ForgotPassword = () => {
-  const { formik, t, backToLoginHandler } = useForgotPassword();
+  const { formik, t, backToLoginHandler, error } = useForgotPassword();
 
   return (
     <>
@@ -28,11 +28,13 @@ const ForgotPassword = () => {
             isTouched={formik.touched.email}
             value={formik.values.email}
             errorMessage={formik.errors.email!}
+            error={error}
+            errorMsg={t('home:errorMessagePass')}
           />
 
           <Button
             text={t('home:forgotBtn')}
-            className='bg-red hover:bg-redHover w-[100%] mt-8 h-12 text-base'
+            className='bg-red hover:bg-redHover w-[100%] mt-10 h-12 text-base'
           />
         </form>
         <div
