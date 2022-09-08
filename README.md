@@ -107,7 +107,7 @@ npm run dev
 ```
 
 ### Resources
-- [Application Design]([https://www.figma.com/file/ferG8kznuy5s0hMhMZa2Hi/FolkSoul---Bootcamp?node-id=0%3A1](https://www.figma.com/file/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=0%3A1) 
+- [Application Design](https://www.figma.com/file/ferG8kznuy5s0hMhMZa2Hi/FolkSoul---Bootcamp?node-id=0%3A1)
 - [Git Commit Conventions](https://redberry.gitbook.io/resources/git-is-semantikuri-komitebi)
 
 
