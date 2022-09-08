@@ -1,16 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
 import { Popup } from 'components';
-import { useContext } from 'react';
-import { AuthContext } from 'store';
+import { usePopupComponent } from './usePopupComponent';
 
 const PopupComponent = () => {
-  const router = useRouter();
-  const { t } = useTranslation();
-  const ctx = useContext(AuthContext);
-  const modalState = router.query.modal;
-  const passwordModalState = router.query.token;
-
+  const { t, modalState } = usePopupComponent();
   return (
     <>
       {modalState === 'account-verified' && (
@@ -26,13 +18,12 @@ const PopupComponent = () => {
       {modalState === 'email-verified' && (
         <Popup
           icon={'/assets/images/check-icon.png'}
-          heading='Verified'
-          paragraph='Your new email is verified'
-          buttonTxt='Profile page'
-          url={'/feed/profile'}
+          heading={t('home:verified')}
+          paragraph={t('home:verifiedText')}
+          buttonTxt={t('home:thanksBtn2')}
+          url={'/'}
         />
       )}
-
       {modalState === 'verification-failed' && (
         <Popup
           icon={'/assets/images/error-icon.png'}
@@ -51,7 +42,6 @@ const PopupComponent = () => {
           url={'/'}
         />
       )}
-
       {modalState === 'password-recovery-email-sent' && (
         <Popup
           icon={'/assets/images/email-sent-icon.png'}
@@ -59,22 +49,19 @@ const PopupComponent = () => {
           paragraph={t('home:forgotPopH2')}
           buttonTxt={t('home:forgotPopBtn')}
           optionalParagraph={t('home:forgotPopBack')}
-          url={'/'}
+          url={'https://gmail.com'}
         />
       )}
-
-      {passwordModalState && ctx.changePasswordUpdateState(true)}
 
       {modalState === 'password-updated-successfully' && (
         <Popup
           icon={'/assets/images/check-icon.png'}
           heading={t('home:passSuccH1')}
           paragraph={t('home:passSuccH2')}
-          buttonTxt={t('home:passBtn')}
+          buttonTxt={t('home:thanksBtn2')}
           url={'/'}
         />
       )}
-
       {modalState === 'password-update-failed' && (
         <Popup
           icon={'/assets/images/error-icon.png'}

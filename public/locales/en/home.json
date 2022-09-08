@@ -4,6 +4,7 @@
   "createAccount": "Create an account",
   "emailPlaceholder": "Enter your email",
   "emailRequired": "Email field is required",
+  "errorMessagePass": "Email doesn't exists or isn't verified",
   "failed": "Activation Failed!",
   "failedTxt": "There was a mistake, please try again",
   "failedTxtBtn": "Go back to main page",
@@ -65,7 +66,7 @@
   "startJourney": "Start your journey!",
   "thanks": "Thank you!",
   "thanksBtn1": "Go to my email",
-  "thanksBtn2": "Go to my news feed",
+  "thanksBtn2": "Go to my main page",
   "thanksText1": "Please check your email and follow the instructions to\nactivate your account.",
   "thanksText2": "Your account has been activated.",
   "user": "User",
@@ -74,5 +75,7 @@
   "userPlaceholder": "Enter your email/username",
   "userRequired": "User field is required",
   "validPass": "Enter valid password",
-  "validUsername": "Enter valid username"
+  "validUsername": "Enter valid username",
+  "verified": "Verified",
+  "verifiedText": "Your new email is verified"
 }

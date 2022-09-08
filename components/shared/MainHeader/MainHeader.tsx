@@ -21,6 +21,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
     totalNotifications,
     readNotificationsHandler,
     variants,
+    router,
     handleMobileMenu,
   } = useMainHeader({ setMobileMenu });
 
@@ -29,7 +30,10 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
       {mobileMenu && <MobileMenu />}
 
       <nav className='flex justify-between absolute w-full items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 z-20'>
-        <h1 className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl'>
+        <h1
+          className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl cursor-pointer'
+          onClick={() => router.push('/')}
+        >
           MOVIE QUOTES
         </h1>
         <button onClick={handleMobileMenu}>

@@ -10,24 +10,24 @@ const Popup: React.FC<PopupTypes> = (props) => {
   return (
     <>
       <Backdrop />
-      <Modal className='h-[50%] w-[85%] md:w-[60%] lg:w-[37%]'>
-        <div className='flex flex-col justify-center  items-center gap-8 h-[30rem]'>
-          <div>
+      <Modal className='flex flex-col items-center justify-center fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-profileDialog rounded-[10px]  z-40 w-[79%] md:w-[55%] lg:w-[45%] xl:w-[35%]'>
+        <div className='flex flex-col justify-center items-center w-full gap-8 '>
+          <div className='mt-6'>
             <Image src={icon} alt='popup-icon' width={70} height={70} />
           </div>
-          <div className='flex flex-col items-center gap-8 w-[80%] lg:w-[65%]'>
+          <div className='flex flex-col items-center gap-4 px-4 w-full lg:w-[85%]'>
             <h1 className='text-2xl md:text-3xl font-bold text-white text-center'>
               {heading}
             </h1>
-            <h3 className='text-base md:text-xl text-center text-white'>
+            <h3 className='text-base md:text-lg text-center w-[90%] text-white'>
               {paragraph}
             </h3>
-            <div className='mb-28'>
+            <div className='mb-6'>
               <Link href={url}>
                 <a>
                   <Button
                     text={buttonTxt}
-                    className='w-full h-10  bg-red hover:bg-redHover'
+                    className='w-56 py-2  bg-red hover:bg-redHover'
                   />
                 </a>
               </Link>

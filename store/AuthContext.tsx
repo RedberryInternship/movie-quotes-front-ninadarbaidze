@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useState } from 'react';
-import { Children, ContextData } from 'types';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
+import { Children, ContextData, TokenDto } from 'types';
+import jwt_decode from 'jwt-decode';
 
 export const AuthContext = createContext({
   token: '',
@@ -43,14 +44,27 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   const [token, setToken] = useState(initialToken);
   const [user, setUser] = useState(storedData.storedUser);
 
-  const userIsLoggedIn = !!token;
+  let userIsLoggedIn = !!token;
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => {
     if (typeof window !== 'undefined') {
       setToken(null);
       localStorage.clear();
+      userIsLoggedIn;
     }
-  };
+  }, [userIsLoggedIn]);
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    let currentDate = new Date();
+
+    if (token) {
+      let decodedToken: TokenDto = jwt_decode(token);
+      if (decodedToken.exp * 1000 < currentDate.getTime()) {
+        logoutHandler();
+      }
+    }
+  }, [logoutHandler]);
 
   const loginHandler = (token: string, userId: string) => {
     setToken(token);

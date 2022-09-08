@@ -24,7 +24,7 @@ export const useLogin = () => {
         response.data.token as string,
         response.data.userId as string
       );
-      router.push(`/feed/profile`);
+      router.push(`/feed`);
       ctx.changeRegistrationModalState(false);
       ctx.changeLoginModalState(false);
     } catch (error: any) {

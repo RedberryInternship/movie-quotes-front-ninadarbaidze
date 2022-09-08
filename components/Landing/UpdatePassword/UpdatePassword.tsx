@@ -43,7 +43,7 @@ const UpdatePassword = () => {
 
           <Button
             text={t('home:newPassBtn')}
-            className='bg-red hover:bg-redHover w-[100%] mt-6 h-12 text-base'
+            className='bg-red hover:bg-redHover w-[100%] mt-10 h-12 text-base'
           />
         </form>
         <div className='flex justify-center mt-4 mb-4 gap-3' />

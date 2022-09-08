@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { forgotPasswordSchema } from 'schema';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ export const useForgotPassword = () => {
   const { t } = useTranslation();
   const loginState = ctx.changeLoginModalState;
   const forgotPassState = ctx.changePasswordRecoveryState;
+  const [error, setError] = useState();
 
   const router = useRouter();
 
@@ -20,7 +21,9 @@ export const useForgotPassword = () => {
       await passwordRecovery(values);
       router.push(`/?modal=password-recovery-email-sent`);
       ctx.changePasswordRecoveryState(false);
-    } catch (error) {
+    } catch (error: any) {
+      (error.response.status === 403 || error.response.status === 404) &&
+        setError(error.response.status);
       throw new Error('Request failed!');
     }
   };
@@ -38,5 +41,5 @@ export const useForgotPassword = () => {
     forgotPassState(false);
   };
 
-  return { formik, t, loginState, forgotPassState, backToLoginHandler };
+  return { formik, t, loginState, forgotPassState, backToLoginHandler, error };
 };
