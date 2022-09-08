@@ -97,6 +97,8 @@ export const useFeed = () => {
       const index = quoteIds.indexOf(id);
       let newState = [...prevState];
       newState[index].likes = likes;
+      console.log(newState);
+
       return newState;
     });
   };

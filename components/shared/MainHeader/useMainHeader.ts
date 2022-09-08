@@ -107,6 +107,7 @@ const useMainHeader = (props: { setMobileMenu: (arg0: boolean) => void }) => {
     readNotificationsHandler,
     variants,
     handleMobileMenu,
+    router,
   };
 };
 

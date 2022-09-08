@@ -19,15 +19,6 @@ export const AuthContext = createContext({
   changePasswordUpdateState: (_value: boolean) => {},
 });
 
-// const calculateRemainingTime = (expirationTime) => {
-//   const currentTime = new Date().getTime();
-//   //adjust string expt time to date(same date objec)
-//   const adjExpirationTime = new Date(expirationTime).getTime();
-//   //token expires app. in 1 hour, we want to log user out, when timer expires below
-//   const remainingTime = adjExpirationTime - currentTime;
-//   return remainingTime;
-// };
-
 const retrieveStoredValues = () => {
   let storedToken;
   let storedUser;

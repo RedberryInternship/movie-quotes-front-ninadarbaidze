@@ -15,7 +15,7 @@ import {
 import { useMain } from 'hooks';
 
 const Home: NextPage = () => {
-  const { t, ctx, currLang } = useMain();
+  const { t, ctx, currLang, startButtonHandler } = useMain();
 
   return (
     <>
@@ -54,6 +54,7 @@ const Home: NextPage = () => {
         <Button
           text={t('home:start')}
           className='bg-red hover:bg-redHover font-normal px-10 py-[12px] text-[20px] 2xl:px-14 2xl:py-4 2xl:text-lg'
+          onClick={() => startButtonHandler()}
         />
       </div>
       <div className='bg-homeGradient'>
