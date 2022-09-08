@@ -123,3 +123,9 @@ export type QuotesTypes = {
   _id: string;
   setViewQuote?: (value: boolean) => void;
 };
+
+export type TokenDto = {
+  userId: string;
+  exp: number;
+  iat: number;
+};

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useState } from 'react';
-import { Children, ContextData } from 'types';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
+import { Children, ContextData, TokenDto } from 'types';
+import jwt_decode from 'jwt-decode';
 
 export const AuthContext = createContext({
   token: '',
@@ -17,6 +18,15 @@ export const AuthContext = createContext({
   passwordUpdateState: false,
   changePasswordUpdateState: (_value: boolean) => {},
 });
+
+// const calculateRemainingTime = (expirationTime) => {
+//   const currentTime = new Date().getTime();
+//   //adjust string expt time to date(same date objec)
+//   const adjExpirationTime = new Date(expirationTime).getTime();
+//   //token expires app. in 1 hour, we want to log user out, when timer expires below
+//   const remainingTime = adjExpirationTime - currentTime;
+//   return remainingTime;
+// };
 
 const retrieveStoredValues = () => {
   let storedToken;
@@ -43,14 +53,27 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   const [token, setToken] = useState(initialToken);
   const [user, setUser] = useState(storedData.storedUser);
 
-  const userIsLoggedIn = !!token;
+  let userIsLoggedIn = !!token;
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => {
     if (typeof window !== 'undefined') {
       setToken(null);
       localStorage.clear();
+      userIsLoggedIn;
     }
-  };
+  }, [userIsLoggedIn]);
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    let currentDate = new Date();
+
+    if (token) {
+      let decodedToken: TokenDto = jwt_decode(token);
+      if (decodedToken.exp * 1000 < currentDate.getTime()) {
+        logoutHandler();
+      }
+    }
+  }, [logoutHandler]);
 
   const loginHandler = (token: string, userId: string) => {
     setToken(token);
