@@ -17,9 +17,10 @@ export const useUpdatePassword = () => {
     try {
       await updatePassword({ ...values, token });
       router.push(`/?modal=password-updated-successfully`);
-      ctx.changePasswordRecoveryState(false);
+      ctx.changePasswordUpdateState(false);
     } catch (error) {
       router.replace(`/?modal=password-update-failed`);
+      ctx.changePasswordUpdateState(false);
       throw new Error('Request failed!');
     }
   };

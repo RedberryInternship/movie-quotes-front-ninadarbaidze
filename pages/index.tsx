@@ -16,7 +16,6 @@ import { useMain } from 'hooks';
 
 const Home: NextPage = () => {
   const { t, ctx, currLang, startButtonHandler } = useMain();
-
   return (
     <>
       <Head>
