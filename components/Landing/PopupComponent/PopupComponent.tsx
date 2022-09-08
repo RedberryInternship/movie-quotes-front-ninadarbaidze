@@ -22,17 +22,16 @@ const PopupComponent = () => {
           url={'/'}
         />
       )}
-
+      verified
       {modalState === 'email-verified' && (
         <Popup
           icon={'/assets/images/check-icon.png'}
-          heading='Verified'
-          paragraph='Your new email is verified'
-          buttonTxt='Profile page'
-          url={'/feed/profile'}
+          heading={t('home:verified')}
+          paragraph={t('home:verifiedText')}
+          buttonTxt={t('home:thanksBtn2')}
+          url={'/'}
         />
       )}
-
       {modalState === 'verification-failed' && (
         <Popup
           icon={'/assets/images/error-icon.png'}
@@ -51,7 +50,6 @@ const PopupComponent = () => {
           url={'/'}
         />
       )}
-
       {modalState === 'password-recovery-email-sent' && (
         <Popup
           icon={'/assets/images/email-sent-icon.png'}
@@ -62,9 +60,7 @@ const PopupComponent = () => {
           url={'https://gmail.com'}
         />
       )}
-
       {passwordModalState && ctx.changePasswordUpdateState(true)}
-
       {modalState === 'password-updated-successfully' && (
         <Popup
           icon={'/assets/images/check-icon.png'}
@@ -74,7 +70,6 @@ const PopupComponent = () => {
           url={'/'}
         />
       )}
-
       {modalState === 'password-update-failed' && (
         <Popup
           icon={'/assets/images/error-icon.png'}
