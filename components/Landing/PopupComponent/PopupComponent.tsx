@@ -59,7 +59,7 @@ const PopupComponent = () => {
           paragraph={t('home:forgotPopH2')}
           buttonTxt={t('home:forgotPopBtn')}
           optionalParagraph={t('home:forgotPopBack')}
-          url={'/'}
+          url={'https://gmail.com'}
         />
       )}
 
