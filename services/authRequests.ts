@@ -26,7 +26,7 @@ export const login = async (
 export const checkUser = async (
   userId: string
 ): Promise<AxiosResponse<any, CheckUserType>> => {
-  const response = await axios.get(`user/${userId}`);
+  const response = await axios.get(`check-user/${userId}`);
   return response;
 };
 

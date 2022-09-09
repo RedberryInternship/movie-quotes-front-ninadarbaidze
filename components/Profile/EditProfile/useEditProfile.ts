@@ -11,6 +11,7 @@ export const useEditProfile = () => {
   const [updatePassword, setUpdatePassword] = useState(false);
   const [imagePreview, setImagePreview] = useState('');
   const [emailList, setEmailList] = useState<EmailListObjectTypes[]>([]);
+  const [customLoader, setCustomLoader] = useState(false);
   const { data: session } = useSession();
   const userCtx = useContext(UserContext);
   const ctx = useContext(AuthContext);
@@ -27,13 +28,13 @@ export const useEditProfile = () => {
   };
 
   useEffect(() => {
-    userCtx.setLoader(true);
+    setCustomLoader(true);
     const getData = async () => {
       try {
         const response = await getUserInfo(ctx.userId, ctx.token);
         setEmailList(response.data.user.emails);
-        userCtx.setLoader(false);
       } catch (err: any) {}
+      setCustomLoader(false);
     };
     getData();
   }, [ctx.token, ctx.userId]);
@@ -61,5 +62,6 @@ export const useEditProfile = () => {
     emailList,
     setEmailList,
     mobileProfileStateHandler,
+    customLoader,
   };
 };

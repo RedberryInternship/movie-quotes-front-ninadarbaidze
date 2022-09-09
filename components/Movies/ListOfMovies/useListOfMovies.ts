@@ -17,6 +17,7 @@ export const useListOfMovies = () => {
   const [movieSum, setMovieSum] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [zeroMoviesText, setZeroMoviesText] = useState(false);
+  const [customLoader, setCustomLoader] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -26,7 +27,7 @@ export const useListOfMovies = () => {
 
   let currentLan = router.locale;
   useEffect(() => {
-    userCtx.setLoader(true);
+    setCustomLoader(true);
     const getData = async () => {
       let token = session ? session.accessToken : ctx.token;
       const userId = session ? session.userId : ctx.userId;
@@ -46,8 +47,8 @@ export const useListOfMovies = () => {
         setMovieSum(movieNumber);
         setData(newData);
         movieNumber === 0 && setZeroMoviesText(true);
-        userCtx.setLoader(false);
       } catch (err: any) {}
+      setCustomLoader(false);
     };
     getData();
   }, [ctx.token, ctx.userId, currentLan, session]);
@@ -96,5 +97,6 @@ export const useListOfMovies = () => {
     onChange,
     userCtx,
     zeroMoviesText,
+    customLoader,
   };
 };

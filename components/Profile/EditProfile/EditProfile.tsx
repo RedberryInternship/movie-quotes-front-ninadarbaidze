@@ -16,6 +16,7 @@ const EditProfile = () => {
     emailList,
     setEmailList,
     mobileProfileStateHandler,
+    customLoader,
   } = useEditProfile();
 
   return (
@@ -63,6 +64,7 @@ const EditProfile = () => {
                   imageChangeHandler={imageChangeHandler}
                   emailList={emailList}
                   setEmailList={setEmailList}
+                  customLoader={customLoader}
                 />
               )}
             </div>
