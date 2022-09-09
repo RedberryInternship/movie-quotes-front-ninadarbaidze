@@ -62,7 +62,6 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
       if (userId) {
         const response = await checkUser(userId as string);
         (response.status as number) === 404 && logoutHandler();
-        console.log(response.status);
       }
     };
     getUser();
