@@ -34,7 +34,7 @@ const Movies = () => {
           <AddMovieModal />
         </>
       )}
-      <FeedWrapper className='mr-[10%]'>
+      <FeedWrapper className='lg:mr-[10%]'>
         <div className='relative'>
           <ListOfMovies />
         </div>

@@ -1,9 +1,17 @@
-import { FeedButton, SingleImage, Search } from 'components';
+import { FeedButton, SingleImage, Search, Loader } from 'components';
 import { useListOfMovies } from './useListOfMovies';
 
 const ListOfMovies = () => {
-  const { t, data, movieSum, openMovieForm, searchQuery, onChange } =
-    useListOfMovies();
+  const {
+    t,
+    data,
+    movieSum,
+    openMovieForm,
+    searchQuery,
+    onChange,
+    userCtx,
+    zeroMoviesText,
+  } = useListOfMovies();
 
   return (
     <>
@@ -14,6 +22,7 @@ const ListOfMovies = () => {
         <div className='flex justify-end gap-5 w-92'>
           <div className='items-center w-32 hidden sm:flex focus-within:w-52 focus-within:border-b-[0.5px] focus-within:border-gray20 transition-all duration-500 ease-in-out'>
             <Search />
+
             <input
               type='text'
               value={searchQuery}
@@ -29,7 +38,8 @@ const ListOfMovies = () => {
           />
         </div>
       </header>
-      {data.length === 0 ? (
+
+      {zeroMoviesText ? (
         <h2 className='w-[60%] text-center absolute top-[20vh] left-[50%]  translate-x-[-50%] text-gray20 text-2xl'>
           {t('movies:zeroMovie')}
         </h2>
@@ -46,6 +56,7 @@ const ListOfMovies = () => {
             )}
         </div>
       )}
+      {userCtx.loader && <Loader className='mt-24' />}
     </>
   );
 };
