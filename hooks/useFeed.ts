@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { getQuotes, searchQuotes } from 'services';
-import { AuthContext, QuoteContext } from 'store';
+import { AuthContext, QuoteContext, UserContext } from 'store';
 import { QuotesListTypes } from 'types';
 import openSocket from 'socket.io-client';
 import { useTranslation } from 'next-i18next';
@@ -11,9 +11,10 @@ export const useFeed = () => {
   const router = useRouter();
   const currLang = router.locale;
   const ctx = useContext(AuthContext);
+  const quoteCtx = useContext(QuoteContext);
+  const userCtx = useContext(UserContext);
   const { t } = useTranslation();
   const { status } = useSession();
-  const quoteCtx = useContext(QuoteContext);
   const { data: session } = useSession();
   const [quotes, setQuotes] = useState<QuotesListTypes[]>([]);
   const [page, setPage] = useState(1);
@@ -22,7 +23,10 @@ export const useFeed = () => {
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
+      userCtx.setLoader(true);
       router.push('/');
+    } else {
+      userCtx.setLoader(false);
     }
   }, [ctx.isLoggedIn, router, status]);
 
@@ -114,5 +118,6 @@ export const useFeed = () => {
     searchQuery,
     setSearchQuery,
     currLang,
+    userCtx,
   };
 };

@@ -4,13 +4,14 @@ import {
   AddMovieModal,
   FeedBackdrop,
   ListOfMovies,
+  Loader,
 } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMovies } from 'hooks/useMovies';
 import Head from 'next/head';
 
 const Movies = () => {
-  const { movieCtx, currLang } = useMovies();
+  const { movieCtx, currLang, userCtx } = useMovies();
 
   return (
     <>
@@ -34,11 +35,23 @@ const Movies = () => {
           <AddMovieModal />
         </>
       )}
-      <FeedWrapper className='lg:mr-[10%]'>
-        <div className='relative'>
-          <ListOfMovies />
-        </div>
-      </FeedWrapper>
+      {userCtx.loader ? (
+        <>
+          <Loader className='absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-50' />
+          <FeedBackdrop
+            onClick={() => {}}
+            className=' bg-mainDark bg-opacity-100'
+          />
+        </>
+      ) : (
+        <>
+          <FeedWrapper className='lg:mr-[10%]'>
+            <div className='relative'>
+              <ListOfMovies />
+            </div>
+          </FeedWrapper>
+        </>
+      )}
     </>
   );
 };
