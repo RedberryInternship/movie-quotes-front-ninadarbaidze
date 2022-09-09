@@ -15,3 +15,4 @@ export * from './FeedWrapper';
 export * from './FeedButton';
 export * from './NotificationItem';
 export * from './NotificationModal';
+export * from './Loader';

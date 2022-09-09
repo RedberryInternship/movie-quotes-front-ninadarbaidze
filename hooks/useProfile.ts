@@ -12,7 +12,10 @@ export const useProfile = () => {
 
   useEffect(() => {
     if (status === 'unauthenticated' && !ctx.isLoggedIn) {
+      userCtx.setLoader(true);
       router.push('/');
+    } else {
+      userCtx.setLoader(false);
     }
   }, [ctx.isLoggedIn, router, status]);
 

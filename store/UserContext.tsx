@@ -46,6 +46,8 @@ export const UserContext = createContext({
   setPasswordSection: (arg0: boolean) => {},
   editPassword: false,
   setEditPassword: (arg0: boolean) => {},
+  loader: false,
+  setLoader: (arg0: boolean) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
@@ -58,6 +60,7 @@ export const UserContextProvider: React.FC<Children> = (props) => {
   const [emailSection, setEmailSection] = useState(false);
   const [passwordSection, setPasswordSection] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -85,6 +88,8 @@ export const UserContextProvider: React.FC<Children> = (props) => {
     setPasswordSection,
     editPassword,
     setEditPassword,
+    loader,
+    setLoader,
   };
 
   return (

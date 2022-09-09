@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { MovieContext, AuthContext } from 'store';
+import { MovieContext, AuthContext, UserContext } from 'store';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -10,11 +10,13 @@ import openSocket from 'socket.io-client';
 
 export const useListOfMovies = () => {
   const movieCtx = useContext(MovieContext);
-  const { t } = useTranslation();
   const ctx = useContext(AuthContext);
+  const userCtx = useContext(UserContext);
+  const { t } = useTranslation();
   const [data, setData] = useState<UpdatedMovieTypes[]>([]);
   const [movieSum, setMovieSum] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [zeroMoviesText, setZeroMoviesText] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -24,6 +26,7 @@ export const useListOfMovies = () => {
 
   let currentLan = router.locale;
   useEffect(() => {
+    userCtx.setLoader(true);
     const getData = async () => {
       let token = session ? session.accessToken : ctx.token;
       const userId = session ? session.userId : ctx.userId;
@@ -39,8 +42,11 @@ export const useListOfMovies = () => {
             quotesQuantity: movies!.quotes!.length,
           };
         });
+
         setMovieSum(movieNumber);
         setData(newData);
+        movieNumber === 0 && setZeroMoviesText(true);
+        userCtx.setLoader(false);
       } catch (err: any) {}
     };
     getData();
@@ -88,5 +94,7 @@ export const useListOfMovies = () => {
     setData,
     searchQuery,
     onChange,
+    userCtx,
+    zeroMoviesText,
   };
 };

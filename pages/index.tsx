@@ -34,6 +34,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <Header />
+
       {ctx.registrationModalState && <SignUp />}
       {ctx.loginModalState && <Login />}
       {ctx.passwordRecoveryState && <ForgotPassword />}

@@ -1,4 +1,4 @@
-import { FeedWrapper, MovieDetails } from 'components';
+import { FeedBackdrop, FeedWrapper, Loader, MovieDetails } from 'components';
 import { useMovieDetail } from 'hooks/useMovieDetail';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -6,7 +6,7 @@ import { Data } from 'types';
 import Head from 'next/head';
 
 const MovieId = ({ data }: Data) => {
-  useMovieDetail();
+  const { userCtx } = useMovieDetail();
 
   return (
     <>
@@ -14,9 +14,21 @@ const MovieId = ({ data }: Data) => {
         <title>{`${data?.name} - Movie Quotes`}</title>
         <meta name='description' content={data?.description} />
       </Head>
-      <FeedWrapper className='mr-[10%]'>
-        <MovieDetails data={data} />
-      </FeedWrapper>
+      {userCtx.loader ? (
+        <>
+          <Loader className='absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-50' />
+          <FeedBackdrop
+            onClick={() => {}}
+            className=' bg-mainDark bg-opacity-100'
+          />
+        </>
+      ) : (
+        <>
+          <FeedWrapper className='mr-[10%]'>
+            <MovieDetails data={data} />
+          </FeedWrapper>
+        </>
+      )}
     </>
   );
 };
