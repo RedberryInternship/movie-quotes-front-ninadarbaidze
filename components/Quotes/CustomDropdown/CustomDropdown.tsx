@@ -14,7 +14,7 @@ const CustomDropdown: React.FC<FieldProps> = (props) => {
   return (
     <>
       <div
-        className='flex justify-between w-full h-16 mt-4 pl-3 bg-black rounded-[4px]'
+        className='flex justify-between w-full h-16 mt-8  pl-3 bg-black rounded-[4px]'
         onClick={() => setOpenList(!openList)}
       >
         <div className='flex justify-center items-center gap-3'>

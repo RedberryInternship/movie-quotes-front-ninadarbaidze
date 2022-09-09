@@ -8,8 +8,8 @@ const MovieTextArea: React.FC<
   let { className, lang } = props;
 
   return (
-    <div className='h-[1rem] mb-6'>
-      <div className='flex'></div>
+    <div>
+      <div className='flex h-3' />
       <div className='flex items-center relative'>
         <textarea
           {...props}

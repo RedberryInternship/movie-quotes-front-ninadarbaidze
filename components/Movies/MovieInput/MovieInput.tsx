@@ -8,8 +8,8 @@ const MovieInput: React.FC<
   const { className, lang, type } = props;
 
   return (
-    <div className='h-[1.5rem]'>
-      <div className='flex '></div>
+    <div>
+      <div className='flex h-[1.5rem]'></div>
       <div className='flex items-center relative '>
         <input
           {...props}

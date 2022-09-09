@@ -19,63 +19,72 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
       <div className='flex flex-col gap-10'>
         {quoteCtx.isMovieQuote && <SingleMovie data={data} />}
 
-        <Field
-          name='quoteEN'
-          component={MovieTextArea}
-          placeholder='Start create new quote'
-          lang={'Eng'}
-          className='placeholder:italic placeholder:text-gray text-white'
-        />
-        <ErrorMessage name='quoteEN'>
-          {(msg) => (
-            <div className='mt-[-1rem] mb-[-2rem] text-red text-xs pl-3'>
-              {`${t(`${msg}`)}`}
-            </div>
-          )}
-        </ErrorMessage>
-        <Field
-          name='quoteGE'
-          component={MovieTextArea}
-          placeholder='ახალი ციტატა'
-          lang={'ქარ'}
-          className='placeholder:italic placeholder:text-gray text-white'
-        />
-        <ErrorMessage name='quoteGE'>
-          {(msg) => (
-            <div className='mt-[-1rem] mb-[-2.5rem] text-red text-xs pl-3'>
-              {`${t(`${msg}`)}`}
-            </div>
-          )}
-        </ErrorMessage>
-        <Field
-          type='file'
-          name='image'
-          accept='image/*'
-          component={ImageInput}
-        />
-        <ErrorMessage name='image'>
-          {(msg) => (
-            <div className='mt-[-2rem] mb-[-0.5rem] text-red text-xs pl-3'>
-              {`${t(`${msg}`)}`}
-            </div>
-          )}
-        </ErrorMessage>
-      </div>
-      {!quoteCtx.isMovieQuote && (
-        <>
-          <Field type='text' name='movieId' component={CustomDropdown} />
-          <ErrorMessage name='movieId'>
+        <div className='h-[3rem]'>
+          <Field
+            name='quoteEN'
+            component={MovieTextArea}
+            placeholder='Start create new quote'
+            lang={'Eng'}
+            className='placeholder:italic placeholder:text-gray text-white'
+          />
+          <ErrorMessage name='quoteEN'>
             {(msg) => (
-              <div className='mt-[0.5rem] text-red text-xs pl-3'>{`${t(
+              <div className='mt-1  text-red text-xs pl-3'>{`${t(
                 `${msg}`
               )}`}</div>
             )}
           </ErrorMessage>
+        </div>
+
+        <div className='h-[3rem]'>
+          <Field
+            name='quoteGE'
+            component={MovieTextArea}
+            placeholder='ახალი ციტატა'
+            lang={'ქარ'}
+            className='placeholder:italic placeholder:text-gray text-white'
+          />
+          <ErrorMessage name='quoteGE'>
+            {(msg) => (
+              <div className='mt-1 text-red text-xs pl-3'>{`${t(
+                `${msg}`
+              )}`}</div>
+            )}
+          </ErrorMessage>
+        </div>
+        <div className='h-[5rem]'>
+          <Field
+            type='file'
+            name='image'
+            accept='image/*'
+            component={ImageInput}
+          />
+          <ErrorMessage name='image'>
+            {(msg) => (
+              <div className='mt-1 text-red text-xs pl-3'>
+                {`${t(`${msg}`)}`}
+              </div>
+            )}
+          </ErrorMessage>
+        </div>
+      </div>
+      {!quoteCtx.isMovieQuote && (
+        <>
+          <div className='h-[5rem]'>
+            <Field type='text' name='movieId' component={CustomDropdown} />
+            <ErrorMessage name='movieId'>
+              {(msg) => (
+                <div className='mt-1 text-red text-xs pl-3'>{`${t(
+                  `${msg}`
+                )}`}</div>
+              )}
+            </ErrorMessage>
+          </div>
         </>
       )}
       <Button
         text={t('quotes:addQtBtn')}
-        className='bg-red mt-6 mb-10 w-[100%]'
+        className='bg-red mt-12 mb-10 w-[100%]'
       />
     </Form>
   );

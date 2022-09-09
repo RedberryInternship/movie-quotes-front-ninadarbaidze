@@ -20,7 +20,7 @@ const SelectInput = ({
   };
 
   return (
-    <div className=''>
+    <div className='h-[1.5rem] mt-6'>
       <Select
         styles={customStyles}
         className={className}
