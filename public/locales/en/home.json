@@ -1,9 +1,13 @@
 {
+  "403H": "You shall not pass!",
+  "403P": "Sorry, but you don’t have permission to access this page",
+  "404P": "We cant see the page you are looking for",
   "commonRequired": "This field is required",
   "confirmPassPlaceholder": "Confirm password",
   "createAccount": "Create an account",
   "emailPlaceholder": "Enter your email",
   "emailRequired": "Email field is required",
+  "errorBtn": "Return Home",
   "errorMessagePass": "Email doesn't exists or isn't verified",
   "failed": "Activation Failed!",
   "failedTxt": "There was a mistake, please try again",
@@ -77,5 +81,6 @@
   "validPass": "Enter valid password",
   "validUsername": "Enter valid username",
   "verified": "Verified",
-  "verifiedText": "Your new email is verified"
+  "verifiedText": "Your new email is verified",
+  "whops": "Whoops!"
 }
