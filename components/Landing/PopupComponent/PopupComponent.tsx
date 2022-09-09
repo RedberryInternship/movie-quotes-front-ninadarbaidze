@@ -39,7 +39,7 @@ const PopupComponent = () => {
           heading={t('home:thanks')}
           paragraph={t('home:thanksText1')}
           buttonTxt={t('home:thanksBtn1')}
-          url={'/'}
+          url={'https://gmail.com'}
         />
       )}
       {modalState === 'password-recovery-email-sent' && (
