@@ -1,9 +1,11 @@
 import { Button } from 'components';
 import { useError } from 'hooks';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
 const Custom404 = () => {
-  const { router } = useError();
+  const { router, t } = useError();
   return (
     <div className='flex flex-col items-center justify-center gap-6 bg-mainDark w-screen h-screen'>
       <div className=' w-52'>
@@ -14,12 +16,10 @@ const Custom404 = () => {
           height={'500px'}
         />
       </div>
-      <h1 className='text-white text-5xl font-bold'>Whoops!</h1>
-      <h2 className='text-white text-xl'>
-        We cant see the page you are looking for
-      </h2>
+      <h1 className='text-white text-5xl font-bold'>{t('home:whops')}</h1>
+      <h2 className='text-white text-xl'>{t('home:404P')}</h2>
       <Button
-        text={'Return Home'}
+        text={t('home:errorBtn')}
         onClick={() => router.push('/')}
         className='bg-red hover:bg-redHover'
       />
@@ -28,3 +28,11 @@ const Custom404 = () => {
 };
 
 export default Custom404;
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, ['home'])),
+    },
+  };
+};
