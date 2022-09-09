@@ -131,3 +131,7 @@ export type TokenDto = {
   exp: number;
   iat: number;
 };
+
+export type CheckUserType = {
+  status: number;
+};
