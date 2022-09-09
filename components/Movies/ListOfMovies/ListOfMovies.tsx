@@ -9,8 +9,8 @@ const ListOfMovies = () => {
     openMovieForm,
     searchQuery,
     onChange,
-    userCtx,
     zeroMoviesText,
+    customLoader,
   } = useListOfMovies();
 
   return (
@@ -38,7 +38,6 @@ const ListOfMovies = () => {
           />
         </div>
       </header>
-
       {zeroMoviesText ? (
         <h2 className='w-[60%] text-center absolute top-[20vh] left-[50%]  translate-x-[-50%] text-gray20 text-2xl'>
           {t('movies:zeroMovie')}
@@ -56,7 +55,7 @@ const ListOfMovies = () => {
             )}
         </div>
       )}
-      {userCtx.loader && <Loader className='mt-24' />}
+      {customLoader && <Loader className='mt-24' />}
     </>
   );
 };

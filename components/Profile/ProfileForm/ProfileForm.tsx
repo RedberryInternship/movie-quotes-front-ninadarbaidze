@@ -12,7 +12,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
 const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
-  const { imageChangeHandler, emailList, setEmailList } = props;
+  const { imageChangeHandler, emailList, setEmailList, customLoader } = props;
   const {
     t,
     formik,
@@ -82,7 +82,7 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
         </p>
         <div className='flex justify-center gap-6 pt-0 md:pt-6 px-[5%] pb-12 w-[100%]'>
           <div className=''>
-            {userCtx.loader ? (
+            {customLoader ? (
               <Loader className='mt-24' />
             ) : (
               <>

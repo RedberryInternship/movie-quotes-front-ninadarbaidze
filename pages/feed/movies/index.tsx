@@ -26,15 +26,7 @@ const Movies = () => {
           content={currLang === 'en' ? 'List of movies' : 'ფილმების სია'}
         />
       </Head>
-      {movieCtx.movieCreationModal && (
-        <>
-          <FeedBackdrop
-            onClick={() => movieCtx.movieCreationStateHandler()}
-            className='backdrop-blur-sm'
-          />
-          <AddMovieModal />
-        </>
-      )}
+
       {userCtx.loader ? (
         <>
           <Loader className='absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-50' />
@@ -45,6 +37,15 @@ const Movies = () => {
         </>
       ) : (
         <>
+          {movieCtx.movieCreationModal && (
+            <>
+              <FeedBackdrop
+                onClick={() => movieCtx.movieCreationStateHandler()}
+                className='backdrop-blur-sm'
+              />
+              <AddMovieModal />
+            </>
+          )}
           <FeedWrapper className='lg:mr-[10%]'>
             <div className='relative'>
               <ListOfMovies />

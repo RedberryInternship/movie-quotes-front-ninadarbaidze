@@ -2,6 +2,7 @@ import { EmailListObjectTypes } from 'types';
 
 export type ProfileFormTypes = {
   updatePassword: boolean;
+  customLoader: boolean;
   emailList: EmailListObjectTypes[];
   imageChangeHandler: (string) => void;
   setEmailList: React.Dispatch<React.SetStateAction<EmailListObjectTypes[]>>;
