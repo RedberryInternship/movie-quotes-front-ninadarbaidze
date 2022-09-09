@@ -19,7 +19,7 @@ const MovieInput: React.FC<
             touched[field.name] && errors[field.name]
               ? 'border-[1px] border-red px-20'
               : 'border-[1px]  border-gray20'
-          } py-1 appearance-none placeholder:text-white  text-white pl-3 w-[100%] bg-mainDark  rounded-[4px] px-12 truncate`}
+          } py-1 appearance-none placeholder:text-gray20  text-white pl-3 w-[100%] bg-mainDark  rounded-[4px] px-12 truncate`}
         />
         {type === 'number' ? (
           ''
