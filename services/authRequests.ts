@@ -5,6 +5,7 @@ import {
   AuthGoogleTypes,
   PasswordRecoveryTypes,
   loginTypes,
+  CheckUserType,
 } from 'types';
 import { AxiosResponse } from 'axios';
 
@@ -19,6 +20,13 @@ export const login = async (
   data: loginTypes
 ): Promise<AxiosResponse<ResponseToken>> => {
   const response = await axios.post(`login`, data);
+  return response;
+};
+
+export const checkUser = async (
+  userId: string
+): Promise<AxiosResponse<any, CheckUserType>> => {
+  const response = await axios.get(`user/${userId}`);
   return response;
 };
 

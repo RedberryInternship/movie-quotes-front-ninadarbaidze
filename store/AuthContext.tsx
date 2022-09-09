@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useCallback, useEffect, useState } from 'react';
-import { Children, ContextData, TokenDto } from 'types';
+import { CheckUserType, Children, ContextData, TokenDto } from 'types';
 import jwt_decode from 'jwt-decode';
+import { checkUser } from 'services';
+import { AxiosResponse } from 'axios';
 
 export const AuthContext = createContext({
   token: '',
@@ -53,6 +55,17 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
       userIsLoggedIn;
     }
   }, [userIsLoggedIn]);
+
+  useEffect(() => {
+    let userId = localStorage.getItem('userId');
+    const getUser = async () => {
+      if (userId) {
+        const response = await checkUser(userId as string);
+        (response.status as number) === 404 && logoutHandler();
+      }
+    };
+    getUser();
+  }, []);
 
   useEffect(() => {
     let token = localStorage.getItem('token');
