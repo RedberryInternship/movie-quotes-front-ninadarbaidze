@@ -27,10 +27,12 @@ export const useEditProfile = () => {
   };
 
   useEffect(() => {
+    userCtx.setLoader(true);
     const getData = async () => {
       try {
         const response = await getUserInfo(ctx.userId, ctx.token);
         setEmailList(response.data.user.emails);
+        userCtx.setLoader(false);
       } catch (err: any) {}
     };
     getData();

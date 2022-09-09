@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { GoogleProfileForm, ProfileForm } from 'components';
+import { GoogleProfileForm, Loader, ProfileForm } from 'components';
 import { useEditProfile } from './useEditProfile';
 import { imagePreviewHandler } from './helper';
 import { ArrowSmLeftIcon } from '@heroicons/react/solid';
