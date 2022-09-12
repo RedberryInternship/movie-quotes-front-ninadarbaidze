@@ -11,7 +11,10 @@ export const useUserInfo = () => {
 
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
-    if (userCtx.userState.profileImage.startsWith('https')) {
+    if (
+      userCtx.userState.profileImage &&
+      userCtx.userState.profileImage.startsWith('https')
+    ) {
       return userCtx.userState.profileImage;
     } else if (userCtx.userState.profileImage) {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;

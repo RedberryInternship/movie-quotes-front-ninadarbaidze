@@ -18,7 +18,10 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
 
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
-    if (quote.userId.profileImage.startsWith('https')) {
+    if (
+      quote.userId.profileImage &&
+      quote.userId.profileImage.startsWith('https')
+    ) {
       return quote.userId.profileImage;
     } else if (!quote.userId.profileImage) {
       return defaultProfileImg;

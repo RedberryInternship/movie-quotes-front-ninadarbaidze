@@ -20,10 +20,17 @@ export const useNotificationItem = (props: {
   const isRead = notificationData.isRead === true;
 
   const myLoader = () => {
-    if (notificationData.senderId.profileImage.startsWith('https')) {
+    const defaultProfileImg = `/assets/images/profile.png`;
+
+    if (
+      notificationData.senderId.profileImage &&
+      notificationData.senderId.profileImage.startsWith('https')
+    ) {
       return notificationData.senderId.profileImage;
-    } else {
+    } else if (notificationData.senderId.profileImage) {
       return `${process.env.NEXT_PUBLIC_API_URL}/${notificationData.senderId.profileImage}`;
+    } else {
+      return defaultProfileImg;
     }
   };
 

@@ -3,7 +3,10 @@ export const imagePreviewHandler = (userCtx: {
 }) => {
   const defaultProfileImg = `/assets/images/profile.png`;
 
-  if (userCtx.userState.profileImage.startsWith('https')) {
+  if (
+    userCtx.userState.profileImage &&
+    userCtx.userState.profileImage.startsWith('https')
+  ) {
     return userCtx.userState.profileImage;
   } else if (!userCtx.userState.profileImage) {
     return defaultProfileImg;
