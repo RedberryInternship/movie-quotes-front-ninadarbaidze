@@ -70,7 +70,7 @@ const FeedQuoteForm: React.FC<Data> = ({ data }) => {
       </div>
       {!quoteCtx.isMovieQuote && (
         <>
-          <div className='h-[5rem]'>
+          <div>
             <Field type='text' name='movieId' component={CustomDropdown} />
             <ErrorMessage name='movieId'>
               {(msg) => (

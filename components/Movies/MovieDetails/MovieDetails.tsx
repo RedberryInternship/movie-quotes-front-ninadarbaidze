@@ -37,6 +37,7 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
         <>
           <FeedBackdrop
             onClick={() => movieCtx.movieEditingStateHandler(false)}
+            className='backdrop-blur-sm'
           />
           <AddMovieModal />
         </>

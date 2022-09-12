@@ -136,7 +136,7 @@ const MovieForm = () => {
         </ErrorMessage>
       </div>
 
-      <div className='h-[5rem]'>
+      <div className=''>
         <Field
           type='file'
           name='image'
@@ -153,7 +153,7 @@ const MovieForm = () => {
         text={
           movieCtx.isMovieEdited ? t('movies:updateMovie') : t('movies:addbtn')
         }
-        className='bg-red mt-4 mb-6 w-[100%]'
+        className='bg-red mt-2 mb-6 w-[100%]'
       />
     </Form>
   );

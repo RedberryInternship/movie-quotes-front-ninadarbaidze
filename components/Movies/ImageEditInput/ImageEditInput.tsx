@@ -15,13 +15,13 @@ const ImageEditInput: React.FC<FieldProps> = ({ form }) => {
         {...getRootProps()}
       >
         <input type='file' accept='image/*' {...getInputProps()} />
-        <div className='flex overflow-clip w-full relative rounded-[10px] object-cover'>
+        <div className='flex overflow-clip max-w-96 relative rounded-[10px] object-cover'>
           <Image
             loader={myLoader}
             src={imageStateHandler()}
             alt='imagePreview'
             objectFit='cover'
-            width={'800px'}
+            width={'1000px'}
             height={'500px'}
           />
           <div className='flex justify-center items-center cursor-pointer'>
