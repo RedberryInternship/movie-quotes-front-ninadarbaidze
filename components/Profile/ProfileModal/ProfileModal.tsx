@@ -44,7 +44,6 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                       ? formik.errors.username
                       : formik.errors.email
                   }
-                  className='px-40'
                 />
                 <div className='flex justify-between md:justify-end gap-4 items-center py-4 mt-8 md:mt-0'>
                   <p
