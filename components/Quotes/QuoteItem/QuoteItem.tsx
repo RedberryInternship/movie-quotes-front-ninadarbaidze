@@ -34,7 +34,7 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
                 setQuoteHandler={setQuoteHandler}
               />
             )}
-            <div className=' w-3/6 sm:w-44  overflow-clip rounded-sm'>
+            <div className=' w-3/6 sm:w-44 h-full overflow-clip rounded-sm'>
               <Image
                 loader={myLoader}
                 src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`}
