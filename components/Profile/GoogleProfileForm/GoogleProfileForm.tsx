@@ -16,7 +16,7 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
         >
           {t('profile:upload')}
         </p>
-        <div className='flex justify-center gap-6 pt-6 px-[10%] pb-12 w-[100%]'>
+        <div className='flex justify-center gap-6 pt-6 px-[10%] pb-12 w-[100%] mt-8 md:mt-0'>
           <div className='w-[30rem]'>
             <input
               type='file'
@@ -65,9 +65,9 @@ const GoogleProfileForm: React.FC<UpdatePassTypes> = (props) => {
         </div>
 
         {editState && (
-          <div className='flex items-center absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_14rem)]'>
+          <div className='flex items-center absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_16rem)]'>
             <p
-              className='text-gray10 text-base  mt-12 mr-4 cursor-pointer w-12'
+              className='text-gray10 text-base  mt-12 mr-12 cursor-pointer w-12'
               onClick={() => setEditState(false)}
             >
               {t('profile:cancel2')}

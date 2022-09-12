@@ -43,7 +43,7 @@ const EditProfile = () => {
               } absolute top-12 md:top-[-10vh] left-[50%]  translate-x-[-50%] w-[11rem] h-[11rem] bg-gray10 rounded-full overflow-clip border-2 border-black`}
             >
               <div>
-                <div className='object-fit '>
+                <div className='object-fit'>
                   <Image
                     loader={myLoader}
                     src={imagePreviewHandler(imagePreview, userCtx, session)}
