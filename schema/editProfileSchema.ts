@@ -8,7 +8,7 @@ const editProfileSchema = Yup.object({
     .matches(/^[a-z0-9]+$/g, 'home:validPass')
     .max(15, 'home:max15'),
   repeatPassword: Yup.string().oneOf(
-    [Yup.ref('password'), null],
+    [Yup.ref('newPassword'), null],
     'home:passwordDontMatch'
   ),
 });
