@@ -22,6 +22,7 @@ const SelectInput = ({
   return (
     <div className='h-[1.5rem] mt-6'>
       <Select
+        closeMenuOnSelect={false}
         styles={customStyles}
         className={className}
         name={field.name}
