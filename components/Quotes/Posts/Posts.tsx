@@ -34,7 +34,11 @@ const Posts: React.FC<PostTypes> = (props) => {
           <p className='text-white font-base'>{quote.userId.username}</p>
         </div>
       </div>
-      <div className='flex gap-2 text-white'>
+      <div
+        className={`flex ${
+          quote.quoteGE.length > 80 || (quote.quoteEN.length > 80 && 'flex-col')
+        } gap-2 text-white`}
+      >
         <p className='text-white font-base break-all'>
           {router.locale === 'ge' ? quote.quoteGE : quote.quoteEN}
         </p>

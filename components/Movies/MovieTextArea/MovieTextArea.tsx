@@ -18,7 +18,7 @@ const MovieTextArea: React.FC<
             touched[field.name] && errors[field.name]
               ? 'border-[1px] border-red px-20'
               : 'border-[1px]  border-gray20'
-          } py-1 placeholder:text-gray20 text-white  pl-3 w-[100%] bg-mainDark  rounded-[4px] px-12 truncate`}
+          } py-1 placeholder:text-gray20 text-white  pl-3 w-[100%] bg-mainDark break-all  rounded-[4px] px-12 `}
         />
         {lang === 'Eng' ? (
           <p className='absolute right-4 cursor-pointer text-gray20'>Eng</p>
