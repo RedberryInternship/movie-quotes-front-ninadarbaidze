@@ -48,14 +48,14 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
           {t('movies:descriptionH1')}
         </h1>
         <div className='flex flex-col md:flex-row px-[5%] md:px-0 gap-12 md:gap-0 mt-12'>
-          <div className='w-full md:w-3/5 h-[23rem] rounded-xl overflow-clip'>
+          <div className='w-full md:w-3/5  rounded-xl overflow-clip'>
             <Image
               loader={myLoader}
               src={`${process.env.NEXT_PUBLIC_API_URL}/${data!.image}`}
               objectFit='cover'
               layout='responsive'
-              width={600}
-              height={600}
+              width={1200}
+              height={700}
               alt='movie'
             />
           </div>
