@@ -49,14 +49,14 @@ const Posts: React.FC<PostTypes> = (props) => {
           <span>({quote.movieId.year})</span>
         </p>
       </div>
-      <div className='flex overflow-clip w-full relative rounded-[10px] object-cover'>
+      <div className='flex overflow-clip max-w-96 relative rounded-[10px] object-cover'>
         <Image
           loader={myLoader2}
           src={`${process.env.NEXT_PUBLIC_API_URL}/${quote.image}`}
           alt='imagePreview'
           objectFit='cover'
-          width={'800px'}
-          height={'500px'}
+          width={'1200px'}
+          height={'700px'}
         />
       </div>
       <div className='flex items-center gap-4 text-white'>
