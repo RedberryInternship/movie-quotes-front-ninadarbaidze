@@ -34,7 +34,7 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
                 setQuoteHandler={setQuoteHandler}
               />
             )}
-            <div className='w-32 sm:w-44 h-24 overflow-clip rounded-sm'>
+            <div className=' w-3/6 sm:w-44 h-24 overflow-clip rounded-sm'>
               <Image
                 loader={myLoader}
                 src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`}
@@ -45,7 +45,7 @@ const QuoteItem: React.FC<QuotesTypes> = (props) => {
                 alt='movie'
               />
             </div>
-            <p className='text-white'>{`"${quote}"`}</p>
+            <p className='text-white w-3/6 h-full break-all leading-tight '>{`"${quote}"`}</p>
           </div>
           <div className='w-full h-[1px] bg-gray20' />
 

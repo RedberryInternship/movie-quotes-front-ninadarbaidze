@@ -87,7 +87,9 @@ const MovieDetails: React.FC<Data> = ({ data }) => {
               <h3 className='text-gray10 text-lg'>{t('movies:budget')}:</h3>
               <span className='text-white text-lg'>{data!.budget}</span>
             </div>
-            <p className='text-gray10 text-lg'>{data!.description}</p>
+            <p className='text-gray10 text-lg break-all leading-tight'>
+              {data!.description}
+            </p>
           </div>
         </div>
         <div className='w-full px-[5%] md:px-0 md:w-3/5 '>

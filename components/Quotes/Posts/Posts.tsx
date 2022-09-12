@@ -35,7 +35,7 @@ const Posts: React.FC<PostTypes> = (props) => {
         </div>
       </div>
       <div className='flex gap-2 text-white'>
-        <p className='text-white font-base'>
+        <p className='text-white font-base break-all'>
           {router.locale === 'ge' ? quote.quoteGE : quote.quoteEN}
         </p>
         <p>
