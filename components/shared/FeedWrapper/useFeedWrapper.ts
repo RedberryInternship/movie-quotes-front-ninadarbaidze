@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useContext, useEffect, useState } from 'react';
-import { getUserInfo } from 'services';
+import { getUserInfo, updateGoogleImage } from 'services';
 import { AuthContext, UserContext } from 'store';
 
 export const useFeedWrapper = () => {
@@ -16,8 +16,15 @@ export const useFeedWrapper = () => {
         let userId;
 
         if (session) {
-          const token = session.accessToken;
-          userId = session.userId;
+          const token = session.accessToken as string;
+          userId = session.userId as string;
+          if (!userCtx.userState.profileImage) {
+            await updateGoogleImage(
+              { profileImage: session!.user!.image },
+              userId,
+              token
+            );
+          }
           response = await getUserInfo(userId as string, token as string);
           userCtx.getUser(response.data.user);
         } else {

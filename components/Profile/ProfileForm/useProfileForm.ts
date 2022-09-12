@@ -57,7 +57,6 @@ export const useProfileForm = (props: {
     });
     formData.append('userId', userId as string);
     formData.append('emails', JSON.stringify(emailList));
-
     try {
       await updateProfile(formData, token as string);
 

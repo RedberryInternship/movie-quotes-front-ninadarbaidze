@@ -20,7 +20,11 @@ export const useNotificationItem = (props: {
   const isRead = notificationData.isRead === true;
 
   const myLoader = () => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${notificationData.senderId.profileImage}`;
+    if (notificationData.senderId.profileImage.startsWith('https')) {
+      return notificationData.senderId.profileImage;
+    } else {
+      return `${process.env.NEXT_PUBLIC_API_URL}/${notificationData.senderId.profileImage}`;
+    }
   };
 
   const notificationRedirectHandler = async () => {

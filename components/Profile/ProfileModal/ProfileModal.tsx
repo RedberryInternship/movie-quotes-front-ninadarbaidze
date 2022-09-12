@@ -24,7 +24,7 @@ const ProfileModal: React.FC<ProfileModalTypes> = (props) => {
                 <Input
                   id={name}
                   name={name}
-                  type='text'
+                  type='password'
                   label={label}
                   placeholder={placeholder}
                   onChange={formik.handleChange}

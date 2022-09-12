@@ -11,6 +11,16 @@ export const updateProfile = async (
   });
   return response;
 };
+export const updateGoogleImage = async (
+  data: any,
+  userId: string,
+  token: string
+): Promise<AxiosResponse<any, string>> => {
+  const response = await axios.put(`/google-user/${userId}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
 
 export const getUserInfo = async (
   userId: string | undefined | string[],

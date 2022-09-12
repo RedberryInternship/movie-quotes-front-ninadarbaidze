@@ -6,7 +6,7 @@ import { UserInfoTypes } from './types';
 
 const UserInfo: React.FC<UserInfoTypes> = (props) => {
   const { useLink, className, color } = props;
-  const { t, session, myLoader, userCtx } = useUserInfo();
+  const { t, myLoader, userCtx } = useUserInfo();
 
   return (
     <>
@@ -20,7 +20,7 @@ const UserInfo: React.FC<UserInfoTypes> = (props) => {
             <div className='object-cover'>
               <Image
                 loader={myLoader}
-                src={imagePreviewHandler(userCtx, session)}
+                src={imagePreviewHandler(userCtx)}
                 alt='profile-icon'
                 width={50}
                 height={50}
