@@ -24,6 +24,12 @@ export const useWriteNewQuote = (props: {
     setTimer(newTimer);
   };
 
+  const submitOnEnter = () => {
+    query.current.value.includes('@') || query.current.value.includes('#')
+      ? setSearchQuery(query.current.value)
+      : setSearchQuery('');
+  };
+
   return {
     t,
     quoteCtx,
@@ -33,5 +39,6 @@ export const useWriteNewQuote = (props: {
     setTimer,
     submitHandler,
     query,
+    submitOnEnter,
   };
 };
