@@ -10,7 +10,7 @@ const Popup: React.FC<PopupTypes> = (props) => {
   return (
     <>
       <Backdrop />
-      <Modal className='flex flex-col items-center justify-center fixed top-[30%] md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-profileDialog rounded-[10px] w-[20rem] z-40 md:w-[28rem] md:h-[22rem]'>
+      <Modal className='flex flex-col items-center justify-center fixed top-[30%] md:top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-profileDialog rounded-[10px] w-[20rem] z-40 md:w-[30rem] md:h-[22rem]'>
         <div className='flex flex-col justify-center items-center w-full  gap-8 '>
           <div className='mt-6'>
             <Image src={icon} alt='popup-icon' width={70} height={70} />
