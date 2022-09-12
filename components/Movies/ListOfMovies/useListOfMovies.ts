@@ -76,6 +76,7 @@ export const useListOfMovies = () => {
       updatedMovies!.unshift(movie);
       return updatedMovies;
     });
+    setMovieSum((prevState) => prevState + 1);
   };
 
   const openMovieForm = () => {
