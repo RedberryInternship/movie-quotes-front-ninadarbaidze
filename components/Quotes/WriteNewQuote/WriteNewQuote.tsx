@@ -11,6 +11,7 @@ const WriteNewQuote: React.FC<WriteQuoteTypes> = (props) => {
     setSearchExpanded,
     submitHandler,
     query,
+    submitOnEnter,
   } = useWriteNewQuote({
     setSearchQuery,
   });
@@ -41,6 +42,7 @@ const WriteNewQuote: React.FC<WriteQuoteTypes> = (props) => {
           onClick={() => setSearchExpanded(true)}
           onBlur={() => setSearchExpanded(false)}
           onKeyUp={submitHandler}
+          onKeyDown={submitOnEnter}
           ref={query}
         />
       </div>
