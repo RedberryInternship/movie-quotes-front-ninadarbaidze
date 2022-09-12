@@ -1,7 +1,7 @@
 import axios from './axios';
 import { AxiosResponse } from 'axios';
 import { ProfileResponse, ResponseToken } from 'types';
-
+import { GoogleImageType } from 'types';
 export const updateProfile = async (
   data: FormData,
   token: string
@@ -12,7 +12,7 @@ export const updateProfile = async (
   return response;
 };
 export const updateGoogleImage = async (
-  data: any,
+  data: GoogleImageType,
   userId: string,
   token: string
 ): Promise<AxiosResponse<any, string>> => {

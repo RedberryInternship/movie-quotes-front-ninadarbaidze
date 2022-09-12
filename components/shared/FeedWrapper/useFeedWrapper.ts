@@ -20,7 +20,7 @@ export const useFeedWrapper = () => {
           userId = session.userId as string;
           if (!userCtx.userState.profileImage) {
             await updateGoogleImage(
-              { profileImage: session!.user!.image },
+              { profileImage: session!.user!.image as string },
               userId,
               token
             );

@@ -1,4 +1,6 @@
-export const imagePreviewHandler = (quote: any) => {
+import { QuotesListTypes } from 'types';
+
+export const imagePreviewHandler = (quote: QuotesListTypes) => {
   const defaultProfileImg = `/assets/images/profile.png`;
 
   if (

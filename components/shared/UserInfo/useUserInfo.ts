@@ -7,7 +7,6 @@ export const useUserInfo = () => {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const userCtx = useContext(UserContext);
-  console.log(userCtx.userState.profileImage);
 
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
