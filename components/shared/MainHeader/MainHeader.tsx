@@ -67,7 +67,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
       </nav>
       {quoteCtx.notificationState && (
         <div
-          className='w-full h-full top-0 left-0 fixed bg-black bg-opacity-20 backdrop-filter backdrop-blur-sm z-10'
+          className='w-full h-full top-0 left-0 fixed bg-transparent z-10'
           onClick={() => quoteCtx.notificationStateHandler(false)}
         ></div>
       )}
