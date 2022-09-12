@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Comment, CommentItem, Like, CommentInput } from 'components';
 import { usePosts } from './usePosts';
 import { Comments, PostTypes } from 'types';
+import { imagePreviewHandler } from './helper';
 
 const Posts: React.FC<PostTypes> = (props) => {
   const { quote } = props;
@@ -23,7 +24,7 @@ const Posts: React.FC<PostTypes> = (props) => {
         <div className='object-cover w-10 h-10 rounded-full overflow-clip border-2'>
           <Image
             loader={myLoader}
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${quote.userId.profileImage}`}
+            src={imagePreviewHandler(quote)}
             alt='profile-icon'
             width={50}
             height={50}

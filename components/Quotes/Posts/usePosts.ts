@@ -14,10 +14,16 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
   const router = useRouter();
   const currentLan: string | undefined = router!.locale;
   const { data: session } = useSession();
+  const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
 
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
-    if (!quote.userId.profileImage) {
+    if (
+      quote.userId.profileImage &&
+      quote.userId.profileImage.startsWith('https')
+    ) {
+      return quote.userId.profileImage;
+    } else if (!quote.userId.profileImage) {
       return defaultProfileImg;
     } else {
       return `${process.env.NEXT_PUBLIC_API_URL}/${quote.userId.profileImage}`;
@@ -52,8 +58,6 @@ export const usePosts = (props: { quote: QuotesListTypes }) => {
 
     getData();
   }, [quote._id, token]);
-
-  const userId: string | Blob | unknown = session ? session.userId : ctx.userId;
 
   const liked = !!quote.likes.find((user) => user === userId);
   const commented = !!quote.comments.find((user) => user.userId._id === userId);

@@ -41,8 +41,11 @@ export const useEditProfile = () => {
 
   const myLoader = () => {
     const defaultProfileImg = `/assets/images/profile.png`;
-    if (session?.user && !userCtx.userState.profileImage) {
-      return session!.user.image as string;
+    if (
+      userCtx.userState.profileImage &&
+      userCtx.userState.profileImage.startsWith('https')
+    ) {
+      return userCtx.userState.profileImage as string;
     } else if (userCtx.userState.profileImage) {
       return `${process.env.NEXT_PUBLIC_API_URL}/${userCtx.userState.profileImage}`;
     } else {

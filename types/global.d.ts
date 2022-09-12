@@ -122,3 +122,7 @@ export type EmailListObjectTypes = {
 export type AlertPopupTypes = {
   text: string;
 };
+
+export type GoogleImageType = {
+  profileImage: string;
+};
