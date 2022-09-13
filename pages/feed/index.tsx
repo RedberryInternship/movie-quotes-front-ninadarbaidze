@@ -55,7 +55,7 @@ const Feed = () => {
           />
         </>
       ) : (
-        <FeedWrapper className='flex flex-col mt-10 sm:px-[5%] lg:mr-[10%]'>
+        <FeedWrapper className='flex flex-col mt-10 md:mt-16 lg:mt-10 sm:px-[5%] lg:mr-[10%]'>
           <div className='flex lg:w-[85%] xl:w-[80%]'>
             <div className='flex items-center w-full gap-4 h-10'>
               <WriteNewQuote setSearchQuery={setSearchQuery} />

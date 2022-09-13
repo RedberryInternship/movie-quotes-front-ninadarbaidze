@@ -57,7 +57,8 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   }, [userIsLoggedIn]);
 
   useEffect(() => {
-    let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem('userId') as string;
+    let token = localStorage.getItem('token') as string;
     const getUser = async () => {
       if (userId) {
         try {
@@ -66,32 +67,47 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
           err.response.status === 404 && logoutHandler();
         }
       }
-    };
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      const getUser = async () => {
-        let token = localStorage.getItem('token') as string;
-        let user = localStorage.getItem('userId') as string;
+      if (token) {
         let currentDate = new Date();
         try {
           let decodedToken: TokenDto = jwt_decode(token);
           if (decodedToken.exp * 1000 < currentDate.getTime()) {
             logoutHandler();
           } else {
-            await getUserInfo(user, token);
+            await getUserInfo(userId, token);
           }
         } catch (err: any) {
           err.response &&
             err.response.data.message.includes('invalid') &&
             logoutHandler();
         }
-      };
-      getUser();
-    }
-  }, [logoutHandler]);
+      }
+    };
+    getUser();
+  }, []);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     const getUser = async () => {
+  //       let token = localStorage.getItem('token') as string;
+  //       let user = localStorage.getItem('userId') as string;
+  //       let currentDate = new Date();
+  //       try {
+  //         let decodedToken: TokenDto = jwt_decode(token);
+  //         if (decodedToken.exp * 1000 < currentDate.getTime()) {
+  //           logoutHandler();
+  //         } else {
+  //           await getUserInfo(user, token);
+  //         }
+  //       } catch (err: any) {
+  //         err.response &&
+  //           err.response.data.message.includes('invalid') &&
+  //           logoutHandler();
+  //       }
+  //     };
+  //     getUser();
+  //   }
+  // }, [logoutHandler]);
 
   const loginHandler = (token: string, userId: string) => {
     setToken(token);
