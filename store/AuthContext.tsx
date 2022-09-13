@@ -60,8 +60,11 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
     let userId = localStorage.getItem('userId');
     const getUser = async () => {
       if (userId) {
-        const response = await checkUser(userId as string);
-        (response.status as number) === 404 && logoutHandler();
+        try {
+          await checkUser(userId as string);
+        } catch (err: any) {
+          err.response.status === 404 && logoutHandler();
+        }
       }
     };
     getUser();
