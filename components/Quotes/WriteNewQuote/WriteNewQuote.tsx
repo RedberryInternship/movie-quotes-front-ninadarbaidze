@@ -20,7 +20,10 @@ const WriteNewQuote: React.FC<WriteQuoteTypes> = (props) => {
     <>
       <div
         className='relative w-full h-full'
-        onClick={() => quoteCtx.quoteCreationStateHandler()}
+        onClick={() => {
+          quoteCtx.quoteCreationStateHandler(true);
+          quoteCtx.movieQuoteCreationHandler(false);
+        }}
       >
         <input
           type='text'

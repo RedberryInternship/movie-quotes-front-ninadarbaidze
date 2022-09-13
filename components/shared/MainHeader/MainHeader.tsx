@@ -29,7 +29,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
     <>
       {mobileMenu && <MobileMenu />}
 
-      <nav className='flex justify-between absolute w-full items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30 z-20'>
+      <nav className='flex justify-between absolute w-full items-center px-[5%] py-[5%] lg:py-[2%] bg-gray30'>
         <h1
           className='xs:hidden lg:block font-helvetica_en hidden text-beidge text-xs lg:text-xl cursor-pointer'
           onClick={() => router.push('/')}
@@ -67,7 +67,7 @@ const MainHeader: React.FC<MobileMenuTypes> = (props) => {
       </nav>
       {quoteCtx.notificationState && (
         <div
-          className='w-full h-full top-0 left-0 fixed bg-transparent z-30'
+          className='w-full h-full top-0 left-0 fixed bg-transparent z-20'
           onClick={() => quoteCtx.notificationStateHandler(false)}
         ></div>
       )}

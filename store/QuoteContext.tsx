@@ -25,9 +25,9 @@ const reducer = (
 
 export const QuoteContext = createContext({
   quoteCreationModal: false,
-  quoteCreationStateHandler: () => {},
+  quoteCreationStateHandler: (value: boolean) => {},
   isMovieQuote: false,
-  movieQuoteCreationHandler: () => {},
+  movieQuoteCreationHandler: (value: boolean) => {},
   quoteState: initialState,
   getQuote: (data: QuoteStateTypes) => {},
   editQuoteModal: false,
@@ -54,12 +54,12 @@ export const QuoteContextProvider: React.FC<Children> = (props) => {
     });
   };
 
-  const quoteCreationStateHandler = () => {
-    setQuoteCreationModal(!quoteCreationModal);
+  const quoteCreationStateHandler = (value: boolean) => {
+    setQuoteCreationModal(value);
   };
 
-  const movieQuoteCreationHandler = () => {
-    setIsMovieQuote(!isMovieQuote);
+  const movieQuoteCreationHandler = (value: boolean) => {
+    setIsMovieQuote(value);
   };
 
   const refreshQuotesHandler = () => {
