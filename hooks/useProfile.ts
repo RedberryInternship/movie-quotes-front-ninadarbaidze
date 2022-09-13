@@ -19,5 +19,10 @@ export const useProfile = () => {
     }
   }, [ctx.isLoggedIn, router, status]);
 
+  useEffect(() => {
+    userCtx.setSuccessPopup('');
+    userCtx.setErrorPopup('');
+  }, []);
+
   return { router, ctx, status, userCtx, currLang };
 };

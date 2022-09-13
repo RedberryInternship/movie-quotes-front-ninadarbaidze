@@ -71,7 +71,8 @@ export const useProfileForm = (props: {
           email: lastNotVerifiedMail,
         } as unknown as string);
       }
-      router.push(`/feed`);
+      router.push(`/feed/profile`);
+      userCtx.setProfileEditMode(false);
       userCtx.setSuccessPopup(`${t('profile:alertProfileUpdated')}`);
       formik.touched.username = false;
     } catch (error: any) {

@@ -48,6 +48,8 @@ export const UserContext = createContext({
   setEditPassword: (arg0: boolean) => {},
   loader: false,
   setLoader: (arg0: boolean) => {},
+  profileEditMode: false,
+  setProfileEditMode: (arg0: boolean) => {},
 });
 
 export const UserContextProvider: React.FC<Children> = (props) => {
@@ -61,6 +63,7 @@ export const UserContextProvider: React.FC<Children> = (props) => {
   const [passwordSection, setPasswordSection] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [profileEditMode, setProfileEditMode] = useState(false);
 
   const getUser = (data: UserStateTypes) => {
     dispatchUserAction({
@@ -90,6 +93,8 @@ export const UserContextProvider: React.FC<Children> = (props) => {
     setEditPassword,
     loader,
     setLoader,
+    profileEditMode,
+    setProfileEditMode,
   };
 
   return (
