@@ -73,7 +73,12 @@ export const useListOfMovies = () => {
     setData((prevState) => {
       let updatedMovies: UpdatedMovieTypes[] = [];
       updatedMovies = [...prevState];
-      updatedMovies!.unshift(movie);
+      prevState.length > 0
+        ? updatedMovies!.unshift(movie)
+        : updatedMovies!.push(movie);
+
+      setZeroMoviesText(false);
+
       return updatedMovies;
     });
     setMovieSum((prevState) => prevState + 1);
