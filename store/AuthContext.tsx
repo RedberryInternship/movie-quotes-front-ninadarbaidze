@@ -84,7 +84,6 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
             await getUserInfo(user, token);
           }
         } catch (err: any) {
-          console.log(err.response.data.message);
           err.response &&
             err.response.data.message.includes('invalid') &&
             logoutHandler();
