@@ -73,7 +73,7 @@ const Feed = () => {
               }
               endMessage={
                 <p className='flex justify-center text-gray30 text-lg mt-6'>
-                  <b>Yay! You have seen it all</b>
+                  <b>{t('quotes:endOfFeed')}</b>
                 </p>
               }
             >
