@@ -17,6 +17,11 @@ export type ClickAndClass = {
   className?: string;
 };
 
+export type ClickAndClassBoolean = {
+  onClick: (arg0: boolean) => void;
+  className?: string;
+};
+
 export type OnClick = {
   onClick: () => void;
 };

@@ -8,12 +8,12 @@ export const useQuoteList = () => {
   const { t } = useTranslation();
 
   const addQuoteModalHandler = () => {
-    quoteCtx.quoteCreationStateHandler();
-    quoteCtx.movieQuoteCreationHandler();
+    quoteCtx.quoteCreationStateHandler(true);
+    quoteCtx.movieQuoteCreationHandler(true);
   };
   const closeQuoteModalHandler = () => {
-    quoteCtx.quoteCreationStateHandler();
-    quoteCtx.movieQuoteCreationHandler();
+    quoteCtx.quoteCreationStateHandler(false);
+    quoteCtx.movieQuoteCreationHandler(false);
   };
 
   return {

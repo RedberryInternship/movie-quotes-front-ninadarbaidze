@@ -41,7 +41,10 @@ export const useFeedQuoteForm = () => {
       router.replace(
         quoteCtx.isMovieQuote ? `/feed/movies/${movieId}` : '/feed'
       );
-      quoteCtx.quoteCreationStateHandler();
+      quoteCtx.quoteCreationStateHandler(false);
+      quoteCtx.isMovieQuote
+        ? quoteCtx.movieQuoteCreationHandler(false)
+        : quoteCtx.movieQuoteCreationHandler(true);
     } catch (error: any) {
       throw new Error('Request failed!');
     }

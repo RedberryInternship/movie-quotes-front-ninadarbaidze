@@ -38,7 +38,7 @@ const Feed = () => {
       {quoteCtx.quoteCreationModal && (
         <>
           <FeedBackdrop
-            onClick={quoteCtx.quoteCreationStateHandler}
+            onClick={() => quoteCtx.quoteCreationStateHandler(false)}
             className='backdrop-blur-sm'
           />
           <QuoteModal title={t('quotes:addQtBtn')}>
