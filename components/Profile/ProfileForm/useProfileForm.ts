@@ -76,6 +76,7 @@ export const useProfileForm = (props: {
       userCtx.setSuccessPopup(`${t('profile:alertProfileUpdated')}`);
       formik.touched.username = false;
       formik.resetForm();
+      setEditPassword(false);
     } catch (error: any) {
       setError(error.response.data.message);
       userCtx.setErrorPopup(error.response.data.message);
