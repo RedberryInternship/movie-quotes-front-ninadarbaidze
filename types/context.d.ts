@@ -35,6 +35,8 @@ export type UserContextData = {
   setEditPassword: (arg0: boolean) => void;
   loader: boolean;
   setLoader: (arg0: boolean) => void;
+  profileEditMode: boolean;
+  setProfileEditMode: (arg0: boolean) => void;
 };
 
 export type UserStateTypes = {

@@ -376,11 +376,13 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
               : 'block'
           } absolute left-[50%] translate-x-[-50%] lg:translate-x-0 lg:left-[calc(100%_-_10rem)]`}
         >
-          <Button
-            text={t('profile:saveBtn')}
-            type='submit'
-            className='bg-red hover:bg-redHover w-[10rem] mt-12 h-12 text-base'
-          />
+          {userCtx.profileEditMode && (
+            <Button
+              text={t('profile:saveBtn')}
+              type='submit'
+              className='bg-red hover:bg-redHover w-[10rem] mt-12 h-12 text-base'
+            />
+          )}
         </div>
       </form>
     </>
