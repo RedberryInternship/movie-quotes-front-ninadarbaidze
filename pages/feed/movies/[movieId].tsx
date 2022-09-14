@@ -24,7 +24,7 @@ const MovieId = ({ data }: Data) => {
         </>
       ) : (
         <>
-          <FeedWrapper className='mr-[10%] mt-10'>
+          <FeedWrapper className='mr-[10%] mt-10 md:mt-16 lg:mt-10'>
             <MovieDetails data={data} />
           </FeedWrapper>
         </>

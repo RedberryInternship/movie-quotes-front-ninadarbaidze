@@ -2,7 +2,7 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { CheckUserType, Children, ContextData, TokenDto } from 'types';
 import jwt_decode from 'jwt-decode';
-import { checkUser } from 'services';
+import { checkUser, getUserInfo } from 'services';
 import { AxiosResponse } from 'axios';
 
 export const AuthContext = createContext({
@@ -57,7 +57,8 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
   }, [userIsLoggedIn]);
 
   useEffect(() => {
-    let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem('userId') as string;
+    let token = localStorage.getItem('token') as string;
     const getUser = async () => {
       if (userId) {
         try {
@@ -66,21 +67,24 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
           err.response.status === 404 && logoutHandler();
         }
       }
+      if (token) {
+        let currentDate = new Date();
+        try {
+          let decodedToken: TokenDto = jwt_decode(token);
+          if (decodedToken.exp * 1000 < currentDate.getTime()) {
+            logoutHandler();
+          } else {
+            await getUserInfo(userId, token);
+          }
+        } catch (err: any) {
+          err.response &&
+            err.response.data.message.includes('invalid') &&
+            logoutHandler();
+        }
+      }
     };
     getUser();
   }, []);
-
-  useEffect(() => {
-    let token = localStorage.getItem('token');
-    let currentDate = new Date();
-
-    if (token) {
-      let decodedToken: TokenDto = jwt_decode(token);
-      if (decodedToken.exp * 1000 < currentDate.getTime()) {
-        logoutHandler();
-      }
-    }
-  }, [logoutHandler]);
 
   const loginHandler = (token: string, userId: string) => {
     setToken(token);

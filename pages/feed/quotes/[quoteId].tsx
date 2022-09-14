@@ -46,8 +46,8 @@ const QuoteId: React.FC<QuoteDetailsType> = (props) => {
         />
       </Head>
       <FeedWrapper>
-        {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
-        <div className=' bg-mainDark w-[100%] lg:w-[70%] rounded-[12px] px-[5%] mt-10'>
+        <div className=' bg-mainDark w-[100%] lg:w-[70%] rounded-[12px] relative px-[5%] mt-10 md:mt-16 lg:mt-10'>
+          {deleteModal && <DeleteQuoteModal setDeleteModal={setDeleteModal} />}
           <h1 className='text-2xl text-white text-center py-8'>
             {t('quotes:quote')}
           </h1>
