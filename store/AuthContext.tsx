@@ -86,29 +86,6 @@ export const AuthContextProvider: React.FC<Children> = (props) => {
     getUser();
   }, []);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     const getUser = async () => {
-  //       let token = localStorage.getItem('token') as string;
-  //       let user = localStorage.getItem('userId') as string;
-  //       let currentDate = new Date();
-  //       try {
-  //         let decodedToken: TokenDto = jwt_decode(token);
-  //         if (decodedToken.exp * 1000 < currentDate.getTime()) {
-  //           logoutHandler();
-  //         } else {
-  //           await getUserInfo(user, token);
-  //         }
-  //       } catch (err: any) {
-  //         err.response &&
-  //           err.response.data.message.includes('invalid') &&
-  //           logoutHandler();
-  //       }
-  //     };
-  //     getUser();
-  //   }
-  // }, [logoutHandler]);
-
   const loginHandler = (token: string, userId: string) => {
     setToken(token);
     setUser(userId);
