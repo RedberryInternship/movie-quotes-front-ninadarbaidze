@@ -46,7 +46,7 @@ export default NextAuth({
         account.userId = response.data.userId as string;
         return true;
       } catch (err: any) {
-        return false;
+        return '/409';
       }
     },
   },

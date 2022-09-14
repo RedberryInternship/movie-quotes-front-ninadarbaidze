@@ -3,7 +3,14 @@ import { EmailItemTypes } from './types';
 import { useEmailItem } from './useEmailItem';
 
 const EmailItem: React.FC<EmailItemTypes> = (props) => {
-  const { email, primary, verified, onDeleteMail, onMakePrimary } = props;
+  const {
+    email,
+    primary,
+    verified,
+    onDeleteMail,
+    onMakePrimary,
+    setEmailEdit,
+  } = props;
   const {
     t,
     primaryClass,
@@ -68,7 +75,10 @@ const EmailItem: React.FC<EmailItemTypes> = (props) => {
 
           <p
             className='text-gray10 text-sm cursor-pointer'
-            onClick={() => onDeleteMail(email)}
+            onClick={() => {
+              onDeleteMail(email);
+              setEmailEdit(true);
+            }}
           >
             {!primary ? `${t('profile:remove')}` : ''}
           </p>
