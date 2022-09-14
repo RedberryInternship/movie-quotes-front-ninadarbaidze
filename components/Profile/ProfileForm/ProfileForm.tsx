@@ -25,6 +25,8 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
     onDeleteMail,
     onMakePrimary,
     cancelPasswordEditHandler,
+    emailEdit,
+    setEmailEdit,
   } = useProfileForm({ emailList, setEmailList });
 
   return (
@@ -157,15 +159,19 @@ const ProfileForm: React.FC<ProfileFormTypes> = (props) => {
                             setEmailList={setEmailList}
                             onDeleteMail={onDeleteMail}
                             onMakePrimary={onMakePrimary}
+                            setEmailEdit={setEmailEdit}
                           />
                         </li>
                       ))}
                   </ul>
-                  {error?.includes('Email') && (
-                    <p className='text-red text-xs mt-4'>
-                      {t('profile:emailTakenError')}
-                    </p>
-                  )}
+                  {error?.includes('Email') &&
+                    error &&
+                    userCtx.profileEditMode &&
+                    !emailEdit && (
+                      <p className='text-red text-xs mt-4'>
+                        {t('profile:emailTakenError')}
+                      </p>
+                    )}
                   {userCtx.emailSection && (
                     <p className='md:hidden text-white mt-4 text-sm'>
                       {t('profile:addEmail')}

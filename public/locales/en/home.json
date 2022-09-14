@@ -2,6 +2,7 @@
   "403H": "You shall not pass!",
   "403P": "Sorry, but you don’t have permission to access this page",
   "404P": "We cant see the page you are looking for",
+  "409P": "Sorry, user with this email already exists. Please try another one",
   "commonRequired": "This field is required",
   "confirmPassPlaceholder": "Confirm password",
   "createAccount": "Create an account",

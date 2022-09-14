@@ -20,6 +20,7 @@ export const useProfileForm = (props: {
   const editPassword = userCtx.editPassword;
   const setEditPassword = userCtx.setEditPassword;
   const [error, setError] = useState('');
+  const [emailEdit, setEmailEdit] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -132,5 +133,7 @@ export const useProfileForm = (props: {
     onMakePrimary,
     deleteInputHandler,
     cancelPasswordEditHandler,
+    emailEdit,
+    setEmailEdit,
   };
 };
