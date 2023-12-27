@@ -107,6 +107,7 @@ npm run dev
 ```
 
 ### Resources
+- [Application live preview](https://movie-quotes.ninadarbaidze.dev/)
 - [Application Design](https://www.figma.com/file/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=0%3A1)
 - [Git Commit Conventions](https://redberry.gitbook.io/resources/git-is-semantikuri-komitebi)
 
