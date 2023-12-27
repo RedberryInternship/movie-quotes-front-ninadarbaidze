@@ -35,8 +35,8 @@ export const useLogin = () => {
 
   const formik = useFormik({
     initialValues: {
-      user: 'user',
-      password: 'user',
+      user: '',
+      password: '',
       remember: true,
     },
     onSubmit: onSubmit,
