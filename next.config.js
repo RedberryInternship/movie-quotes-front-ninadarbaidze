@@ -8,7 +8,8 @@ const nextConfig = {
     domains: [
       'http://localhost:3001/',
       'lh3.googleusercontent.com',
-      'https://movie-quotes-api.nina.redberryinternship.ge/',
+      'https://movie-quotes.ninadarbaidze.dev',
+      'https://back.movie-quotes.ninadarbaidze.dev',
     ],
   },
 };
